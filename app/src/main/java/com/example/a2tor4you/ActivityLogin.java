@@ -4,7 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -27,5 +32,9 @@ public class ActivityLogin extends AppCompatActivity {
 
         TextView btn = findViewById(R.id.txtSignUp);
         btn.setOnClickListener(view -> startActivity(new Intent(ActivityLogin.this,MainActivity.class)));
+
+
+
+
     }
 }
