@@ -4,30 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/design"
+    android:background="@color/primary"
     tools:context=".ActivityRegisterTutor">
 
-    <TextView
-        android:id="@+id/txt_SignUpTutorHeading"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btnTutorSignUp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_bg"
+        android:backgroundTint="@color/white"
+        android:text="@string/btnTutorSignUp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/chk_Agree"
+        app:layout_constraintStart_toStartOf="@+id/chk_Agree"
+        app:layout_constraintTop_toBottomOf="@+id/chk_Agree"
+        app:rippleColor="@color/white" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094"
-        tools:text="@string/txt_SignUpTutorHeading" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgBackTutorToMain"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="14dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/txt_SignUpTutorHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/txt_SignUpTutorHeading"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/txt_TutorFirstName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="322dp"
+        android:layout_height="44dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@drawable/ic_person"
@@ -42,9 +67,9 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_SignUpTutorHeading" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
 
     <EditText
         android:id="@+id/txt_TutorLastName"
@@ -91,7 +116,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputLayoutPassword"
-        android:layout_width="352dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
 
         android:layout_marginTop="12dp"
@@ -128,7 +153,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputLayoutConfirmPassword"
-        android:layout_width="352dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
 
         android:layout_marginTop="12dp"
@@ -163,20 +188,6 @@
             app:hintAnimationEnabled="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/btnTutorSignUp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/btn_bg"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/txtInputLayoutConfirmPassword"
-        app:layout_constraintStart_toStartOf="@+id/txtInputLayoutConfirmPassword"
-        app:layout_constraintTop_toBottomOf="@+id/chk_Agree"
-        app:rippleColor="@color/white"
-        tools:text="@string/btnTutorSignUp" />
-
     <CheckBox
         android:id="@+id/chk_Suitable"
         android:layout_width="0dp"
@@ -184,6 +195,7 @@
         android:layout_marginTop="12dp"
         android:button="@drawable/check_box"
         android:text="@string/chk_Suitable"
+        android:textColor="@color/white"
         app:buttonIcon="@drawable/check_box"
         app:layout_constraintEnd_toEndOf="@+id/txtInputLayoutConfirmPassword"
         app:layout_constraintStart_toStartOf="@+id/txtInputLayoutConfirmPassword"
@@ -196,21 +208,10 @@
         android:layout_marginTop="12dp"
         android:button="@drawable/checkbox"
         android:text="@string/chk_Agree"
+        android:textColor="@color/white"
         app:buttonIcon="@drawable/check_box"
         app:layout_constraintEnd_toEndOf="@+id/chk_Suitable"
         app:layout_constraintStart_toStartOf="@+id/chk_Suitable"
         app:layout_constraintTop_toBottomOf="@+id/chk_Suitable" />
-
-    <Button
-        android:id="@+id/btnBackTutorRegisterToMain"
-        android:layout_width="38dp"
-        android:layout_height="32dp"
-        android:background="@drawable/ic_arrow_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

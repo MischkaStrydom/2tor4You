@@ -21,6 +21,9 @@
             android:name=".ActivityAccount"
             android:exported="false" />
         <activity
+            android:name=".ActivityTermAndConditions"
+            android:exported="false" />
+        <activity
             android:name=".ActivityDeleteAccount"
             android:exported="false" />
         <activity

@@ -2,32 +2,44 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/imgRegister"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/design"
+    android:background="@color/primary"
     tools:context=".ActivityRegisterStudent">
 
-    <TextView
-        android:id="@+id/txt_SignUpStudentHeading"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txt_SignUpStudentHeading"
-        android:textColor="@color/white"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgBackStudentToMain"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="14dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/txt_SignUpStudentHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/txt_SignUpStudentHeading"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/txt_StudentFirstName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="316dp"
+        android:layout_height="41dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@drawable/ic_person"
@@ -42,9 +54,9 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_SignUpStudentHeading" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
 
     <EditText
         android:id="@+id/txt_StudentLastName"
@@ -91,7 +103,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputLayoutPasswordStudentAccount"
-        android:layout_width="352dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
 
         android:layout_marginTop="12dp"
@@ -128,7 +140,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputLayoutConfirmPasswordStudentAcount"
-        android:layout_width="352dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
 
         android:layout_marginTop="12dp"
@@ -176,17 +188,5 @@
         app:layout_constraintStart_toStartOf="@+id/txtInputLayoutConfirmPasswordStudentAcount"
         app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutConfirmPasswordStudentAcount"
         app:rippleColor="@color/white" />
-
-    <Button
-        android:id="@+id/btnBackStudentRegisterToMain"
-        android:layout_width="38dp"
-        android:layout_height="32dp"
-        android:background="@drawable/ic_arrow_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

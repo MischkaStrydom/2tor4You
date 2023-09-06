@@ -4,38 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/design"
+    android:background="@color/primary"
     tools:context=".ActivityDeleteAccount">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgChangeBackDeleteAccount"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="14dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/txt_HeadingDeleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/txt_HeadingDeleteAccount"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btnDeleteAccount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/btn_bg"
         android:backgroundTint="@color/white"
         android:text="@string/btnDeleteAccount"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayoutDeleteAccountPassword"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textInputLayoutDeleteAccountPassword"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutDeleteAccountPassword"
         app:rippleColor="@color/white" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="396dp"
+        android:layout_height="375dp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/account_round_back_white"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+        <!--Notifications-->
+
+        <!--Settings-->
+
+        <!--Terms & Conditions-->
+
+        <!--Contact-->
+
+        <TextView
+            android:id="@+id/txtSureDeleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="@string/txtSureDeleteAccount" />
+
+        <TextView
+            android:id="@+id/txtD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/txtD"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtDeleteConfirmPassword"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/txtDeleteConfirmPassword"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutDeleteAccountPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="348dp"
+        android:layout_height="49dp"
 
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="300dp"
         android:textColorHint="@color/white"
         app:boxBackgroundMode="none"
         app:helperTextTextColor="@color/white"
         app:hintEnabled="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txtDeleteConfirmPassword"
-        app:layout_constraintStart_toStartOf="@+id/txtDeleteConfirmPassword"
-        app:layout_constraintTop_toBottomOf="@+id/txtDeleteConfirmPassword"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/white">
 
@@ -57,73 +136,5 @@
             android:textColorHint="@color/white"
             app:hintAnimationEnabled="false" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/txtDeleteConfirmPassword"
-        android:layout_width="293dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/txtDeleteConfirmPassword"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/txtD"
-        app:layout_constraintTop_toBottomOf="@+id/txtD" />
-
-    <TextView
-        android:id="@+id/txtD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/txtD"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/txtSureDeleteAccount"
-        app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="@+id/txtSureDeleteAccount"
-        app:layout_constraintTop_toBottomOf="@+id/txtSureDeleteAccount" />
-
-    <TextView
-        android:id="@+id/txtSureDeleteAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/txt_HeadingDeleteAccount"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="@+id/txt_HeadingDeleteAccount"
-        app:layout_constraintTop_toBottomOf="@+id/txt_HeadingDeleteAccount" />
-
-    <Button
-        android:id="@+id/btnBack_DeleteAccountToSettings"
-        android:layout_width="38dp"
-        android:layout_height="32dp"
-        android:background="@drawable/ic_arrow_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
-
-    <TextView
-        android:id="@+id/txt_HeadingDeleteAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.087"
-        tools:text="@string/txt_HeadingChangePassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
