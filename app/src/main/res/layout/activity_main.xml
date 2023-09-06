@@ -26,18 +26,18 @@
             android:id="@+id/txtDontHaveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?"
+            android:text="@string/txtDontHaveAccount"
             android:textColor="#FBFBFB"
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/txtSignUp"
+            android:id="@+id/txtSignUpBellow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="7dp"
-            android:text="Sign up below:"
             android:textColor="#043963"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:text="@string/txtSignUpBelow" />
     </LinearLayout>
 
     <Button
@@ -46,7 +46,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="64dp"
         android:background="@drawable/btn_bg"
-        android:text="Become a student"
+        android:text="@string/btnStudent"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/btnTutor"
         app:layout_constraintHorizontal_bias="0.0"
@@ -69,7 +69,7 @@
             android:id="@+id/txtHaveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have an account?"
+            android:text="@string/txtHaveAccount"
             android:textColor="#FBFBFB"
             android:textSize="12sp" />
 
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="7dp"
-            android:text="Login?"
+            android:text="@string/txtLogin"
             android:textColor="#043963"
             android:textSize="12sp" />
     </LinearLayout>
@@ -89,7 +89,7 @@
         android:layout_height="46dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/btn_bg"
-        android:text="Become a tutor"
+        android:text="@string/btnTutor"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
