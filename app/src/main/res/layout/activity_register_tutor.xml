@@ -8,10 +8,9 @@
     tools:context=".ActivityRegisterTutor">
 
     <TextView
-        android:id="@+id/txt_Login"
+        android:id="@+id/txt_SignUpTutorHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create your tutor account"
         android:textColor="@color/white"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -20,10 +19,11 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="0.094"
+        tools:text="@string/txt_SignUpTutorHeading" />
 
     <EditText
-        android:id="@+id/txt_FirstName"
+        android:id="@+id/txt_TutorFirstName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -33,7 +33,7 @@
         android:drawableLeft="@drawable/ic_person"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="First Name"
+        android:hint="@string/txt_TutorFirstName"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -44,10 +44,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Login" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_SignUpTutorHeading" />
 
     <EditText
-        android:id="@+id/txt_LastName"
+        android:id="@+id/txt_TutorLastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -55,7 +55,7 @@
         android:drawableLeft="@drawable/ic_person"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Last Name"
+        android:hint="@string/txt_TutorLastName"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -63,13 +63,13 @@
         android:paddingBottom="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/txt_FirstName"
+        app:layout_constraintEnd_toEndOf="@+id/txt_TutorFirstName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txt_FirstName"
-        app:layout_constraintTop_toBottomOf="@+id/txt_FirstName" />
+        app:layout_constraintStart_toStartOf="@+id/txt_TutorFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/txt_TutorFirstName" />
 
     <EditText
-        android:id="@+id/txt_Email"
+        android:id="@+id/txt_TutorEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -77,7 +77,7 @@
         android:drawableLeft="@drawable/ic_email"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/txtTutorEmail"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -85,9 +85,9 @@
         android:paddingBottom="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/txt_LastName"
-        app:layout_constraintStart_toStartOf="@+id/txt_LastName"
-        app:layout_constraintTop_toBottomOf="@+id/txt_LastName" />
+        app:layout_constraintEnd_toEndOf="@+id/txt_TutorLastName"
+        app:layout_constraintStart_toStartOf="@+id/txt_TutorLastName"
+        app:layout_constraintTop_toBottomOf="@+id/txt_TutorLastName" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputLayoutPassword"
@@ -100,9 +100,9 @@
         app:helperTextTextColor="@color/white"
         app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txt_Email"
-        app:layout_constraintStart_toStartOf="@+id/txt_Email"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Email"
+        app:layout_constraintEnd_toEndOf="@+id/txt_TutorEmail"
+        app:layout_constraintStart_toStartOf="@+id/txt_TutorEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txt_TutorEmail"
         app:layout_constraintVertical_bias="0.0"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/white">
@@ -115,7 +115,7 @@
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:hint="Password"
+            android:hint="@string/txtRegisterTutorPassword"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -152,7 +152,7 @@
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:hint="Confirm Password"
+            android:hint="@string/txtConfirmRegisterTutorPassword"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -170,12 +170,12 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/btn_bg"
         android:backgroundTint="@color/white"
-        android:text="Sign Up"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/txtInputLayoutConfirmPassword"
         app:layout_constraintStart_toStartOf="@+id/txtInputLayoutConfirmPassword"
         app:layout_constraintTop_toBottomOf="@+id/chk_Agree"
-        app:rippleColor="@color/white" />
+        app:rippleColor="@color/white"
+        tools:text="@string/btnTutorSignUp" />
 
     <CheckBox
         android:id="@+id/chk_Suitable"
@@ -202,7 +202,7 @@
         app:layout_constraintTop_toBottomOf="@+id/chk_Suitable" />
 
     <Button
-        android:id="@+id/btnBack"
+        android:id="@+id/btnBackTutorRegisterToMain"
         android:layout_width="38dp"
         android:layout_height="32dp"
         android:background="@drawable/ic_arrow_back"

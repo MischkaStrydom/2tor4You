@@ -8,10 +8,10 @@
     tools:context=".ActivityRegisterStudent">
 
     <TextView
-        android:id="@+id/txt_Login"
+        android:id="@+id/txt_SignUpStudentHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create your student account"
+        android:text="@string/txt_SignUpStudentHeading"
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.094" />
 
     <EditText
-        android:id="@+id/txt_FirstName"
+        android:id="@+id/txt_StudentFirstName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -33,7 +33,7 @@
         android:drawableLeft="@drawable/ic_person"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="First Name"
+        android:hint="@string/txt_StudentFirstName"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -44,10 +44,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Login" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_SignUpStudentHeading" />
 
     <EditText
-        android:id="@+id/txt_LastName"
+        android:id="@+id/txt_StudentLastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -55,7 +55,7 @@
         android:drawableLeft="@drawable/ic_person"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Last Name"
+        android:hint="@string/txt_StudentLastName"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -63,13 +63,13 @@
         android:paddingBottom="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/txt_FirstName"
+        app:layout_constraintEnd_toEndOf="@+id/txt_StudentFirstName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txt_FirstName"
-        app:layout_constraintTop_toBottomOf="@+id/txt_FirstName" />
+        app:layout_constraintStart_toStartOf="@+id/txt_StudentFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/txt_StudentFirstName" />
 
     <EditText
-        android:id="@+id/txt_Email"
+        android:id="@+id/txt_StudentEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -77,7 +77,7 @@
         android:drawableLeft="@drawable/ic_email"
         android:drawablePadding="10dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/txtStudentEmail"
         android:inputType="textPersonName"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -85,9 +85,9 @@
         android:paddingBottom="10dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/txt_LastName"
-        app:layout_constraintStart_toStartOf="@+id/txt_LastName"
-        app:layout_constraintTop_toBottomOf="@+id/txt_LastName" />
+        app:layout_constraintEnd_toEndOf="@+id/txt_StudentLastName"
+        app:layout_constraintStart_toStartOf="@+id/txt_StudentLastName"
+        app:layout_constraintTop_toBottomOf="@+id/txt_StudentLastName" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtInputLayoutPasswordStudentAccount"
@@ -100,9 +100,9 @@
         app:helperTextTextColor="@color/white"
         app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txt_Email"
-        app:layout_constraintStart_toStartOf="@+id/txt_Email"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Email"
+        app:layout_constraintEnd_toEndOf="@+id/txt_StudentEmail"
+        app:layout_constraintStart_toStartOf="@+id/txt_StudentEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txt_StudentEmail"
         app:layout_constraintVertical_bias="0.0"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/white">
@@ -115,7 +115,7 @@
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:hint="Password"
+            android:hint="@string/txtRegisterStudentPassword"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -152,7 +152,7 @@
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
-            android:hint="Confirm Password"
+            android:hint="@string/txtConfirmRegisterStudentPassword"
             android:inputType="textPassword"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -170,7 +170,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/btn_bg"
         android:backgroundTint="@color/white"
-        android:text="Sign Up"
+        android:text="@string/btnStudentSignUp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/txtInputLayoutConfirmPasswordStudentAcount"
         app:layout_constraintStart_toStartOf="@+id/txtInputLayoutConfirmPasswordStudentAcount"
@@ -178,7 +178,7 @@
         app:rippleColor="@color/white" />
 
     <Button
-        android:id="@+id/btnBack"
+        android:id="@+id/btnBackStudentRegisterToMain"
         android:layout_width="38dp"
         android:layout_height="32dp"
         android:background="@drawable/ic_arrow_back"
