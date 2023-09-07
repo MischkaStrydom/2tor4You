@@ -1,45 +1,81 @@
 <resources>
+    <!--Main Screen-->
     <string name="app_name">2tor4You</string>
-    <string name="chk_Suitable">I have a suitable computer with a webcam and microphone, and a reliable internet connection for online lessons.</string>
-    <string name="chk_Agree">I agree to obtain a verification and background check</string>
     <string name="txtDontHaveAccount">Don\'t have an account?</string>
     <string name="txtSignUpBelow">Sign up below:</string>
     <string name="btnStudent">Become a student</string>
     <string name="btnTutor">Become a tutor</string>
     <string name="txtHaveAccount">Already have an account?</string>
     <string name="txtLogin">Login?</string>
-    <string name="txt_SignUpStudentHeading">Create your student account</string>
-    <string name="btnStudentSignUp">Sign up</string>
-    <string name="txt_RegisterTutotHeading">Create your tutor account</string>
-    <string name="btnTutorSignUp">Sign Up</string>
+
+    <!--Login Screen-->
     <string name="txt_LoginHeading">Login</string>
+    <string name="txtLoginEmail">Email</string>
+    <string name="txtLoginPassword">Password</string>
     <string name="txtForgotPassword">Forgot Password?</string>
     <string name="btnLogin">Login</string>
     <string name="txtSignUp">Sign Up?</string>
+
+    <!--Change Password Screen-->
     <string name="txt_HeadingChangePassword">Change Password</string>
+    <string name="txtCurrentPassword">Current Password</string>
+    <string name="txtNewPassword">New Password</string>
+    <string name="txtConfirmPassword">Confirm Password</string>
     <string name="btnCreateNewPassword">Create new password</string>
+
+    <!--Delete Account Screen-->
     <string name="txt_HeadingDeleteAccount">Delete Account</string>
     <string name="txtSureDeleteAccount">Are you sure you want to delete your account?</string>
-    <string name="txtD">When you delete your account with 2tor4You, it cannot be retrieved again. Your sessions and personal information will be removed permanently.</string>
+    <string name="txtD">When you delete your account with 2tor4You, it cannot be retrieved again. Your sessions and personal information will be removed permantally.</string>
     <string name="txtDeleteConfirmPassword">Enter password to confirm:</string>
+    <string name="txtDeleteAccountPassword">Password</string>
     <string name="btnDeleteAccount">Delete Account</string>
+
+    <!--Student Register Screen-->
+    <string name="txt_SignUpStudentHeading">Create your student account</string>
     <string name="txt_StudentFirstName">First Name</string>
     <string name="txt_StudentLastName">Last Name</string>
     <string name="txtStudentEmail">Email</string>
     <string name="txtRegisterStudentPassword">Password</string>
     <string name="txtConfirmRegisterStudentPassword">Confirm Password</string>
+    <string name="btnStudentSignUp">Sign up</string>
+
+    <!--Tutor Register screen-->
+    <string name="txt_SignUpTutorHeading">Create your tutor account</string>
     <string name="txt_TutorFirstName">First Name</string>
     <string name="txt_TutorLastName">Last Name</string>
     <string name="txtTutorEmail">Email</string>
     <string name="txtRegisterTutorPassword">Password</string>
     <string name="txtConfirmRegisterTutorPassword">Confirm Password</string>
-    <string name="txt_SignUpTutorHeading">Create your tutor account</string>
-    <string name="txtLoginEmail">Email</string>
-    <string name="txtLoginPassword">Password</string>
-    <string name="txtDeleteAccountPassword">Password</string>
-    <string name="txtCurrentPassword">Current Password</string>
-    <string name="txtNewPassword">New Password</string>
-    <string name="txtConfirmPassword">Confirm Password</string>
+    <string name="chk_Suitable">I have a suitable computer with a webcam and microphone, and a reliable internet connection for online lessons.</string>
+    <string name="chk_Agree">I agree to obtain a verification and background check</string>
+    <string name="btnTutorSignUp">Sign Up</string>
+
+    <!--Account Screen-->
+    <string name="txtAccountHeading">Account</string>
+    <string name="txtAccNameSurnameSubHeading">Jane Doe</string>
+    <string name="txtAccEmailSubHeading">janedoe@gmail.com</string>
+    <string name="btnEditProfile">Edit Profile</string>
+    <string name="btnNotifications">Notifications</string>
+    <string name="btnSettings">Settings</string>
+    <string name="btnTermsAndC">Terms and Conditions</string>
+    <string name="btnContactUs">Contact 2tor4You</string>
+    <string name="btnLogOut">Log Out</string>
+
+    <!--Settings Screen-->
+    <string name="txtSettingsHeading">Settings</string>
+    <string name="btnChangePassword">Change Password</string>
+    <string name="btnDeleteAccountSettings">Delete Account</string>
+
+    <!--Notifications Screen-->
+    <string name="txtNotificationsHeading">Notifications</string>
+    <string name="txtReminders">Reminders</string>
+    <string name="txtReminderDetails">We will notify you of upcoming sessions and tasks</string>
+    <string name="btnEmail">Email</string>
+    <string name="txtMessages">Messages</string>
+    <string name="txtMessageDetails">We will notify you when you receive a new message </string>
+    <string name="btnMessage">Message</string>
+
     <string name="txtTermsAndConditions">Terms And Conditions</string>
     <string name="txtTerms">1. Acceptance of Terms
 

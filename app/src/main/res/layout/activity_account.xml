@@ -19,6 +19,7 @@
             android:padding="14dp"/>
 
         <TextView
+            android:id="@+id/txtAccountHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -45,6 +46,7 @@
                 android:src="@drawable/profile_pic"/>
 
             <TextView
+                android:id="@+id/txtAccNameSurnameSubHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -52,27 +54,29 @@
                 android:text="Jane Doe"
                 android:textColor="#FFFFFF"
                 android:textSize="22sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtAccEmailSubHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="janedoe@gmail.com"
                 android:textColor="#CCFFFF"
-                android:textSize="16sp"
-                android:layout_gravity="center"/>
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnEditProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:paddingStart="30dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/account_round_back"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
                 android:text="Edit Profile"
                 android:textAllCaps="false"
-                android:textColor="@color/primary"
-                android:paddingEnd="30dp"/>
+                android:textColor="@color/primary" />
 
             <LinearLayout
                 android:background="@drawable/account_round_back_white"
@@ -98,14 +102,15 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:layout_marginStart="20dp"
+                        android:id="@+id/btnNotifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/notificationsIcon"
                         android:text="Notifications"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@+id/notificationsIcon"/>
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -130,14 +135,15 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:layout_marginStart="20dp"
+                        android:id="@+id/btnSettings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/settingsIcon"
                         android:text="Settings"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@+id/settingsIcon"/>
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -162,14 +168,15 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:layout_marginStart="20dp"
+                        android:id="@+id/btnTermsAndC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/termsIcon"
                         android:text="Terms and Conditions"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@+id/termsIcon"/>
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -194,14 +201,15 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:layout_marginStart="20dp"
+                        android:id="@+id/btnContactUs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/contactIcon"
                         android:text="Contact 2tor4You"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@+id/contactIcon"/>
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -236,14 +244,15 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:layout_marginStart="20dp"
+                        android:id="@+id/btnLogOut"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/logOutIcon"
                         android:text="Log Out"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@+id/logOutIcon"/>
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="wrap_content"

@@ -19,6 +19,7 @@
             android:padding="14dp"/>
 
         <TextView
+            android:id="@+id/txtNotificationsHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -38,16 +39,18 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtReminders"
                 android:layout_width="373dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:text="Reminders"
-                android:textSize="17dp"
                 android:textColor="#FFFFFF"
+                android:textSize="17dp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtReminderDetails"
                 android:layout_width="373dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -79,14 +82,15 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:layout_marginStart="20dp"
+                        android:id="@+id/btnEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/emailIcon"
                         android:text="Email"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@+id/emailIcon"/>
+                        android:textStyle="bold" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:layout_width="wrap_content"
@@ -100,16 +104,18 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txtMessages"
                 android:layout_width="373dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:text="Messages"
-                android:textSize="17dp"
                 android:textColor="#FFFFFF"
+                android:textSize="17dp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtMessageDetails"
                 android:layout_width="373dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -141,14 +147,15 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:layout_marginStart="20dp"
+                        android:id="@+id/btnMessage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_toEndOf="@+id/messageIcon"
                         android:text="Message"
                         android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@+id/messageIcon"/>
+                        android:textStyle="bold" />
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:layout_width="wrap_content"
