@@ -16,17 +16,26 @@
     <string name="btnLogin">Login</string>
     <string name="txtSignUp">Sign Up?</string>
 
+    <string-array name="spinRole">
+
+        <item>Role</item>
+        <item>Tutor</item>
+        <item>Student</item>
+
+    </string-array>
+
     <!--Change Password Screen-->
     <string name="txt_HeadingChangePassword">Change Password</string>
     <string name="txtCurrentPassword">Current Password</string>
     <string name="txtNewPassword">New Password</string>
-    <string name="txtConfirmPassword">Confirm Password</string>
+    <string name="txtConfirmPassword">Confirm New Password</string>
     <string name="btnCreateNewPassword">Create new password</string>
 
     <!--Delete Account Screen-->
     <string name="txt_HeadingDeleteAccount">Delete Account</string>
-    <string name="txtSureDeleteAccount">Are you sure you want to delete your account?</string>
-    <string name="txtD">When you delete your account with 2tor4You, it cannot be retrieved again. Your sessions and personal information will be removed permantally.</string>
+
+    <string name="txtD">Are you sure you want to delete your account?
+        When you delete your account with 2tor4You, it cannot be retrieved again. Your sessions and personal information will be removed permantally.</string>
     <string name="txtDeleteConfirmPassword">Enter password to confirm:</string>
     <string name="txtDeleteAccountPassword">Password</string>
     <string name="btnDeleteAccount">Delete Account</string>
@@ -76,7 +85,10 @@
     <string name="txtMessageDetails">We will notify you when you receive a new message </string>
     <string name="btnMessage">Message</string>
 
+
+    <!--Terms And Conditions Screen-->
     <string name="txtTermsAndConditions">Terms And Conditions</string>
+
     <string name="txtTerms">1. Acceptance of Terms
 
 By accessing or using the [Your App Name] (the "App"), you agree to comply with and be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, please do not use the App.
@@ -133,4 +145,164 @@ These Terms are governed by and construed in accordance with the laws of [Your J
 
 For questions or concerns regarding these Terms, please contact us at [Contact Email Address].</string>
 
+
+    <!--Personal Info Screen-->
+    <string name="txtProHeading">My Profile</string>
+    <string name="txtPersonalInfo">Personal Information</string>
+    <string name="txtEdu">Education</string>    >
+    <string name="txtProfileName">First Name</string>
+    <string name="txtProfileSurname">Last Name</string>
+    <string name="txtDOB">Date of birth</string>
+
+    <string-array name="spinGender">
+
+        <item>Gender</item>
+        <item>Female</item>
+        <item>Male</item>
+        <item>Other</item>
+
+    </string-array>
+
+    <string name="txtPhone">Phone Number</string>
+    <string name="txtProEmail">Email</string>
+    <string name="txtLocation">Location</string>
+    <string name="txtLanguage">Language</string>
+    <string name="txtSchool">School</string>
+    <string name="txtUni">University</string>
+
+    <string-array name="spinProvince">
+
+        <item>Province</item>
+        <item>Eastern Cape</item>
+        <item>Free State</item>
+        <item>Gauteng</item>
+        <item>KwaZulu-Natal</item>
+        <item>Limpopo</item>
+        <item>Mpumalanga</item>
+        <item>North West</item>
+        <item>Northern Cape</item>
+        <item>Western Cape</item>
+
+    </string-array>
+
+    <!-- String array for Eastern Cape cities -->
+    <string-array name="eastern_cape_cities">
+        <item>City</item>
+        <item>Port Elizabeth</item>
+        <item>East London</item>
+        <item>Uitenhage</item>
+        <item>Grahamstown</item>
+        <item>Queenstown</item>
+        <item>Mthatha</item>
+        <item>Bhisho</item>
+    </string-array>
+
+    <!-- String array for Free State cities -->
+    <string-array name="free_state_cities">
+        <item>City</item>
+        <item>Bloemfontein</item>
+        <item>Welkom</item>
+        <item>Bethlehem</item>
+        <item>Sasolburg</item>
+        <item>Kroonstad</item>
+        <item>Parys</item>
+    </string-array>
+
+    <!-- String array for Gauteng cities -->
+    <string-array name="gauteng_cities">
+        <item>City</item>
+        <item>Johannesburg</item>
+        <item>Pretoria</item>
+        <item>Centurion</item>
+        <item>Midrand</item>
+        <item>Sandton</item>
+        <item>Randburg</item>
+        <item>Roodepoort</item>
+        <item>Kempton Park</item>
+        <item>Boksburg</item>
+        <item>Benoni</item>
+        <item>Vereeniging</item>
+    </string-array>
+
+    <!-- String array for KwaZulu-Natal cities -->
+    <string-array name="kwa_zulu_natal_cities">
+        <item>City</item>
+        <item>Durban</item>
+        <item>Pietermaritzburg</item>
+        <item>Newcastle</item>
+        <item>Richards Bay</item>
+        <item>Ladysmith</item>
+        <item>Empangeni</item>
+        <item>Port Shepstone</item>
+        <item>Estcourt</item>
+        <item>Ballito</item>
+        <item>Howick</item>
+    </string-array>
+
+    <!-- String array for Limpopo cities -->
+    <string-array name="limpopo_cities">
+        <item>City</item>
+        <item>Polokwane (Pietersburg)</item>
+        <item>Tzaneen</item>
+        <item>Thohoyandou</item>
+        <item>Mokopane (Potgietersrus)</item>
+        <item>Musina</item>
+        <item>Phalaborwa</item>
+        <item>Giyani</item>
+        <item>Lebowakgomo</item>
+        <item>Modimolle (Nylstroom)</item>
+    </string-array>
+
+    <!-- String array for Mpumalanga cities -->
+    <string-array name="mpumalanga_cities">
+        <item>City</item>
+        <item>Nelspruit</item>
+        <item>Witbank (eMalahleni)</item>
+        <item>Middelburg</item>
+        <item>Secunda</item>
+        <item>Ermelo</item>
+        <item>Standerton</item>
+        <item>Lydenburg</item>
+        <item>Barberton</item>
+        <item>Hazyview</item>
+    </string-array>
+
+    <!-- String array for North West cities -->
+    <string-array name="north_west_cities">
+        <item>City</item>
+        <item>Rustenburg</item>
+        <item>Mahikeng (Mafikeng)</item>
+        <item>Potchefstroom</item>
+        <item>Klerksdorp</item>
+        <item>Brits</item>
+        <item>Orkney</item>
+        <item>Lichtenburg</item>
+    </string-array>
+
+    <!-- String array for Northern Cape cities -->
+    <string-array name="northern_cape_cities">
+        <item>City</item>
+        <item>Kimberley</item>
+        <item>Upington</item>
+        <item>Springbok</item>
+        <item>De Aar</item>
+        <item>Kathu</item>
+        <item>Kuruman</item>
+    </string-array>
+
+    <!-- String array for Western Cape cities -->
+    <string-array name="western_cape_cities">
+        <item>City</item>
+        <item>Cape Town</item>
+        <item>Stellenbosch</item>
+        <item>Paarl</item>
+        <item>Worcester</item>
+        <item>George</item>
+        <item>Mossel Bay</item>
+        <item>Oudtshoorn</item>
+        <item>Knysna</item>
+        <item>Beaufort West</item>
+    </string-array>
+
+    <string name="btnSaveProfile">Save</string>
 </resources>

@@ -21,12 +21,12 @@ public class ActivityLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        String[] items = {"Role", "Student", "Tutor"};
-        int[] icons = {R.drawable.ic_person, R.drawable.ic_student, R.drawable.ic_tutor};
-
-        Spinner spinner = findViewById(R.id.spinner); // Replace with your Spinner's ID
-        CustomSpinner adapter = new CustomSpinner(this, items, icons);
-        spinner.setAdapter(adapter);
+//        String[] items = {"Role", "Student", "Tutor"};
+//        int[] icons = {R.drawable.ic_person, R.drawable.ic_student, R.drawable.ic_tutor};
+//
+//        Spinner spinner = findViewById(R.id.spinner); // Replace with your Spinner's ID
+//        CustomSpinner adapter = new CustomSpinner(this, items, icons);
+//        spinner.setAdapter(adapter);
 
         ImageView imgBack = findViewById(R.id.imgBackMainFromLogin);
         imgBack.setOnClickListener(view -> startActivity(new Intent(ActivityLogin.this,MainActivity.class)));

@@ -7,20 +7,6 @@
     android:background="@color/primary"
     tools:context=".ActivityRegisterTutor">
 
-    <Button
-        android:id="@+id/btnTutorSignUp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/btn_bg"
-        android:backgroundTint="@color/white"
-        android:text="@string/btnTutorSignUp"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/chk_Agree"
-        app:layout_constraintStart_toStartOf="@+id/chk_Agree"
-        app:layout_constraintTop_toBottomOf="@+id/chk_Agree"
-        app:rippleColor="@color/white" />
-
     <RelativeLayout
         android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
@@ -47,171 +33,396 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <EditText
-        android:id="@+id/txt_TutorFirstName"
-        android:layout_width="322dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/input_bg"
-        android:drawableLeft="@drawable/ic_person"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="@string/txt_TutorFirstName"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
-
-    <EditText
-        android:id="@+id/txt_TutorLastName"
-        android:layout_width="0dp"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/input_bg"
-        android:drawableLeft="@drawable/ic_person"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="@string/txt_TutorLastName"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/txt_TutorFirstName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/txt_TutorFirstName"
-        app:layout_constraintTop_toBottomOf="@+id/txt_TutorFirstName" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/relativeLayout3"
+        app:layout_constraintStart_toStartOf="@+id/relativeLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
 
-    <EditText
-        android:id="@+id/txt_TutorEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/input_bg"
-        android:drawableLeft="@drawable/ic_email"
-        android:drawablePadding="10dp"
-        android:ems="10"
-        android:hint="@string/txtTutorEmail"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/txt_TutorLastName"
-        app:layout_constraintStart_toStartOf="@+id/txt_TutorLastName"
-        app:layout_constraintTop_toBottomOf="@+id/txt_TutorLastName" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtInputLayoutPassword"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-
-        android:layout_marginTop="12dp"
-        android:textColorHint="@color/white"
-        app:boxBackgroundMode="none"
-        app:helperTextTextColor="@color/white"
-        app:hintEnabled="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txt_TutorEmail"
-        app:layout_constraintStart_toStartOf="@+id/txt_TutorEmail"
-        app:layout_constraintTop_toBottomOf="@+id/txt_TutorEmail"
-        app:layout_constraintVertical_bias="0.0"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/white">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtRegisterTutorPassword"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/input_bg"
-            android:drawableStart="@drawable/ic_lock"
-            android:drawablePadding="10dp"
-            android:gravity="center_vertical"
-            android:hint="@string/txtRegisterTutorPassword"
-            android:inputType="textPassword"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            app:hintAnimationEnabled="false" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/txtInputLayoutConfirmPassword"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/account_round_back_white"
+                android:orientation="vertical"
+                android:padding="2dp">
 
-        android:layout_marginTop="12dp"
-        android:textColorHint="@color/white"
-        app:boxBackgroundMode="none"
-        app:helperTextTextColor="@color/white"
-        app:hintEnabled="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txtInputLayoutPassword"
-        app:layout_constraintStart_toStartOf="@+id/txtInputLayoutPassword"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutPassword"
-        app:layout_constraintVertical_bias="0.0"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/white">
+                <!--Notifications-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtConfirmRegisterTutorPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/input_bg"
-            android:drawableStart="@drawable/ic_lock"
-            android:drawablePadding="10dp"
-            android:gravity="center_vertical"
-            android:hint="@string/txtConfirmRegisterTutorPassword"
-            android:inputType="textPassword"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            app:hintAnimationEnabled="false" />
-    </com.google.android.material.textfield.TextInputLayout>
+                    <EditText
+                        android:id="@+id/txt_TutorFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/nameIcon"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="@string/txt_TutorFirstName"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
 
-    <CheckBox
-        android:id="@+id/chk_Suitable"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:button="@drawable/check_box"
-        android:text="@string/chk_Suitable"
-        android:textColor="@color/white"
-        app:buttonIcon="@drawable/check_box"
-        app:layout_constraintEnd_toEndOf="@+id/txtInputLayoutConfirmPassword"
-        app:layout_constraintStart_toStartOf="@+id/txtInputLayoutConfirmPassword"
-        app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutConfirmPassword" />
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        app:boxBackgroundMode="none"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckBox
-        android:id="@+id/chk_Agree"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:button="@drawable/checkbox"
-        android:text="@string/chk_Agree"
-        android:textColor="@color/white"
-        app:buttonIcon="@drawable/check_box"
-        app:layout_constraintEnd_toEndOf="@+id/chk_Suitable"
-        app:layout_constraintStart_toStartOf="@+id/chk_Suitable"
-        app:layout_constraintTop_toBottomOf="@+id/chk_Suitable" />
+                    <ImageView
+                        android:id="@+id/nameIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/settings_icon_fill"
+                        android:foregroundGravity="center_vertical"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_person" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/account_round_back_white"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <!--Notifications-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp">
+
+                    <EditText
+                        android:id="@+id/txt_TutorLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/surnameIcon"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="@string/txt_TutorLastName"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        app:boxBackgroundMode="none"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/surnameIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/logout_icon_fill"
+                        android:foregroundGravity="center_vertical"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_person" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="394dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/account_round_back_white"
+                    android:orientation="vertical"
+                    android:padding="2dp">
+
+                    <!--Notifications-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp">
+
+                        <EditText
+                            android:id="@+id/txtTutorEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="41dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_toEndOf="@+id/emailIcon"
+                            android:background="@null"
+                            android:ems="10"
+                            android:hint="@string/txtTutorEmail"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:boxBackgroundMode="none"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/emailIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/contact_icon_fill"
+                            android:foregroundGravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/mail" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/account_round_back_white"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <!--Password-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutLoginPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+
+                        android:textColorHint="@color/white"
+                        app:boxBackgroundMode="none"
+                        app:helperTextTextColor="@color/white"
+                        app:hintEnabled="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/txt_LoginEmail"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/txt_LoginEmail"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_LoginEmail"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/white"
+                        tools:ignore="UnknownIdInLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtRegisterTutorPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:gravity="center_vertical"
+                            android:hint="@string/txtRegisterTutorPassword"
+                            android:inputType="textPassword"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            android:textSize="18sp"
+                            app:hintAnimationEnabled="false" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/passIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/green"
+                        android:foregroundGravity="center_vertical"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_blacklock" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/account_round_back_white"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <!--Password-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutLoginPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+
+                        android:textColorHint="@color/white"
+                        app:boxBackgroundMode="none"
+                        app:helperTextTextColor="@color/white"
+                        app:hintEnabled="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/txt_LoginEmail"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/txt_LoginEmail"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_LoginEmail"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/white"
+                        tools:ignore="UnknownIdInLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtConfirmRegisterTutorPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:gravity="center_vertical"
+                            android:hint="@string/txtConfirmRegisterTutorPassword"
+                            android:inputType="textPassword"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            android:textSize="18sp"
+                            app:hintAnimationEnabled="false" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/confirmpassIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/terms_iicon_fill"
+                        android:foregroundGravity="center_vertical"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_blacklock" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="145dp"
+                android:layout_margin="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/account_round_back_white"
+                android:orientation="vertical"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+
+                <!--Notifications-->
+
+                <!--Settings-->
+
+                <!--Terms & Conditions-->
+
+                <!--Contact-->
+
+                <CheckBox
+                    android:id="@+id/chk_Suitable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:button="@drawable/check_box"
+                    android:text="@string/chk_Suitable"
+                    android:textColor="@color/white"
+                    app:buttonIcon="@drawable/check_box"
+                    app:layout_constraintEnd_toEndOf="@+id/txtInputLayoutConfirmPassword"
+                    app:layout_constraintStart_toStartOf="@+id/txtInputLayoutConfirmPassword"
+                    app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutConfirmPassword" />
+
+                <CheckBox
+                    android:id="@+id/chk_Agree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:button="@drawable/checkbox"
+                    android:text="@string/chk_Agree"
+                    android:textColor="@color/white"
+                    app:buttonIcon="@drawable/check_box"
+                    app:layout_constraintEnd_toEndOf="@+id/chk_Suitable"
+                    app:layout_constraintStart_toStartOf="@+id/chk_Suitable"
+                    app:layout_constraintTop_toBottomOf="@+id/chk_Suitable" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnTutorSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/account_round_back"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="@string/btnTutorSignUp"
+                android:textColor="@color/primary" />
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
