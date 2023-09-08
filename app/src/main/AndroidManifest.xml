@@ -12,6 +12,15 @@
         android:theme="@style/Theme.2tor4You"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityCalendar"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityNavigationBar"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityHomeStudent"
+            android:exported="false" />
+        <activity
             android:name=".ActivityNotifications"
             android:exported="false" />
         <activity
@@ -47,6 +56,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
