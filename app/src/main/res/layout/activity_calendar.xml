@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@drawable/background_mountain"
     android:orientation="vertical"
     tools:context=".ActivityCalendar">
 
@@ -38,9 +38,10 @@
         android:layout_height="wrap_content"
         android:text="Upcoming Sessions"
         android:textColor="@color/white"
+        android:textStyle="bold"
         android:textAlignment="center"
-        android:textSize="20sp"
-        android:layout_marginLeft="110dp"
+        android:textSize="25sp"
+        android:layout_marginLeft="90dp"
         android:layout_marginTop="48dp"/>
     
     <LinearLayout
@@ -68,6 +69,7 @@
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
         android:text="Add Event"
+        android:textSize="15sp"
         android:textAllCaps="false"
         android:textColor="@color/primary" />
 

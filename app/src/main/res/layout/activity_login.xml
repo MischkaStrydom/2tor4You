@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@drawable/background_moon_1"
     android:paddingTop="10dp"
     tools:context=".ActivityLogin">
 
@@ -102,7 +102,7 @@
                         android:id="@+id/emailIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/contact_icon_fill"
+                        android:background="@drawable/account_round_back"
                         android:foregroundGravity="center_vertical"
                         android:padding="10dp"
                         android:src="@drawable/mail" />
@@ -146,7 +146,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/txt_LoginEmail"
                     app:layout_constraintVertical_bias="0.0"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="@color/white"
+                    app:passwordToggleTint="#B4A8C5"
                     tools:ignore="UnknownIdInLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -170,7 +170,7 @@
                     android:id="@+id/passwordIcon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/green"
+                    android:background="@drawable/account_round_back"
                     android:foregroundGravity="center_vertical"
                     android:padding="10dp"
                     android:src="@drawable/ic_blacklock" />
@@ -207,8 +207,6 @@
         app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
         app:layout_constraintStart_toStartOf="@+id/linearLayout5"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-        <!--Notifications-->
 
 
         <RelativeLayout

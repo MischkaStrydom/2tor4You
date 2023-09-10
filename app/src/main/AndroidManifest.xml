@@ -12,9 +12,11 @@
         android:theme="@style/Theme.2tor4You"
         tools:targetApi="31">
         <activity
-            android:name=".ActivityCalendar"
+            android:name=".ActivityEditEvent"
             android:exported="false" />
-        <!-- <activity -->
+        <activity
+            android:name=".ActivityCalendar"
+            android:exported="false" /> <!-- <activity -->
         <!-- android:name=".ActivityNavigationBar" -->
         <!-- android:exported="false" /> -->
         <activity

@@ -15,20 +15,20 @@
         android:layout_gravity="center"
         android:text="Upcoming Sessions"
         android:textColor="#FFFFFF"
-        android:textSize="17sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.111" />
 
     <View
         android:id="@+id/view"
         android:layout_width="409dp"
-        android:layout_height="218dp"
-        android:background="@drawable/wavy"
+        android:layout_height="200dp"
+        android:background="@drawable/space_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,24 +46,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/txtWelcomeStud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center_horizontal"
-        android:letterSpacing="0.025"
-        android:text="Welcome Jane"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintStart_toEndOf="@+id/back_arrow"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.324" />
 
 
     <!--<LinearLayout
@@ -114,52 +96,59 @@
 
     </LinearLayout>-->
 
+    <TextView
+        android:id="@+id/txtWelcomeStud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center_horizontal"
+        android:letterSpacing="0.025"
+        android:text="Welcome Jane"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/back_arrow"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.46" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        app:cardBackgroundColor="#453660"
-        android:layout_height="128dp"
+        android:layout_width="373dp"
+        android:layout_height="100dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="18dp"
         android:elevation="12dp"
+        app:cardBackgroundColor="#453660"
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtWelcomeStud">
-
-        <TextView
-            android:id="@+id/txtGoalsHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Your Learning Goals"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="45dp"
             android:layout_marginEnd="20dp"
             android:progress="45"
-            app:indicatorColor="@color/teal_700"
+            app:indicatorColor="@color/secondary"
             app:trackColor="#DFDBDB"
             app:trackCornerRadius="5dp"
             app:trackThickness="15dp" />
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="74dp"
-            android:layout_height="58dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="40dp"
-            app:srcCompat="@drawable/trophy" />
+            android:layout_width="87dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@drawable/shooting_star" />
 
     </androidx.cardview.widget.CardView>
 
@@ -214,15 +203,13 @@
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="48dp"
         android:text="Find your perfect tutor"
-        android:textColor="@color/notifications"
+        android:textColor="@color/teal_200"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.816"
         app:strokeColor="@color/grey"
         app:strokeWidth="2dp" />
 
@@ -230,18 +217,18 @@
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="56dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/account_round_back_white"
         android:orientation="vertical"
         android:padding="15dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.418">
+        app:layout_constraintVertical_bias="0.423">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -251,7 +238,7 @@
                 android:id="@+id/changePassIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/logout_icon_fill"
+                android:background="@drawable/notifications_icon_fill"
                 android:padding="12dp"
                 android:src="@drawable/ic_dob" />
 
@@ -282,7 +269,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="136dp"
         android:background="@drawable/account_round_back_white"
         android:orientation="vertical"
         android:padding="15dp"
@@ -297,7 +284,7 @@
                 android:id="@+id/deleteAccIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/contact_icon_fill"
+                android:background="@drawable/account_round_back"
                 android:padding="12dp"
                 android:src="@drawable/ic_dob" />
 
@@ -324,8 +311,8 @@
 
     <Button
         android:id="@+id/btnViewAllSessions"
-        android:layout_width="137dp"
-        android:layout_height="48dp"
+        android:layout_width="128dp"
+        android:layout_height="40dp"
         android:background="@android:color/transparent"
         android:text="View All"
         android:textColor="@android:color/white"
@@ -334,7 +321,23 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/txtUpcomingSessions"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.439" />
+        app:layout_constraintVertical_bias="0.555" />
+
+    <TextView
+        android:id="@+id/txtGoalsHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Learning Goals"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.302" />
 
     <!--<ImageButton
         android:id="@+id/profileB"
