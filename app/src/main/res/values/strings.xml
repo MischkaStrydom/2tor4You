@@ -149,7 +149,8 @@ For questions or concerns regarding these Terms, please contact us at [Contact E
     <!--Personal Info Screen-->
     <string name="txtProHeading">My Profile</string>
     <string name="txtPersonalInfo">Personal Information</string>
-    <string name="txtEdu">Education</string>    >
+    <string name="txtEdu">Education</string>
+    >
     <string name="txtProfileName">First Name</string>
     <string name="txtProfileSurname">Last Name</string>
     <string name="txtDOB">Date of birth</string>
@@ -305,4 +306,20 @@ For questions or concerns regarding these Terms, please contact us at [Contact E
     </string-array>
 
     <string name="btnSaveProfile">Save</string>
+
+    <!--Student Home Screen-->
+    <string name="txtWelcomeStud">Welcome Jane</string>
+    <string name="txtGoalsHeading">My Learning Goals</string>
+    <string name="txtUpcomingSessions">Upcoming Sessions</string>
+    <string name="btnViewAllSessions">View All</string>
+    <string name="txtUpcomingSession_1">English Lesson</string>
+    <string name="txtUpcomingSession_2">Afrikaans Lesson</string>
+    <string name="btnFindPerfectTutor">Find Your Perfect Tutor</string>
+
+    <!--Calendar Screen-->
+    <string name="txtCalendarHeading">Calendar</string>
+    <string name="txtMySession">Upcoming Sessions</string>
+    <string name="btnAddEvent">Add Event</string>
+
+
 </resources>

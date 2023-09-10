@@ -1,29 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
+    android:orientation="vertical"
     tools:context=".ActivityCalendar">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Calendar Screen"
-        android:gravity="center"
-        android:textColor="@color/white"/>
+        android:layout_height="wrap_content">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+        <ImageView
+            android:id="@+id/imgBackCalendar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="14dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/txtCalendarHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Calendar"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtMySession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/bottomNavigationView"
-        app:itemBackground="@color/grey"
-        app:itemTextColor="@drawable/selector_navigation_bar"
-        app:itemIconTint="@drawable/selector_navigation_bar"
-        app:menu="@menu/bottom_navigation_bar"
-        app:labelVisibilityMode="labeled"
-        android:layout_alignParentBottom="true">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        android:text="Upcoming Sessions"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="48dp"/>
+    
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:background="@drawable/background_rounded_white"
+        android:layout_marginLeft="40dp"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="wrap_content"
+            android:layout_height="320dp">
+
+        </CalendarView>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/account_round_back"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:text="Add Event"
+        android:textAllCaps="false"
+        android:textColor="@color/primary" />
+
+</LinearLayout>

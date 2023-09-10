@@ -6,19 +6,41 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.CalendarView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.w3c.dom.Text;
+
 public class ActivityCalendar extends AppCompatActivity {
 
-    /*BottomNavigationView bottomNavigationView;*/
+    CalendarView calendarView;
+    TextView txtMySession;
+
+/*BottomNavigationView bottomNavigationView;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        /*bottomNavigationView=findViewById(R.id.bottomNavigationView);
+        calendarView = (CalendarView) findViewById(R.id.calendarView);
+        txtMySession = (TextView) findViewById(R.id.txtMySession);
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                String date = (i1 + 1) + "/" + i2 + "/" + i;
+                txtMySession.setText(date);
+            }
+        });
+
+
+
+
+
+/*bottomNavigationView=findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.calendar);
 
         bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
@@ -45,6 +67,7 @@ public class ActivityCalendar extends AppCompatActivity {
                 return false;
             }
         });*/
+
 
     }
 }
