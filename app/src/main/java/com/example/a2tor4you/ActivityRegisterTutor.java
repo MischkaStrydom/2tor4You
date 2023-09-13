@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class ActivityRegisterTutor extends AppCompatActivity {
@@ -14,7 +15,7 @@ public class ActivityRegisterTutor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_tutor);
 
-        ImageView imgBack = findViewById(R.id.imgBackTutorToMain);
-        imgBack.setOnClickListener(view -> startActivity(new Intent(ActivityRegisterTutor.this,MainActivity.class)));
+        ImageButton btnBack = findViewById(R.id.btnBackRegisterTutor);
+        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityRegisterTutor.this,MainActivity.class)));
     }
 }

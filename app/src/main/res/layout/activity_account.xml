@@ -12,10 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imgBackAccount"
+        <ImageButton
+            android:id="@+id/btnBackAccount"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="362dp"
+            android:backgroundTint="@color/primary"
             android:padding="14dp"
             android:src="@drawable/ic_arrow_back" />
 
@@ -103,7 +106,7 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:id="@+id/btnNotifications"
+                        android:id="@+id/txtNotifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -113,10 +116,12 @@
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/btnNotifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/right_arrow"
+                        android:backgroundTint="#321C4F"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"/>
                 </RelativeLayout>
@@ -136,7 +141,7 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:id="@+id/btnSettings"
+                        android:id="@+id/txtSettings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -146,10 +151,12 @@
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/btnSettings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/right_arrow"
+                        android:backgroundTint="#321C4F"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"/>
                 </RelativeLayout>
@@ -169,7 +176,7 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:id="@+id/btnTermsAndC"
+                        android:id="@+id/txtTermsAndC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -179,10 +186,12 @@
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/btnTermsAndC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/right_arrow"
+                        android:backgroundTint="#321C4F"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"/>
                 </RelativeLayout>
@@ -202,7 +211,7 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:id="@+id/btnContactUs"
+                        android:id="@+id/txtContactUs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -212,10 +221,12 @@
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/btnContactUs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/right_arrow"
+                        android:backgroundTint="#321C4F"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"/>
                 </RelativeLayout>
@@ -245,7 +256,7 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:id="@+id/btnLogOut"
+                        android:id="@+id/txtLogOut"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -255,10 +266,12 @@
                         android:textColor="#FFFFFF"
                         android:textStyle="bold" />
 
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/btnLogOut"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/right_arrow"
+                        android:backgroundTint="#321C4F"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"/>
                 </RelativeLayout>

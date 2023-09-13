@@ -65,11 +65,11 @@
     <string name="txtAccNameSurnameSubHeading">Jane Doe</string>
     <string name="txtAccEmailSubHeading">janedoe@gmail.com</string>
     <string name="btnEditProfile">Edit Profile</string>
-    <string name="btnNotifications">Notifications</string>
-    <string name="btnSettings">Settings</string>
-    <string name="btnTermsAndC">Terms and Conditions</string>
-    <string name="btnContactUs">Contact 2tor4You</string>
-    <string name="btnLogOut">Log Out</string>
+    <string name="txtNotifications">Notifications</string>
+    <string name="txtSettings">Settings</string>
+    <string name="txtTermsAndC">Terms and Conditions</string>
+    <string name="txtContactUs">Contact 2tor4You</string>
+    <string name="txtLogOut">Log Out</string>
 
     <!--Settings Screen-->
     <string name="txtSettingsHeading">Settings</string>
@@ -320,6 +320,21 @@ For questions or concerns regarding these Terms, please contact us at [Contact E
     <string name="txtCalendarHeading">Calendar</string>
     <string name="txtMySession">Upcoming Sessions</string>
     <string name="btnAddEvent">Add Event</string>
+
+    <!--Edit Event Screen-->
+    <string name="txtEditEventHeading">Edit Event</string>
+    <string name="txtUpSessionDetails">Upcoming Session Details</string>
+    <string name="txtEventTitle">Title</string>
+    <string name="txtEventDate">Date</string>
+    <string name="txtEventTime">Time</string>
+    <string name="rdoOnline">Online</string>
+    <string name="rdoInPerson">In_Person</string>
+    <string name="txtEventNotes">Notes</string>
+    <string name="btnSaveEvent">Save</string>
+
+    <!--Events ListView Screen-->
+    <string name="txtUpcomingEventsHeading">Upcoming Events</string>
+
 
 
 </resources>
