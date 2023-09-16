@@ -12,6 +12,15 @@
         android:theme="@style/Theme.2tor4You"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityTutorProfile"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityFilterTutors"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityLearningGoals"
+            android:exported="false" />
+        <activity
             android:name=".ActivityEventsListView"
             android:exported="false" />
         <activity
