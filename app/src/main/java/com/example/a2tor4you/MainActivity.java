@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         TextView btn = findViewById(R.id.txtLogin);
-        btn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this,ActivityTutorProfile.class)));
+        btn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this,ActivityGrade.class)));
 
         Button btnTutor = findViewById(R.id.btnTutor);
         btnTutor.setOnClickListener(view -> startActivity(new Intent(MainActivity.this,ActivityRegisterTutor.class)));

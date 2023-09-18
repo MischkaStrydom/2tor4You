@@ -17,7 +17,6 @@
     <string name="txtSignUp">Sign Up?</string>
 
 
-
     <string-array name="Spinner_Items">
         <item>Role</item>
         <item>Tutor</item>
@@ -498,7 +497,6 @@
     </string-array>
 
 
-
     <string name="txtPricePerHr">Price per hour</string>
     <string name="txtTeachLoacation">Location</string>
     <string name="rdoTeachOnline">Online</string>
@@ -508,5 +506,25 @@
     <string name="rdoTutQualifiedTeacher">You are a qualified teacher: You have obtained QTS (Qualified Teacher Status)</string>
     <string name="txtExtraNotes">Extra Notes</string>
     <string name="btnSaveTutProfile">Save</string>
+
+
+<!--Find A tutor grade-->
+    <string name="txtFindTutorHeading">Find a tutor</string>
+    <string name="txtGrade">What grade are you in?</string>
+    <string name="txtGradeR">Grade R</string>
+    <string name="txtGrade1">Grade 1</string>
+    <string name="txtGrade2">Grade 2</string>
+    <string name="txtGrade3">Grade 3</string>
+    <string name="txtGrade4">Grade 4</string>
+    <string name="txtGrade5">Grade 5</string>
+    <string name="txtGrade6">Grade 6</string>
+    <string name="txtGrade7">Grade 7</string>
+    <string name="txtGrade8">Grade 8</string>
+    <string name="txtGrade9">Grade 9</string>
+    <string name="txtGrade10">Grade 10</string>
+    <string name="txtGrade11">Grade 11</string>
+    <string name="txtGrade12">Grade 12</string>
+    <string name="btnNextFindTutor">Next</string>
+
 
 </resources>

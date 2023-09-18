@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btnBa"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary"
+    android:orientation="vertical"
+    tools:context=".ActivityMyProfile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btnBackFindTutor"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="362dp"
+            android:backgroundTint="#001B023B"
+            android:padding="14dp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:id="@+id/txtFindATutor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:text="@string/txtFindTutorHeading"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="@string/txtGrade"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
+
+            <RadioGroup
+                android:id="@+id/rdoGroupGrade1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                >
+
+                <RadioButton
+                    android:id="@+id/rdoGradeR"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/bg_radio_button"
+                    android:button="@null"
+                    android:layoutDirection="rtl"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/txtGradeR"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+
+                <RadioButton
+                    android:id="@+id/rdoGrade1"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtGrade1"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:layoutDirection="rtl"
+                    android:button="@null"
+                    android:background="@drawable/bg_radio_button"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+
+                <RadioButton
+                    android:id="@+id/rdoGrade2"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtGrade2"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:layoutDirection="rtl"
+                    android:button="@null"
+                    android:background="@drawable/bg_radio_button"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+                <RadioButton
+                    android:id="@+id/rdoGrade3"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtGrade3"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:layoutDirection="rtl"
+                    android:button="@null"
+                    android:background="@drawable/bg_radio_button"
+                    android:paddingRight="12dp"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+
+
+                <RadioButton
+                    android:id="@+id/rdoGrade4"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/bg_radio_button"
+                    android:button="@null"
+                    android:layoutDirection="rtl"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+
+                    android:text="@string/txtGrade4"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+
+                <RadioButton
+                    android:id="@+id/rdoGrade5"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtGrade5"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:layoutDirection="rtl"
+                    android:button="@null"
+                    android:background="@drawable/bg_radio_button"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+
+
+                <RadioButton
+                    android:id="@+id/rdoGrade6"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtGrade6"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:layoutDirection="rtl"
+                    android:button="@null"
+                    android:background="@drawable/bg_radio_button"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+                <RadioButton
+                    android:id="@+id/rdoGrade7"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtGrade7"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:layoutDirection="rtl"
+                    android:button="@null"
+                    android:background="@drawable/bg_radio_button"
+                    android:paddingRight="12dp"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    />
+
+
+                <RadioButton
+                    android:id="@+id/rdoGrade8"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/bg_radio_button"
+                    android:button="@null"
+                    android:layoutDirection="rtl"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/txtGrade8"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+
+                <RadioButton
+                    android:id="@+id/rdoGrade9"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtGrade9"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:layoutDirection="rtl"
+                    android:button="@null"
+                    android:background="@drawable/bg_radio_button"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+
+
+
+                <RadioButton
+                    android:id="@+id/rdoGrade10"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtGrade10"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:layoutDirection="rtl"
+                    android:button="@null"
+                    android:background="@drawable/bg_radio_button"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginBottom="20dp"
+                     android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+                <RadioButton
+                    android:id="@+id/rdoGrade11"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtGrade11"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:layoutDirection="rtl"
+                    android:button="@null"
+                    android:background="@drawable/bg_radio_button"
+                    android:paddingRight="12dp"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+
+
+                <RadioButton
+                    android:id="@+id/rdoGrade12"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/bg_radio_button"
+                    android:button="@null"
+                    android:layoutDirection="rtl"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/txtGrade12"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
+
+            </RadioGroup>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNextFindTutor"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/account_round_back"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="@string/btnNextFindTutor"
+                android:textColor="@color/primary" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

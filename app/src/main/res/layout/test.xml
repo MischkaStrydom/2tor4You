@@ -8,274 +8,128 @@
     android:orientation="vertical"
     tools:context=".ActivityMyProfile">
 
-    <Spinner
-        android:id="@+id/spinRole"
-        android:layout_width="match_parent"
+
+
+
+
+    <RadioButton
+        android:id="@+id/rdoGrade6"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:entries="@array/Spinner_Items"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:popupBackground="#90BDAF"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/CustomSpinnerTheme"
-
-
-        />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imgBackMyProfile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="14dp"
-            android:src="@drawable/ic_arrow_back" />
-
-        <TextView
-            android:id="@+id/txtProHeading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center_horizontal"
-            android:text="@string/txtProHeading"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
+        android:text="@string/txtGrade6"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layoutDirection="rtl"
+        android:button="@null"
+        android:background="@drawable/bg_radio_button"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>
+    <RadioButton
+        android:id="@+id/rdoGrade7"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/account_round_back_white"
-                android:orientation="vertical"
-                android:padding="2dp">
-
-                <!--Password-->
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayoutLoginPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="41dp"
-
-                        android:textColorHint="@color/white"
-                        app:boxBackgroundMode="none"
-                        app:helperTextTextColor="@color/white"
-                        app:hintEnabled="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/txt_LoginEmail"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/txt_LoginEmail"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_LoginEmail"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/white"
-                        tools:ignore="UnknownIdInLayout">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtStudentConfirmPassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="40dp"
-                            android:gravity="center_vertical"
-                            android:hint="@string/txtLoginPassword"
-                            android:inputType="textPassword"
-                            android:paddingStart="20dp"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="10dp"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            android:textSize="18sp"
-                            app:hintAnimationEnabled="false" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <ImageView
-                        android:id="@+id/surnameIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/terms_iicon_fill"
-                        android:foregroundGravity="center_vertical"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_blacklock" />
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/account_round_back_white"
-                android:orientation="vertical"
-                android:padding="2dp">
-
-                <!--Password-->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayoutLoginPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="41dp"
-
-                        android:textColorHint="@color/white"
-                        app:boxBackgroundMode="none"
-                        app:helperTextTextColor="@color/white"
-                        app:hintEnabled="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/txt_LoginEmail"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/txt_LoginEmail"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_LoginEmail"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/white"
-                        tools:ignore="UnknownIdInLayout">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtLoginPassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="40dp"
-                            android:gravity="center_vertical"
-                            android:hint="@string/txtLoginPassword"
-                            android:inputType="textPassword"
-                            android:paddingStart="20dp"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="10dp"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            android:textSize="18sp"
-                            app:hintAnimationEnabled="false" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <ImageView
-                        android:id="@+id/surnameIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/green"
-                        android:foregroundGravity="center_vertical"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_blacklock" />
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/account_round_back_white"
-                android:orientation="vertical"
-                android:padding="2dp">
-
-                <!--Password-->
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayoutLoginPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="41dp"
-
-                        android:textColorHint="@color/white"
-                        app:boxBackgroundMode="none"
-                        app:helperTextTextColor="@color/white"
-                        app:hintEnabled="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/txt_LoginEmail"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/txt_LoginEmail"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_LoginEmail"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/white"
-                        tools:ignore="UnknownIdInLayout">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtStudentConfirmPassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="40dp"
-                            android:gravity="center_vertical"
-                            android:hint="@string/txtLoginPassword"
-                            android:inputType="textPassword"
-                            android:paddingStart="20dp"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="10dp"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            android:textSize="18sp"
-                            app:hintAnimationEnabled="false" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <ImageView
-                        android:id="@+id/surnameIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/terms_iicon_fill"
-                        android:foregroundGravity="center_vertical"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_blacklock" />
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSaveProfile"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="100dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/account_round_back"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
-                android:text="@string/btnSaveProfile"
-                android:textColor="@color/primary" />
-
-
-        </LinearLayout>
-    </ScrollView>
+        android:text="@string/txtGrade7"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layoutDirection="rtl"
+        android:button="@null"
+        android:background="@drawable/bg_radio_button"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>
+    <RadioButton
+        android:id="@+id/rdoGrade8"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txtGrade8"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layoutDirection="rtl"
+        android:button="@null"
+        android:background="@drawable/bg_radio_button"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>
+    <RadioButton
+        android:id="@+id/rdoGrade9"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txtGrade9"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layoutDirection="rtl"
+        android:button="@null"
+        android:background="@drawable/bg_radio_button"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>
+    <RadioButton
+        android:id="@+id/rdoGrade10"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txtGrade10"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layoutDirection="rtl"
+        android:button="@null"
+        android:background="@drawable/bg_radio_button"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>
+    <RadioButton
+        android:id="@+id/rdoGrade11"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txtGrade11"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layoutDirection="rtl"
+        android:button="@null"
+        android:background="@drawable/bg_radio_button"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>
+    <RadioButton
+        android:id="@+id/rdoGrade12"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="@string/txtGrade12"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:layoutDirection="rtl"
+        android:button="@null"
+        android:background="@drawable/bg_radio_button"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>
 
 </LinearLayout>

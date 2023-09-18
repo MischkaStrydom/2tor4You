@@ -358,56 +358,34 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout4"
-                android:layout_width="wrap_content"
-                android:layout_height="145dp"
-                android:layout_margin="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/account_round_back_white"
-                android:orientation="vertical"
-                android:padding="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+            <CheckBox
+                android:id="@+id/chk_Agree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="20dp"
+                android:text="@string/chk_Agree"
+                android:textColor="@color/white"
+                app:buttonIcon="@drawable/check_box"
+                app:layout_constraintEnd_toEndOf="@+id/chk_Suitable"
+                app:layout_constraintStart_toStartOf="@+id/chk_Suitable"
+                app:layout_constraintTop_toBottomOf="@+id/chk_Suitable" />
 
-                <!--Notifications-->
-
-                <!--Settings-->
-
-                <!--Terms & Conditions-->
-
-                <!--Contact-->
-
-                <CheckBox
-                    android:id="@+id/chk_Suitable"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:button="@drawable/check_box"
-                    android:text="@string/chk_Suitable"
-                    android:textColor="@color/white"
-                    app:buttonIcon="@drawable/check_box"
-                    app:layout_constraintEnd_toEndOf="@+id/txtInputLayoutConfirmPassword"
-                    app:layout_constraintStart_toStartOf="@+id/txtInputLayoutConfirmPassword"
-                    app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutConfirmPassword" />
-
-                <CheckBox
-                    android:id="@+id/chk_Agree"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:button="@drawable/checkbox"
-                    android:text="@string/chk_Agree"
-                    android:textColor="@color/white"
-                    app:buttonIcon="@drawable/check_box"
-                    app:layout_constraintEnd_toEndOf="@+id/chk_Suitable"
-                    app:layout_constraintStart_toStartOf="@+id/chk_Suitable"
-                    app:layout_constraintTop_toBottomOf="@+id/chk_Suitable" />
-
-            </LinearLayout>
+            <CheckBox
+                android:id="@+id/chk_Suitable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="20dp"
+                android:button="@drawable/check_box"
+                android:text="@string/chk_Suitable"
+                android:textColor="@color/white"
+                app:buttonIcon="@drawable/check_box"
+                app:layout_constraintEnd_toEndOf="@+id/txtInputLayoutConfirmPassword"
+                app:layout_constraintStart_toStartOf="@+id/txtInputLayoutConfirmPassword"
+                app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutConfirmPassword" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnTutorSignUp"
