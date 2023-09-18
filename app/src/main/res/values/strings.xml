@@ -298,6 +298,7 @@
 
     <!--Tutor Profile Screen-->
     <string name="txtTutProfileHeading">My Profile</string>
+    <string name="txtTutProfilePic">Profile Picture</string>
     <string name="txtTutPersonalInfo">Personal Information</string>
     <string name="txtTutName">First Name</string>
     <string name="txtTutLastName">Last Name</string>
@@ -526,5 +527,13 @@
     <string name="txtGrade12">Grade 12</string>
     <string name="btnNextFindTutor">Next</string>
 
+
+    <!--Tutor Profile View Screen-->
+
+    <string name="txtTutProfileViewHeading">Tutor Profile</string>
+    <string name="txtTutAboutHeader">About Me</string>
+    <string name="txtTotalHrsHeader">Total Tutor Hours:</string>
+    <string name="txtTotalStudHeader">Total Students Taught:</string>
+    <string name="txtPriceHeader">Price per hour:</string>
 
 </resources>
