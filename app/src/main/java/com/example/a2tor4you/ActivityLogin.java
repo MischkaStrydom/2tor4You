@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -15,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class ActivityLogin extends AppCompatActivity {
+public class ActivityLogin extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +26,12 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 //        String[] items = {"Role", "Student", "Tutor"};
-//        int[] icons = {R.drawable.ic_person, R.drawable.ic_student, R.drawable.ic_tutor};
+//        int[] icons = {R.drawable.ic_person, R.drawable.ic_person, R.drawable.ic_tutor};
 //
-//        Spinner spinner = findViewById(R.id.spinner); // Replace with your Spinner's ID
+//        Spinner coloredSpinner = findViewById(R.id.spinRole); // Replace with your Spinner's ID
+//
 //        CustomSpinner adapter = new CustomSpinner(this, items, icons);
-//        spinner.setAdapter(adapter);
+//        coloredSpinner.setAdapter(adapter);
 
         ImageButton btnBack = findViewById(R.id.btnBackLogin);
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityLogin.this,MainActivity.class)));
@@ -37,6 +41,16 @@ public class ActivityLogin extends AppCompatActivity {
 
 
 
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 }

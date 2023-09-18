@@ -55,11 +55,12 @@
           android:textColor="#CCFFFF"
           android:textSize="16sp" />
 
+      <!--First Name-->
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginStart="20dp"
-          android:layout_marginLeft="20dp"
+
           android:layout_marginTop="20dp"
           android:layout_marginEnd="20dp"
           android:background="@drawable/account_round_back_white"
@@ -110,6 +111,7 @@
 
       </LinearLayout>
 
+      <!--  Last Name-->
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
@@ -121,7 +123,7 @@
           android:orientation="vertical"
           android:padding="2dp">
 
-        <!--Notifications-->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -165,17 +167,19 @@
 
       </LinearLayout>
 
+      <!--DOB and Gender-->
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:orientation="horizontal"
-          android:padding="2dp">
-
-        <!--Notifications-->
+          android:padding="2dp"
 
 
+          android:layout_marginBottom="20dp">
+
+        <!--DOB-->
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="204dp"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="210dp"
@@ -217,10 +221,11 @@
 
         </RelativeLayout>
 
+        <!--Gender-->
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="-180dp"
+            android:layout_marginStart="-200dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/account_round_back_white"
             android:padding="2dp">
@@ -229,21 +234,33 @@
               android:id="@+id/spinGender"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-
+              android:layout_toEndOf="@+id/genIcon"
+              android:background="@drawable/spinner_arrow"
               android:entries="@array/spinGender"
-              android:paddingLeft="20dp"
+              android:paddingLeft="15dp"
               android:paddingTop="10dp"
               android:paddingRight="10dp"
               android:paddingBottom="10dp"
-              android:popupBackground="#90BDAF"
+              android:popupBackground="@color/primary"
               android:textColor="@color/white"
+              android:theme="@style/CustomSpinnerTheme"
               app:layout_constraintHorizontal_bias="0.0"
               app:layout_constraintTop_toTopOf="parent" />
 
+          <ImageView
+              android:id="@+id/genIcon"
+              android:layout_width="40dp"
+              android:layout_height="40dp"
+              android:background="@drawable/dark_green"
+              android:foregroundGravity="center_vertical"
+              android:padding="10dp"
+              android:src="@drawable/ic_gender" />
         </RelativeLayout>
+
 
       </LinearLayout>
 
+      <!--Phone Number-->
       <LinearLayout
           android:id="@+id/linearLayout1"
           android:layout_width="match_parent"
@@ -311,6 +328,7 @@
         </LinearLayout>
       </LinearLayout>
 
+      <!--Email-->
       <LinearLayout
           android:id="@+id/linearLayout2"
           android:layout_width="match_parent"
@@ -332,7 +350,7 @@
             android:orientation="vertical"
             android:padding="2dp">
 
-          <!--Notifications-->
+
           <RelativeLayout
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -377,62 +395,122 @@
         </LinearLayout>
       </LinearLayout>
 
+      <!--Province-->
+    <LinearLayout
+        android:id="@+id/linearLayout111"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="394dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/account_round_back_white"
+            android:padding="2dp">
+
+          <RelativeLayout
+              android:layout_width="368dp"
+              android:layout_height="match_parent"
+
+              android:padding="2dp">
+
+            <Spinner
+                android:id="@+id/spinProvince"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_toEndOf="@+id/provinceIcon"
+                android:background="@drawable/spinner_arrow"
+                android:entries="@array/spinProvince"
+                android:paddingLeft="15dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:popupBackground="@color/primary"
+                android:textColor="@color/white"
+                android:theme="@style/CustomSpinnerTheme"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/provinceIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bright_yellow"
+                android:foregroundGravity="center_vertical"
+                android:padding="10dp"
+                android:src="@drawable/ic_location" />
+
+          </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+      <!--City-->
       <LinearLayout
+          android:id="@+id/linearLayout20"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:layout_marginLeft="20dp"
+          android:layout_marginRight="20dp"
+          android:layout_marginBottom="20dp"
+
+          android:gravity="center"
           android:orientation="horizontal"
-          android:padding="2dp">
+          android:textAlignment="center"
+          tools:layout_editor_absoluteX="32dp"
+          tools:layout_editor_absoluteY="394dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="205dp"
-            android:background="@drawable/account_round_back_white"
-            android:padding="2dp">
-
-          <Spinner
-              android:id="@+id/spinProvince"
+          <LinearLayout
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="match_parent"
+              android:background="@drawable/account_round_back_white"
+              android:orientation="vertical"
+              android:padding="2dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="2dp">
 
-              android:entries="@array/spinProvince"
-              android:paddingLeft="20dp"
-              android:paddingTop="10dp"
-              android:paddingRight="10dp"
-              android:paddingBottom="10dp"
-              android:popupBackground="#90BDAF"
-              android:textColor="@color/white"
-              app:layout_constraintHorizontal_bias="0.0"
-              app:layout_constraintTop_toTopOf="parent" />
+              <Spinner
+                  android:id="@+id/spinCity"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
 
-        </RelativeLayout>
+                  android:layout_toEndOf="@+id/cityIcon"
+                  android:background="@drawable/spinner_arrow"
+                  android:entries="@array/eastern_cape_cities"
+                  android:paddingLeft="15dp"
+                  android:paddingTop="10dp"
+                  android:paddingRight="10dp"
+                  android:paddingBottom="10dp"
+                  android:popupBackground="@color/primary"
+                  android:textColor="@color/white"
+                  android:theme="@style/CustomSpinnerTheme"
+                  app:layout_constraintHorizontal_bias="0.0"
+                  app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="-190dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/account_round_back_white"
-            android:padding="2dp">
+              <ImageView
+                  android:id="@+id/cityIcon"
+                  android:layout_width="40dp"
+                  android:layout_height="40dp"
+                  android:background="@drawable/red"
+                  android:foregroundGravity="center_vertical"
+                  android:padding="10dp"
+                  android:src="@drawable/ic_location" />
 
-          <Spinner
-              android:id="@+id/spinCity"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-
-              android:entries="@array/eastern_cape_cities"
-              android:paddingLeft="20dp"
-              android:paddingTop="10dp"
-              android:paddingRight="10dp"
-              android:paddingBottom="10dp"
-              android:popupBackground="#90BDAF"
-              android:textColor="@color/white"
-              app:layout_constraintHorizontal_bias="0.0"
-              app:layout_constraintTop_toTopOf="parent" />
-
-        </RelativeLayout>
-      </LinearLayout>
+      </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
 
       <TextView
           android:id="@+id/txtEdu"
@@ -445,6 +523,7 @@
           android:textColor="#CCFFFF"
           android:textSize="16sp" />
 
+      <!--School-->
       <LinearLayout
           android:id="@+id/linearLayout"
           android:layout_width="match_parent"
@@ -467,7 +546,7 @@
             android:orientation="vertical"
             android:padding="2dp">
 
-          <!--Notifications-->
+
           <RelativeLayout
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -513,6 +592,7 @@
 
       </LinearLayout>
 
+      <!--Uni-->
       <LinearLayout
           android:id="@+id/linearLayout3"
           android:layout_width="match_parent"
@@ -533,7 +613,7 @@
             android:orientation="vertical"
             android:padding="2dp">
 
-          <!--Notifications-->
+
           <RelativeLayout
               android:layout_width="match_parent"
               android:layout_height="wrap_content"

@@ -20,4 +20,8 @@
         <item name="android:colorForeground">#99FFFFFF</item>
     </style>
 
+    <style name="CustomSpinnerTheme" >
+        <item name="android:textColor">#FFFFFF</item> <!-- Set text color to white -->
+        <!-- Add other style attributes as needed -->
+    </style>
 </resources>

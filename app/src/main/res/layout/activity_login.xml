@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_moon_1"
-    android:paddingTop="10dp"
+    android:paddingTop="1dp"
     tools:context=".ActivityLogin">
 
 
@@ -122,7 +122,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/account_round_back_white"
             android:orientation="vertical"
             android:padding="2dp">
@@ -173,7 +173,7 @@
                     android:id="@+id/passwordIcon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/account_round_back"
+                    android:background="@drawable/logout_icon_fill"
                     android:foregroundGravity="center_vertical"
                     android:padding="10dp"
                     android:src="@drawable/ic_blacklock" />
@@ -183,59 +183,79 @@
 
         </LinearLayout>
 
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtForgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/txtForgotPassword"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.939"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout5"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout9"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        android:padding="2dp"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout5"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-        <RelativeLayout
+        <TextView
+            android:id="@+id/txtForgotPassword"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="210dp"
+            android:text="@string/txtForgotPassword"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/account_round_back_white"
-            android:padding="2dp">
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
 
-            <Spinner
-                android:id="@+id/spinRole"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:textAlignment="center"
+
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="394dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/account_round_back_white"
+                android:orientation="vertical"
+                android:padding="2dp">
 
-                android:entries="@array/spinRole"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp"
-                android:popupBackground="#90BDAF"
-                android:textColor="@color/white"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintTop_toTopOf="parent" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="2dp">
 
-        </RelativeLayout>
+                    <Spinner
+                        android:id="@+id/spinRole"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/roleIcon"
+                        android:background="@drawable/spinner_arrow"
+                        android:ems="10"
+                        android:entries="@array/Spinner_Items"
+
+                        android:paddingLeft="15dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:popupBackground="@color/primary"
+                        android:theme="@style/CustomSpinnerTheme"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/roleIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/green"
+                        android:foregroundGravity="center_vertical"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_person" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
 
     </LinearLayout>
 
@@ -270,10 +290,10 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
-        android:layout_width="195dp"
-        android:layout_height="45dp"
+        android:layout_width="233dp"
+        android:layout_height="41dp"
         android:layout_gravity="center"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/account_round_back"
         android:paddingStart="30dp"
         android:paddingLeft="100dp"
@@ -281,10 +301,10 @@
         android:paddingRight="100dp"
         android:text="@string/btnLogin"
         android:textColor="@color/primary"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout9"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
         app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout9"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
+        app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

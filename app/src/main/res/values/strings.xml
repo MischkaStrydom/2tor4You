@@ -16,12 +16,12 @@
     <string name="btnLogin">Login</string>
     <string name="txtSignUp">Sign Up?</string>
 
-    <string-array name="spinRole">
 
+
+    <string-array name="Spinner_Items">
         <item>Role</item>
         <item>Tutor</item>
         <item>Student</item>
-
     </string-array>
 
     <!--Change Password Screen-->
@@ -89,61 +89,61 @@
     <!--Terms And Conditions Screen-->
     <string name="txtTermsAndConditions">Terms And Conditions</string>
 
-    <string name="txtTerms">1. Acceptance of Terms
+<!--    <string name="txtTerms">1. Acceptance of Terms-->
 
-By accessing or using the [Your App Name] (the "App"), you agree to comply with and be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, please do not use the App.
+<!--By accessing or using the [Your App Name] (the "App"), you agree to comply with and be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, please do not use the App.-->
 
-2. User Registration
+<!--2. User Registration-->
 
-a. To use certain features of the App, you may be required to register for an account. You agree to provide accurate and complete information during the registration process and to update such information to keep it accurate and current.
+<!--a. To use certain features of the App, you may be required to register for an account. You agree to provide accurate and complete information during the registration process and to update such information to keep it accurate and current.-->
 
-b. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.
+<!--b. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.-->
 
-3. Use of the App
+<!--3. Use of the App-->
 
-a. The App provides a platform for connecting students and tutors for educational purposes. Users are solely responsible for the interactions and content they create on the App.
+<!--a. The App provides a platform for connecting students and tutors for educational purposes. Users are solely responsible for the interactions and content they create on the App.-->
 
-b. Users must not engage in any unlawful, harmful, or offensive behavior while using the App.
+<!--b. Users must not engage in any unlawful, harmful, or offensive behavior while using the App.-->
 
-4. User Content
+<!--4. User Content-->
 
-a. Users may post content on the App, including but not limited to profile information and reviews. By posting content, you grant the App provider a non-exclusive, worldwide, royalty-free license to use, display, and distribute your content in connection with the App.
+<!--a. Users may post content on the App, including but not limited to profile information and reviews. By posting content, you grant the App provider a non-exclusive, worldwide, royalty-free license to use, display, and distribute your content in connection with the App.-->
 
-b. You are solely responsible for the accuracy and legality of the content you post on the App.
+<!--b. You are solely responsible for the accuracy and legality of the content you post on the App.-->
 
-5. Payments and Fees
+<!--5. Payments and Fees-->
 
-a. Payment for tutoring services may be facilitated through the App. You agree to pay all fees and charges associated with your use of the App as specified in the App\'s pricing and payment terms.
+<!--a. Payment for tutoring services may be facilitated through the App. You agree to pay all fees and charges associated with your use of the App as specified in the App\'s pricing and payment terms.-->
 
-b. Payments made through the App are processed by third-party payment processors, and the App provider is not responsible for any issues related to payment processing.
+<!--b. Payments made through the App are processed by third-party payment processors, and the App provider is not responsible for any issues related to payment processing.-->
 
-6. Cancellation and Refunds
+<!--6. Cancellation and Refunds-->
 
-a. Users may cancel tutoring sessions in accordance with the cancellation policy provided by the tutor.
+<!--a. Users may cancel tutoring sessions in accordance with the cancellation policy provided by the tutor.-->
 
-b. Refund policies are determined by individual tutors, and the App provider is not responsible for refunding fees paid for tutoring services.
+<!--b. Refund policies are determined by individual tutors, and the App provider is not responsible for refunding fees paid for tutoring services.-->
 
-7. Privacy
+<!--7. Privacy-->
 
-a. The App\'s privacy policy governs the collection, use, and disclosure of user data. By using the App, you consent to the practices described in the privacy policy.
+<!--a. The App\'s privacy policy governs the collection, use, and disclosure of user data. By using the App, you consent to the practices described in the privacy policy.-->
 
-8. Termination
+<!--8. Termination-->
 
-The App provider reserves the right to terminate or suspend your account and access to the App at its sole discretion for any reason, including violation of these Terms.
+<!--The App provider reserves the right to terminate or suspend your account and access to the App at its sole discretion for any reason, including violation of these Terms.-->
 
-9. Disclaimers and Limitation of Liability
+<!--9. Disclaimers and Limitation of Liability-->
 
-a. The App provider makes no warranties or representations regarding the quality, accuracy, or availability of tutoring services offered through the App.
+<!--a. The App provider makes no warranties or representations regarding the quality, accuracy, or availability of tutoring services offered through the App.-->
 
-b. In no event shall the App provider be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with the use of the App.
+<!--b. In no event shall the App provider be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in any way connected with the use of the App.-->
 
-10. Governing Law and Jurisdiction
+<!--10. Governing Law and Jurisdiction-->
 
-These Terms are governed by and construed in accordance with the laws of [Your Jurisdiction]. Any disputes arising from or related to these Terms or the use of the App shall be subject to the exclusive jurisdiction of the courts of [Your Jurisdiction].
+<!--These Terms are governed by and construed in accordance with the laws of [Your Jurisdiction]. Any disputes arising from or related to these Terms or the use of the App shall be subject to the exclusive jurisdiction of the courts of [Your Jurisdiction].-->
 
-11. Contact Information
+<!--11. Contact Information-->
 
-For questions or concerns regarding these Terms, please contact us at [Contact Email Address].</string>
+<!--For questions or concerns regarding these Terms, please contact us at [Contact Email Address].</string>-->
 
 
     <!--Personal Info Screen-->
