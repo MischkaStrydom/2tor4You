@@ -271,13 +271,242 @@
     <string name="txtEventDate">Date</string>
     <string name="txtEventTime">Time</string>
     <string name="rdoOnline">Online</string>
-    <string name="rdoInPerson">In_Person</string>
+    <string name="rdoInPerson">In-Person</string>
     <string name="txtEventNotes">Notes</string>
     <string name="btnSaveEvent">Save</string>
 
     <!--Events ListView Screen-->
     <string name="txtUpcomingEventsHeading">Upcoming Events</string>
 
+    <!--Learning Goals Screen-->
+    <string name="txtLearningGoalsHeading">Learning Goals</string>
+    <string name="txtYourGoals">Your Goals</string>
+    <string name="txtYourLearningGoals">Your Learning Goals</string>
+    <string name="txtRewards">Rewards</string>
 
+    <!--Filter Tutors Activity-->
+    <string name="txtFilterTutorsHeading">Filters</string>
+    <string name="txtLessonLocation">Lesson Location</string>
+    <string name="rdoOnlineFilter">Online</string>
+    <string name="rdoInPersonFilter">In-Person</string>
+    <string name="txtHourlyRate">Hourly Rate</string>
+    <string name="txtStarRating">Star Rating</string>
+    <string name="txtAddFilters">Additional Filters</string>
+    <string name="rdoFreeVid">Free Introduction video call: Free video chat to get 15 min intro session with tutor to discuss students needs.</string>
+    <string name="rdoQualifiedTeacher">Qualified Teacher: Tutor has obtained QTS (Qualified Teacher Status)</string>
+    <string name="btnShowResults">Show Results</string>
+    <string name="btnClearAll">Clear All</string>
+
+    <!--Tutor Profile Screen-->
+    <string name="txtTutProfileHeading">My Profile</string>
+    <string name="txtTutPersonalInfo">Personal Information</string>
+    <string name="txtTutName">First Name</string>
+    <string name="txtTutLastName">Last Name</string>
+    <string name="txtTutDOB">Date of birth</string>
+
+    <string-array name="spinTutGender">
+
+        <item>Gender</item>
+        <item>Female</item>
+        <item>Male</item>
+        <item>Other</item>
+
+    </string-array>
+
+    <string-array name="spinTutProvince">
+
+        <item>Province</item>
+        <item>Eastern Cape</item>
+        <item>Free State</item>
+        <item>Gauteng</item>
+        <item>KwaZulu-Natal</item>
+        <item>Limpopo</item>
+        <item>Mpumalanga</item>
+        <item>North West</item>
+        <item>Northern Cape</item>
+        <item>Western Cape</item>
+
+    </string-array>
+
+    <!-- String array for Eastern Cape cities -->
+    <string-array name="tut_eastern_cape_cities">
+        <item>City</item>
+        <item>Port Elizabeth</item>
+        <item>East London</item>
+        <item>Uitenhage</item>
+        <item>Grahamstown</item>
+        <item>Queenstown</item>
+        <item>Mthatha</item>
+        <item>Bhisho</item>
+    </string-array>
+
+    <!-- String array for Free State cities -->
+    <string-array name="tut_free_state_cities">
+        <item>City</item>
+        <item>Bloemfontein</item>
+        <item>Welkom</item>
+        <item>Bethlehem</item>
+        <item>Sasolburg</item>
+        <item>Kroonstad</item>
+        <item>Parys</item>
+    </string-array>
+
+    <!-- String array for Gauteng cities -->
+    <string-array name="tut_gauteng_cities">
+        <item>City</item>
+        <item>Johannesburg</item>
+        <item>Pretoria</item>
+        <item>Centurion</item>
+        <item>Midrand</item>
+        <item>Sandton</item>
+        <item>Randburg</item>
+        <item>Roodepoort</item>
+        <item>Kempton Park</item>
+        <item>Boksburg</item>
+        <item>Benoni</item>
+        <item>Vereeniging</item>
+    </string-array>
+
+    <!-- String array for KwaZulu-Natal cities -->
+    <string-array name="tut_kwa_zulu_natal_cities">
+        <item>City</item>
+        <item>Durban</item>
+        <item>Pietermaritzburg</item>
+        <item>Newcastle</item>
+        <item>Richards Bay</item>
+        <item>Ladysmith</item>
+        <item>Empangeni</item>
+        <item>Port Shepstone</item>
+        <item>Estcourt</item>
+        <item>Ballito</item>
+        <item>Howick</item>
+    </string-array>
+
+    <!-- String array for Limpopo cities -->
+    <string-array name="tut_limpopo_cities">
+        <item>City</item>
+        <item>Polokwane (Pietersburg)</item>
+        <item>Tzaneen</item>
+        <item>Thohoyandou</item>
+        <item>Mokopane (Potgietersrus)</item>
+        <item>Musina</item>
+        <item>Phalaborwa</item>
+        <item>Giyani</item>
+        <item>Lebowakgomo</item>
+        <item>Modimolle (Nylstroom)</item>
+    </string-array>
+
+    <!-- String array for Mpumalanga cities -->
+    <string-array name="tut_mpumalanga_cities">
+        <item>City</item>
+        <item>Nelspruit</item>
+        <item>Witbank (eMalahleni)</item>
+        <item>Middelburg</item>
+        <item>Secunda</item>
+        <item>Ermelo</item>
+        <item>Standerton</item>
+        <item>Lydenburg</item>
+        <item>Barberton</item>
+        <item>Hazyview</item>
+    </string-array>
+
+    <!-- String array for North West cities -->
+    <string-array name="tut_north_west_cities">
+        <item>City</item>
+        <item>Rustenburg</item>
+        <item>Mahikeng (Mafikeng)</item>
+        <item>Potchefstroom</item>
+        <item>Klerksdorp</item>
+        <item>Brits</item>
+        <item>Orkney</item>
+        <item>Lichtenburg</item>
+    </string-array>
+
+    <!-- String array for Northern Cape cities -->
+    <string-array name="tut_northern_cape_cities">
+        <item>City</item>
+        <item>Kimberley</item>
+        <item>Upington</item>
+        <item>Springbok</item>
+        <item>De Aar</item>
+        <item>Kathu</item>
+        <item>Kuruman</item>
+    </string-array>
+
+    <!-- String array for Western Cape cities -->
+    <string-array name="tut_western_cape_cities">
+        <item>City</item>
+        <item>Cape Town</item>
+        <item>Stellenbosch</item>
+        <item>Paarl</item>
+        <item>Worcester</item>
+        <item>George</item>
+        <item>Mossel Bay</item>
+        <item>Oudtshoorn</item>
+        <item>Knysna</item>
+        <item>Beaufort West</item>
+    </string-array>
+
+
+    <string name="txtTutEdu">Education</string>
+    <string name="txtTutSchool">School</string>
+    <string name="txtTutUni">University</string>
+    <string name="txtTutContact">Contact</string>
+    <string name="txtTutPhone">Phone Number</string>
+    <string name="txtTutEmail">Email</string>
+    <string name="txtTutAboutMeHeading">About Me</string>
+    <string name="txtTutYearsExp">Years of Experience</string>
+    <string name="txtTotalTutHrs">Total Tutor Hours</string>
+    <string name="txtTutTotalStudTaught">Total Students Taught</string>
+    <string name="txtTutAboutMe">About Me</string>
+    <string name="txtTeachingDetails">Teaching Details</string>
+
+    <string-array name="spinSubjectTeach">
+
+        <item>Subject of Teaching</item>
+        <item>Afrikaans</item>
+        <item>Maths</item>
+        <item>English</item>
+        <item>Life Sciences</item>
+        <item>Physical Science</item>
+        <item>Geography</item>
+        <item>History</item>
+        <item>Music</item>
+        <item>Technology</item>
+        <item>Xhosa</item>
+        <item>Computer Science</item>
+        <item>CAT</item>
+        <item>Consumer Studies</item>
+        <item>French</item>
+        <item>Business</item>
+        <item>Accounting</item>
+        <item>EMS</item>
+        <item>Professional: Interview Prep</item>
+        <item>Professional: CV Prp</item>
+        <item>Professoinal: Assessment Practise</item>
+
+    </string-array>
+
+    <string-array name="spinLevelEdu">
+
+        <item>Level</item>
+        <item>Junior School</item>
+        <item>High School</item>
+        <item>University</item>
+        <item>Professional</item>
+
+    </string-array>
+
+
+
+    <string name="txtPricePerHr">Price per hour</string>
+    <string name="txtTeachLoacation">Location</string>
+    <string name="rdoTeachOnline">Online</string>
+    <string name="rdoTeachInPerson">In-Person</string>
+    <string name="txtAddFeatures">Please select the following that apply to you:</string>
+    <string name="rdoTutFreeVid">Allow a free introduction video call: Free video chat to get 15 min intro session with tutor to discuss students needs.</string>
+    <string name="rdoTutQualifiedTeacher">You are a qualified teacher: You have obtained QTS (Qualified Teacher Status)</string>
+    <string name="txtExtraNotes">Extra Notes</string>
+    <string name="btnSaveTutProfile">Save</string>
 
 </resources>
