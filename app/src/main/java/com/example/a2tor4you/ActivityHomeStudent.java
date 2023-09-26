@@ -3,6 +3,7 @@ package com.example.a2tor4you;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -16,10 +17,24 @@ public class ActivityHomeStudent extends AppCompatActivity {
 
     /*BottomNavigationView bottomNavigationView;*/
 
+    Button message;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_student);
+
+        message = findViewById(R.id.btnMessage);
+
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ActivityHomeStudent.this,LoginUsernameActivity.class);
+                intent.putExtra("phone", LoginOtpActivity.phoneNumber);
+                startActivity(intent);
+            }
+        });
 
         // Progress Bar
         ProgressBar progressBar = findViewById(R.id.progressBar);
@@ -36,6 +51,10 @@ public class ActivityHomeStudent extends AppCompatActivity {
                 progressBar.incrementProgressBy(10);
             }
         });
+
+
+
+
 
 
         // Navigation Bar

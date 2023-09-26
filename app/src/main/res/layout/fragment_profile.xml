@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ProfileFragment"
+    android:background="@color/light_grey">
+
+    <ImageView
+        android:id="@+id/profile_image_view"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/circular_bg"
+        android:backgroundTint="@color/secondary"
+        android:scaleType="centerCrop"
+        android:src="@drawable/person_icon" />
+
+    <EditText
+        android:id="@+id/txtProfileFragmentUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/white_backgroud_edit_text"
+        android:elevation="5dp"
+        android:hint="@string/txtProfileFragmentUsername"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <EditText
+        android:id="@+id/txtProfileFragmentPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/white_backgroud_edit_text"
+        android:elevation="5dp"
+        android:enabled="false"
+        android:hint="@string/txtProfileFragmentPhone"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+<!--        <Button-->
+<!--&lt;!&ndash;            android:id="@+id/profile_update_btn"&ndash;&gt;-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/account_round_back"-->
+<!--            android:text="Update profile"-->
+<!--            />-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/profile_update_btn"
+            android:layout_width="233dp"
+            android:layout_height="41dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/account_round_back"
+            android:paddingStart="30dp"
+            android:paddingLeft="100dp"
+            android:paddingEnd="30dp"
+            android:paddingRight="100dp"
+            android:text="@string/profile_update_btn"
+            android:textColor="@color/primary"
+
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

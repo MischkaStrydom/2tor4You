@@ -163,131 +163,67 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:textAlignment="center"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="394dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/account_round_back_white"
-                    android:orientation="vertical"
-                    android:padding="2dp">
-
-                    <!--Notifications-->
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="2dp">
-
-                        <EditText
-                            android:id="@+id/txtStudentEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="41dp"
-                            android:layout_marginStart="0dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginEnd="0dp"
-                            android:layout_toEndOf="@+id/emailIcon"
-                            android:background="@null"
-                            android:ems="10"
-                            android:hint="@string/txtProEmail"
-                            android:inputType="textPersonName"
-                            android:paddingLeft="20dp"
-                            android:paddingTop="10dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="10dp"
-
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            app:boxBackgroundMode="none"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <ImageView
-                            android:id="@+id/emailIcon"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/contact_icon_fill"
-                            android:foregroundGravity="center_vertical"
-                            android:padding="10dp"
-                            android:src="@drawable/mail" />
-
-                    </RelativeLayout>
-
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/account_round_back_white"
                 android:orientation="vertical"
                 android:padding="2dp">
 
-                <!--Password-->
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="2dp">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayoutPassword"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/txtPrefix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/phoneIcon"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:text="@string/txtPrefix"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="0dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="0dp" />
+                    <EditText
+                        android:id="@+id/txt_StudentPhoneNum"
+                        android:layout_width="wrap_content"
                         android:layout_height="41dp"
-
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/txtPrefix"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="@string/txtPhoneNum"
+                        android:inputType="number|textPersonName|phone"
+                        android:paddingLeft="0dp"
+                        android:paddingTop="0dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="0dp"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/white"
-                        app:boxBackgroundMode="none"
-                        app:helperTextTextColor="@color/white"
-                        app:hintEnabled="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/txt_LoginEmail"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/txt_LoginEmail"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_LoginEmail"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/white"
-                        tools:ignore="UnknownIdInLayout">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtRegisterStudentPassword"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="40dp"
-                            android:gravity="center_vertical"
-                            android:hint="@string/txtRegisterStudentPassword"
-                            android:inputType="textPassword"
-                            android:paddingStart="20dp"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="10dp"
-                            android:textColor="@color/white"
-                            android:textColorHint="@color/white"
-                            android:textSize="18sp"
-                            app:hintAnimationEnabled="false" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                        app:boxBackgroundMode="none" />
 
                     <ImageView
-                        android:id="@+id/passIcon"
+                        android:id="@+id/phoneIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/green"
+                        android:background="@drawable/red"
                         android:foregroundGravity="center_vertical"
                         android:padding="10dp"
-                        android:src="@drawable/ic_blacklock" />
+                        android:src="@drawable/ic_phone" />
 
                 </RelativeLayout>
 
@@ -358,6 +294,138 @@
                 </RelativeLayout>
 
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/account_round_back_white"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <!--Password-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="41dp"
+
+                        android:textColorHint="@color/white"
+                        app:boxBackgroundMode="none"
+                        app:helperTextTextColor="@color/white"
+                        app:hintEnabled="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/txt_LoginEmail"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/txt_LoginEmail"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_LoginEmail"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/white"
+                        tools:ignore="UnknownIdInLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtRegisterStudentPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:gravity="center_vertical"
+                            android:hint="@string/txtRegisterStudentPassword"
+                            android:inputType="textPassword"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            android:textSize="18sp"
+                            app:hintAnimationEnabled="false" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/passIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/green"
+                        android:foregroundGravity="center_vertical"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_blacklock" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="394dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/account_round_back_white"
+                    android:orientation="vertical"
+                    android:padding="2dp">
+
+                    <!--Notifications-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp">
+
+                        <EditText
+                            android:id="@+id/txtStudentEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="41dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_toEndOf="@+id/emailIcon"
+                            android:background="@null"
+                            android:ems="10"
+                            android:hint="@string/txtProEmail"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/white"
+                            app:boxBackgroundMode="none"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/emailIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/contact_icon_fill"
+                            android:foregroundGravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/mail" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton

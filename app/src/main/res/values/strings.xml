@@ -10,17 +10,27 @@
 
     <!--Login Screen-->
     <string name="txt_LoginHeading">Login</string>
-    <string name="txtLoginEmail">Email</string>
+    <string name="txtPrefix">+27</string>
+    <string name="txtPhoneNum">123 4567</string>
     <string name="txtLoginPassword">Password</string>
     <string name="txtForgotPassword">Forgot Password?</string>
     <string name="btnLogin">Login</string>
     <string name="txtSignUp">Sign Up?</string>
 
+    <!--OTP Screen-->
+    <string name="txt_LoginOTPHeading">OTP</string>
+    <string name="txt_EnterOTP">Enter OTP sent to your phone number</string>
+    <string name="txtOTP">OTP</string>
+    <string name="btnNext">Next</string>
+    <string name="txtResend"> Resend OTP in 30 sec</string>
 
+
+    <string name="select_role">Select a Role</string>
     <string-array name="Spinner_Items">
-        <item>Role</item>
+        <item>Select a Role</item>
         <item>Tutor</item>
         <item>Student</item>
+        <item>Admin</item>
     </string-array>
 
     <!--Change Password Screen-->
@@ -43,6 +53,7 @@
     <string name="txt_SignUpStudentHeading">Create your student account</string>
     <string name="txt_StudentFirstName">First Name</string>
     <string name="txt_StudentLastName">Last Name</string>
+    <string name="txt_StudentPhoneNum">+27 123 3456</string>
     <string name="txtStudentEmail">Email</string>
     <string name="txtRegisterStudentPassword">Password</string>
     <string name="txtConfirmRegisterStudentPassword">Confirm Password</string>
@@ -52,6 +63,7 @@
     <string name="txt_SignUpTutorHeading">Create your tutor account</string>
     <string name="txt_TutorFirstName">First Name</string>
     <string name="txt_TutorLastName">Last Name</string>
+    <string name="txt_TutorPhoneNum">+27 123 3456</string>
     <string name="txtTutorEmail">Email</string>
     <string name="txtRegisterTutorPassword">Password</string>
     <string name="txtConfirmRegisterTutorPassword">Confirm Password</string>
@@ -69,11 +81,23 @@
     <string name="txtTermsAndC">Terms and Conditions</string>
     <string name="txtContactUs">Contact 2tor4You</string>
     <string name="txtLogOut">Log Out</string>
+    <string name="btnMessages">Messages</string>
 
     <!--Settings Screen-->
     <string name="txtSettingsHeading">Settings</string>
     <string name="btnChangePassword">Change Password</string>
     <string name="btnDeleteAccountSettings">Delete Account</string>
+
+    <!--Username Screen-->
+    <string name="txtUserHeading">Messaging Username</string>
+    <string name="txtEnterUser">Enter your username (Name and Surname)</string>
+    <string name="txtUsername">Username</string>
+    <string name="btnLetMeIn">Let me in</string>
+
+    <!--fragment profile Screen-->
+    <string name="txtProfileFragmentUsername">Username</string>
+    <string name="txtProfileFragmentPhone">Phone Number</string>
+    <string name="profile_update_btn">Update profile</string>
 
     <!--Notifications Screen-->
     <string name="txtNotificationsHeading">Notifications</string>
@@ -83,7 +107,8 @@
     <string name="txtMessages">Messages</string>
     <string name="txtMessageDetails">We will notify you when you receive a new message </string>
     <string name="btnMessage">Message</string>
-
+    <!--Chat Screen-->
+    <string name="txtChatHeading">2tor4You Chats</string>
 
     <!--Terms And Conditions Screen-->
     <string name="txtTermsAndConditions">Terms And Conditions</string>
@@ -508,7 +533,7 @@
     <string name="btnSaveTutProfile">Save</string>
 
 
-<!--Find A tutor grade-->
+    <!--Find A tutor grade-->
     <string name="txtFindTutorHeading">Find a tutor</string>
     <string name="txtGrade">What grade are you in?</string>
     <string name="txtGradeR">Grade R</string>
@@ -525,6 +550,8 @@
     <string name="txtGrade11">Grade 11</string>
     <string name="txtGrade12">Grade 12</string>
     <string name="btnNextFindTutor">Next</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#7E7E7E</color>
-
+    <color name="light_grey">#C3C3C3</color>
     <color name="primary">#1B023B</color>
     <color name="secondary">#FF03DAC5 </color>
 
@@ -16,4 +16,12 @@
     <color name="notifications">#13B2C3</color>
     <color name="private_account">#E6A326</color>
     <color name="security">#D95F69</color>
+
+    <color name="my_primary">#FF5964</color>
+    <color name="my_secondary">#FFE74C</color>
+    <color name="off_white">#FAFAFA</color>
+
+
+    <color name="chat_color_sender">#1E88E5</color>
+    <color name="chat_color_receiver">#7CB342</color>
 </resources>
