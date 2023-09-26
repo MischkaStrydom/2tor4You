@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:orientation="vertical"
-    tools:context=".ActivityMyProfile">
+    tools:context=".ActivityTutorProfile">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -47,9 +47,37 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/txtTutProfilePic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="@string/txtTutProfilePic"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <Button
+                    android:id="@+id/btnTakePhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:backgroundTint="@color/grey"
+                    android:text="Take Photo" />
+
+            </LinearLayout>
+
+            <TextView
                 android:id="@+id/txtTutPersonalInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:gravity="left"
                 android:paddingLeft="20dp"
                 android:text="@string/txtTutPersonalInfo"
