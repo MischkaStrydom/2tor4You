@@ -87,7 +87,6 @@ public class LoginOtpActivity extends AppCompatActivity {
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                                 signIn(phoneAuthCredential);
 
-
                             }
 
                             @Override
@@ -101,7 +100,7 @@ public class LoginOtpActivity extends AppCompatActivity {
                                 super.onCodeSent(s, forceResendingToken);
                                 verificationCode = s;
                                 resendingToken = forceResendingToken;
-                                AndroidUtil.showToast(getApplicationContext(), "OTP sent succesfully");
+                                AndroidUtil.showToast(getApplicationContext(), "OTP sent successfully");
 
                             }
                         });

@@ -15,10 +15,22 @@
             android:name=".ActivityGrade"
             android:exported="false" />
         <activity
+            android:name=".LoginOtpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginUsernameActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActivityTutorProfile"
             android:exported="false" />
         <activity
             android:name=".ActivityFilterTutors"
+            android:exported="false" />
+        <activity
+            android:name=".ChatMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatActivity"
             android:exported="false" />
         <activity
             android:name=".ActivityLearningGoals"
