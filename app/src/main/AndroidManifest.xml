@@ -39,6 +39,9 @@
             android:name=".ActivityEventsListView"
             android:exported="false" />
         <activity
+            android:name=".SearchUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActivityEditEvent"
             android:exported="false" />
         <activity
