@@ -26,6 +26,7 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.Query;
 
+//import java.security.Timestamp;
 import java.util.Arrays;
 
 public class ChatActivity extends AppCompatActivity {
