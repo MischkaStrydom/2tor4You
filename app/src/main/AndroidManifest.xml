@@ -12,6 +12,9 @@
         android:theme="@style/Theme.2tor4You"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityFindTutorItem"
+            android:exported="false" />
+        <activity
             android:name=".ActivityFindTutor"
             android:exported="false" />
         <activity

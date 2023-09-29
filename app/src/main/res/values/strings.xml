@@ -563,4 +563,14 @@
     <string name="txtTotalStudHeader">Total Students Taught:</string>
     <string name="txtPriceHeader">Price per hour:</string>
 
+    <!--Find Tutor Item Screen-->
+
+    <string name="txtTutNameSurnameView">Name Surname</string> <!--test data-->
+    <string name="txtTutYrsExpHeaderList">Years of Experience:</string>
+    <string name="txtTutYrsExp">10</string> <!--test data-->
+    <string name="txtTutTotalHrsHeader">Total Tutor Hours:</string>
+    <string name="txtTutTotalHrsView">10</string> <!--test data-->
+    <string name="txtTutPriceHeader">Price per hour:</string>
+    <string name="txtPricePerHrView">R120.00</string> <!--test data-->
+
 </resources>
