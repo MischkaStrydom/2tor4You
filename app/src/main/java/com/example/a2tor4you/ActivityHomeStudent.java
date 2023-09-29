@@ -15,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ActivityHomeStudent extends AppCompatActivity {
 
-    /*BottomNavigationView bottomNavigationView;*/
+    BottomNavigationView bottomNavigationView;
 
     Button message;
 
@@ -36,7 +36,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
             }
         });
 
-        // Progress Bar
+        /*// Progress Bar
         ProgressBar progressBar = findViewById(R.id.progressBar);
                 progressBar.setVisibility(View.INVISIBLE);
 
@@ -50,42 +50,41 @@ public class ActivityHomeStudent extends AppCompatActivity {
                 //Increasing the progress bar by 10 every click of the button
                 progressBar.incrementProgressBy(10);
             }
-        });
-
-
-
-
-
+        });*/
 
         // Navigation Bar
 
-        /*bottomNavigationView=findViewById(R.id.bottomNavigationView);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.home);
 
-        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch(item.getItemId())
-                {
-                    case R.id.calendar:
-                        startActivity(new Intent(getApplicationContext(), ActivityHomeStudent.class));
-                        overridePendingTransition();
+                switch (item.getItemId()) {
+
+                    case R.id.home:
                         return true;
 
-                    case.R.id.home:
+                    case R.id.calendar:
+                        startActivity(new Intent(getApplicationContext(), ActivityCalendar.class));
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.findTutors:
-                    startActivity(new Intent(getApplicationContext(), ActivityFindTutors.class));
-                    overridePendingTransition();
-                    return true;
+                        startActivity(new Intent(getApplicationContext(), ActivityFindTutor.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.messages:
+                        startActivity(new Intent(getApplicationContext(), ChatMainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
 
                 }
-
                 return false;
             }
-        });*/
+        });
 
     }
 }

@@ -6,40 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.CalendarView;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import org.w3c.dom.Text;
-
-public class ActivityCalendar extends AppCompatActivity {
-
-    CalendarView calendarView;
-    TextView txtMySession;
+public class ActivityFindTutor extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
-
-        calendarView = (CalendarView) findViewById(R.id.calendarView);
-        txtMySession = (TextView) findViewById(R.id.txtMySession);
-
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                String date = (i1 + 1) + "/" + i2 + "/" + i;
-                txtMySession.setText(date);
-            }
-        });
+        setContentView(R.layout.activity_find_tutor);
 
         // Navigation Bar
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.calendar);
+        bottomNavigationView.setSelectedItemId(R.id.findTutors);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -47,16 +29,16 @@ public class ActivityCalendar extends AppCompatActivity {
 
                 switch (item.getItemId()) {
 
+                    case R.id.findTutors:
+                        return true;
+
                     case R.id.calendar:
+                        startActivity(new Intent(getApplicationContext(), ActivityCalendar.class));
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(), ActivityHomeStudent.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.findTutors:
-                        startActivity(new Intent(getApplicationContext(), ActivityFindTutor.class));
                         overridePendingTransition(0, 0);
                         return true;
 
@@ -69,6 +51,5 @@ public class ActivityCalendar extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 }

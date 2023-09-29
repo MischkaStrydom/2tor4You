@@ -65,6 +65,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        app:itemBackground="@color/light_grey"
+        app:itemTextColor="@drawable/selector_navigation_bar"
+        app:itemIconTint="@drawable/selector_navigation_bar"
         android:background="?attr/selectableItemBackgroundBorderless"
         app:menu="@menu/bottom_navigation_menu" />
 
