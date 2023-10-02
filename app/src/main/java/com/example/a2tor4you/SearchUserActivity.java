@@ -22,6 +22,7 @@ public class SearchUserActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     SearchUserRecyclerAdapter adapter;
+    boolean showAllUsers = true; // Flag to determine whether to show all users or search for specific users
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,8 @@ public class SearchUserActivity extends AppCompatActivity {
             onBackPressed();
         });
 
+        setupAllUsersRecyclerView();
+
         searchButton.setOnClickListener(v -> {
             String searchTerm = searchInput.getText().toString();
             if(searchTerm.isEmpty() || searchTerm.length()<3){
@@ -48,6 +51,21 @@ public class SearchUserActivity extends AppCompatActivity {
             setupSearchRecyclerView(searchTerm);
         });
     }
+
+
+    void setupAllUsersRecyclerView() {
+        Query query = FirebaseUtil.allUserCollectionReference();
+
+        FirestoreRecyclerOptions<UserModel> options = new FirestoreRecyclerOptions.Builder<UserModel>()
+                .setQuery(query, UserModel.class).build();
+
+        adapter = new SearchUserRecyclerAdapter(options, getApplicationContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+    }
+
+
 
     void setupSearchRecyclerView(String searchTerm){
 

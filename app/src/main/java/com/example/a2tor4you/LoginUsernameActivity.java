@@ -25,6 +25,7 @@ public class LoginUsernameActivity extends AppCompatActivity {
     ImageView btnBack;
 
     String phoneNumber;
+    String userName;
     UserModel userModel;
 
     @Override
@@ -39,7 +40,8 @@ public class LoginUsernameActivity extends AppCompatActivity {
         //On button back takes user back to Account Home screen
         btnBack.setOnClickListener(view -> startActivity(new Intent(LoginUsernameActivity.this,ActivityHomeStudent.class)));
 
-        phoneNumber = getIntent().getExtras().getString("phone");
+        phoneNumber = getIntent().getStringExtra("phone");
+
         getUsername();
 
         letMeInBtn.setOnClickListener((v -> {

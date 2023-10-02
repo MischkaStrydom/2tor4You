@@ -82,7 +82,6 @@ public class ActivityAccount extends AppCompatActivity {
 
                 }
 
-
             }
         });
 

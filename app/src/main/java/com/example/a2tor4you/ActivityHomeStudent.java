@@ -67,11 +67,12 @@ public class ActivityHomeStudent extends AppCompatActivity {
         message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityHomeStudent.this,ActivityAccount.class);
+                Intent intent = new Intent(ActivityHomeStudent.this,LoginUsernameActivity.class);
                // intent.putExtra("phone", LoginOtpActivity.phoneNumber);
                 intent.putExtra("phone", phoneNumber);
                 intent.putExtra("password", password);
                 intent.putExtra("selectedRole", selectedRole);
+                intent.putExtra("FullName", userName);
                 startActivity(intent);
             }
         });
@@ -103,7 +104,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
                         return true;
 
                     case R.id.messages:
-                        startActivity(new Intent(getApplicationContext(), ChatMainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), LoginUsernameActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
 
