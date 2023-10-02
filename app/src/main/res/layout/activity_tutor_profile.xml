@@ -20,10 +20,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btnBackTutorsProfile"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/primary"
             android:contentDescription="@string/txtTutProfileHeading"
             android:src="@drawable/ic_arrow_back" />
 
@@ -208,7 +209,7 @@
                     android:layout_width="195dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="210dp"
+                    android:layout_marginEnd="250dp"
                     android:background="@drawable/account_round_back_white"
                     android:padding="2dp">
 
@@ -982,6 +983,23 @@
 
             </RelativeLayout>
 
+            <Button
+                android:id="@+id/btnAddTutSubjGrade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/grey"
+                android:text="Add"/>
+
+            <ListView
+                android:id="@+id/eventListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1098,29 +1116,39 @@
                 android:text="@string/rdoTutQualifiedTeacher"
                 android:textColor="@color/white" />
 
+            <TextView
+                android:id="@+id/txtExtraNotesHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="Extra Notes"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
+
             <EditText
                 android:id="@+id/txtExtraNotes"
-                android:layout_width="408dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="130dp"
-                android:background="@null"
-                android:ems="10"
-                android:hint="@string/txtExtraNotes"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/border"
                 android:inputType="text"
-                android:paddingLeft="20dp"
+                android:paddingStart="10dp"
                 android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp"
+                android:paddingEnd="10dp"
 
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:paddingBottom="80dp"
+                android:textSize="12sp"
+                android:textColor="@color/black"
                 app:boxBackgroundMode="none"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </LinearLayout>
 
     </ScrollView>

@@ -20,11 +20,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btnBackStudentRegister"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:contentDescription="@string/app_name"
+            android:background="@color/primary"
             android:src="@drawable/ic_arrow_back" />
 
         <TextView
@@ -55,6 +56,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtRegInstructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="Please enter your information:"
+                android:textStyle="bold"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

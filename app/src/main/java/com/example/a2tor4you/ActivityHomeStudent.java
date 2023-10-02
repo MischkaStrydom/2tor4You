@@ -108,6 +108,11 @@ public class ActivityHomeStudent extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
 
+                    case R.id.account:
+                        startActivity(new Intent(getApplicationContext(), ActivityAccount.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
                 }
                 return false;
             }

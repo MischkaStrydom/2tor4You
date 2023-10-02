@@ -19,11 +19,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btnBackRegisterTutor"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:contentDescription="@string/app_name"
+            android:background="@color/primary"
             android:src="@drawable/ic_arrow_back" />
 
         <TextView
@@ -52,6 +53,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtRegInstructions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="Please enter your information:"
+                android:textStyle="bold"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -428,8 +440,115 @@
 
                 </RelativeLayout>
 
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtVerificationHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="Verification"
+                android:textStyle="bold"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtReadTheFollowing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="PLEASE READ THE FOLLOWING"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtReadOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="Upload your latest academic transcript below for our team to verify your tutor account"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtReadTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="Verification of your account may take up to 24 hrs to process"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtReadThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="An email will be sent to you after the verification process to activate your account and start your tutor journey!"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnChoose"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="Choose File" />
+
+                <Button
+                    android:id="@+id/btnUpload"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:text="Upload" />
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linearLayout" />
+
+            <TextView
+                android:id="@+id/txtConditionsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="0dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="Accept the conditions"
+                android:textStyle="bold"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
 
             <CheckBox
                 android:id="@+id/chk_Agree"

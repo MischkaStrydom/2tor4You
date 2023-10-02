@@ -18,10 +18,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btnBackReview"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/primary"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_arrow_back" />
 
@@ -30,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:layout_marginStart="90dp"
             android:text="Rate and Review"
             android:textColor="@color/white"
             android:textSize="16sp"
