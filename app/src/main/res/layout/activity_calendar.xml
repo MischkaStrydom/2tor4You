@@ -31,25 +31,38 @@
         app:itemIconTint="@drawable/selector_navigation_bar"
         app:menu="@menu/bottom_navigation_bar"/>
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="?actionBarSize"
+        android:background="@color/primary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/btnBackCalendar"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_arrow_back" />
+
         <TextView
             android:id="@+id/txtCalendarHeading"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="Calendar"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             android:textStyle="bold" />
-    </RelativeLayout>
 
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout7"
@@ -82,7 +95,9 @@
             <CalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="wrap_content"
-                android:layout_height="320dp"></CalendarView>
+                android:layout_height="320dp">
+
+            </CalendarView>
 
         </LinearLayout>
 

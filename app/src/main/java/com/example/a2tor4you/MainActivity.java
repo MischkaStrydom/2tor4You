@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(view -> startActivity(new Intent(MainActivity.this,ActivityLogin.class)));
 
         Button btnTutor = findViewById(R.id.btnTutor);
-        btnTutor.setOnClickListener(view -> startActivity(new Intent(MainActivity.this,ActivityFindTutor.class))); //ActivityRegisterTutor
+        btnTutor.setOnClickListener(view -> startActivity(new Intent(MainActivity.this,ActivityTutorProfileView.class))); //ActivityRegisterTutor
 
         Button btnStudent = findViewById(R.id.btnStudent);
         btnStudent.setOnClickListener(view -> startActivity(new Intent(MainActivity.this,ActivityRegisterStudent.class)));

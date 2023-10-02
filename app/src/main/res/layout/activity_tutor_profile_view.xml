@@ -1,240 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@drawable/background_blue"
     tools:context=".ActivityTutorProfileView">
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout6"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/btnBackTutorsProfileView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="362dp"
-            android:backgroundTint="#001B023B"
-            android:contentDescription="@string/txtTutProfileHeading"
-            android:padding="14dp"
-            android:src="@drawable/ic_arrow_back" />
-
-        <TextView
-            android:id="@+id/txtTutProfileViewHeading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center_horizontal"
-            android:text="@string/txtTutProfileViewHeading"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-    </RelativeLayout>
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="670dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout6">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/layoutHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="?actionBarSize"
+            android:background="@color/primary"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="371dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/account_round_back_white"
-                android:orientation="vertical"
-                android:padding="2dp">
+            <ImageView
+                android:id="@+id/btnBackFindTutor"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_arrow_back" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp">
+            <TextView
+                android:layout_width="322dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Tutor Profile"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
+        </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/imgTutProfilePicView"
-                        android:layout_width="54dp"
-                        android:layout_height="52dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:foregroundGravity="center_vertical"
-                        android:padding="0dp"
-                        tools:srcCompat="@tools:sample/avatars" />
-
-                    <TextView
-                        android:id="@+id/txtTutFirstNameView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:layout_toEndOf="@+id/imgTutProfilePicView"
-                        android:paddingLeft="10dp"
-                        android:text="TextView"
-                        android:textColor="#CCFFFF"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtTutLastNameView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:layout_toEndOf="@+id/txtTutFirstNameView"
-                        android:paddingLeft="5dp"
-                        android:text="TextView"
-                        android:textColor="#CCFFFF"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/txtTutAboutHeader"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:paddingLeft="10dp"
-                    android:text="@string/txtTutAboutHeader"
-                    android:textColor="#CCFFFF"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txtTutAboutMe"
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="TextView"
-                    android:textColor="@color/white" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp">
-
-                    <ImageView
-                        android:id="@+id/clocksIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/settings_icon_fill"
-                        android:padding="12dp"
-                        android:src="@drawable/clock" />
-
-                    <TextView
-                        android:id="@+id/txtTotalHrsHeader"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="20dp"
-                        android:layout_toEndOf="@+id/clocksIcon"
-                        android:text="@string/txtTotalHrsHeader"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtTutTotalHrsView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="190dp"
-                        android:layout_marginTop="10dp"
-                        android:text="TextView"
-                        android:textColor="@color/white" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp">
-
-                    <ImageView
-                        android:id="@+id/studsIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/green"
-                        android:padding="12dp"
-                        android:src="@drawable/people" />
-
-                    <TextView
-                        android:id="@+id/txtTotalStudHeader"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="20dp"
-                        android:layout_toEndOf="@+id/studsIcon"
-                        android:text="@string/txtTotalStudHeader"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtTotalStudsView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="220dp"
-                        android:layout_marginTop="10dp"
-                        android:text="TextView"
-                        android:textColor="@color/white" />
-
-                </RelativeLayout>
-
-                <!--Last Name-->
-                <RelativeLayout
-                    android:layout_width="202dp"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="150dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/background_rounded_white"
-                    android:padding="2dp">
-
-                    <TextView
-                        android:id="@+id/txtPriceHeader"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:text="@string/txtPriceHeader"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtPricePerHrView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_toEndOf="@+id/txtPriceHeader"
-                        android:text="TextView"
-                        android:textColor="@color/night_mode" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
-                </RelativeLayout>
+    </LinearLayout>
 
-            </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/activity_tutor_item_info"/>
+            <include layout="@layout/activity_tutor_item_edu"/>
+            <include layout="@layout/activity_tutor_item_rating"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBookSessionNow"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/account_round_back"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="Book Session Now"
+                android:textAllCaps="false"
+                android:textColor="@color/primary"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
     </ScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

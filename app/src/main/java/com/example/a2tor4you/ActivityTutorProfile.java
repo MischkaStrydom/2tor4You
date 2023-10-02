@@ -24,7 +24,7 @@ public class ActivityTutorProfile extends AppCompatActivity {
         setContentView(R.layout.activity_tutor_profile);
 
        /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
-        takePhoto = findViewById(R.id.btnTakePhoto);
+        takePhoto = findViewById(R.id.btnTutorTakePhoto);
 
         takePhoto.setOnClickListener(new View.OnClickListener() {
             @Override

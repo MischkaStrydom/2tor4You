@@ -12,6 +12,18 @@
         android:theme="@style/Theme.2tor4You"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityReviews"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityTutorItemRating"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityTutorItemEdu"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityTutorItemInfo"
+            android:exported="false" />
+        <activity
             android:name=".ActivityFindTutorItem"
             android:exported="false" />
         <activity
@@ -28,6 +40,9 @@
             android:exported="false" />
         <activity
             android:name=".ActivityTutorProfile"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityTutorProfileView"
             android:exported="false" />
         <activity
             android:name=".ActivityFilterTutors"

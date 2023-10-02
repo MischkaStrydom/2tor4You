@@ -8,32 +8,72 @@
     android:orientation="vertical"
     tools:context=".ActivityMyProfile">
 
-  <RelativeLayout
+  <LinearLayout
+      android:id="@+id/relativeLayout3"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="?actionBarSize"
+      android:background="@color/primary"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:padding="10dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnBackMyProfile"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="362dp"
-        android:backgroundTint="#001B023B"
-        android:padding="14dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:contentDescription="@string/app_name"
         android:src="@drawable/ic_arrow_back" />
 
     <TextView
         android:id="@+id/txtProHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center_horizontal"
+        android:layout_marginEnd="20dp"
+        android:layout_weight="1"
+        android:gravity="center"
         android:text="@string/txtProHeading"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
-  </RelativeLayout>
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtTutProfilePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="left"
+        android:paddingLeft="20dp"
+        android:text="@string/txtTutProfilePic"
+        android:textColor="#CCFFFF"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+      <Button
+          android:id="@+id/btnStudTakePhoto"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="20dp"
+          android:backgroundTint="@color/grey"
+          android:text="Take Photo" />
+
+    </LinearLayout>
+
+  </LinearLayout>
 
   <ScrollView
       android:layout_width="match_parent"
@@ -49,6 +89,7 @@
           android:id="@+id/txtPersonalInfo"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
           android:gravity="left"
           android:paddingLeft="20dp"
           android:text="@string/txtPersonalInfo"
@@ -134,7 +175,6 @@
               android:layout_width="match_parent"
               android:layout_height="41dp"
               android:layout_marginStart="0dp"
-              android:layout_marginTop="0dp"
               android:layout_marginEnd="0dp"
               android:layout_toEndOf="@+id/surnameIcon"
               android:background="@null"
@@ -157,7 +197,7 @@
               android:id="@+id/surnameIcon"
               android:layout_width="40dp"
               android:layout_height="40dp"
-              android:background="@drawable/green"
+              android:background="@drawable/settings_icon_fill"
               android:foregroundGravity="center_vertical"
               android:padding="10dp"
               android:src="@drawable/ic_person" />
@@ -214,12 +254,13 @@
               android:id="@+id/dobIcon"
               android:layout_width="40dp"
               android:layout_height="40dp"
-              android:background="@drawable/logout_icon_fill"
+              android:background="@drawable/settings_icon_fill"
               android:foregroundGravity="center_vertical"
               android:padding="10dp"
               android:src="@drawable/ic_dob" />
 
         </RelativeLayout>
+
 
         <!--Gender-->
         <RelativeLayout
@@ -251,14 +292,24 @@
               android:id="@+id/genIcon"
               android:layout_width="40dp"
               android:layout_height="40dp"
-              android:background="@drawable/dark_green"
+              android:background="@drawable/settings_icon_fill"
               android:foregroundGravity="center_vertical"
               android:padding="10dp"
               android:src="@drawable/ic_gender" />
         </RelativeLayout>
 
-
       </LinearLayout>
+
+      <TextView
+          android:id="@+id/txtStudContactHeader"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="0dp"
+          android:gravity="left"
+          android:paddingLeft="20dp"
+          android:text="Contact Info"
+          android:textColor="#CCFFFF"
+          android:textSize="16sp" />
 
       <!--Phone Number-->
       <LinearLayout
@@ -384,7 +435,7 @@
                 android:id="@+id/emailIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/contact_icon_fill"
+                android:background="@drawable/terms_iicon_fill"
                 android:foregroundGravity="center_vertical"
                 android:padding="10dp"
                 android:src="@drawable/mail" />
@@ -394,6 +445,18 @@
 
         </LinearLayout>
       </LinearLayout>
+
+      <TextView
+          android:id="@+id/txtStudLocHeader"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="20dp"
+          android:layout_marginTop="5dp"
+          android:gravity="left"
+          android:paddingLeft="20dp"
+          android:text="Location"
+          android:textColor="#CCFFFF"
+          android:textSize="16sp" />
 
       <!--Province-->
     <LinearLayout
@@ -420,14 +483,12 @@
           <RelativeLayout
               android:layout_width="368dp"
               android:layout_height="match_parent"
-
               android:padding="2dp">
 
             <Spinner
                 android:id="@+id/spinProvince"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
+                android:layout_height="41dp"
                 android:layout_toEndOf="@+id/provinceIcon"
                 android:background="@drawable/spinner_arrow"
                 android:entries="@array/spinProvince"
@@ -445,7 +506,7 @@
                 android:id="@+id/provinceIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/bright_yellow"
+                android:background="@drawable/contact_icon_fill"
                 android:foregroundGravity="center_vertical"
                 android:padding="10dp"
                 android:src="@drawable/ic_location" />
@@ -484,7 +545,7 @@
               <Spinner
                   android:id="@+id/spinCity"
                   android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
+                  android:layout_height="41dp"
 
                   android:layout_toEndOf="@+id/cityIcon"
                   android:background="@drawable/spinner_arrow"
@@ -503,7 +564,7 @@
                   android:id="@+id/cityIcon"
                   android:layout_width="40dp"
                   android:layout_height="40dp"
-                  android:background="@drawable/red"
+                  android:background="@drawable/contact_icon_fill"
                   android:foregroundGravity="center_vertical"
                   android:padding="10dp"
                   android:src="@drawable/ic_location" />
@@ -647,7 +708,7 @@
                 android:id="@+id/uniIcon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/notifications_icon_fill"
+                android:background="@drawable/green"
                 android:foregroundGravity="center_vertical"
                 android:padding="10dp"
                 android:src="@drawable/ic_school"/>
@@ -674,8 +735,8 @@
           android:text="@string/btnSaveProfile"
           android:textColor="@color/primary" />
 
-
     </LinearLayout>
+
   </ScrollView>
 
 </LinearLayout>

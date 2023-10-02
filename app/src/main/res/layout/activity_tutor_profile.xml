@@ -8,18 +8,22 @@
     android:orientation="vertical"
     tools:context=".ActivityTutorProfile">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="?actionBarSize"
+        android:background="@color/primary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/btnBackTutorsProfile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="362dp"
-            android:backgroundTint="#001B023B"
-            android:padding="14dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:contentDescription="@string/txtTutProfileHeading"
             android:src="@drawable/ic_arrow_back" />
 
@@ -27,14 +31,15 @@
             android:id="@+id/txtTutProfileHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center_horizontal"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/txtTutProfileHeading"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -50,7 +55,7 @@
                 android:id="@+id/txtTutProfilePic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="left"
                 android:paddingLeft="20dp"
                 android:text="@string/txtTutProfilePic"
@@ -64,7 +69,7 @@
                 android:padding="2dp">
 
                 <Button
-                    android:id="@+id/btnTakePhoto"
+                    android:id="@+id/btnTutorTakePhoto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -77,7 +82,7 @@
                 android:id="@+id/txtTutPersonalInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:gravity="left"
                 android:paddingLeft="20dp"
                 android:text="@string/txtTutPersonalInfo"
@@ -255,14 +260,15 @@
                         android:id="@+id/spinTutGender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
                         android:entries="@array/spinTutGender"
                         android:paddingLeft="20dp"
                         android:paddingTop="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
                         android:popupBackground="#90BDAF"
+                        android:background="@drawable/spinner_arrow"
                         android:textColor="@color/white"
+                        android:theme="@style/CustomSpinnerTheme"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -284,67 +290,133 @@
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="394dp">
 
-
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/txtPersonalInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="@string/txtPersonalInfo"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
+
+            <!--Province-->
             <LinearLayout
+                android:id="@+id/linearLayout111"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+
+                android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="2dp">
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="394dp">
 
-                <!--Province-->
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="205dp"
+                    android:orientation="horizontal"
                     android:background="@drawable/account_round_back_white"
                     android:padding="2dp">
 
-                    <Spinner
-                        android:id="@+id/spinTutProvince"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="368dp"
+                        android:layout_height="match_parent"
 
-                        android:entries="@array/spinTutProvince"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="10dp"
-                        android:popupBackground="#90BDAF"
-                        android:textColor="@color/white"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:padding="2dp">
 
-                </RelativeLayout>
+                        <Spinner
+                            android:id="@+id/spinProvince"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/provinceIcon"
+                            android:background="@drawable/spinner_arrow"
+                            android:entries="@array/spinProvince"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+                            android:popupBackground="@color/primary"
+                            android:textColor="@color/white"
+                            android:theme="@style/CustomSpinnerTheme"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                <!--City-->
-                <RelativeLayout
+                        <ImageView
+                            android:id="@+id/provinceIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/contact_icon_fill"
+                            android:foregroundGravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_location" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--City-->
+            <LinearLayout
+                android:id="@+id/linearLayout20"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="394dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="-190dp"
-                    android:layout_marginEnd="20dp"
                     android:background="@drawable/account_round_back_white"
+                    android:orientation="vertical"
                     android:padding="2dp">
-
-                    <Spinner
-                        android:id="@+id/spinCity"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:padding="2dp">
 
-                        android:entries="@array/tut_eastern_cape_cities"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="10dp"
-                        android:popupBackground="#90BDAF"
-                        android:textColor="@color/white"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        <Spinner
+                            android:id="@+id/spinCity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
 
-                </RelativeLayout>
+                            android:layout_toEndOf="@+id/cityIcon"
+                            android:background="@drawable/spinner_arrow"
+                            android:entries="@array/eastern_cape_cities"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+                            android:popupBackground="@color/primary"
+                            android:textColor="@color/white"
+                            android:theme="@style/CustomSpinnerTheme"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintTop_toTopOf="parent" />
 
+                        <ImageView
+                            android:id="@+id/cityIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/contact_icon_fill"
+                            android:foregroundGravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_location" />
+
+                    </RelativeLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <TextView
@@ -414,7 +486,7 @@
                             android:id="@+id/schoolIcon"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:background="@drawable/notifications_icon_fill"
+                            android:background="@drawable/green"
                             android:foregroundGravity="center_vertical"
                             android:padding="10dp"
                             android:src="@drawable/ic_school" />
@@ -479,7 +551,7 @@
                             android:id="@+id/uniIcon"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:background="@drawable/notifications_icon_fill"
+                            android:background="@drawable/green"
                             android:foregroundGravity="center_vertical"
                             android:padding="10dp"
                             android:src="@drawable/ic_school" />
@@ -546,7 +618,7 @@
                         android:id="@+id/phoneTutIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/green"
+                        android:background="@drawable/terms_iicon_fill"
                         android:foregroundGravity="center_vertical"
                         android:padding="10dp"
                         android:src="@drawable/ic_phone" />
@@ -600,7 +672,7 @@
                         android:id="@+id/emailTutIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/green"
+                        android:background="@drawable/terms_iicon_fill"
                         android:foregroundGravity="center_vertical"
                         android:padding="10dp"
                         android:src="@drawable/mail" />
@@ -665,7 +737,7 @@
                         android:id="@+id/phoneIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/terms_iicon_fill"
+                        android:background="@drawable/notifications_icon_fill"
                         android:foregroundGravity="center_vertical"
                         android:padding="10dp"
                         android:src="@drawable/work" />
@@ -719,7 +791,7 @@
                         android:id="@+id/clockTutIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/terms_iicon_fill"
+                        android:background="@drawable/notifications_icon_fill"
                         android:foregroundGravity="center_vertical"
                         android:padding="10dp"
                         android:src="@drawable/clock" />
@@ -772,7 +844,7 @@
                         android:id="@+id/studTutIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/terms_iicon_fill"
+                        android:background="@drawable/notifications_icon_fill"
                         android:foregroundGravity="center_vertical"
                         android:padding="10dp"
                         android:src="@drawable/people" />
@@ -937,7 +1009,7 @@
                         android:id="@+id/priceTutIcon"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:background="@drawable/contact_icon_fill"
+                        android:background="@drawable/logout_icon_fill"
                         android:foregroundGravity="center_vertical"
                         android:padding="10dp"
                         android:src="@drawable/money" />

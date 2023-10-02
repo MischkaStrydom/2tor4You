@@ -22,7 +22,7 @@
             android:id="@+id/layoutHeader"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:background="@color/teal_700"
+            android:background="@color/primary"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="10dp">
