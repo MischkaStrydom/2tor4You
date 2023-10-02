@@ -240,6 +240,46 @@ public class DBHelper extends SQLiteOpenHelper{
         return fullName;
     }
 
+    //Get email
+    public String getEmail(String phoneNumber, String password, String selectedRole) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define column name constants
+        final String COLUMN_EMAIL_NAME = "email";
+
+
+        // Define the query to retrieve the user's full name
+        String query = "SELECT " + COLUMN_EMAIL_NAME +
+                " FROM User WHERE phoneNumber = ? AND password = ? AND userRole = ?";
+        String[] selectionArgs = {phoneNumber, password, selectedRole};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        String email = null;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex("email");
+            if (columnIndex != -1) {
+                email = cursor.getString(columnIndex);
+            } else {
+                // Log an error message
+                Log.e("DBHelper", "Column 'email' not found in User table.");
+            }
+        } else {
+            // Log an error message or use debugging tools to check the query result
+            Log.e("DBHelper", "No matching user found.");
+        }
+
+        // Close the cursor and database
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+
+        return email;
+    }
+
+
 
 
 

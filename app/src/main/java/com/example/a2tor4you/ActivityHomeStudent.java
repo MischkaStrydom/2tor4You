@@ -67,8 +67,11 @@ public class ActivityHomeStudent extends AppCompatActivity {
         message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityHomeStudent.this,LoginUsernameActivity.class);
-                intent.putExtra("phone", LoginOtpActivity.phoneNumber);
+                Intent intent = new Intent(ActivityHomeStudent.this,ActivityAccount.class);
+               // intent.putExtra("phone", LoginOtpActivity.phoneNumber);
+                intent.putExtra("phone", phoneNumber);
+                intent.putExtra("password", password);
+                intent.putExtra("selectedRole", selectedRole);
                 startActivity(intent);
             }
         });
