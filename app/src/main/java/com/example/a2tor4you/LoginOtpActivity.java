@@ -33,6 +33,9 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginOtpActivity extends AppCompatActivity {
     static String phoneNumber;
+    static String password;
+    static String selectedRole;
+
     Long timeoutSeconds = 60L;
     String verificationCode;
     PhoneAuthProvider.ForceResendingToken resendingToken;
@@ -56,6 +59,8 @@ public class LoginOtpActivity extends AppCompatActivity {
         btnBack.setOnClickListener(view -> startActivity(new Intent(LoginOtpActivity.this,ActivityLogin.class)));
 
         phoneNumber = getIntent().getExtras().getString("phone");
+        password = getIntent().getExtras().getString("password");
+        selectedRole = getIntent().getExtras().getString("selectedRole");
 
 
         sendOtp(phoneNumber,false);
@@ -125,7 +130,8 @@ public class LoginOtpActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Intent intent = new Intent(LoginOtpActivity.this,ActivityHomeStudent.class);
                     intent.putExtra("phone", phoneNumber);
-
+                    intent.putExtra("password", password);
+                    intent.putExtra("selectedRole", selectedRole);
                     startActivity(intent);
 
                 }

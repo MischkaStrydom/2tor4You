@@ -14,11 +14,30 @@ import android.widget.ImageView;
 
 public class ActivityAccount extends AppCompatActivity {
 
-
+    static String phoneNumber;
+    static String password;
+    static String selectedRole;
+    DBHelper dbHelper ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+        dbHelper = new DBHelper(this);
+
+        phoneNumber = getIntent().getExtras().getString("phone");
+        password = getIntent().getExtras().getString("password");
+        selectedRole = getIntent().getExtras().getString("selectedRole");
+
+        //String firstName = dbHelper.getUserName(phoneNumber, password, selectedRole);
+        String userName = dbHelper.getUserName(phoneNumber, password, selectedRole);
+
+        if (userName != null && !userName.isEmpty()) {
+            // The 'userName' variable now contains the user's first name.
+            // You can use it as needed.
+        } else {
+            // Handle the case where no results were found or userName is empty.
+            // Display an error message or take appropriate action.
+        }
 
         ImageView btnBack = findViewById(R.id.btnBackAccount);
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityHomeStudent.class)));

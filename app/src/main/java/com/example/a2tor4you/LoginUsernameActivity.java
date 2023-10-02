@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.a2tor4you.Model.UserModel;
@@ -21,7 +22,7 @@ public class LoginUsernameActivity extends AppCompatActivity {
 
     EditText usernameInput;
     Button letMeInBtn;
-    ImageButton btnBack;
+    ImageView btnBack;
 
     String phoneNumber;
     UserModel userModel;

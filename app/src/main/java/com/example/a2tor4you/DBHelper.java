@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -199,5 +200,49 @@ public class DBHelper extends SQLiteOpenHelper{
 
         return isLoggedIn;
     }
+
+    //User Name for account screen
+    public String getUserName(String phoneNumber, String password, String selectedRole) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define column name constants
+        final String COLUMN_FIRST_NAME = "firstName";
+        final String COLUMN_LAST_NAME = "lastName";
+
+        // Define the query to retrieve the user's full name
+        String query = "SELECT " + COLUMN_FIRST_NAME + " || ' ' || " + COLUMN_LAST_NAME + " AS fullName" +
+                " FROM User WHERE phoneNumber = ? AND password = ? AND userRole = ?";
+        String[] selectionArgs = {phoneNumber, password, selectedRole};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        String fullName = null;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex("fullName");
+            if (columnIndex != -1) {
+                fullName = cursor.getString(columnIndex);
+            } else {
+                // Log an error message
+                Log.e("DBHelper", "Column 'fullName' not found in User table.");
+            }
+        } else {
+            // Log an error message or use debugging tools to check the query result
+            Log.e("DBHelper", "No matching user found.");
+        }
+
+        // Close the cursor and database
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+
+        return fullName;
+    }
+
+
+
+
+
 
 }

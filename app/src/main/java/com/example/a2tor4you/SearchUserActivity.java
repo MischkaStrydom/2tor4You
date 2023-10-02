@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.a2tor4you.Model.UserModel;
 import com.example.a2tor4you.adapter.SearchUserRecyclerAdapter;
@@ -17,7 +18,7 @@ import com.google.firebase.firestore.Query;
 public class SearchUserActivity extends AppCompatActivity {
     EditText searchInput;
     ImageButton searchButton;
-    ImageButton backButton;
+    ImageView backButton;
     RecyclerView recyclerView;
 
     SearchUserRecyclerAdapter adapter;
@@ -29,7 +30,7 @@ public class SearchUserActivity extends AppCompatActivity {
 
         searchInput = findViewById(R.id.seach_username_input);
         searchButton = findViewById(R.id.search_user_btn);
-        backButton = findViewById(R.id.back_btn);
+        backButton = findViewById(R.id.btnBack);
         recyclerView = findViewById(R.id.search_user_recycler_view);
         searchInput.requestFocus();
 

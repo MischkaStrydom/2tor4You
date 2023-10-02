@@ -77,6 +77,8 @@ public class ActivityLogin extends AppCompatActivity {
                     if ("Tutor".equalsIgnoreCase(selectedRole)) { // Use .equalsIgnoreCase to compare strings
                         Intent intent = new Intent(ActivityLogin.this, LoginOtpActivity.class);
                         intent.putExtra("phone", completePhoneNumber);
+                        intent.putExtra("password", password);
+                        intent.putExtra("selectedRole", selectedRole);
                         startActivity(intent);
                        // Intent intent = new Intent(ActivityLogin.this, ActivityHomeStudent.class);
                         // Add any extra data or actions for the Tutor role here
@@ -84,12 +86,16 @@ public class ActivityLogin extends AppCompatActivity {
                     } else if ("Student".equalsIgnoreCase(selectedRole)) { // Use .equalsIgnoreCase to compare strings
                         Intent intent = new Intent(ActivityLogin.this, LoginOtpActivity.class);
                         intent.putExtra("phone", completePhoneNumber);
+                        intent.putExtra("password", password);
+                        intent.putExtra("selectedRole", selectedRole);
                         //Intent intent = new Intent(ActivityLogin.this, ActivityHomeStudent.class);
                         // Add any extra data or actions for the Tutor role here
                         startActivity(intent);
                     }else if ("Admin".equalsIgnoreCase(selectedRole)) { // Use .equalsIgnoreCase to compare strings
                         Intent intent = new Intent(ActivityLogin.this, LoginOtpActivity.class);
                         intent.putExtra("phone", completePhoneNumber);
+                        intent.putExtra("password", password);
+                        intent.putExtra("selectedRole", selectedRole);
                                 //  Intent intent = new Intent(ActivityLogin.this, AdminActivity.class);
                                 // Add any extra data or actions for the Tutor role here
                         startActivity(intent);
@@ -108,7 +114,6 @@ public class ActivityLogin extends AppCompatActivity {
         });
 
     }
-
 
 }
 
