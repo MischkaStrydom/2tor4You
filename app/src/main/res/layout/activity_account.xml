@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:context=".ActivityAccount">
 
+
+
     <LinearLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"

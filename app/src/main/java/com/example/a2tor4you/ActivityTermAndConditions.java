@@ -2,7 +2,9 @@ package com.example.a2tor4you;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,10 @@ public class ActivityTermAndConditions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_and_conditions);
+
+        ImageView btnBack = findViewById(R.id.btnBackTermsAndC);
+        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityTermAndConditions.this,ActivityAccount.class)));
+
         BufferedReader reader = null;
 
         try {

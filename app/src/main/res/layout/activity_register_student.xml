@@ -74,7 +74,7 @@
                     android:padding="2dp">
 
                     <EditText
-                        android:id="@+id/txt_StudenFirstName"
+                        android:id="@+id/txt_StudentFirstName"
                         android:layout_width="match_parent"
                         android:layout_height="41dp"
                         android:layout_marginStart="0dp"
@@ -129,7 +129,7 @@
                     android:padding="2dp">
 
                     <EditText
-                        android:id="@+id/txt_SrudentLastName"
+                        android:id="@+id/txt_StudentLastName"
                         android:layout_width="match_parent"
                         android:layout_height="41dp"
                         android:layout_marginStart="0dp"
@@ -235,69 +235,69 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/account_round_back_white"
-                android:orientation="vertical"
-                android:padding="2dp">
 
-                <!--Password-->
-                <RelativeLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="394dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/account_round_back_white"
+                    android:orientation="vertical"
                     android:padding="2dp">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/textInputLayoutConfirmPassword"
+                    <!--Notifications-->
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="41dp"
+                        android:layout_height="wrap_content"
+                        android:padding="2dp">
 
-                        android:textColorHint="@color/white"
-                        app:boxBackgroundMode="none"
-                        app:helperTextTextColor="@color/white"
-                        app:hintEnabled="false"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/txt_LoginEmail"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/txt_LoginEmail"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_LoginEmail"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:passwordToggleEnabled="true"
-                        app:passwordToggleTint="@color/white"
-                        tools:ignore="UnknownIdInLayout">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtConfirmRegisterStudentPassword"
+                        <EditText
+                            android:id="@+id/txtStudentEmail"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="40dp"
-                            android:gravity="center_vertical"
-                            android:hint="@string/txtConfirmRegisterStudentPassword"
-                            android:inputType="textPassword"
-                            android:paddingStart="20dp"
-                            android:paddingLeft="10dp"
+                            android:layout_height="41dp"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="0dp"
+                            android:layout_toEndOf="@+id/emailIcon"
+                            android:background="@null"
+                            android:ems="10"
+                            android:hint="@string/txtProEmail"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="20dp"
                             android:paddingTop="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
-                            android:textSize="18sp"
-                            app:hintAnimationEnabled="false" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            app:boxBackgroundMode="none"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/confirmpassIcon"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/terms_iicon_fill"
-                        android:foregroundGravity="center_vertical"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_blacklock" />
+                        <ImageView
+                            android:id="@+id/emailIcon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/contact_icon_fill"
+                            android:foregroundGravity="center_vertical"
+                            android:padding="10dp"
+                            android:src="@drawable/mail" />
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
 
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -367,69 +367,69 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/account_round_back_white"
+                android:orientation="vertical"
+                android:padding="2dp">
 
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:textAlignment="center"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="394dp">
-
-                <LinearLayout
+                <!--Password-->
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/account_round_back_white"
-                    android:orientation="vertical"
+                    android:layout_height="wrap_content"
                     android:padding="2dp">
 
-                    <!--Notifications-->
-                    <RelativeLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputLayoutConfirmPassword"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="2dp">
+                        android:layout_height="41dp"
 
-                        <EditText
-                            android:id="@+id/txtStudentEmail"
+                        android:textColorHint="@color/white"
+                        app:boxBackgroundMode="none"
+                        app:helperTextTextColor="@color/white"
+                        app:hintEnabled="false"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/txt_LoginEmail"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/txt_LoginEmail"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_LoginEmail"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/white"
+                        tools:ignore="UnknownIdInLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtConfirmRegisterStudentPassword"
                             android:layout_width="match_parent"
-                            android:layout_height="41dp"
-                            android:layout_marginStart="0dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginEnd="0dp"
-                            android:layout_toEndOf="@+id/emailIcon"
-                            android:background="@null"
-                            android:ems="10"
-                            android:hint="@string/txtProEmail"
-                            android:inputType="textPersonName"
-                            android:paddingLeft="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:gravity="center_vertical"
+                            android:hint="@string/txtConfirmRegisterStudentPassword"
+                            android:inputType="textPassword"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="10dp"
                             android:paddingTop="10dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="10dp"
-
                             android:textColor="@color/white"
                             android:textColorHint="@color/white"
-                            app:boxBackgroundMode="none"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            android:textSize="18sp"
+                            app:hintAnimationEnabled="false" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                        <ImageView
-                            android:id="@+id/emailIcon"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/contact_icon_fill"
-                            android:foregroundGravity="center_vertical"
-                            android:padding="10dp"
-                            android:src="@drawable/mail" />
+                    <ImageView
+                        android:id="@+id/confirmpassIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/terms_iicon_fill"
+                        android:foregroundGravity="center_vertical"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_blacklock" />
 
-                    </RelativeLayout>
+                </RelativeLayout>
 
 
-                </LinearLayout>
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton

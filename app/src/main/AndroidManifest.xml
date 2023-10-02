@@ -30,7 +30,10 @@
             android:name=".ActivityFindTutor"
             android:exported="false" />
         <activity
-            android:name=".ActivityGrade"
+            android:name=".ActivityGradeAndSubject"
+            android:exported="false" />
+        <activity
+            android:name=".AdminActivity"
             android:exported="false" />
         <activity
             android:name=".LoginOtpActivity"

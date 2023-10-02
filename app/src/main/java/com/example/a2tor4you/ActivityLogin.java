@@ -3,7 +3,9 @@ package com.example.a2tor4you;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -20,27 +22,30 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.a2tor4you.utils.AndroidUtil;
+
 public class ActivityLogin extends AppCompatActivity {
 
-    ImageButton btnBack;
+    ImageView btnBack;
     TextView phonePrefix;
     EditText phoneInput;
-    EditText password;
+    EditText userPassword;
     Spinner roleSpinner;
     TextView btnSignUp;
     Button btnLogin;
-
+    Context context;
+    DBHelper dbHelper ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        dbHelper = new DBHelper(this);
         btnBack = findViewById(R.id.btnBackLogin);
         btnSignUp = findViewById(R.id.txtSignUp);
         roleSpinner = findViewById(R.id.spinRole);
         phoneInput = findViewById(R.id.txtPhoneNum);
         phonePrefix = findViewById(R.id.txtPrefix);
-        password = findViewById(R.id.txtLoginPassword);
+        userPassword = findViewById(R.id.txtLoginPassword);
         btnLogin = findViewById(R.id.btnLogin);
 
 
@@ -51,39 +56,60 @@ public class ActivityLogin extends AppCompatActivity {
         //On text Sign Up click takes user back to main screen
         btnSignUp.setOnClickListener(view -> startActivity(new Intent(ActivityLogin.this,MainActivity.class)));
 
-        //Get role selected and check if anything is selected
-        roleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedRole = parentView.getItemAtPosition(position).toString();
-                // Do something with the selected role (e.g., store it or display a message).
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do something when nothing is selected (if needed).
-            }
-
-        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Get role selected and check if anything is selected
+                String selectedRole = roleSpinner.getSelectedItem().toString();
+                String password = userPassword.getText().toString();
+                String completePhoneNumber = "+27" + phoneInput.getText().toString();
+
+
                 if(phoneInput.length() != 9){
                     phoneInput.setError("Phone number not valid");
                     return;
                 }
-                String completePhoneNumber = "+27" + phoneInput.getText().toString();
-                Intent intent = new Intent(ActivityLogin.this,LoginOtpActivity.class);
-                intent.putExtra("phone",completePhoneNumber);
-                startActivity(intent);
+                boolean isLoggedIn = dbHelper.login(completePhoneNumber, password, selectedRole);
+
+                if (isLoggedIn) {
+                    if ("Tutor".equalsIgnoreCase(selectedRole)) { // Use .equalsIgnoreCase to compare strings
+                        Intent intent = new Intent(ActivityLogin.this, LoginOtpActivity.class);
+                        intent.putExtra("phone", completePhoneNumber);
+                        startActivity(intent);
+                       // Intent intent = new Intent(ActivityLogin.this, ActivityHomeStudent.class);
+                        // Add any extra data or actions for the Tutor role here
+                       // startActivity(intent);
+                    } else if ("Student".equalsIgnoreCase(selectedRole)) { // Use .equalsIgnoreCase to compare strings
+                        Intent intent = new Intent(ActivityLogin.this, LoginOtpActivity.class);
+                        intent.putExtra("phone", completePhoneNumber);
+                        //Intent intent = new Intent(ActivityLogin.this, ActivityHomeStudent.class);
+                        // Add any extra data or actions for the Tutor role here
+                        startActivity(intent);
+                    }else if ("Admin".equalsIgnoreCase(selectedRole)) { // Use .equalsIgnoreCase to compare strings
+                        Intent intent = new Intent(ActivityLogin.this, LoginOtpActivity.class);
+                        intent.putExtra("phone", completePhoneNumber);
+                                //  Intent intent = new Intent(ActivityLogin.this, AdminActivity.class);
+                                // Add any extra data or actions for the Tutor role here
+                        startActivity(intent);
+                            }
+
+                    // Handle other roles if needed
+                    }else  {
+                    // User does not exist or role does not match
+                    // Display an error message to the user
+                    AndroidUtil.showToast(getApplicationContext(), "User not registered.");
+                }
+
+                dbHelper.close();
 
             }
         });
-
-
-
 
     }
 
 
 }
+
+

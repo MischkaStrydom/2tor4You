@@ -11,7 +11,7 @@
     <!--Login Screen-->
     <string name="txt_LoginHeading">Login</string>
     <string name="txtPrefix">+27</string>
-    <string name="txtPhoneNum">123 4567</string>
+    <string name="txtPhoneNum">84 123 4567</string>
     <string name="txtLoginPassword">Password</string>
     <string name="txtForgotPassword">Forgot Password?</string>
     <string name="btnLogin">Login</string>
@@ -155,7 +155,7 @@
 
     <!-- String array for Eastern Cape cities -->
     <string-array name="eastern_cape_cities">
-        <item>City</item>
+
         <item>Port Elizabeth</item>
         <item>East London</item>
         <item>Uitenhage</item>
@@ -167,7 +167,7 @@
 
     <!-- String array for Free State cities -->
     <string-array name="free_state_cities">
-        <item>City</item>
+
         <item>Bloemfontein</item>
         <item>Welkom</item>
         <item>Bethlehem</item>
@@ -178,7 +178,7 @@
 
     <!-- String array for Gauteng cities -->
     <string-array name="gauteng_cities">
-        <item>City</item>
+
         <item>Johannesburg</item>
         <item>Pretoria</item>
         <item>Centurion</item>
@@ -194,7 +194,7 @@
 
     <!-- String array for KwaZulu-Natal cities -->
     <string-array name="kwa_zulu_natal_cities">
-        <item>City</item>
+
         <item>Durban</item>
         <item>Pietermaritzburg</item>
         <item>Newcastle</item>
@@ -209,7 +209,7 @@
 
     <!-- String array for Limpopo cities -->
     <string-array name="limpopo_cities">
-        <item>City</item>
+
         <item>Polokwane (Pietersburg)</item>
         <item>Tzaneen</item>
         <item>Thohoyandou</item>
@@ -223,7 +223,7 @@
 
     <!-- String array for Mpumalanga cities -->
     <string-array name="mpumalanga_cities">
-        <item>City</item>
+
         <item>Nelspruit</item>
         <item>Witbank (eMalahleni)</item>
         <item>Middelburg</item>
@@ -237,7 +237,7 @@
 
     <!-- String array for North West cities -->
     <string-array name="north_west_cities">
-        <item>City</item>
+
         <item>Rustenburg</item>
         <item>Mahikeng (Mafikeng)</item>
         <item>Potchefstroom</item>
@@ -249,7 +249,7 @@
 
     <!-- String array for Northern Cape cities -->
     <string-array name="northern_cape_cities">
-        <item>City</item>
+
         <item>Kimberley</item>
         <item>Upington</item>
         <item>Springbok</item>
@@ -260,7 +260,7 @@
 
     <!-- String array for Western Cape cities -->
     <string-array name="western_cape_cities">
-        <item>City</item>
+
         <item>Cape Town</item>
         <item>Stellenbosch</item>
         <item>Paarl</item>
@@ -338,139 +338,6 @@
 
     </string-array>
 
-    <string-array name="spinTutProvince">
-
-        <item>Province</item>
-        <item>Eastern Cape</item>
-        <item>Free State</item>
-        <item>Gauteng</item>
-        <item>KwaZulu-Natal</item>
-        <item>Limpopo</item>
-        <item>Mpumalanga</item>
-        <item>North West</item>
-        <item>Northern Cape</item>
-        <item>Western Cape</item>
-
-    </string-array>
-
-    <!-- String array for Eastern Cape cities -->
-    <string-array name="tut_eastern_cape_cities">
-        <item>City</item>
-        <item>Port Elizabeth</item>
-        <item>East London</item>
-        <item>Uitenhage</item>
-        <item>Grahamstown</item>
-        <item>Queenstown</item>
-        <item>Mthatha</item>
-        <item>Bhisho</item>
-    </string-array>
-
-    <!-- String array for Free State cities -->
-    <string-array name="tut_free_state_cities">
-        <item>City</item>
-        <item>Bloemfontein</item>
-        <item>Welkom</item>
-        <item>Bethlehem</item>
-        <item>Sasolburg</item>
-        <item>Kroonstad</item>
-        <item>Parys</item>
-    </string-array>
-
-    <!-- String array for Gauteng cities -->
-    <string-array name="tut_gauteng_cities">
-        <item>City</item>
-        <item>Johannesburg</item>
-        <item>Pretoria</item>
-        <item>Centurion</item>
-        <item>Midrand</item>
-        <item>Sandton</item>
-        <item>Randburg</item>
-        <item>Roodepoort</item>
-        <item>Kempton Park</item>
-        <item>Boksburg</item>
-        <item>Benoni</item>
-        <item>Vereeniging</item>
-    </string-array>
-
-    <!-- String array for KwaZulu-Natal cities -->
-    <string-array name="tut_kwa_zulu_natal_cities">
-        <item>City</item>
-        <item>Durban</item>
-        <item>Pietermaritzburg</item>
-        <item>Newcastle</item>
-        <item>Richards Bay</item>
-        <item>Ladysmith</item>
-        <item>Empangeni</item>
-        <item>Port Shepstone</item>
-        <item>Estcourt</item>
-        <item>Ballito</item>
-        <item>Howick</item>
-    </string-array>
-
-    <!-- String array for Limpopo cities -->
-    <string-array name="tut_limpopo_cities">
-        <item>City</item>
-        <item>Polokwane (Pietersburg)</item>
-        <item>Tzaneen</item>
-        <item>Thohoyandou</item>
-        <item>Mokopane (Potgietersrus)</item>
-        <item>Musina</item>
-        <item>Phalaborwa</item>
-        <item>Giyani</item>
-        <item>Lebowakgomo</item>
-        <item>Modimolle (Nylstroom)</item>
-    </string-array>
-
-    <!-- String array for Mpumalanga cities -->
-    <string-array name="tut_mpumalanga_cities">
-        <item>City</item>
-        <item>Nelspruit</item>
-        <item>Witbank (eMalahleni)</item>
-        <item>Middelburg</item>
-        <item>Secunda</item>
-        <item>Ermelo</item>
-        <item>Standerton</item>
-        <item>Lydenburg</item>
-        <item>Barberton</item>
-        <item>Hazyview</item>
-    </string-array>
-
-    <!-- String array for North West cities -->
-    <string-array name="tut_north_west_cities">
-        <item>City</item>
-        <item>Rustenburg</item>
-        <item>Mahikeng (Mafikeng)</item>
-        <item>Potchefstroom</item>
-        <item>Klerksdorp</item>
-        <item>Brits</item>
-        <item>Orkney</item>
-        <item>Lichtenburg</item>
-    </string-array>
-
-    <!-- String array for Northern Cape cities -->
-    <string-array name="tut_northern_cape_cities">
-        <item>City</item>
-        <item>Kimberley</item>
-        <item>Upington</item>
-        <item>Springbok</item>
-        <item>De Aar</item>
-        <item>Kathu</item>
-        <item>Kuruman</item>
-    </string-array>
-
-    <!-- String array for Western Cape cities -->
-    <string-array name="tut_western_cape_cities">
-        <item>City</item>
-        <item>Cape Town</item>
-        <item>Stellenbosch</item>
-        <item>Paarl</item>
-        <item>Worcester</item>
-        <item>George</item>
-        <item>Mossel Bay</item>
-        <item>Oudtshoorn</item>
-        <item>Knysna</item>
-        <item>Beaufort West</item>
-    </string-array>
 
 
     <string name="txtTutEdu">Education</string>
@@ -535,24 +402,31 @@
 
 
     <!--Find A tutor grade-->
-    <string name="txtFindTutorHeading">Find a tutor</string>
+    <string name="txtSelectGradeHeading">Find a tutor</string>
     <string name="txtGrade">What grade are you in?</string>
-    <string name="txtGradeR">Grade R</string>
-    <string name="txtGrade1">Grade 1</string>
-    <string name="txtGrade2">Grade 2</string>
-    <string name="txtGrade3">Grade 3</string>
-    <string name="txtGrade4">Grade 4</string>
-    <string name="txtGrade5">Grade 5</string>
-    <string name="txtGrade6">Grade 6</string>
-    <string name="txtGrade7">Grade 7</string>
-    <string name="txtGrade8">Grade 8</string>
-    <string name="txtGrade9">Grade 9</string>
-    <string name="txtGrade10">Grade 10</string>
-    <string name="txtGrade11">Grade 11</string>
-    <string name="txtGrade12">Grade 12</string>
+    <string name="rdoGradeR">R</string>
+    <string name="rdoGrade1">1</string>
+    <string name="rdoGrade2">2</string>
+    <string name="rdoGrade3">3</string>
+    <string name="rdoGrade4">4</string>
+    <string name="rdoGrade5">5</string>
+    <string name="rdoGrade6">6</string>
+    <string name="rdoGrade7">7</string>
+    <string name="rdoGrade8">8</string>
+    <string name="rdoGrade9">9</string>
+    <string name="rdoGrade10">10</string>
+    <string name="rdoGrade11">11</string>
+    <string name="rdoGrade12">12</string>
     <string name="btnNextFindTutor">Next</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txtSubject">Which subjects would you like to be tutored on?</string>
+
+    <string name="chkMath"> Math</string>
+    <string name="chkHistory"> History</string>
+    <string name="chkAfrikaans"> Afrikaans</string>
+    <string name="chkEnglish"> English</string>
+
 
 
     <!--Tutor Profile View Screen-->
@@ -572,5 +446,21 @@
     <string name="txtTutTotalHrsView">10</string> <!--test data-->
     <string name="txtTutPriceHeader">Price per hour:</string>
     <string name="txtPricePerHrView">R120.00</string> <!--test data-->
+
+    <!--Find Tutor Item Screen-->
+
+    <string name="txtDashboardTitle">Admin Dashboard</string>
+    <string name="txtStartDateButton">Start date</string>
+    <string name="txtendDateButton">end date</string>
+    <string name="txtgenerateReports">Generate Reports</string>
+
+    <string name="txtTotalTutors">Total Current Tutors:</string>
+    <string name="txtTotalStudents">Total Current Students:</string>
+
+    <string name="txtTutorsOnboarded">Tutors Onboarded:</string>
+    <string name="txtStudentsOnboarded">Students Onboarded:</string>
+
+    <string name="txtStudentsOffBoarded">Students Offboarded:</string>
+    <string name="txtTutorsOffBoarded">Tutors Offboarded:</string>
 
 </resources>

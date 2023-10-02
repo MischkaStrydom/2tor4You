@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,19 @@ public class ActivityAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
+        ImageView btnBack = findViewById(R.id.btnBackAccount);
+        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityHomeStudent.class)));
+
+        ImageView notification = findViewById(R.id.btnNotifications);
+        ImageView settings = findViewById(R.id.btnSettings);
+        ImageView terms = findViewById(R.id.btnTermsAndC);
+        ImageView logout = findViewById(R.id.btnLogOut);
+
+        notification.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityNotifications.class)));
+        settings.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivitySettings.class)));
+        terms.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityTermAndConditions.class)));
+       // logout.setOnClickListener(view -> ));
 
         ImageButton btnContactUs = findViewById(R.id.btnContactUs);
 

@@ -19,77 +19,68 @@ public class DBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
 
         //User table
-        String userSQL = "CREATE TABLE User (userID INTEGER PRIMARY KEY AUTOINCREMENT, firstName VARCHAR(255), lastName VARCHAR(255), email VARCHAR(255), " +
-                "phoneNumber VARCHAR(12), password VARCHAR(255), dob DATE, createdAt DATETIME, updatedAt DATETIME, userRole VARCHAR(25), isVerifiedAccount BOOLEAN DEFAULT 0)";
+        String userSQL = "CREATE TABLE User (userID INTEGER PRIMARY KEY AUTOINCREMENT, firstName VARCHAR(255), lastName VARCHAR(255),phoneNumber VARCHAR(12)," +
+                " email VARCHAR(255), password VARCHAR(255),userRole VARCHAR(25), createdAt DATETIME)";
 
         //Student table
-        String studentSQL = "CREATE TABLE Student (studentID INTEGER PRIMARY KEY AUTOINCREMENT, enrollmentDate DATE, " +
-                "studSubject VARCHAR(255), studGrade VARCHAR(255), otherAttributes VARCHAR(255), FOREIGN KEY (userID) REFERENCES Users(userID))";
+        String studentSQL = "CREATE TABLE Student (studentID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, image BLOB, dob DATE, gender VARCHAR(25), province VARCHAR(255)," +
+                "city VARCHAR(255), school VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Tutor table
-        String tutorSQL = "CREATE TABLE Tutor (tutorID INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(255), experience VARCHAR(255), hourlyRate FLOAT, " +
-                "otherAttributes VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
+        String tutorSQL = "CREATE TABLE Tutor (tutorID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, image BLOB, dob DATE, gender VARCHAR(25), province VARCHAR(255)," +
+                "city VARCHAR(255), school VARCHAR(255), uni VARCHAR(255), YearsOfExperience INTEGER, TotalTutorHours FLOAT, TotalStudentTaught INTEGER," +
+                "aboutMe VARCHAR(255), pricePerHour FLOAT, locationOnline BOOLEAN DEFAULT 0, locationOffline BOOLEAN DEFAULT 0," +
+                "extraFreeIntro BOOLEAN DEFAULT 0, extraQualifiedTeacher BOOLEAN DEFAULT 0, extraNotes VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Admin table
-        String adminSQL = "CREATE TABLE Admin (adminID INTEGER PRIMARY KEY AUTOINCREMENT, adminRole VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
+        String adminSQL = "CREATE TABLE Admin (adminID INTEGER PRIMARY KEY AUTOINCREMENT,userID INTEGER, adminRole VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
 
-        //Pull Report for Admin
-        String pullReportSQL = "CREATE TABLE PullReport (pullReportID INTEGER PRIMARY KEY AUTOINCREMENT, numberOfTutorsOnboarded INTEGER, numberOfTutorsOffboarded INTEGER, " +
-                "numberOfStudentsOnboarded INTEGER, numberOfStudentsOffboarded INTEGER, " +
-                "numberOfCurrentTutors INTEGER, numberOfCurrentStudents INTEGER, FOREIGN KEY (userID) REFERENCES User(userID), FOREIGN KEY (adminID) REFERENCES Admin(adminID))";
+        //Subjects
+        String subjectSQL = "CREATE TABLE Subject (subjectID INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(255))";
+
+        //Tutor Subjects --- Tutor Profile
+        String tutorSubjectSQL = "CREATE TABLE TutorSubject (tutorSubjectID INTEGER PRIMARY KEY AUTOINCREMENT, tutorID INTEGER, subjectID INTEGER, grade VARCHAR(255)," +
+                " FOREIGN KEY (tutorID) REFERENCES Tutor(tutorID), FOREIGN KEY (subjectID) REFERENCES Subject(subjectID))";
 
         //Event
-        String EventSQL = "CREATE TABLE Event (eventID INTEGER PRIMARY KEY AUTOINCREMENT, eventTitle VARCHAR(255), eventDate DATE, " +
-                "startTime DATETIME, endTime DATETIME, duration INTEGER, location VARCHAR(255), notes VARCHAR(255), sessionRating INTEGER, feedbackReview VARCHAR(255), " +
-                "isCancelled BOOLEAN DEFAULT 0, FOREIGN KEY (studentID) REFERENCES Student(studentID), FOREIGN KEY (tutorID) REFERENCES Tutor(tutorID))";
+        String EventSQL = "CREATE TABLE Event (eventID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, eventTitle VARCHAR(255), eventDate DATE, " +
+                "startTime DATETIME, locationOnline BOOLEAN DEFAULT 0, locationOffline BOOLEAN DEFAULT 0, notes VARCHAR(255), " +
+                "isCancelled BOOLEAN DEFAULT 0, FOREIGN KEY (userID) REFERENCES User(userID))";
+
+        //Reviews
+        String ReviewSQL = "CREATE TABLE Review (reviewID INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, tutorID INTEGER, ratingValue INTEGER," +
+                " reviewText VARCHAR(255), FOREIGN KEY (tutorID) REFERENCES Tutor(tutorID), FOREIGN KEY (studentID) REFERENCES Student(studentID))";
 
         //Report
-        String ReportSQL = "CREATE TABLE Report (reportID INTEGER PRIMARY KEY AUTOINCREMENT, reportText VARCHAR(255), reportCategory VARCHAR(255), " +
-                "reportedAt DATETIME, resolvedAt DATETIME, resolutionText VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID), " +
-                "FOREIGN KEY (adminID) REFERENCES Admin(adminID), FOREIGN KEY (eventID) REFERENCES Event(eventID))";
+        String ReportSQL = "CREATE TABLE Report (reportID INTEGER PRIMARY KEY AUTOINCREMENT,adminID INTEGER, reportedID INTEGER, reporteeID INTEGER, reportText VARCHAR(255)," +
+                " reportCategory VARCHAR(255), reportedAt DATETIME, resolvedAt DATETIME, resolutionText VARCHAR(255), FOREIGN KEY (adminID) REFERENCES Admin(adminID), " +
+                "FOREIGN KEY (reportedID) REFERENCES User(userID), FOREIGN KEY (reporteeID) REFERENCES User(userID))";
 
         //Delete Account
-        String DeleteSQL = "CREATE TABLE DeletedAccount (deletedAccountID INTEGER PRIMARY KEY AUTOINCREMENT, deletedDate DATE, FOREIGN KEY (userID) REFERENCES User(userID))";
-
-        //Rating
-        String RatingSQL = "CREATE TABLE Rating (ratingID INTEGER PRIMARY KEY AUTOINCREMENT, ratingValue INTEGER, reviewText VARCHAR(255), " +
-                "ratedAt DATETIME, FOREIGN KEY (userID) REFERENCES User(userID), " +
-                "FOREIGN KEY (tutorID) REFERENCES Tutor(tutorID), FOREIGN KEY (eventID) REFERENCES Event(eventID))";
-
-        //Location
-        String LocationSQL = "CREATE TABLE Location (locationID INTEGER PRIMARY KEY AUTOINCREMENT, locationType VARCHAR(255))";
+        String DeleteSQL = "CREATE TABLE DeletedAccount (deletedAccountID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, deletedDate DATE, " +
+                "FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Notification Preference
-        String NotificationPreferenceSQL = "CREATE TABLE NotificationPreference (preferenceID INTEGER PRIMARY KEY AUTOINCREMENT, emailNotificationsEnabled BOOLEAN DEFAULT 0," +
-                "messagesNotificationsEnabled BOOLEAN DEFAULT 0, FOREIGN KEY (userID) REFERENCES User(userID))";
-
-        //Notification -------- is this needed?????
-        String NotificationSQL = "CREATE TABLE Notification (notificationID INTEGER PRIMARY KEY AUTOINCREMENT, notificationType VARCHAR(255), notificationMessage VARCHAR(255), " +
-                "timeStamp DATETIME, relatedEntityID INTEGER, linkToView VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID), " +
-                "FOREIGN KEY (preferenceID) REFERENCES NotificationPreference(preferenceID))";
+        String NotificationPreferenceSQL = "CREATE TABLE NotificationPreference (preferenceID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER," +
+                "emailNotificationsEnabled BOOLEAN DEFAULT 0, messagesNotificationsEnabled BOOLEAN DEFAULT 0, FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Password Change
-        String PasswordChangeSQL = "CREATE TABLE PasswordChange (passwordID INTEGER PRIMARY KEY AUTOINCREMENT, currentPassword VARCHAR(255), newPassword VARCHAR(255), " +
-                "confirmPassword VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
+        String PasswordChangeSQL = "CREATE TABLE PasswordChange (passwordID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, currentPassword VARCHAR(255), " +
+                "newPassword VARCHAR(255), confirmPassword VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
 
-        //User Profile
-        String UserProfileSQL = "CREATE TABLE UserProfile (profileID INTEGER PRIMARY KEY AUTOINCREMENT, location VARCHAR(255), contactInfo VARCHAR(255), education VARCHAR(255)," +
-                "profilePic VARCHAR(255), otherAttributes VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
 
     db.execSQL(userSQL);
     db.execSQL(studentSQL);
     db.execSQL(tutorSQL);
     db.execSQL(adminSQL);
-    db.execSQL(pullReportSQL);
+    db.execSQL(subjectSQL);
+    db.execSQL(tutorSubjectSQL);
     db.execSQL(EventSQL);
+    db.execSQL(ReviewSQL);
     db.execSQL(ReportSQL);
     db.execSQL(DeleteSQL);
-    db.execSQL(RatingSQL);
-    db.execSQL(LocationSQL);
     db.execSQL(NotificationPreferenceSQL);
-    db.execSQL(NotificationSQL);
     db.execSQL(PasswordChangeSQL);
-    db.execSQL(UserProfileSQL);
 
     }
 
@@ -100,16 +91,15 @@ public class DBHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS Student");
         db.execSQL("DROP TABLE IF EXISTS Tutor");
         db.execSQL("DROP TABLE IF EXISTS Admin");
-        db.execSQL("DROP TABLE IF EXISTS PullReport");
+        db.execSQL("DROP TABLE IF EXISTS Subject");
+        db.execSQL("DROP TABLE IF EXISTS TutorSubject");
         db.execSQL("DROP TABLE IF EXISTS Event");
+        db.execSQL("DROP TABLE IF EXISTS ReviewSQL");
         db.execSQL("DROP TABLE IF EXISTS Report");
         db.execSQL("DROP TABLE IF EXISTS DeletedAccount");
-        db.execSQL("DROP TABLE IF EXISTS Rating");
-        db.execSQL("DROP TABLE IF EXISTS Location");
         db.execSQL("DROP TABLE IF EXISTS NotificationPreference");
-        db.execSQL("DROP TABLE IF EXISTS Notification");
         db.execSQL("DROP TABLE IF EXISTS PasswordChange");
-        db.execSQL("DROP TABLE IF EXISTS UserProfile");
+        onCreate(db);
     }
 
     public boolean insertData(String tableName,ContentValues values){
@@ -139,5 +129,75 @@ public class DBHelper extends SQLiteOpenHelper{
         return cursor;
     }
 
+
+
+
+    public boolean isNewStudentEmail(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT userRole FROM User WHERE email = ?", new String[]{email});
+
+        boolean isStudent = false;
+
+        if (cursor.moveToFirst()) {
+            do {
+                String role = cursor.getString(cursor.getColumnIndexOrThrow("userRole"));
+                if ("Student".equalsIgnoreCase(role)) {
+                    isStudent = true;
+                    break; // Exit the loop if a Student role is found
+                }
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return isStudent;
+    }
+    public boolean isNewTutorEmail(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT userRole FROM User WHERE email = ?", new String[]{email});
+
+        boolean isTutor = false;
+
+        if (cursor.moveToFirst()) {
+            do {
+                String role = cursor.getString(cursor.getColumnIndexOrThrow("userRole"));
+                if ("Tutor".equalsIgnoreCase(role)) {
+                    isTutor = true;
+                    break; // Exit the loop if a Student role is found
+                }
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return isTutor;
+    }
+
+    //Login Checks
+    public boolean login(String phoneNumber, String password, String selectedRole) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Define the query to check if the user exists with the provided credentials
+        String query = "SELECT * FROM User WHERE phoneNumber = ? AND password = ? AND userRole = ?";
+        String[] selectionArgs = {phoneNumber, password, selectedRole};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        boolean isLoggedIn = false;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            isLoggedIn = true;
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        db.close();
+
+        return isLoggedIn;
+    }
 
 }

@@ -3,15 +3,21 @@ package com.example.a2tor4you;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class ActivityMyProfile extends AppCompatActivity {
 
@@ -19,10 +25,32 @@ public class ActivityMyProfile extends AppCompatActivity {
     ImageView imageProfile;
     Button takePhoto;
 
+     Button btnPickDOB;
+     Calendar calendar = Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+
+
+        // Province and city spinners
+        Spinner spinnerProvince = findViewById(R.id.spinProvince);
+        Spinner spinnerCity = findViewById(R.id.spinCity);
+
+        // Use the CitySpinnerHelper to set up the city spinner
+        SouthAfricaData.setupCitySpinner(this, spinnerProvince, spinnerCity);
+
+
+        btnPickDOB = findViewById(R.id.btnPickDOB);
+
+        btnPickDOB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker();
+            }
+        });
+
 
         /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
         takePhoto = findViewById(R.id.btnStudTakePhoto);
@@ -52,4 +80,25 @@ public class ActivityMyProfile extends AppCompatActivity {
         }
     }
 
+    private void showDatePicker() {
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+                        calendar.set(selectedYear, selectedMonth, selectedDay);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                        String formattedDate = dateFormat.format(calendar.getTime());
+                        btnPickDOB.setText(formattedDate);
+                    }
+                },
+                year, month, day
+        );
+
+        datePickerDialog.show();
+    }
 }

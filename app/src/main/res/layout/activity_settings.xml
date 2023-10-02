@@ -85,11 +85,12 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/btnChange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/right_arrow"
                         android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -129,11 +130,12 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/btnDelete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/right_arrow"
                         android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"/>
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow" />
                 </RelativeLayout>
             </LinearLayout>
 

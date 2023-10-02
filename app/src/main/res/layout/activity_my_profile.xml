@@ -226,26 +226,19 @@
             android:background="@drawable/account_round_back_white"
             android:padding="2dp">
 
-          <EditText
-              android:id="@+id/txt_DOB"
+          <Button
+              android:id="@+id/btnPickDOB"
               android:layout_width="match_parent"
               android:layout_height="41dp"
               android:layout_marginStart="0dp"
               android:layout_marginTop="0dp"
               android:layout_marginEnd="0dp"
               android:layout_toEndOf="@+id/dobIcon"
-              android:background="@null"
-              android:ems="10"
+              android:background="@android:color/transparent"
               android:hint="@string/txtDOB"
-              android:inputType="textPersonName"
-              android:paddingLeft="20dp"
-              android:paddingTop="10dp"
-              android:paddingRight="10dp"
-              android:paddingBottom="10dp"
-
               android:textColor="@color/white"
               android:textColorHint="@color/white"
-              app:boxBackgroundMode="none"
+              android:textSize="17dp"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toStartOf="parent"
               app:layout_constraintTop_toTopOf="parent" />
@@ -278,7 +271,7 @@
               android:layout_toEndOf="@+id/genIcon"
               android:background="@drawable/spinner_arrow"
               android:entries="@array/spinGender"
-              android:paddingLeft="15dp"
+              android:paddingLeft="10dp"
               android:paddingTop="10dp"
               android:paddingRight="10dp"
               android:paddingBottom="10dp"
@@ -339,33 +332,47 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:padding="2dp">
+            <TextView
+                android:id="@+id/txtPrefix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_toEndOf="@+id/phoneIcon1"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:text="@string/txtPrefix"
+                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:paddingLeft="20dp"
+                android:paddingTop="0dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="0dp" />
 
             <EditText
-                android:id="@+id/txt_Phone"
-                android:layout_width="match_parent"
+                android:id="@+id/txtPhoneNum"
+                android:layout_width="wrap_content"
                 android:layout_height="41dp"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginEnd="0dp"
-                android:layout_toEndOf="@+id/phoneIcon"
+                android:layout_toEndOf="@+id/txtPrefix"
+                android:layout_centerVertical="true"
                 android:background="@null"
                 android:ems="10"
-                android:hint="@string/txtPhone"
-                android:inputType="textPersonName"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
+                android:hint="@string/txtPhoneNum"
+                android:inputType="number|textPersonName|phone"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
                 android:paddingRight="10dp"
-                android:paddingBottom="10dp"
-
+                android:paddingBottom="0dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
-                app:boxBackgroundMode="none"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:boxBackgroundMode="none"/>
 
             <ImageView
-                android:id="@+id/phoneIcon"
+                android:id="@+id/phoneIcon1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/terms_iicon_fill"
@@ -667,56 +674,7 @@
           tools:layout_editor_absoluteX="32dp"
           tools:layout_editor_absoluteY="394dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/account_round_back_white"
-            android:orientation="vertical"
-            android:padding="2dp">
 
-
-          <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:padding="2dp">
-
-            <EditText
-                android:id="@+id/txtUni"
-                android:layout_width="match_parent"
-                android:layout_height="41dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_toEndOf="@+id/uniIcon"
-                android:background="@null"
-                android:ems="10"
-                android:hint="@string/txtUni"
-                android:inputType="textPersonName"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp"
-
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                app:boxBackgroundMode="none"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/uniIcon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/green"
-                android:foregroundGravity="center_vertical"
-                android:padding="10dp"
-                android:src="@drawable/ic_school"/>
-
-          </RelativeLayout>
-
-
-        </LinearLayout>
 
       </LinearLayout>
 

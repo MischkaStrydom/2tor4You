@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class LoginOtpActivity extends AppCompatActivity {
     Long timeoutSeconds = 60L;
     String verificationCode;
     PhoneAuthProvider.ForceResendingToken resendingToken;
-    ImageButton btnBack;
+    ImageView btnBack;
     EditText otpInput;
     Button nextBtn;
     TextView resendOtpTextView;
@@ -124,6 +125,7 @@ public class LoginOtpActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Intent intent = new Intent(LoginOtpActivity.this,ActivityHomeStudent.class);
                     intent.putExtra("phone", phoneNumber);
+
                     startActivity(intent);
 
                 }
