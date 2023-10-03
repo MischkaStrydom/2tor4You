@@ -33,7 +33,7 @@ public class ChatMainActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBackChat);
 
         //On button back takes user back to Account Home screen
-        btnBack.setOnClickListener(view -> startActivity(new Intent(ChatMainActivity.this,LoginUsernameActivity.class)));
+         btnBack.setOnClickListener(view -> startActivity(new Intent(ChatMainActivity.this,LoginUsernameActivity.class)));
 
         chatFragment = new ChatFragment();
         profileFragment = new ProfileFragment();

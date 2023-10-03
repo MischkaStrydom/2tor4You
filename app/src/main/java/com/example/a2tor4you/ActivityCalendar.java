@@ -60,6 +60,8 @@ public class ActivityCalendar extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.calendar:
+                        startActivity(new Intent(getApplicationContext(),ActivityCalendar.class));
+                        return true;
 
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(),ActivityHomeStudent.class));

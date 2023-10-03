@@ -129,6 +129,8 @@ public class ActivityAccount extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.account:
+                        startActivity(new Intent(getApplicationContext(),ActivityAccount.class));
+                        return true;
 
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(),ActivityHomeStudent.class));

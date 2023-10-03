@@ -53,6 +53,8 @@ public class ActivityFindTutor extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.findTutors:
+                        startActivity(new Intent(getApplicationContext(),ActivityFindTutor.class));
+                        return true;
 
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(),ActivityHomeStudent.class));
