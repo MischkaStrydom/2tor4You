@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -30,6 +31,10 @@ public class ActivityTutorProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_profile);
+
+        ImageButton btnBack = findViewById(R.id.btnBackTutorsProfile);
+        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityTutorProfile.this,ActivityAccount.class)));
+
         // Province and city spinners
         Spinner spinnerProvince = findViewById(R.id.spinProvince);
         Spinner spinnerCity = findViewById(R.id.spinCity);

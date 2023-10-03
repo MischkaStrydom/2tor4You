@@ -21,6 +21,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ActivityRegisterStudent extends AppCompatActivity {
+    static String studentName;
+    static String studentSurname;
+    static String completePhoneNumber;
+    static String studentEmail ;
+    static String studentPassword;
+    static String confirmPassword;
 
     DBHelper myDB;
     @Override
@@ -47,12 +53,12 @@ public class ActivityRegisterStudent extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                String studentName = name.getText().toString();
-                String studentSurname = surname.getText().toString();
-                String completePhoneNumber = "+27" + phoneInput.getText().toString();
-                String studentEmail = email.getText().toString();
-                String studentPassword = password.getText().toString();
-                String confirmPassword = confirmPass.getText().toString();
+               studentName = name.getText().toString();
+               studentSurname = surname.getText().toString();
+               completePhoneNumber = "+27" + phoneInput.getText().toString();
+               studentEmail = email.getText().toString();
+               studentPassword = password.getText().toString();
+               confirmPassword = confirmPass.getText().toString();
 
                 long currentTimeMillis = System.currentTimeMillis();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// Customize the format as needed
@@ -94,22 +100,34 @@ public class ActivityRegisterStudent extends AppCompatActivity {
                 boolean result = myDB.insertData("User", contentValues);
 
                 if (result) {
-                    name.setText("");
-                    surname.setText("");
-                    phoneInput.setText("");
-                    email.setText("");
-                    password.setText("");
-                    confirmPass.setText("");
+
+                    // Insert the user ID into the "studentTable"
+                    int userID = myDB.getUserId(completePhoneNumber, studentPassword, studentRole);
+                    ContentValues studentValues = new ContentValues();
+                    studentValues.put("userID", userID );
+                    boolean studentInsertResult  = myDB.insertData("Student", studentValues);
+
+                    if (studentInsertResult) {
+                        name.setText("");
+                        surname.setText("");
+                        phoneInput.setText("");
+                        email.setText("");
+                        password.setText("");
+                        confirmPass.setText("");
+
+//                        // Pass the userId to another activity
+//                        Intent intent = new Intent(ActivityRegisterStudent.this, ActivityLogin.class);
+//                        intent.putExtra("userId", userID);
+//                        startActivity(intent);
 
 
-                    AndroidUtil.showToast(getApplicationContext(), "Registered Student Successful!");
-
+                     AndroidUtil.showToast(getApplicationContext(), "Registered Student Successful!");
+                    } else {
+                        AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred while saving student data!");
+                    }
                 } else {
-                    AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred!");
-
-                    // take user back
+                    AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred during user registration!");
                 }
-
             }
         });
         myDB.close();

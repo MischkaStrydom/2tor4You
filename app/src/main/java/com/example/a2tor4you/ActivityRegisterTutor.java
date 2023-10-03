@@ -33,6 +33,13 @@ import java.util.Date;
 
 public class ActivityRegisterTutor extends AppCompatActivity implements View.OnClickListener{
 
+    static String tutorName;
+    static String tutorSurname;
+    static String completePhoneNumber;
+    static String tutorEmail ;
+    static String tutorPassword;
+    static String confirmPassword;
+
     DBHelper myDB;
     //a constant to track the file chooser intent
     private static final int PICK_IMAGE_REQUEST = 234;
@@ -81,12 +88,12 @@ public class ActivityRegisterTutor extends AppCompatActivity implements View.OnC
                     return;
                 }
 
-                String tutorName = name.getText().toString();
-                String tutorSurname = surname.getText().toString();
-                String completePhoneNumber = "+27" + phoneInput.getText().toString();
-                String tutorEmail = email.getText().toString();
-                String tutorPassword = password.getText().toString();
-                String confirmPassword = confirmPass.getText().toString();
+                 tutorName = name.getText().toString();
+                 tutorSurname = surname.getText().toString();
+                 completePhoneNumber = "+27" + phoneInput.getText().toString();
+                 tutorEmail = email.getText().toString();
+                 tutorPassword = password.getText().toString();
+                 confirmPassword = confirmPass.getText().toString();
 
                 long currentTimeMillis = System.currentTimeMillis();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// Customize the format as needed
@@ -127,24 +134,36 @@ public class ActivityRegisterTutor extends AppCompatActivity implements View.OnC
                 boolean result = myDB.insertData("User", contentValues);
 
                 if (result) {
-                    name.setText("");
-                    surname.setText("");
-                    phoneInput.setText("");
-                    email.setText("");
-                    password.setText("");
-                    confirmPass.setText("");
 
+                    // Insert the user ID into the "studentTable"
+                    int userID = myDB.getUserId(completePhoneNumber, tutorPassword, tutorRole);
+                    ContentValues tutorValues = new ContentValues();
+                    tutorValues.put("userID", userID );
+                    boolean tutorInsertResult  = myDB.insertData("Tutor", tutorValues);
 
-                    AndroidUtil.showToast(getApplicationContext(), "Registered Tutor Successful!");
+                    if (tutorInsertResult) {
+                        name.setText("");
+                        surname.setText("");
+                        phoneInput.setText("");
+                        email.setText("");
+                        password.setText("");
+                        confirmPass.setText("");
 
+//                        // Pass the userId to another activity
+//                        Intent intent = new Intent(ActivityRegisterTutor.this, ActivityLogin.class);
+//                        intent.putExtra("userId", userID);
+//                        startActivity(intent);
+
+                        AndroidUtil.showToast(getApplicationContext(), "Registered Tutor Successful!");
+                    } else {
+                        AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred while saving tutor data!");
+                    }
                 } else {
-                    AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred!");
-
-                    // take user back
+                    AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred during user registration!");
                 }
-
             }
         });
+        myDB.close();
 
 
         //Firebase storage of choosing and uploading document

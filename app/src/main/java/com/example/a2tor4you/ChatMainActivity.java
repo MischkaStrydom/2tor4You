@@ -22,7 +22,9 @@ public class ChatMainActivity extends AppCompatActivity {
     ImageButton searchButton;
     ChatFragment chatFragment;
     ProfileFragment profileFragment;
-
+    static String phoneNumber;
+    static String password;
+    static String selectedRole;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

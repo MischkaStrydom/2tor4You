@@ -60,8 +60,7 @@
         android:layout_height="2dp"
         android:layout_above="@id/bottom_navigation"
         />
-
-<com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -71,6 +70,7 @@
         app:itemIconTint="@drawable/selector_navigation_bar"
         android:background="?attr/selectableItemBackgroundBorderless"
         app:menu="@menu/bottom_navigation_menu" />
+
 
 
 </RelativeLayout>

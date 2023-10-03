@@ -6,8 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.example.a2tor4you.utils.AndroidUtil;
+import com.google.firestore.v1.CursorOrBuilder;
 
 public class DBHelper extends SQLiteOpenHelper{
 
@@ -102,6 +106,13 @@ public class DBHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS PasswordChange");
         onCreate(db);
     }
+
+
+
+    //Test insert Student data
+
+
+
 
     public boolean insertData(String tableName,ContentValues values){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -243,7 +254,11 @@ public class DBHelper extends SQLiteOpenHelper{
     //Get email
     public String getEmail(String phoneNumber, String password, String selectedRole) {
         SQLiteDatabase db = this.getReadableDatabase();
-
+        // Check for null values and handle them gracefully
+        if (phoneNumber == null || password == null || selectedRole == null) {
+            // Handle the case where one or more parameters are null
+            return null; // or throw an exception, return a default value, etc.
+        }
         // Define column name constants
         final String COLUMN_EMAIL_NAME = "email";
 
@@ -257,49 +272,40 @@ public class DBHelper extends SQLiteOpenHelper{
 
         String email = null;
 
-        if (cursor != null && cursor.moveToFirst()) {
-            int columnIndex = cursor.getColumnIndex("email");
-            if (columnIndex != -1) {
-                email = cursor.getString(columnIndex);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int columnIndex = cursor.getColumnIndex(COLUMN_EMAIL_NAME);
+                if (columnIndex != -1) {
+                    email = cursor.getString(columnIndex);
+                } else {
+                    // Log an error message
+                    Log.e("DBHelper", "Column 'email' not found in User table.");
+                }
             } else {
-                // Log an error message
-                Log.e("DBHelper", "Column 'email' not found in User table.");
+                // Log an error message or use debugging tools to check the query result
+                Log.e("DBHelper", "No matching user found.");
             }
+            cursor.close();
         } else {
-            // Log an error message or use debugging tools to check the query result
-            Log.e("DBHelper", "No matching user found.");
+            // Handle the case where the cursor is null
+            Log.e("DBHelper", "Cursor is null.");
         }
 
-        // Close the cursor and database
-        if (cursor != null) {
-            cursor.close();
-        }
+        // Close the database
         db.close();
 
         return email;
     }
-
     public int getUserId(String phoneNumber, String password, String userRole) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT userID FROM User WHERE " +
-                "(phoneNumber = ? OR phoneNumber IS NULL) AND " +
-                "(password = ? OR password IS NULL) AND " +
-                "(userRole = ? OR userRole IS NULL)";
+        Cursor cursor = db.rawQuery("SELECT userID FROM User WHERE phoneNumber = ?  AND password = ?  AND userRole = ? ", new String[]{phoneNumber, password, userRole});
 
-        String[] selectionArgs = {phoneNumber, password, userRole};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
 
         int userID = -1; // Initialize to -1 in case of no matching record.
 
-        if (cursor != null && cursor.moveToFirst()) {
-            userID = cursor.getInt(0);
-        }
-
-        // Close the cursor and database.
-        if (cursor != null) {
-            cursor.close();
-        }
+        if (cursor.moveToFirst()) userID = cursor.getInt(0);
+        cursor.close();
         db.close();
 
         return userID;

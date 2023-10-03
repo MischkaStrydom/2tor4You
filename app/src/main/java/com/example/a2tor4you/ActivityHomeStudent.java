@@ -1,5 +1,6 @@
 package com.example.a2tor4you;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,15 +25,16 @@ import com.google.firebase.firestore.DocumentSnapshot;
 
 public class ActivityHomeStudent extends AppCompatActivity {
 
+    static String phoneNumber;
+    static String password;
+    static String selectedRole;
     BottomNavigationView bottomNavigationView;
 
     Button message;
     String userInput;
 
     UserModel userModel;
-//    static String phoneNumber;
-//    static String password;
-//    static String selectedRole;
+
     DBHelper dbHelper ;
 
     @Override
@@ -42,9 +44,13 @@ public class ActivityHomeStudent extends AppCompatActivity {
         TextView welcome = findViewById(R.id.txtWelcomeStud);
         dbHelper = new DBHelper(this);
 
-        String phoneNumber = getIntent().getStringExtra("phone");
-        String password = getIntent().getStringExtra("password");
-        String selectedRole = getIntent().getStringExtra("selectedRole");
+        // Retrieve the userId from the Intent
+//        Intent intent = getIntent();
+//        int userId = intent.getIntExtra("userId", -1); // -1 is the default value if userId is not found
+
+        phoneNumber = getIntent().getStringExtra("phone");
+        password = getIntent().getStringExtra("password");
+        selectedRole = getIntent().getStringExtra("selectedRole");
         int userID = dbHelper.getUserId(phoneNumber, password, selectedRole);
         String userName = dbHelper.getUserName(userID);
 
@@ -54,8 +60,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
             if (userName != null) {
                 welcome.setText("");
                 welcome.setText("Welcome, " + userName);
-                // The 'userName' variable now contains the user's first name.
-                // You can use it for further customization.
+
             } else {
                 return;
                 // Handle the case where no results were found or userName is empty.
@@ -68,26 +73,17 @@ public class ActivityHomeStudent extends AppCompatActivity {
         }
 
 
-
-
         // Ensure that the dbHelper is not null
 
+        Button btnMessage = findViewById(R.id.btnMessage);
 
-
-
-
-        message = findViewById(R.id.btnMessage);
-
-        message.setOnClickListener(new View.OnClickListener() {
+        btnMessage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ActivityHomeStudent.this,LoginUsernameActivity.class);
-               // intent.putExtra("phone", LoginOtpActivity.phoneNumber);
+            public void onClick(View v) {
+                Intent intent = new Intent(ActivityHomeStudent.this, LoginUsernameActivity.class);
                 intent.putExtra("phone", phoneNumber);
                 intent.putExtra("password", password);
                 intent.putExtra("selectedRole", selectedRole);
-                intent.putExtra("FullName", userName);
-
                 startActivity(intent);
             }
         });
@@ -103,74 +99,38 @@ public class ActivityHomeStudent extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.home:
+                        startNewActivity(ActivityHomeStudent.class);
                         return true;
 
                     case R.id.calendar:
-//                        startActivity(new Intent(getApplicationContext(), ActivityCalendar.class));
 
-                        Intent intent = new Intent(ActivityHomeStudent.this,ActivityCalendar.class);
-                        // intent.putExtra("phone", LoginOtpActivity.phoneNumber);
-                        intent.putExtra("phone", phoneNumber);
-                        intent.putExtra("password", password);
-                        intent.putExtra("selectedRole", selectedRole);
-                        intent.putExtra("FullName", userName);
-
-                        startActivity(intent);
-
-                        overridePendingTransition(0, 0);
+                        startNewActivity(ActivityCalendar.class);
                         return true;
 
                     case R.id.findTutors:
-                       // startActivity(new Intent(getApplicationContext(), ActivityFindTutor.class));
 
-                        Intent intent1 = new Intent(ActivityHomeStudent.this,ActivityFindTutor.class);
-                        // intent.putExtra("phone", LoginOtpActivity.phoneNumber);
-                        intent1.putExtra("phone", phoneNumber);
-                        intent1.putExtra("password", password);
-                        intent1.putExtra("selectedRole", selectedRole);
-                        intent1.putExtra("FullName", userName);
-
-                        startActivity(intent1);
-
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.messages:
-                     //   startActivity(new Intent(getApplicationContext(), LoginUsernameActivity.class));
-
-                        Intent intent2 = new Intent(ActivityHomeStudent.this,LoginUsernameActivity.class);
-                       // intent2.putExtra("phone", LoginOtpActivity.phoneNumber);
-                        intent2.putExtra("phone", phoneNumber);
-                        intent2.putExtra("password", password);
-                        intent2.putExtra("selectedRole", selectedRole);
-                        intent2.putExtra("FullName", userName);
-
-                        startActivity(intent2);
-
-                        overridePendingTransition(0, 0);
+                        startNewActivity(ActivityFindTutor.class);
                         return true;
 
                     case R.id.account:
-                      //  startActivity(new Intent(getApplicationContext(), ActivityAccount.class));
-                        Intent intent3 = new Intent(ActivityHomeStudent.this,ActivityAccount.class);
-                        // intent2.putExtra("phone", LoginOtpActivity.phoneNumber);
-                        intent3.putExtra("phone", phoneNumber);
-                        intent3.putExtra("password", password);
-                        intent3.putExtra("selectedRole", selectedRole);
-                        intent3.putExtra("FullName", userName);
 
-                        startActivity(intent3);
-
-
-                        overridePendingTransition(0, 0);
+                        startNewActivity(ActivityAccount.class);
                         return true;
                 }
                 return false;
             }
         });
 
-    }
 
+    }
+    private void startNewActivity(Class<?> targetActivity) {
+        Intent intent = new Intent(ActivityHomeStudent.this, targetActivity);
+        intent.putExtra("phone", phoneNumber);
+        intent.putExtra("password", password);
+        intent.putExtra("selectedRole", selectedRole);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+    }
 
 
 }

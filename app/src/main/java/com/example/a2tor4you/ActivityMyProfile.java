@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -24,6 +25,8 @@ public class ActivityMyProfile extends AppCompatActivity {
     public static final int CAMERA_ACTION_CODE = 1;
     ImageView imageProfile;
     Button takePhoto;
+    ImageButton btnBack;
+
 
      Button btnPickDOB;
      Calendar calendar = Calendar.getInstance();
@@ -32,6 +35,9 @@ public class ActivityMyProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+
+        btnBack = findViewById(R.id.btnBackMyProfile);
+        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityMyProfile.this,ActivityAccount.class)));
 
 
         // Province and city spinners
