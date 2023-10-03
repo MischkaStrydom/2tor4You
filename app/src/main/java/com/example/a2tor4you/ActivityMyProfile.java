@@ -89,6 +89,10 @@ public class ActivityMyProfile extends AppCompatActivity {
         EditText school = findViewById(R.id.txtSchool);
 
 
+
+
+
+
         /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
         btnStudTakePhoto = findViewById(R.id.btnStudTakePhoto);
 
@@ -130,7 +134,7 @@ public class ActivityMyProfile extends AppCompatActivity {
             String userName = dbHelper.getUserName(loggedInUserId); // Implement this method
             String[] nameSurnameArray = userName.split(" ");
 
-            // Seperate name and surname as separate strings
+            // Separate name and surname as separate strings
             if (nameSurnameArray.length == 2) {
                 String profileName = nameSurnameArray[0];
                 String profileSurname = nameSurnameArray[1];
