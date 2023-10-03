@@ -39,10 +39,11 @@ public class ActivityAccount extends AppCompatActivity {
         String phoneNumber = getIntent().getStringExtra("phone");
         String password = getIntent().getStringExtra("password");
         String selectedRole = getIntent().getStringExtra("selectedRole");
+        String userID = getIntent().getStringExtra("userID");
 
 
         //String firstName = dbHelper.getUserName(phoneNumber, password, selectedRole);
-        String userName = dbHelper.getUserName(phoneNumber, password, selectedRole);
+        String userName = dbHelper.getUserName(Long.parseLong(userID));
 
         if (userName != null) {
             accountName.setText("");

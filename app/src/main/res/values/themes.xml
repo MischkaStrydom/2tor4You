@@ -30,4 +30,12 @@
         <item name="colorControlActivated">@color/teal_200</item>
     </style>
 
+    <style name="CustomCalendarView">
+        <item name="android:dateTextAppearance">@style/CustomDateTextAppearance</item>
+    </style>
+
+    <style name="CustomDateTextAppearance">
+        <item name="android:textColor">@android:color/black</item> <!-- Change text color to black -->
+    </style>
+
 </resources>
