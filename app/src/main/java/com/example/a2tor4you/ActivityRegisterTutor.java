@@ -147,7 +147,7 @@ public class ActivityRegisterTutor extends AppCompatActivity implements View.OnC
         });
 
 
-
+        //Firebase storage of choosing and uploading document
 
         storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -165,7 +165,7 @@ public class ActivityRegisterTutor extends AppCompatActivity implements View.OnC
     //method to show file chooser
     private void showFileChooser() {
         Intent intent = new Intent();
-        intent.setType("verification_documents/*");
+        intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
@@ -174,12 +174,13 @@ public class ActivityRegisterTutor extends AppCompatActivity implements View.OnC
     private void uploadFile() {
         //if there is a file to upload
         if (filePath != null) {
+
             //displaying a progress dialog while upload is going on
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading");
             progressDialog.show();
 
-            StorageReference riversRef = storageReference.child("verification_documents/pic.jpg");
+            StorageReference riversRef = storageReference.child("image/pic.jpg");
             riversRef.putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override

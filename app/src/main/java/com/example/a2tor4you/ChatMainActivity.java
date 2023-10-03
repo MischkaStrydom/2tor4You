@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.example.a2tor4you.utils.FirebaseUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,7 +35,7 @@ public class ChatMainActivity extends AppCompatActivity {
 
         chatFragment = new ChatFragment();
         profileFragment = new ProfileFragment();
-      //  bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         searchButton = findViewById(R.id.main_search_btn);
 
         searchButton.setOnClickListener((v)->{

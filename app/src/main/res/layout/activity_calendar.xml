@@ -89,9 +89,8 @@
                 android:id="@+id/calendarView"
                 android:layout_width="wrap_content"
                 android:layout_height="320dp"
-                android:backgroundTint="@color/off_white"
-                style="@style/CustomCalendarView"
-                 >
+                android:backgroundTint="@color/black"
+                style="@style/CustomCalendarView"> >
 
             </CalendarView>
 
