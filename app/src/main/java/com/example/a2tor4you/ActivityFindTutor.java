@@ -53,20 +53,25 @@ public class ActivityFindTutor extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.findTutors:
-                        startNewActivity(ActivityFindTutor.class);
-                        return true;
 
                     case R.id.home:
-                        startNewActivity(ActivityHomeStudent.class);
+                        startActivity(new Intent(getApplicationContext(),ActivityHomeStudent.class));
                         return true;
 
                     case R.id.calendar:
-                        startNewActivity(ActivityCalendar.class);
+                        startActivity(new Intent(getApplicationContext(),ActivityCalendar.class));
+                        overridePendingTransition(0,0);
                         return true;
 
 
                     case R.id.account:
-                        startNewActivity(ActivityAccount.class);
+                        startActivity(new Intent(getApplicationContext(),ActivityAccount.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.message:
+                        startActivity(new Intent(getApplicationContext(),ChatMainActivity.class));
+                        overridePendingTransition(0,0);
                         return true;
 
                 }

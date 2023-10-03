@@ -26,17 +26,29 @@ import android.widget.Toast;
 
 import com.example.a2tor4you.utils.AndroidUtil;
 
+import java.util.regex.Pattern;
+
 public class ActivityLogin extends AppCompatActivity {
 
     ImageView btnBack;
-    TextView phonePrefix;
-    EditText phoneInput;
-    EditText userPassword;
+    TextView phonePrefix, btnSignUp;
+    EditText phoneInput, userPassword;
     Spinner roleSpinner;
-    TextView btnSignUp;
-    Button btnLogin;
+    Button btnLogin, btnCreateNewPassword;
     Context context;
     DBHelper dbHelper ;
+
+    // one boolean variable to check whether all the text fields
+    // are filled by the user, properly or not.
+    boolean isAllFieldsChecked = false;
+
+    // defining our own password pattern
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    "(?=.*[@#$%^&+=])" +     // at least 1 special character
+                    "(?=\\S+$)" +            // no white spaces
+                    ".{4,}" +                // at least 4 characters
+                    "$");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,13 +62,29 @@ public class ActivityLogin extends AppCompatActivity {
         userPassword = findViewById(R.id.txtLoginPassword);
         btnLogin = findViewById(R.id.btnLogin);
 
-
-
         //On button back takes user back to main screen
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityLogin.this,MainActivity.class)));
 
         //On text Sign Up click takes user back to main screen
         btnSignUp.setOnClickListener(view -> startActivity(new Intent(ActivityLogin.this,MainActivity.class)));
+
+        // handle the PROCEED button
+        btnCreateNewPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // store the returned value of the dedicated function which checks
+                // whether the entered data is valid or if any fields are left blank.
+                isAllFieldsChecked = CheckAllFields();
+
+                // the boolean variable turns to be true then
+                // only the user must be proceed to the activity2
+                if (isAllFieldsChecked) {
+                    Intent i = new Intent(ActivityLogin.this, ActivityHomeStudent.class);
+                    startActivity(i);
+                }
+            }
+        });
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -125,6 +153,25 @@ public class ActivityLogin extends AppCompatActivity {
             }
         });
 
+    }
+
+    // function which checks all the text fields
+    // are filled or not by the user.
+    // when user clicks on the PROCEED button
+    // this function is triggered.
+    private boolean CheckAllFields() {
+        if (phoneInput.length() == 0) {
+            phoneInput.setError("This field is required");
+            return false;
+        }
+
+        if (userPassword.length() == 0) {
+            userPassword.setError("This field is required");
+            return false;
+        }
+
+        // after all validation return true.
+        return true;
     }
 
 }

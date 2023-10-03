@@ -125,7 +125,7 @@
 
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="210dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="210dp"
@@ -133,7 +133,25 @@
                     android:background="@drawable/background_rounded_white"
                     android:padding="2dp">
 
-                    <EditText
+                    <Button
+                        android:id="@+id/btnEventDate"
+                        android:layout_width="150dp"
+                        android:layout_height="41dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/dateIcon"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/btnEventDate"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textSize="17dp"
+                        android:textAlignment="textStart"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--<EditText
                         android:id="@+id/txt_EventDate"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -155,7 +173,7 @@
                         app:boxBackgroundMode="none"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" />-->
 
                     <ImageView
                         android:id="@+id/dateIcon"
@@ -179,14 +197,32 @@
                 android:padding="2dp">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="213dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="210dp"
                     android:background="@drawable/background_rounded_white"
                     android:padding="2dp">
 
-                    <EditText
+                    <Button
+                        android:id="@+id/btnEventTime"
+                        android:layout_width="150dp"
+                        android:layout_height="41dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/timeIcon"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/btnEventTime"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textSize="17dp"
+                        android:textAlignment="textStart"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--<EditText
                         android:id="@+id/txt_EventTime"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -208,7 +244,7 @@
                         app:boxBackgroundMode="none"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" />-->
 
                     <ImageView
                         android:id="@+id/timeIcon"

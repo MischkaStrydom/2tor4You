@@ -292,8 +292,8 @@
     <string name="txtEditEventHeading">Edit Event</string>
     <string name="txtUpSessionDetails">Upcoming Session Details</string>
     <string name="txtEventTitle">Title</string>
-    <string name="txtEventDate">Date</string>
-    <string name="txtEventTime">Time</string>
+    <string name="btnEventDate">Date</string>
+    <string name="btnEventTime">Time</string>
     <string name="rdoOnline">Online</string>
     <string name="rdoInPerson">In-Person</string>
     <string name="txtEventNotes">Notes</string>

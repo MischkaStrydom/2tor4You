@@ -24,13 +24,14 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemBackground="@color/light_grey"
+        app:itemIconTint="@drawable/selector_navigation_bar"
+        app:itemTextColor="@drawable/selector_navigation_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:itemBackground="@color/light_grey"
-        app:itemTextColor="@drawable/selector_navigation_bar"
-        app:itemIconTint="@drawable/selector_navigation_bar"
-        app:menu="@menu/bottom_navigation_bar"/>
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:menu="@menu/bottom_navigation_bar" />
 
 
     <TextView
@@ -72,21 +73,17 @@
 
     </LinearLayout>
 
-
-
-
-    <View
+    <ImageView
 
         android:id="@+id/view"
         android:layout_width="409dp"
         android:layout_height="200dp"
         android:background="@drawable/space_home"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
     <TextView
         android:id="@+id/txtWelcomeStud"
@@ -106,8 +103,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.467" />
 
-
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnFindPerfectTutor"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -126,7 +121,8 @@
     <Button
         android:id="@+id/btnViewAllSessions"
         android:layout_width="119dp"
-        android:layout_height="39dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="30dp"
         android:background="@android:color/transparent"
         android:text="View All"
         android:textColor="@android:color/white"
@@ -135,23 +131,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.722" />
-
-    <Button
-        android:id="@+id/btnMessage"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_chat"
-        android:button="@null"
-
-        android:drawable="@drawable/text_message"
-
-
-        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

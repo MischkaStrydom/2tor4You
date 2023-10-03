@@ -21,6 +21,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ActivityRegisterStudent extends AppCompatActivity {
+
+    // button
+    Button btnCreateNewPassword;
+
+    // Text fields
+    EditText txtCurrentPassword, txtNewPassword, txtConfirmPassword;
+
+    // one boolean variable to check whether all the text fields
+    // are filled by the user, properly or not.
+    boolean isAllFieldsChecked = false;
+
     static String studentName;
     static String studentSurname;
     static String completePhoneNumber;
