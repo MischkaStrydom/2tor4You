@@ -4,13 +4,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -26,7 +29,7 @@ public class ActivityMyProfile extends AppCompatActivity {
     ImageView imageProfile;
     Button takePhoto;
     ImageButton btnBack;
-
+    DBHelper dbHelper ;
 
      Button btnPickDOB;
      Calendar calendar = Calendar.getInstance();
@@ -35,6 +38,28 @@ public class ActivityMyProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
+
+        dbHelper = new DBHelper(this);
+
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
+
+        EditText name = findViewById(R.id.txt_ProfileName);
+        EditText surname = findViewById(R.id.txt_ProfileSurname);
+        btnPickDOB = findViewById(R.id.btnPickDOB);
+
+        btnPickDOB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker();
+            }
+        });
+
+        Spinner gender = findViewById(R.id.spinGender);
+        EditText phoneNum = findViewById(R.id.txtPhoneNum);  // edit the phoneNum from db
+        EditText email = findViewById(R.id.txtProEmail);
+
+
 
         btnBack = findViewById(R.id.btnBackMyProfile);
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityMyProfile.this,ActivityAccount.class)));
@@ -47,15 +72,7 @@ public class ActivityMyProfile extends AppCompatActivity {
         // Use the CitySpinnerHelper to set up the city spinner
         SouthAfricaData.setupCitySpinner(this, spinnerProvince, spinnerCity);
 
-
-        btnPickDOB = findViewById(R.id.btnPickDOB);
-
-        btnPickDOB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDatePicker();
-            }
-        });
+        EditText school = findViewById(R.id.txtSchool);
 
 
         /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
@@ -74,6 +91,46 @@ public class ActivityMyProfile extends AppCompatActivity {
 
             }
         });
+
+
+
+        //Adding User Table info to editBoxes
+        if (loggedInUserId != -1) {
+            // Fetch user's name and surname from the database based on userID
+            String userName = dbHelper.getUserName(loggedInUserId); // Implement this method
+            String[] nameSurnameArray = userName.split(" ");
+
+            // Seperate name and surname as separate strings
+            if (nameSurnameArray.length == 2) {
+                String profileName = nameSurnameArray[0];
+                String profileSurname = nameSurnameArray[1];
+
+                name.setText(profileName);
+                surname.setText(profileSurname);
+
+
+            } else {
+                // Handle the case where the userName format is unexpected
+                Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
+            }
+
+            String profileEmail = dbHelper.getEmail(loggedInUserId);
+            email.setText(profileEmail);
+
+            String profileNumber = dbHelper.getPhoneNumber(loggedInUserId);
+            if (profileNumber != null && profileNumber.startsWith("+27")) {
+                profileNumber = profileNumber.substring(3); // Remove the first three characters
+            }
+            phoneNum.setText(profileNumber);
+
+        } else {
+            Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
+            //welcome.setText("Guest"); // Display a default value or handle it as needed
+        }
+
+
+
+
     }
 
     @Override

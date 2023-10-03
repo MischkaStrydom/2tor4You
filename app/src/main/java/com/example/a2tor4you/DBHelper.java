@@ -324,6 +324,33 @@ public class DBHelper extends SQLiteOpenHelper {
         return userID;
     }
 
+    public String getPhoneNumber(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT phoneNumber FROM User WHERE userID = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
 
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        String userPhone = null; // Initialize to null in case of no matching record.
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int nameIndex = cursor.getColumnIndex("phoneNumber");
+
+            String phone = cursor.getString(nameIndex);
+
+            // Check for null values and construct the userName accordingly
+            if (phone != null) {
+                userPhone = phone; // Concatenate name and surname.
+            }
+
+            // Close the cursor and database.
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+
+        }
+        return userPhone;
+    }
 
 }
