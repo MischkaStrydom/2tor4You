@@ -4,13 +4,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -30,9 +33,9 @@ public class ActivityMyProfile extends AppCompatActivity {
 
      Button btnPickDOB;
      Calendar calendar = Calendar.getInstance();
-    Calendar calendar = Calendar.getInstance();
+
     EditText txt_ProfileName, txt_ProfileSurname, txtPhoneNum, txtProEmail;
-    Button btnStudTakePhoto, btnPickDOB, btnSaveProfile;
+    Button btnStudTakePhoto,  btnSaveProfile;
 
 
     // one boolean variable to check whether all the text fields

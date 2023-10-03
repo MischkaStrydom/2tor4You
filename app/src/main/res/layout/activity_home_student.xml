@@ -20,6 +20,7 @@
 
     </FrameLayout>
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
@@ -33,6 +34,17 @@
         app:layout_constraintTop_toBottomOf="@+id/frameLayout"
         app:menu="@menu/bottom_navigation_bar" />
 
+    <Button
+        android:id="@+id/btnMessage"
+        android:layout_width="51dp"
+        android:layout_height="36dp"
+        android:background="@drawable/text_message"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
         android:id="@+id/txtUpcomingSessions"

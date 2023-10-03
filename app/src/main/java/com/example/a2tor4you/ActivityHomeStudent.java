@@ -63,9 +63,9 @@ public class ActivityHomeStudent extends AppCompatActivity {
 
         // Ensure that the dbHelper is not null
 
-        //Button btnMessage = findViewById(R.id.btnMessage);
+        Button btnMessage = findViewById(R.id.btnMessage);
 
-        /*btnMessage.setOnClickListener(new View.OnClickListener() {
+        btnMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityHomeStudent.this, LoginUsernameActivity.class);
@@ -75,7 +75,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-*/
+
 
         // Navigation Bar
 
@@ -103,10 +103,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.message:
-                        startActivity(new Intent(getApplicationContext(),ChatMainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
+
 
                 }
                 return false;

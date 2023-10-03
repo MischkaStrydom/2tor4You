@@ -69,10 +69,7 @@ public class ActivityFindTutor extends AppCompatActivity {
                         overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.message:
-                        startActivity(new Intent(getApplicationContext(),ChatMainActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
+
 
                 }
                 return false;

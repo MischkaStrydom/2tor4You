@@ -69,22 +69,22 @@ public class ActivityLogin extends AppCompatActivity {
         btnSignUp.setOnClickListener(view -> startActivity(new Intent(ActivityLogin.this,MainActivity.class)));
 
         // handle the PROCEED button
-        btnCreateNewPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // store the returned value of the dedicated function which checks
-                // whether the entered data is valid or if any fields are left blank.
-                isAllFieldsChecked = CheckAllFields();
-
-                // the boolean variable turns to be true then
-                // only the user must be proceed to the activity2
-                if (isAllFieldsChecked) {
-                    Intent i = new Intent(ActivityLogin.this, ActivityHomeStudent.class);
-                    startActivity(i);
-                }
-            }
-        });
+//        btnCreateNewPassword.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                // store the returned value of the dedicated function which checks
+//                // whether the entered data is valid or if any fields are left blank.
+//                isAllFieldsChecked = CheckAllFields();
+//
+//                // the boolean variable turns to be true then
+//                // only the user must be proceed to the activity2
+//                if (isAllFieldsChecked) {
+//                    Intent i = new Intent(ActivityLogin.this, ActivityHomeStudent.class);
+//                    startActivity(i);
+//                }
+//            }
+//        });
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
