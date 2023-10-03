@@ -93,8 +93,6 @@ public class ActivityAccount extends AppCompatActivity {
             }
         });
 
-
-
         ImageView notification = findViewById(R.id.btnNotifications);
         ImageView settings = findViewById(R.id.btnSettings);
         ImageView terms = findViewById(R.id.btnTermsAndC);
@@ -131,20 +129,25 @@ public class ActivityAccount extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.account:
-                        startNewActivity(ActivityAccount.class);
-                        return true;
 
                     case R.id.home:
-                        startNewActivity(ActivityHomeStudent.class);
+                        startActivity(new Intent(getApplicationContext(),ActivityHomeStudent.class));
+                        return true;
+
+                    case R.id.calendar:
+                        startActivity(new Intent(getApplicationContext(),ActivityCalendar.class));
+                        overridePendingTransition(0,0);
                         return true;
 
 
                     case R.id.findTutors:
-                        startNewActivity(ActivityFindTutor.class);
+                        startActivity(new Intent(getApplicationContext(),ActivityFindTutor.class));
+                        overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.calendar:
-                        startNewActivity(ActivityCalendar.class);
+                    case R.id.message:
+                        startActivity(new Intent(getApplicationContext(),ChatMainActivity.class));
+                        overridePendingTransition(0,0);
                         return true;
 
                 }

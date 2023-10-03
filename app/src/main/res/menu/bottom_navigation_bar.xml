@@ -16,7 +16,10 @@
         android:id="@+id/findTutors"
         android:icon="@drawable/search"/>
 
-
+    <item
+        android:title="Message"
+        android:id="@+id/message"
+        android:icon="@drawable/text_message"/>
 
     <item
         android:title="Account"

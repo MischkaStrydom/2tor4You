@@ -32,7 +32,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
     static String selectedRole;
     BottomNavigationView bottomNavigationView;
 
-    Button message;
+    /*Button message;*/
     String userInput;
 
     UserModel userModel;
@@ -63,9 +63,9 @@ public class ActivityHomeStudent extends AppCompatActivity {
 
         // Ensure that the dbHelper is not null
 
-        Button btnMessage = findViewById(R.id.btnMessage);
+        //Button btnMessage = findViewById(R.id.btnMessage);
 
-        btnMessage.setOnClickListener(new View.OnClickListener() {
+        /*btnMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActivityHomeStudent.this, LoginUsernameActivity.class);
@@ -75,7 +75,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+*/
 
         // Navigation Bar
 
@@ -85,24 +85,29 @@ public class ActivityHomeStudent extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+
                     case R.id.home:
-                        startNewActivity(ActivityHomeStudent.class);
-                        return true;
 
                     case R.id.calendar:
-
-                        startNewActivity(ActivityCalendar.class);
-                        return true;
-
-                    case R.id.findTutors:
-
-                        startNewActivity(ActivityFindTutor.class);
+                        startActivity(new Intent(getApplicationContext(),ActivityCalendar.class));
                         return true;
 
                     case R.id.account:
-
-                        startNewActivity(ActivityAccount.class);
+                        startActivity(new Intent(getApplicationContext(),ActivityAccount.class));
+                        overridePendingTransition(0,0);
                         return true;
+
+
+                    case R.id.findTutors:
+                        startActivity(new Intent(getApplicationContext(),ActivityFindTutor.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.message:
+                        startActivity(new Intent(getApplicationContext(),ChatMainActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
                 }
                 return false;
             }

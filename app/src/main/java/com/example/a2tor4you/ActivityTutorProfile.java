@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -24,13 +25,19 @@ public class ActivityTutorProfile extends AppCompatActivity {
 
     public static final int CAMERA_ACTION_CODE = 1;
     ImageView imageProfile;
-    Button takePhoto;
-    Button btnPickDOB;
+
+    EditText txtTutName, txtTutLastName, txtPhoneNum, txtTutEmail;
+    Button takePhoto, btnPickDOB;
     Calendar calendar = Calendar.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_profile);
+
+        txtTutName = findViewById(R.id.txtTutName);
+        txtTutLastName = findViewById(R.id.txtTutLastName);
+        txtPhoneNum = findViewById(R.id.txtPhoneNum);
+        txtTutEmail = findViewById(R.id.txtTutEmail);
 
         ImageButton btnBack = findViewById(R.id.btnBackTutorsProfile);
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityTutorProfile.this,ActivityAccount.class)));
@@ -67,6 +74,35 @@ public class ActivityTutorProfile extends AppCompatActivity {
 
             }
         });
+    }
+
+    // function which checks all the text fields
+    // are filled or not by the user.
+    // when user clicks on the PROCEED button
+    // this function is triggered.
+    private boolean CheckAllFields() {
+        if (txtTutName.length() == 0) {
+            txtTutName.setError("This field is required");
+            return false;
+        }
+
+        if (txtTutLastName.length() == 0) {
+            txtTutLastName.setError("This field is required");
+            return false;
+        }
+
+        if (txtPhoneNum.length() == 0) {
+            txtPhoneNum.setError("This field is required");
+            return false;
+        }
+
+        if (txtTutEmail.length() == 0) {
+            txtTutEmail.setError("This field is required");
+            return false;
+        }
+
+        // after all validation return true.
+        return true;
     }
 
     @Override
