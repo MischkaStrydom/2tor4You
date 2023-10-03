@@ -6,7 +6,6 @@
         android:id="@+id/home"
         android:icon="@drawable/home" />
 
-
     <item
         android:title="Calendar"
         android:id="@+id/calendar"
@@ -18,7 +17,7 @@
         android:icon="@drawable/search"/>
 
     <item
-        android:title="Message"
+        android:title="Messages"
         android:id="@+id/messages"
         android:icon="@drawable/text_message"/>
 

@@ -45,8 +45,9 @@ public class ActivityHomeStudent extends AppCompatActivity {
         String phoneNumber = getIntent().getStringExtra("phone");
         String password = getIntent().getStringExtra("password");
         String selectedRole = getIntent().getStringExtra("selectedRole");
-        long userID = dbHelper.getUserId(phoneNumber, password, selectedRole);
+        int userID = dbHelper.getUserId(phoneNumber, password, selectedRole);
         String userName = dbHelper.getUserName(userID);
+
         if (userID != -1) {
 
 
@@ -86,7 +87,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
                 intent.putExtra("password", password);
                 intent.putExtra("selectedRole", selectedRole);
                 intent.putExtra("FullName", userName);
-                intent.putExtra("userID", userID);
+
                 startActivity(intent);
             }
         });
@@ -113,7 +114,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
                         intent.putExtra("password", password);
                         intent.putExtra("selectedRole", selectedRole);
                         intent.putExtra("FullName", userName);
-                        intent.putExtra("userID", userID);
+
                         startActivity(intent);
 
                         overridePendingTransition(0, 0);
@@ -128,7 +129,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
                         intent1.putExtra("password", password);
                         intent1.putExtra("selectedRole", selectedRole);
                         intent1.putExtra("FullName", userName);
-                        intent1.putExtra("userID", userID);
+
                         startActivity(intent1);
 
                         overridePendingTransition(0, 0);
@@ -143,7 +144,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
                         intent2.putExtra("password", password);
                         intent2.putExtra("selectedRole", selectedRole);
                         intent2.putExtra("FullName", userName);
-                        intent2.putExtra("userID", userID);
+
                         startActivity(intent2);
 
                         overridePendingTransition(0, 0);
@@ -157,7 +158,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
                         intent3.putExtra("password", password);
                         intent3.putExtra("selectedRole", selectedRole);
                         intent3.putExtra("FullName", userName);
-                        intent3.putExtra("userID", userID);
+
                         startActivity(intent3);
 
 
@@ -172,6 +173,5 @@ public class ActivityHomeStudent extends AppCompatActivity {
 
 
 
-    }
-
 }
+

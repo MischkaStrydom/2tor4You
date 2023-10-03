@@ -60,7 +60,7 @@ public class ActivityFindTutor extends AppCompatActivity {
                         intent1.putExtra("phone", phoneNumber);
                         intent1.putExtra("password", password);
                         intent1.putExtra("selectedRole", selectedRole);
-                        intent1.putExtra("userID", userID);
+
                         startActivity(intent1);
 
                         overridePendingTransition(0, 0);
@@ -74,7 +74,7 @@ public class ActivityFindTutor extends AppCompatActivity {
                         intent.putExtra("phone", phoneNumber);
                         intent.putExtra("password", password);
                         intent.putExtra("selectedRole", selectedRole);
-                        intent.putExtra("userID", userID);
+
                         startActivity(intent);
 
                         overridePendingTransition(0, 0);
@@ -90,7 +90,7 @@ public class ActivityFindTutor extends AppCompatActivity {
                         intent2.putExtra("phone", phoneNumber);
                         intent2.putExtra("password", password);
                         intent2.putExtra("selectedRole", selectedRole);
-                        intent2.putExtra("userID", userID);
+
                         startActivity(intent2);
 
                         overridePendingTransition(0, 0);
@@ -104,7 +104,7 @@ public class ActivityFindTutor extends AppCompatActivity {
                         intent3.putExtra("phone", phoneNumber);
                         intent3.putExtra("password", password);
                         intent3.putExtra("selectedRole", selectedRole);
-                        intent3.putExtra("userID", userID);
+
                         startActivity(intent3);
 
                         overridePendingTransition(0, 0);

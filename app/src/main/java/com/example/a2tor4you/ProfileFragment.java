@@ -1,5 +1,4 @@
 package com.example.a2tor4you;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.a2tor4you.Model.UserModel;
 import com.example.a2tor4you.utils.AndroidUtil;
@@ -135,10 +135,10 @@ public class ProfileFragment extends Fragment {
         FirebaseUtil.currentUserDetails().set(currentUserModel)
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
-                        AndroidUtil.showToast(getContext(),"Updated successfully");
+                        Toast.makeText(getContext(),"Updated successfully", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        AndroidUtil.showToast(getContext(),"Updated failed");
+                        Toast.makeText(getContext(),"Updated failed", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

@@ -1,5 +1,4 @@
 package com.example.a2tor4you;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 

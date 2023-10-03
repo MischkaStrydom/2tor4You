@@ -203,12 +203,12 @@ public class DBHelper extends SQLiteOpenHelper{
 
     //User Name for account screen
 
-    public String getUserName(long userId) {
+    public String getUserName(int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT firstName, lastName FROM User WHERE userID = ?";
         String[] selectionArgs = {String.valueOf(userId)};
 
-        Cursor cursor = db.rawQuery(query, selectionArgs, null);
+        Cursor cursor = db.rawQuery(query, selectionArgs);
 
         String userName = null; // Initialize to null in case of no matching record.
 
@@ -216,10 +216,16 @@ public class DBHelper extends SQLiteOpenHelper{
             int nameIndex = cursor.getColumnIndex("firstName");
             int surnameIndex = cursor.getColumnIndex("lastName");
 
-            if (nameIndex != -1 && surnameIndex != -1) {
-                String name = cursor.getString(nameIndex);
-                String surname = cursor.getString(surnameIndex);
+            String name = cursor.getString(nameIndex);
+            String surname = cursor.getString(surnameIndex);
+
+            // Check for null values and construct the userName accordingly
+            if (name != null && surname != null) {
                 userName = name + " " + surname; // Concatenate name and surname.
+            } else if (name != null) {
+                userName = name;
+            } else if (surname != null) {
+                userName = surname;
             }
         }
 
@@ -231,6 +237,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
         return userName;
     }
+
 
 
     //Get email

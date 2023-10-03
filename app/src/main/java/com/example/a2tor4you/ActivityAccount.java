@@ -39,21 +39,23 @@ public class ActivityAccount extends AppCompatActivity {
         String phoneNumber = getIntent().getStringExtra("phone");
         String password = getIntent().getStringExtra("password");
         String selectedRole = getIntent().getStringExtra("selectedRole");
-        String userID = getIntent().getStringExtra("userID");
+        //String userID = getIntent().getStringExtra("userID");
 
 
-        //String firstName = dbHelper.getUserName(phoneNumber, password, selectedRole);
-        String userName = dbHelper.getUserName(Integer.parseInt(userID));
+        int userID = dbHelper.getUserId(phoneNumber, password, selectedRole);
+        String userName = dbHelper.getUserName(userID);
 
+        if (userID != -1) {
 
-        if (userName != null) {
-            accountName.setText("");
-            accountName.setText(userName);
-            // The 'userName' variable now contains the user's first name.
-            // You can use it for further customization.
-        } else {
-            // Handle the case where no results were found or userName is empty.
-            // You can display an error message or take appropriate action.
+            if (userName != null) {
+                accountName.setText("");
+                accountName.setText(userName);
+                // The 'userName' variable now contains the user's first name.
+                // You can use it for further customization.
+            } else {
+                // Handle the case where no results were found or userName is empty.
+                // You can display an error message or take appropriate action.
+            }
         }
 
         //String email = dbHelper.getUserName(phoneNumber, password, selectedRole);
@@ -145,7 +147,7 @@ public class ActivityAccount extends AppCompatActivity {
                         intent3.putExtra("phone", phoneNumber);
                         intent3.putExtra("password", password);
                         intent3.putExtra("selectedRole", selectedRole);
-                        intent3.putExtra("userID", userID);
+                        //intent3.putExtra("userID", userID);
                         startActivity(intent3);
 
                         overridePendingTransition(0, 0);
@@ -160,7 +162,7 @@ public class ActivityAccount extends AppCompatActivity {
                         intent1.putExtra("phone", phoneNumber);
                         intent1.putExtra("password", password);
                         intent1.putExtra("selectedRole", selectedRole);
-                        intent1.putExtra("userID", userID);
+                        //intent1.putExtra("userID", userID);
                         startActivity(intent1);
 
                         overridePendingTransition(0, 0);
@@ -174,7 +176,7 @@ public class ActivityAccount extends AppCompatActivity {
                         intent.putExtra("phone", phoneNumber);
                         intent.putExtra("password", password);
                         intent.putExtra("selectedRole", selectedRole);
-                        intent.putExtra("userID", userID);
+                       // intent.putExtra("userID", userID);
                         startActivity(intent);
 
 
@@ -190,7 +192,7 @@ public class ActivityAccount extends AppCompatActivity {
                         intent2.putExtra("phone", phoneNumber);
                         intent2.putExtra("password", password);
                         intent2.putExtra("selectedRole", selectedRole);
-                        intent2.putExtra("userID", userID);
+                       // intent2.putExtra("userID", userID);
                         startActivity(intent2);
 
                         overridePendingTransition(0, 0);
