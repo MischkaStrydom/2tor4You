@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -15,6 +16,7 @@ import com.example.a2tor4you.Model.UserModel;
 import com.example.a2tor4you.utils.FirebaseUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 
@@ -23,7 +25,7 @@ public class LoginUsernameActivity extends AppCompatActivity {
     EditText usernameInput;
     Button letMeInBtn;
     ImageView btnBack;
-
+    BottomNavigationView bottomNavigationView;
     String phoneNumber;
     String userName;
     UserModel userModel;
@@ -33,12 +35,18 @@ public class LoginUsernameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_username);
 
-        btnBack = findViewById(R.id.btnBackUsername);
+
+
+        String password = getIntent().getStringExtra("password");
+        String selectedRole = getIntent().getStringExtra("selectedRole");
+        String userID = getIntent().getStringExtra("userID");
+
+
         usernameInput = findViewById(R.id.txtUsername);
         letMeInBtn = findViewById(R.id.btnLetMeIn);
 
         //On button back takes user back to Account Home screen
-        btnBack.setOnClickListener(view -> startActivity(new Intent(LoginUsernameActivity.this,ActivityHomeStudent.class)));
+
 
         phoneNumber = getIntent().getStringExtra("phone");
 
@@ -47,6 +55,84 @@ public class LoginUsernameActivity extends AppCompatActivity {
         letMeInBtn.setOnClickListener((v -> {
             setUsername();
         }));
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.account);
+
+        // Navigation Bar
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+
+                    case R.id.messages:
+                        return true;
+
+                    case R.id.home:
+                        //    startActivity(new Intent(getApplicationContext(), ActivityHomeStudent.class));
+
+                        Intent intent3 = new Intent(LoginUsernameActivity.this,ActivityHomeStudent.class);
+                        // intent2.putExtra("phone", LoginOtpActivity.phoneNumber);
+                        intent3.putExtra("phone", phoneNumber);
+                        intent3.putExtra("password", password);
+                        intent3.putExtra("selectedRole", selectedRole);
+                        intent3.putExtra("userID", userID);
+                        startActivity(intent3);
+
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.calendar:
+                        //  startActivity(new Intent(getApplicationContext(), ActivityCalendar.class));
+
+                        Intent intent = new Intent(LoginUsernameActivity.this,ActivityCalendar.class);
+                        // intent.putExtra("phone", LoginOtpActivity.phoneNumber);
+                        intent.putExtra("phone", phoneNumber);
+                        intent.putExtra("password", password);
+                        intent.putExtra("selectedRole", selectedRole);
+                        intent.putExtra("userID", userID);
+                        startActivity(intent);
+
+
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.findTutors:
+                        //  startActivity(new Intent(getApplicationContext(), ActivityFindTutor.class));
+
+                        Intent intent1 = new Intent(LoginUsernameActivity.this,ActivityFindTutor.class);
+                        // intent.putExtra("phone", LoginOtpActivity.phoneNumber);
+                        intent1.putExtra("phone", phoneNumber);
+                        intent1.putExtra("password", password);
+                        intent1.putExtra("selectedRole", selectedRole);
+                        intent1.putExtra("userID", userID);
+                        startActivity(intent1);
+
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.account:
+                        //  startActivity(new Intent(getApplicationContext(), ChatMainActivity.class));
+
+                        Intent intent2 = new Intent(LoginUsernameActivity.this,ActivityAccount.class);
+                        // intent2.putExtra("phone", LoginOtpActivity.phoneNumber);
+                        intent2.putExtra("phone", phoneNumber);
+                        intent2.putExtra("password", password);
+                        intent2.putExtra("selectedRole", selectedRole);
+                        intent2.putExtra("userID", userID);
+                        startActivity(intent2);
+
+                        overridePendingTransition(0, 0);
+                        return true;
+
+
+
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -90,4 +176,7 @@ public class LoginUsernameActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }

@@ -43,7 +43,8 @@ public class ActivityAccount extends AppCompatActivity {
 
 
         //String firstName = dbHelper.getUserName(phoneNumber, password, selectedRole);
-        String userName = dbHelper.getUserName(Long.parseLong(userID));
+        String userName = dbHelper.getUserName(Integer.parseInt(userID));
+
 
         if (userName != null) {
             accountName.setText("");
@@ -68,8 +69,8 @@ public class ActivityAccount extends AppCompatActivity {
             // You can display an error message or take appropriate action.
         }
 
-        ImageView btnBack = findViewById(R.id.btnBackAccount);
-        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityHomeStudent.class)));
+
+
 
         Button btnEdit = findViewById(R.id.btnEditProfile);
 
@@ -136,25 +137,66 @@ public class ActivityAccount extends AppCompatActivity {
                     case R.id.account:
                         return true;
 
-                    case R.id.calendar:
-                        startActivity(new Intent(getApplicationContext(), ActivityCalendar.class));
+                    case R.id.home:
+                        //    startActivity(new Intent(getApplicationContext(), ActivityHomeStudent.class));
+
+                        Intent intent3 = new Intent(ActivityAccount.this,ActivityHomeStudent.class);
+                        // intent2.putExtra("phone", LoginOtpActivity.phoneNumber);
+                        intent3.putExtra("phone", phoneNumber);
+                        intent3.putExtra("password", password);
+                        intent3.putExtra("selectedRole", selectedRole);
+                        intent3.putExtra("userID", userID);
+                        startActivity(intent3);
+
                         overridePendingTransition(0, 0);
                         return true;
+
 
                     case R.id.findTutors:
-                        startActivity(new Intent(getApplicationContext(), ActivityFindTutor.class));
+                        //  startActivity(new Intent(getApplicationContext(), ActivityFindTutor.class));
+
+                        Intent intent1 = new Intent(ActivityAccount.this,ActivityFindTutor.class);
+                        // intent.putExtra("phone", LoginOtpActivity.phoneNumber);
+                        intent1.putExtra("phone", phoneNumber);
+                        intent1.putExtra("password", password);
+                        intent1.putExtra("selectedRole", selectedRole);
+                        intent1.putExtra("userID", userID);
+                        startActivity(intent1);
+
                         overridePendingTransition(0, 0);
                         return true;
+
+                    case R.id.calendar:
+                      //  startActivity(new Intent(getApplicationContext(), ActivityCalendar.class));
+
+                        Intent intent = new Intent(ActivityAccount.this,ActivityCalendar.class);
+                        // intent.putExtra("phone", LoginOtpActivity.phoneNumber);
+                        intent.putExtra("phone", phoneNumber);
+                        intent.putExtra("password", password);
+                        intent.putExtra("selectedRole", selectedRole);
+                        intent.putExtra("userID", userID);
+                        startActivity(intent);
+
+
+                        overridePendingTransition(0, 0);
+                        return true;
+
 
                     case R.id.messages:
-                        startActivity(new Intent(getApplicationContext(), ChatMainActivity.class));
+                      //  startActivity(new Intent(getApplicationContext(), ChatMainActivity.class));
+
+                        Intent intent2 = new Intent(ActivityAccount.this,LoginUsernameActivity.class);
+                        // intent2.putExtra("phone", LoginOtpActivity.phoneNumber);
+                        intent2.putExtra("phone", phoneNumber);
+                        intent2.putExtra("password", password);
+                        intent2.putExtra("selectedRole", selectedRole);
+                        intent2.putExtra("userID", userID);
+                        startActivity(intent2);
+
                         overridePendingTransition(0, 0);
                         return true;
 
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), ActivityHomeStudent.class));
-                        overridePendingTransition(0, 0);
-                        return true;
+
 
                 }
                 return false;

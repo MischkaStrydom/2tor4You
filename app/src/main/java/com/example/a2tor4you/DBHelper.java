@@ -272,7 +272,7 @@ public class DBHelper extends SQLiteOpenHelper{
         return email;
     }
 
-    public long getUserId(String phoneNumber, String password, String userRole) {
+    public int getUserId(String phoneNumber, String password, String userRole) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT userID FROM User WHERE " +
                 "(phoneNumber = ? OR phoneNumber IS NULL) AND " +
@@ -281,12 +281,12 @@ public class DBHelper extends SQLiteOpenHelper{
 
         String[] selectionArgs = {phoneNumber, password, userRole};
 
-        Cursor cursor = db.rawQuery(query, selectionArgs,null);
+        Cursor cursor = db.rawQuery(query, selectionArgs);
 
-        long userID = -1; // Initialize to -1 in case of no matching record.
+        int userID = -1; // Initialize to -1 in case of no matching record.
 
         if (cursor != null && cursor.moveToFirst()) {
-            userID = cursor.getLong(0);
+            userID = cursor.getInt(0);
         }
 
         // Close the cursor and database.
@@ -297,6 +297,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
         return userID;
     }
+
 
 
 
