@@ -30,8 +30,8 @@ public class ActivityFindTutor extends AppCompatActivity {
 
 
          phoneNumber = getIntent().getStringExtra("phone");
-         password = getIntent().getStringExtra("password");
-         selectedRole = getIntent().getStringExtra("selectedRole");
+//         password = getIntent().getStringExtra("password");
+//         selectedRole = getIntent().getStringExtra("selectedRole");
 
 
 
@@ -78,8 +78,8 @@ public class ActivityFindTutor extends AppCompatActivity {
     private void startNewActivity(Class<?> targetActivity) {
         Intent intent = new Intent(ActivityFindTutor.this, targetActivity);
         intent.putExtra("phone", phoneNumber);
-        intent.putExtra("password", password);
-        intent.putExtra("selectedRole", selectedRole);
+//        intent.putExtra("password", password);
+//        intent.putExtra("selectedRole", selectedRole);
         startActivity(intent);
         overridePendingTransition(0, 0);
     }

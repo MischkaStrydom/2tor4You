@@ -5,8 +5,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.accounts.Account;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -37,50 +39,22 @@ public class ActivityAccount extends AppCompatActivity {
         setContentView(R.layout.activity_account);
         TextView accountName = findViewById(R.id.txtAccNameSurnameSubHeading);
         TextView emailName = findViewById(R.id.txtAccEmailSubHeading);
-
         dbHelper = new DBHelper(this);
 
-        phoneNumber = getIntent().getStringExtra("phone");
-        password = getIntent().getStringExtra("password");
-        selectedRole = getIntent().getStringExtra("selectedRole");
-        //String userID = getIntent().getStringExtra("userID");
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
 
-
-
-       // String userName = dbHelper.getUserName(userID);
-        if (selectedRole != null) {
-            int userID = dbHelper.getUserId(phoneNumber, password, selectedRole);
-
-            if (userID != -1) {
-                String userName = dbHelper.getUserName(userID);
-                if (userName != null) {
-                    accountName.setText("");
-                    accountName.setText(userName);
-                    // The 'userName' variable now contains the user's first name.
-                    // You can use it for further customization.
-                } else {
-                    accountName.setText("User name not found");
-                }
-            } else {
-                accountName.setText("User not found");
-            }
-        }else{
-            accountName.setText("Selected role is missing");
-        }
-
-        //String email = dbHelper.getUserName(phoneNumber, password, selectedRole);
-        String email = dbHelper.getEmail(phoneNumber, password, selectedRole);
-
-        if (email != null) {
-            emailName.setText("");
+        if (loggedInUserId != -1) {
+            // Fetch user's name and surname from the database based on userID
+            String userName = dbHelper.getUserName(loggedInUserId); // Implement this method
+            String email = dbHelper.getEmail(loggedInUserId);
+            accountName.setText(userName);
             emailName.setText(email);
-            // The 'userName' variable now contains the user's first name.
-            // You can use it for further customization.
         } else {
-            // Handle the case where no results were found or userName is empty.
-            // You can display an error message or take appropriate action.
+            // Handle the case where the userID is not found (e.g., user not logged in)
+            accountName.setText("Guest"); // Display a default value or handle it as needed
+            emailName.setText("Guest Email"); // Display a default value or handle it as needed
         }
-
 
 
 
@@ -90,21 +64,31 @@ public class ActivityAccount extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if ("Tutor".equals(selectedRole)){
-                    Intent intent = new Intent(ActivityAccount.this,ActivityTutorProfile.class);
-                    intent.putExtra("phone", phoneNumber);
-                    intent.putExtra("password", password);
-                    intent.putExtra("selectedRole", selectedRole);
-                    startActivity(intent);
-                }
-                else if ("Student".equals(selectedRole)){
-                    Intent intent = new Intent(ActivityAccount.this,ActivityMyProfile.class);
-                    intent.putExtra("phone", phoneNumber);
-                    intent.putExtra("password", password);
-                    intent.putExtra("selectedRole", selectedRole);
-                    startActivity(intent);
 
+                if (loggedInUserId != -1) {
+                    // Fetch user's name and surname from the database based on userID
+                    String userRole = dbHelper.getUserRole(loggedInUserId); // Implement this method
+                    if ("Tutor".equals(userRole)){
+                        Intent intent = new Intent(ActivityAccount.this,ActivityTutorProfile.class);
+//                    intent.putExtra("phone", phoneNumber);
+//                    intent.putExtra("password", password);
+//                    intent.putExtra("selectedRole", selectedRole);
+                        startActivity(intent);
+                    }
+                    else if ("Student".equals(userRole)){
+                        Intent intent = new Intent(ActivityAccount.this,ActivityMyProfile.class);
+//                    intent.putExtra("phone", phoneNumber);
+//                    intent.putExtra("password", password);
+//                    intent.putExtra("selectedRole", selectedRole);
+                        startActivity(intent);
+
+                    }
+
+                } else {
+                    // Handle the case where the userID is not found (e.g., user not logged in)
+                    Toast.makeText(getApplicationContext(), "Unknown Error Occurred ", Toast.LENGTH_LONG).show();
                 }
+
 
             }
         });
@@ -162,7 +146,6 @@ public class ActivityAccount extends AppCompatActivity {
                     case R.id.calendar:
                         startNewActivity(ActivityCalendar.class);
                         return true;
-
 
                 }
                 return false;

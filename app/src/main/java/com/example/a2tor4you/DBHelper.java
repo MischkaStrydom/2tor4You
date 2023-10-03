@@ -13,12 +13,14 @@ import androidx.annotation.Nullable;
 import com.example.a2tor4you.utils.AndroidUtil;
 import com.google.firestore.v1.CursorOrBuilder;
 
-public class DBHelper extends SQLiteOpenHelper{
+public class DBHelper extends SQLiteOpenHelper {
 
 
     public static final String DB_NAME = "TutorDB.db";
 
-    public DBHelper( Context context) { super(context, DB_NAME, null, 2);}
+    public DBHelper(Context context) {
+        super(context, DB_NAME, null, 2);
+    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -74,18 +76,18 @@ public class DBHelper extends SQLiteOpenHelper{
                 "newPassword VARCHAR(255), confirmPassword VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
 
 
-    db.execSQL(userSQL);
-    db.execSQL(studentSQL);
-    db.execSQL(tutorSQL);
-    db.execSQL(adminSQL);
-    db.execSQL(subjectSQL);
-    db.execSQL(tutorSubjectSQL);
-    db.execSQL(EventSQL);
-    db.execSQL(ReviewSQL);
-    db.execSQL(ReportSQL);
-    db.execSQL(DeleteSQL);
-    db.execSQL(NotificationPreferenceSQL);
-    db.execSQL(PasswordChangeSQL);
+        db.execSQL(userSQL);
+        db.execSQL(studentSQL);
+        db.execSQL(tutorSQL);
+        db.execSQL(adminSQL);
+        db.execSQL(subjectSQL);
+        db.execSQL(tutorSubjectSQL);
+        db.execSQL(EventSQL);
+        db.execSQL(ReviewSQL);
+        db.execSQL(ReportSQL);
+        db.execSQL(DeleteSQL);
+        db.execSQL(NotificationPreferenceSQL);
+        db.execSQL(PasswordChangeSQL);
 
     }
 
@@ -108,20 +110,17 @@ public class DBHelper extends SQLiteOpenHelper{
     }
 
 
-
     //Test insert Student data
 
 
-
-
-    public boolean insertData(String tableName,ContentValues values){
+    public boolean insertData(String tableName, ContentValues values) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         long result = db.insert(tableName, null, values);
         return result != -1;
     }
 
-    public Cursor getAllItems(String tableName){
+    public Cursor getAllItems(String tableName) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + tableName, null);
@@ -130,18 +129,16 @@ public class DBHelper extends SQLiteOpenHelper{
 
 
     //username in this case is user phone number
-    public Cursor getUser(String tableName, String userName, String userPass, String userRole){
+    public Cursor getUser(String tableName, String userName, String userPass, String userRole) {
         SQLiteDatabase db = this.getWritableDatabase();
 
 
         String query = "SELECT * FROM " + tableName + " WHERE username = '" + userName +
-                        "' AND password = '" + userPass + "' AND userRole = '" + userRole + "'";
+                "' AND password = '" + userPass + "' AND userRole = '" + userRole + "'";
 
-        Cursor cursor = db.rawQuery(query,null);
+        Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
-
-
 
 
     public boolean isNewStudentEmail(String email) {
@@ -165,6 +162,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
         return isStudent;
     }
+
     public boolean isNewTutorEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT userRole FROM User WHERE email = ?", new String[]{email});
@@ -250,53 +248,68 @@ public class DBHelper extends SQLiteOpenHelper{
     }
 
 
-
     //Get email
-    public String getEmail(String phoneNumber, String password, String selectedRole) {
+    public String getEmail(int userId) {
         SQLiteDatabase db = this.getReadableDatabase();
-        // Check for null values and handle them gracefully
-        if (phoneNumber == null || password == null || selectedRole == null) {
-            // Handle the case where one or more parameters are null
-            return null; // or throw an exception, return a default value, etc.
-        }
-        // Define column name constants
-        final String COLUMN_EMAIL_NAME = "email";
-
-
-        // Define the query to retrieve the user's full name
-        String query = "SELECT " + COLUMN_EMAIL_NAME +
-                " FROM User WHERE phoneNumber = ? AND password = ? AND userRole = ?";
-        String[] selectionArgs = {phoneNumber, password, selectedRole};
+        String query = "SELECT email FROM User WHERE userID = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
 
         Cursor cursor = db.rawQuery(query, selectionArgs);
 
-        String email = null;
+        String userEmail = null; // Initialize to null in case of no matching record.
 
+        if (cursor != null && cursor.moveToFirst()) {
+            int nameIndex = cursor.getColumnIndex("email");
 
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                int columnIndex = cursor.getColumnIndex(COLUMN_EMAIL_NAME);
-                if (columnIndex != -1) {
-                    email = cursor.getString(columnIndex);
-                } else {
-                    // Log an error message
-                    Log.e("DBHelper", "Column 'email' not found in User table.");
-                }
-            } else {
-                // Log an error message or use debugging tools to check the query result
-                Log.e("DBHelper", "No matching user found.");
+            String email = cursor.getString(nameIndex);
+
+            // Check for null values and construct the userName accordingly
+            if (email != null) {
+                userEmail = email; // Concatenate name and surname.
             }
-            cursor.close();
-        } else {
-            // Handle the case where the cursor is null
-            Log.e("DBHelper", "Cursor is null.");
+
+            // Close the cursor and database.
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+
         }
-
-        // Close the database
-        db.close();
-
-        return email;
+        return userEmail;
     }
+
+
+    //Get user role
+    public String getUserRole(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT userRole FROM User WHERE userID = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        String userRole = null; // Initialize to null in case of no matching record.
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int nameIndex = cursor.getColumnIndex("userRole");
+
+            String role = cursor.getString(nameIndex);
+
+            // Check for null values and construct the userName accordingly
+            if (role != null) {
+                userRole = role; // Concatenate name and surname.
+            }
+
+            // Close the cursor and database.
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+
+        }
+        return userRole;
+    }
+
+
     public int getUserId(String phoneNumber, String password, String userRole) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT userID FROM User WHERE phoneNumber = ?  AND password = ?  AND userRole = ? ", new String[]{phoneNumber, password, userRole});
@@ -310,11 +323,6 @@ public class DBHelper extends SQLiteOpenHelper{
 
         return userID;
     }
-
-
-
-
-
 
 
 

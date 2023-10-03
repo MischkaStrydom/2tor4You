@@ -35,8 +35,8 @@ public class ActivityCalendar extends AppCompatActivity {
         Button btnAddEvent = findViewById(R.id.btnAddEvent);
 
          phoneNumber = getIntent().getStringExtra("phone");
-         password = getIntent().getStringExtra("password");
-         selectedRole = getIntent().getStringExtra("selectedRole");
+//         password = getIntent().getStringExtra("password");
+//         selectedRole = getIntent().getStringExtra("selectedRole");
 
 
 
@@ -91,8 +91,8 @@ public class ActivityCalendar extends AppCompatActivity {
     private void startNewActivity(Class<?> targetActivity) {
         Intent intent = new Intent(ActivityCalendar.this, targetActivity);
         intent.putExtra("phone", phoneNumber);
-        intent.putExtra("password", password);
-        intent.putExtra("selectedRole", selectedRole);
+//        intent.putExtra("password", password);
+//        intent.putExtra("selectedRole", selectedRole);
         startActivity(intent);
         overridePendingTransition(0, 0);
     }

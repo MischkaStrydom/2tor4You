@@ -5,7 +5,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,32 +46,18 @@ public class ActivityHomeStudent extends AppCompatActivity {
         TextView welcome = findViewById(R.id.txtWelcomeStud);
         dbHelper = new DBHelper(this);
 
-        // Retrieve the userId from the Intent
-//        Intent intent = getIntent();
-//        int userId = intent.getIntExtra("userId", -1); // -1 is the default value if userId is not found
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
 
-        phoneNumber = getIntent().getStringExtra("phone");
-        password = getIntent().getStringExtra("password");
-        selectedRole = getIntent().getStringExtra("selectedRole");
-        int userID = dbHelper.getUserId(phoneNumber, password, selectedRole);
-        String userName = dbHelper.getUserName(userID);
+        if (loggedInUserId != -1) {
+            // Fetch user's name and surname from the database based on userID
+            String userName = dbHelper.getUserName(loggedInUserId); // Implement this method
 
-        if (userID != -1) {
-
-
-            if (userName != null) {
-                welcome.setText("");
-                welcome.setText("Welcome, " + userName);
-
-            } else {
-                return;
-                // Handle the case where no results were found or userName is empty.
-                // You can display an error message or take appropriate action.
-            }
-
-            // User exists, and userID contains the userID of the matching user.
+            // Display the user's name in the TextView
+            welcome.setText("Welcome " + userName);
         } else {
-            // No matching user found.
+            // Handle the case where the userID is not found (e.g., user not logged in)
+            welcome.setText("Guest"); // Display a default value or handle it as needed
         }
 
 
@@ -87,7 +75,6 @@ public class ActivityHomeStudent extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         // Navigation Bar
@@ -126,8 +113,8 @@ public class ActivityHomeStudent extends AppCompatActivity {
     private void startNewActivity(Class<?> targetActivity) {
         Intent intent = new Intent(ActivityHomeStudent.this, targetActivity);
         intent.putExtra("phone", phoneNumber);
-        intent.putExtra("password", password);
-        intent.putExtra("selectedRole", selectedRole);
+//        intent.putExtra("password", password);
+//        intent.putExtra("selectedRole", selectedRole);
         startActivity(intent);
         overridePendingTransition(0, 0);
     }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.a2tor4you.utils.AndroidUtil;
 
@@ -65,9 +67,7 @@ public class ActivityLogin extends AppCompatActivity {
                 String selectedRole = roleSpinner.getSelectedItem().toString();
                 String password = userPassword.getText().toString();
                 String completePhoneNumber = "+27" + phoneInput.getText().toString();
-                // Retrieve the userId from the Intent
-                Intent intent1 = getIntent();
-                int userId = intent1.getIntExtra("userId", -1); // -1 is the default value if userId is not found
+
 
                 if(phoneInput.length() != 9){
                     phoneInput.setError("Phone number not valid");
@@ -77,7 +77,15 @@ public class ActivityLogin extends AppCompatActivity {
 
                 if (isLoggedIn) {
 
-
+                    int loggedInUserId = dbHelper.getUserId(completePhoneNumber, password, selectedRole);
+                    if (loggedInUserId != -1) {
+                        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putInt("loggedInUserId", loggedInUserId);
+                        editor.apply();}
+                    else{
+                        Toast.makeText(context, "Login failed. Please check your credentials.", Toast.LENGTH_SHORT).show();
+                    }
 
                     if ("Tutor".equalsIgnoreCase(selectedRole)) { // Use .equalsIgnoreCase to compare strings
                         Intent intent = new Intent(ActivityLogin.this, LoginOtpActivity.class);
@@ -86,17 +94,13 @@ public class ActivityLogin extends AppCompatActivity {
                         intent.putExtra("selectedRole", selectedRole);
 
                         startActivity(intent);
-                       // Intent intent = new Intent(ActivityLogin.this, ActivityHomeStudent.class);
-                        // Add any extra data or actions for the Tutor role here
-                       // startActivity(intent);
+
                     } else if ("Student".equalsIgnoreCase(selectedRole)) { // Use .equalsIgnoreCase to compare strings
                         Intent intent = new Intent(ActivityLogin.this, LoginOtpActivity.class);
                         intent.putExtra("phone", completePhoneNumber);
                         intent.putExtra("password", password);
                         intent.putExtra("selectedRole", selectedRole);
 
-                        //Intent intent = new Intent(ActivityLogin.this, ActivityHomeStudent.class);
-                        // Add any extra data or actions for the Tutor role here
                         startActivity(intent);
                     }else if ("Admin".equalsIgnoreCase(selectedRole)) { // Use .equalsIgnoreCase to compare strings
                         Intent intent = new Intent(ActivityLogin.this, LoginOtpActivity.class);
