@@ -18,7 +18,6 @@ import com.example.a2tor4you.utils.FirebaseUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 
@@ -45,9 +44,11 @@ public class ActivityHomeStudent extends AppCompatActivity {
         String phoneNumber = getIntent().getStringExtra("phone");
         String password = getIntent().getStringExtra("password");
         String selectedRole = getIntent().getStringExtra("selectedRole");
-        long userID = dbHelper.getUserId(phoneNumber, password, selectedRole);
-        String userName = dbHelper.getUserName(userID);
-        if (userID != -1) {
+
+
+        String userName = dbHelper.getUserName(phoneNumber, password, selectedRole);
+
+        // Ensure that the dbHelper is not null
 
 
             if (userName != null) {
@@ -56,23 +57,9 @@ public class ActivityHomeStudent extends AppCompatActivity {
                 // The 'userName' variable now contains the user's first name.
                 // You can use it for further customization.
             } else {
-                return;
                 // Handle the case where no results were found or userName is empty.
                 // You can display an error message or take appropriate action.
             }
-
-            // User exists, and userID contains the userID of the matching user.
-        } else {
-            // No matching user found.
-        }
-
-
-
-
-        // Ensure that the dbHelper is not null
-
-
-
 
 
         message = findViewById(R.id.btnMessage);
@@ -86,7 +73,6 @@ public class ActivityHomeStudent extends AppCompatActivity {
                 intent.putExtra("password", password);
                 intent.putExtra("selectedRole", selectedRole);
                 intent.putExtra("FullName", userName);
-                intent.putExtra("userID", userID);
                 startActivity(intent);
             }
         });
@@ -98,9 +84,12 @@ public class ActivityHomeStudent extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.home);
 
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
                 switch (item.getItemId()) {
+
                     case R.id.home:
                         return true;
 
@@ -123,38 +112,11 @@ public class ActivityHomeStudent extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), ActivityAccount.class));
                         overridePendingTransition(0, 0);
                         return true;
+
                 }
                 return false;
             }
         });
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//
-//                switch (item.getItemId()) {
-//
-//                    case R.id.home:
-//                        return true;
-//
-//                    case R.id.calendar:
-//                        startActivity(new Intent(getApplicationContext(), ActivityCalendar.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//
-//                    case R.id.findTutors:
-//                        startActivity(new Intent(getApplicationContext(), ActivityFindTutor.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//
-//                    case R.id.messages:
-//                        startActivity(new Intent(getApplicationContext(), LoginUsernameActivity.class));
-//                        overridePendingTransition(0, 0);
-//                        return true;
-//
-//                }
-//                return false;
-//            }
-//        });
 
     }
 

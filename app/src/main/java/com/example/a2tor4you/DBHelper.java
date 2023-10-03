@@ -202,36 +202,43 @@ public class DBHelper extends SQLiteOpenHelper{
     }
 
     //User Name for account screen
-
-    public String getUserName(long userId) {
+    public String getUserName(String phoneNumber, String password, String selectedRole) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT firstName, lastName FROM User WHERE userID = ?";
-        String[] selectionArgs = {String.valueOf(userId)};
 
-        Cursor cursor = db.rawQuery(query, selectionArgs, null);
+        // Define column name constants
+        final String COLUMN_FIRST_NAME = "firstName";
+        final String COLUMN_LAST_NAME = "lastName";
 
-        String userName = null; // Initialize to null in case of no matching record.
+        // Define the query to retrieve the user's full name
+        String query = "SELECT " + COLUMN_FIRST_NAME + " || ' ' || " + COLUMN_LAST_NAME + " AS fullName" +
+                " FROM User WHERE phoneNumber = ? AND password = ? AND userRole = ?";
+        String[] selectionArgs = {phoneNumber, password, selectedRole};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        String fullName = null;
 
         if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("firstName");
-            int surnameIndex = cursor.getColumnIndex("lastName");
-
-            if (nameIndex != -1 && surnameIndex != -1) {
-                String name = cursor.getString(nameIndex);
-                String surname = cursor.getString(surnameIndex);
-                userName = name + " " + surname; // Concatenate name and surname.
+            int columnIndex = cursor.getColumnIndex("fullName");
+            if (columnIndex != -1) {
+                fullName = cursor.getString(columnIndex);
+            } else {
+                // Log an error message
+                Log.e("DBHelper", "Column 'fullName' not found in User table.");
             }
+        } else {
+            // Log an error message or use debugging tools to check the query result
+            Log.e("DBHelper", "No matching user found.");
         }
 
-        // Close the cursor and database.
+        // Close the cursor and database
         if (cursor != null) {
             cursor.close();
         }
         db.close();
 
-        return userName;
+        return fullName;
     }
-
 
     //Get email
     public String getEmail(String phoneNumber, String password, String selectedRole) {
@@ -271,33 +278,6 @@ public class DBHelper extends SQLiteOpenHelper{
 
         return email;
     }
-
-    public long getUserId(String phoneNumber, String password, String userRole) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT userID FROM User WHERE " +
-                "(phoneNumber = ? OR phoneNumber IS NULL) AND " +
-                "(password = ? OR password IS NULL) AND " +
-                "(userRole = ? OR userRole IS NULL)";
-
-        String[] selectionArgs = {phoneNumber, password, userRole};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs,null);
-
-        long userID = -1; // Initialize to -1 in case of no matching record.
-
-        if (cursor != null && cursor.moveToFirst()) {
-            userID = cursor.getLong(0);
-        }
-
-        // Close the cursor and database.
-        if (cursor != null) {
-            cursor.close();
-        }
-        db.close();
-
-        return userID;
-    }
-
 
 
 
