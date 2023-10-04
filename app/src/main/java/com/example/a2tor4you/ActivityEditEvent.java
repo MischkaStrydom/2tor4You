@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -27,6 +28,8 @@ public class ActivityEditEvent extends AppCompatActivity {
     private int hour, minute;
 
     TimePicker picker;
+
+    RadioButton rdo_Online, rdo_InPerson;
     Button btn_SaveEvent, btnEventDate;
     EditText txt_EventTitle;
 
@@ -82,6 +85,36 @@ public class ActivityEditEvent extends AppCompatActivity {
 
                 // display our time picker dialog.
                 timePickerDialog.show();
+            }
+        });
+
+        // RadioButtons select and deselect
+        rdo_Online = findViewById(R.id.rdo_Online);
+        rdo_InPerson = findViewById(R.id.rdo_InPerson);
+
+        rdo_Online.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!rdo_Online.isSelected()) {
+                    rdo_Online.setChecked(true);
+                    rdo_Online.setSelected(true);
+                } else {
+                    rdo_Online.setChecked(false);
+                    rdo_Online.setSelected(false);
+                }
+            }
+        });
+
+        rdo_InPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!rdo_InPerson.isSelected()) {
+                    rdo_InPerson.setChecked(true);
+                    rdo_InPerson.setSelected(true);
+                } else {
+                    rdo_InPerson.setChecked(false);
+                    rdo_InPerson.setSelected(false);
+                }
             }
         });
     }
