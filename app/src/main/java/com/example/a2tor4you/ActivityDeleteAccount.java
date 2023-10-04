@@ -67,7 +67,7 @@ public class ActivityDeleteAccount extends AppCompatActivity {
         // register all the EditText fields with their IDs.
         txtStudentConfirmPassword = findViewById(R.id.txtStudentConfirmPassword);
 
-        /*// handle the PROCEED button
+        // handle the PROCEED button
         btnDeleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,46 +129,46 @@ public class ActivityDeleteAccount extends AppCompatActivity {
     // are filled or not by the user.
     // when user clicks on the PROCEED button
     // this function is triggered.
-    private boolean CheckAllFields() {
-        if (txtStudentConfirmPassword.length() == 0) {
-            txtStudentConfirmPassword.setError("This field is required");
-            return false;
-        }
-        // after all validation return true.
-        return true;
-    }
-
-    private boolean validatePassword() {
-        String passwordInput = txtStudentConfirmPassword.getText().toString().trim();
-        // if password field is empty
-        // it will display error message "Field can not be empty"
-        if (passwordInput.isEmpty()) {
-            txtStudentConfirmPassword.setError("Field can not be empty");
-            return false;
-        }
-
-        // if password does not matches to the pattern
-        // it will display an error message "Password is too weak"
-        else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
-            txtStudentConfirmPassword.setError("Password is too weak");
-            return false;
-        } else {
-            txtStudentConfirmPassword.setError(null);
-            return true;
-        }
-    }
-
-    public void confirmInput(View v) {
-        if (!validatePassword()) {
-            return;
-        }
-
-        // if the email and password matches, a toast message
-        // with email and password is displayed
-        //*String input = "Email: " + email.getEditText().getText().toString();
-        input += "\n";*//*
-        String input = "Success";
-        Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
-    }
+//    private boolean CheckAllFields() {
+//        if (txtStudentConfirmPassword.length() == 0) {
+//            txtStudentConfirmPassword.setError("This field is required");
+//            return false;
+//        }
+//        // after all validation return true.
+//        return true;
+//    }
+//
+//    private boolean validatePassword() {
+//        String passwordInput = txtStudentConfirmPassword.getText().toString().trim();
+//        // if password field is empty
+//        // it will display error message "Field can not be empty"
+//        if (passwordInput.isEmpty()) {
+//            txtStudentConfirmPassword.setError("Field can not be empty");
+//            return false;
+//        }
+//
+//        // if password does not matches to the pattern
+//        // it will display an error message "Password is too weak"
+//        else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
+//            txtStudentConfirmPassword.setError("Password is too weak");
+//            return false;
+//        } else {
+//            txtStudentConfirmPassword.setError(null);
+//            return true;
+//        }
+//    }
+//
+//    public void confirmInput(View v) {
+//        if (!validatePassword()) {
+//            return;
+//        }
+//
+//        // if the email and password matches, a toast message
+//        // with email and password is displayed
+//        //*String input = "Email: " + email.getEditText().getText().toString();
+//        input += "\n";*//*
+//        String input = "Success";
+//        Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
+//    }
 
 }
