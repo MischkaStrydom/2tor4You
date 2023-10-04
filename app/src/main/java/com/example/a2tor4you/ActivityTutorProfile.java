@@ -76,7 +76,7 @@ public class ActivityTutorProfile extends AppCompatActivity {
         });
     }
 
-    // function which checks all the text fields
+   /* // function which checks all the text fields
     // are filled or not by the user.
     // when user clicks on the PROCEED button
     // this function is triggered.
@@ -103,7 +103,7 @@ public class ActivityTutorProfile extends AppCompatActivity {
 
         // after all validation return true.
         return true;
-    }
+    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

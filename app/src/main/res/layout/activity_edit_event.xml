@@ -204,23 +204,29 @@
                     android:background="@drawable/background_rounded_white"
                     android:padding="2dp">
 
-                    <Button
-                        android:id="@+id/btnEventTime"
-                        android:layout_width="150dp"
-                        android:layout_height="41dp"
-                        android:layout_marginStart="0dp"
+
+                    <EditText
+                        android:id="@+id/txtEventTime"
+                        android:layout_width="157dp"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="7dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginEnd="0dp"
                         android:layout_toEndOf="@+id/timeIcon"
                         android:background="@android:color/transparent"
                         android:hint="@string/btnEventTime"
+                        android:textAlignment="textStart"
+                        android:paddingLeft="20dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="17dp"
-                        android:textAlignment="textStart"
+                        android:inputType="none"
+                        android:focusable="false"
+                        android:clickable="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
 
                     <!--<EditText
                         android:id="@+id/txt_EventTime"

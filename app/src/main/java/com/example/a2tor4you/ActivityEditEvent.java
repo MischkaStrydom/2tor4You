@@ -3,13 +3,18 @@ package com.example.a2tor4you;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,13 +22,15 @@ import java.util.Locale;
 
 public class ActivityEditEvent extends AppCompatActivity {
 
-    // button
-    Button btn_SaveEvent, btnEventDate;
+    private EditText txtEventTime;
 
-    // Text fields
+    private int hour, minute;
+
+    TimePicker picker;
+    Button btn_SaveEvent, btnEventDate;
     EditText txt_EventTitle;
 
-    boolean isAllFieldsChecked = false;
+    /* boolean isAllFieldsChecked = false;*/
 
     Calendar calendar = Calendar.getInstance();
 
@@ -35,6 +42,8 @@ public class ActivityEditEvent extends AppCompatActivity {
         ImageView btnBack = findViewById(R.id.btnBackEditEvent);
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityEditEvent.this, ActivityCalendar.class)));
 
+        txt_EventTitle = findViewById(R.id.txt_EventTitle);
+
         btn_SaveEvent = findViewById(R.id.btn_SaveEvent);
         btnEventDate = findViewById(R.id.btnEventDate);
 
@@ -45,11 +54,40 @@ public class ActivityEditEvent extends AppCompatActivity {
             }
         });
 
+        // Time Picker
+        txtEventTime = findViewById(R.id.txtEventTime);
 
-        // register all the EditText fields with their IDs.
-        txt_EventTitle = findViewById(R.id.txt_EventTitle);
+        // Set a click listener on the EditText to show the TimePickerDialog
+        txtEventTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        // handle the PROCEED button
+                // instance of our calendar.
+                final Calendar c = Calendar.getInstance();
+
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+
+                // on below line we are initializing our Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityEditEvent.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+                                // on below line we are setting selected time
+                                // in our text view.
+                                txtEventTime.setText(hourOfDay + ":" + minute);
+                            }
+                        }, hour, minute, false);
+
+                // display our time picker dialog.
+                timePickerDialog.show();
+            }
+        });
+    }
+
+
+        /*// handle the PROCEED button
         btn_SaveEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,10 +103,12 @@ public class ActivityEditEvent extends AppCompatActivity {
                     startActivity(i);
                 }
             }
-        });
-    }
+        });*/
 
-    // function which checks all the text fields
+
+
+
+    /*// function which checks all the text fields
     // are filled or not by the user.
     // when user clicks on the PROCEED button
     // this function is triggered.
@@ -85,7 +125,8 @@ public class ActivityEditEvent extends AppCompatActivity {
 
         // after all validation return true.
         return true;
-    }
+    }*/
+
 
     private void showDatePicker() {
         int year = calendar.get(Calendar.YEAR);

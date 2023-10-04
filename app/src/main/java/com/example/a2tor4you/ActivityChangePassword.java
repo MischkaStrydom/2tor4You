@@ -27,7 +27,7 @@ public class ActivityChangePassword extends AppCompatActivity {
     // Text fields
     EditText txtCurrentPassword, txtNewPassword, txtConfirmPassword;
 
-    // one boolean variable to check whether all the text fields
+    /*// one boolean variable to check whether all the text fields
     // are filled by the user, properly or not.
     boolean isAllFieldsChecked = false;
 
@@ -37,7 +37,7 @@ public class ActivityChangePassword extends AppCompatActivity {
                     "(?=.*[@#$%^&+=])" +     // at least 1 special character
                     "(?=\\S+$)" +            // no white spaces
                     ".{4,}" +                // at least 4 characters
-                    "$");
+                    "$");*/
     
     /* private TextInputLayout email;*/
    /* private TextInputLayout password;*/
@@ -58,7 +58,7 @@ public class ActivityChangePassword extends AppCompatActivity {
         txtNewPassword = findViewById(R.id.txtNewPassword);
         txtConfirmPassword = findViewById(R.id.txtConfirmPassword);
 
-        // handle the PROCEED button
+        /*// handle the PROCEED button
         btnCreateNewPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,10 +74,10 @@ public class ActivityChangePassword extends AppCompatActivity {
                     startActivity(i);
                 }
             }
-        });
+        });*/
     }
 
-    // function which checks all the text fields
+    /*// function which checks all the text fields
     // are filled or not by the user.
     // when user clicks on the PROCEED button
     // this function is triggered.
@@ -100,7 +100,7 @@ public class ActivityChangePassword extends AppCompatActivity {
         // after all validation return true.
         return true;
     }
-
+*/
    /* private boolean validateEmail() {
 
         // Extract input from EditText
@@ -122,7 +122,7 @@ public class ActivityChangePassword extends AppCompatActivity {
         }
     }*/
 
-    private boolean validatePassword() {
+   /* private boolean validatePassword() {
         String passwordInput = txtNewPassword.getText().toString().trim();
         // if password field is empty
         // it will display error message "Field can not be empty"
@@ -143,15 +143,15 @@ public class ActivityChangePassword extends AppCompatActivity {
     }
 
     public void confirmInput(View v) {
-        if (/*!validateEmail() |*/ !validatePassword()) {
+        if (*//*!validateEmail() |*//* !validatePassword()) {
             return;
         }
 
         // if the email and password matches, a toast message 
         // with email and password is displayed
-        /*String input = "Email: " + email.getEditText().getText().toString();
-        input += "\n";*/
+        *//*String input = "Email: " + email.getEditText().getText().toString();
+        input += "\n";*//*
         String input = "Password: " + txtNewPassword.getText().toString();
         Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
-    }
+    }*/
 }

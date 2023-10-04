@@ -38,10 +38,10 @@ public class ActivityMyProfile extends AppCompatActivity {
     Button btnStudTakePhoto,  btnSaveProfile;
 
 
-    // one boolean variable to check whether all the text fields
+    /*// one boolean variable to check whether all the text fields
     // are filled by the user, properly or not.
     boolean isAllFieldsChecked = false;
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +109,7 @@ public class ActivityMyProfile extends AppCompatActivity {
             }
         });
 
-        // handle the SAVE button
+        /*// handle the SAVE button
         btnSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +124,7 @@ public class ActivityMyProfile extends AppCompatActivity {
                     Toast.makeText(ActivityMyProfile.this, "Profile Successfully Updated", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
 
 
@@ -178,7 +178,7 @@ public class ActivityMyProfile extends AppCompatActivity {
     }
 
 
-    // function which checks all the text fields
+   /* // function which checks all the text fields
     // are filled or not by the user.
     // when user clicks on the PROCEED button
     // this function is triggered.
@@ -205,7 +205,7 @@ public class ActivityMyProfile extends AppCompatActivity {
 
         // after all validation return true.
         return true;
-    }
+    }*/
 
     private void showDatePicker() {
         int year = calendar.get(Calendar.YEAR);
