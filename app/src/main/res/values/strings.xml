@@ -356,26 +356,38 @@
     <string-array name="spinSubjectTeach">
 
         <item>Subject of Teaching</item>
-        <item>Afrikaans</item>
-        <item>Maths</item>
+        <item>Mathematics</item>
+        <item>Science</item>
         <item>English</item>
-        <item>Life Sciences</item>
-        <item>Physical Science</item>
-        <item>Geography</item>
         <item>History</item>
+        <item>Geography</item>
+        <item>Physical Education</item>
+        <item>Business Studies</item>
+        <item>Economics</item>
+        <item>Information Technology</item>
+        <item>Geology</item>
+        <item>Art</item>
+        <item>Music</item>
+        <item>Dramatic Arts</item>
+        <item>Physical Science</item>
+        <item>Agricultural Sciences</item>
+        <item>Consumer Studies</item>
+        <item>Visual Arts</item>
+        <item>Religious Studies</item>
+        <item>Life Orientation</item>
+        <item>Engineering Graphics and Design</item>
+        <item>Hospitality Studies</item>
+        <item>Zulu</item>
+        <item>Afrikaans</item>
+        <item>Life Sciences</item>
         <item>Music</item>
         <item>Technology</item>
         <item>Xhosa</item>
-        <item>Computer Science</item>
         <item>CAT</item>
-        <item>Consumer Studies</item>
         <item>French</item>
-        <item>Business</item>
         <item>Accounting</item>
         <item>EMS</item>
-        <item>Professional: Interview Prep</item>
-        <item>Professional: CV Prp</item>
-        <item>Professoinal: Assessment Practise</item>
+
 
     </string-array>
 
@@ -462,5 +474,7 @@
 
     <string name="txtStudentsOffBoarded">Students Offboarded:</string>
     <string name="txtTutorsOffBoarded">Tutors Offboarded:</string>
+
+
 
 </resources>

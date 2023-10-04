@@ -4,7 +4,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -22,7 +25,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class ActivityTutorProfile extends AppCompatActivity {
-
+    Context context;
+    DBHelper dbHelper ;
     public static final int CAMERA_ACTION_CODE = 1;
     ImageView imageProfile;
 
@@ -33,6 +37,26 @@ public class ActivityTutorProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_profile);
+
+        dbHelper = new DBHelper(this);
+
+
+
+
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
+
+
+
+        String[] subjects = context.getResources().getStringArray(R.array.spinSubjectTeach);
+        ContentValues contentValues = new ContentValues();
+
+        for (String subject : subjects) {
+            contentValues.put("subject", subject);
+            dbHelper.insertData("Subject", contentValues);
+        }
+
+
 
         txtTutName = findViewById(R.id.txtTutName);
         txtTutLastName = findViewById(R.id.txtTutLastName);

@@ -2,7 +2,10 @@ package com.example.a2tor4you;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,9 +13,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 public class ActivityDeleteAccount extends AppCompatActivity {
+
+    DBHelper dbHelper ;
 
     // button
     Button btnDeleteAccount;
@@ -40,6 +47,17 @@ public class ActivityDeleteAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_account);
 
+        EditText pass = findViewById(R.id.txtStudentConfirmPassword);
+
+        String checkPass = pass.getText().toString();
+
+
+        dbHelper = new DBHelper(this);
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
+
+
+
         ImageView btnBack = findViewById(R.id.btnBackDeleteAccount);
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityDeleteAccount.this, ActivitySettings.class)));
 
@@ -56,15 +74,53 @@ public class ActivityDeleteAccount extends AppCompatActivity {
 
                 // store the returned value of the dedicated function which checks
                 // whether the entered data is valid or if any fields are left blank.
-                isAllFieldsChecked = CheckAllFields();
+               // isAllFieldsChecked = CheckAllFields();
 
                 // the boolean variable turns to be true then
                 // only the user must be proceed to the activity2
-                if (isAllFieldsChecked) {
-                    Intent i = new Intent(ActivityDeleteAccount.this, MainActivity.class);
-                    startActivity(i);
+               // if (isAllFieldsChecked) {
+
+                long currentTimeMillis = System.currentTimeMillis();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// Customize the format as needed
+                String dateTimeString = dateFormat.format(new Date(currentTimeMillis));
+
+
+                String passwordToCheck = txtStudentConfirmPassword.getText().toString();
+
+                ContentValues values = new ContentValues();
+                values.put("userID", loggedInUserId);
+                values.put("deletedDate", dateTimeString);
+
+
+                    if (loggedInUserId != -1) {
+                        // Fetch user's name and surname from the database based on userID
+                        String userPass = dbHelper.getPassword("User", loggedInUserId); // Implement this method
+
+                        // Separate name and surname as separate strings
+                        if (userPass.equals(passwordToCheck)) {
+
+                            boolean isDeleted = dbHelper.deleteUserAndRelatedData(loggedInUserId);
+                            if (isDeleted) {
+
+                                boolean result = dbHelper.insertData("DeletedAccount", values);
+                                if (result)
+                                {
+                                    Toast.makeText(ActivityDeleteAccount.this, "User and related data deleted successfully", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(ActivityDeleteAccount.this, MainActivity.class));
+                                }
+
+                            } else {
+                                Toast.makeText(ActivityDeleteAccount.this, "Failed to delete user and related data", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } else {
+                            // Handle the case where the userName format is unexpected
+                            Toast.makeText(ActivityDeleteAccount.this, "Incorrect password", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
                 }
-            }
+            //}
         });
 
     }

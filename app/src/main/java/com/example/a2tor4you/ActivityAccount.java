@@ -29,7 +29,7 @@ public class ActivityAccount extends AppCompatActivity {
     static String phoneNumber;
     static String password;
     static String selectedRole;
-
+    ImageButton btnLogout;
     ImageButton btnReport;
 
     DBHelper dbHelper ;
@@ -41,6 +41,7 @@ public class ActivityAccount extends AppCompatActivity {
         TextView emailName = findViewById(R.id.txtAccEmailSubHeading);
         dbHelper = new DBHelper(this);
 
+        // Keep track of logged in user and check registered.
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
 
@@ -57,7 +58,27 @@ public class ActivityAccount extends AppCompatActivity {
         }
 
 
+        // Log out Button
+        btnLogout = findViewById(R.id.btnLogOut);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Clear user data or perform any necessary cleanup
 
+                // Remove the loggedInUserId from SharedPreferences
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.remove("loggedInUserId");
+                editor.apply();
+
+                // Redirect to the login screen (you can use an Intent)
+                Intent intent = new Intent(ActivityAccount.this, MainActivity.class);
+                startActivity(intent);
+                finish(); // Close the current activity
+            }
+        });
+
+        // Button edit account
         Button btnEdit = findViewById(R.id.btnEditProfile);
 
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -70,16 +91,10 @@ public class ActivityAccount extends AppCompatActivity {
                     String userRole = dbHelper.getUserRole(loggedInUserId); // Implement this method
                     if ("Tutor".equals(userRole)){
                         Intent intent = new Intent(ActivityAccount.this,ActivityTutorProfile.class);
-//                    intent.putExtra("phone", phoneNumber);
-//                    intent.putExtra("password", password);
-//                    intent.putExtra("selectedRole", selectedRole);
                         startActivity(intent);
                     }
                     else if ("Student".equals(userRole)){
                         Intent intent = new Intent(ActivityAccount.this,ActivityMyProfile.class);
-//                    intent.putExtra("phone", phoneNumber);
-//                    intent.putExtra("password", password);
-//                    intent.putExtra("selectedRole", selectedRole);
                         startActivity(intent);
 
                     }
@@ -96,13 +111,13 @@ public class ActivityAccount extends AppCompatActivity {
         ImageView notification = findViewById(R.id.btnNotifications);
         ImageView settings = findViewById(R.id.btnSettings);
         ImageView terms = findViewById(R.id.btnTermsAndC);
-        ImageView logout = findViewById(R.id.btnLogOut);
+
 
         notification.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityNotifications.class)));
         settings.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivitySettings.class)));
         terms.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityTermAndConditions.class)));
-       // logout.setOnClickListener(view -> ));
 
+        // Button report
         btnReport = findViewById(R.id.btnReport);
 
         btnReport.setOnClickListener(view ->  {
@@ -146,23 +161,11 @@ public class ActivityAccount extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),ActivityFindTutor.class));
                         overridePendingTransition(0,0);
                         return true;
-
-
-
                 }
                 return false;
             }
         });
 
-    }
-
-    private void startNewActivity(Class<?> targetActivity) {
-        Intent intent = new Intent(ActivityAccount.this, targetActivity);
-        intent.putExtra("phone", phoneNumber);
-        intent.putExtra("password", password);
-        intent.putExtra("selectedRole", selectedRole);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
     }
 
     /*Report a Problem*/
@@ -213,5 +216,9 @@ public class ActivityAccount extends AppCompatActivity {
                 }).create();
         dialog.show();
     }
+
+
+
+
 
 }

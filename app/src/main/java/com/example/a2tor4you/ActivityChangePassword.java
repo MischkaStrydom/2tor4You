@@ -2,7 +2,10 @@ package com.example.a2tor4you;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -20,7 +23,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.regex.Pattern;
 
 public class ActivityChangePassword extends AppCompatActivity {
-
+    DBHelper dbHelper ;
     // button
     Button btnCreateNewPassword;
 
@@ -47,6 +50,12 @@ public class ActivityChangePassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
+
+        dbHelper = new DBHelper(this);
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
+
+
         ImageView btnBack = findViewById(R.id.btnBackChangePassword);
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityChangePassword.this, ActivitySettings.class)));
 
@@ -66,12 +75,62 @@ public class ActivityChangePassword extends AppCompatActivity {
                 // store the returned value of the dedicated function which checks
                 // whether the entered data is valid or if any fields are left blank.
                 isAllFieldsChecked = CheckAllFields();
+                String curPass = txtCurrentPassword.getText().toString();
+                String newPass = txtNewPassword.getText().toString();
+                String confirmPass = txtConfirmPassword.getText().toString();
 
                 // the boolean variable turns to be true then
                 // only the user must be proceed to the activity2
                 if (isAllFieldsChecked) {
-                    Intent i = new Intent(ActivityChangePassword.this, MainActivity.class);
-                    startActivity(i);
+
+
+
+                    if (loggedInUserId != -1) {
+                        // Fetch user's name and surname from the database based on userID
+                        String userPass = dbHelper.getPassword("User", loggedInUserId); // Implement this method
+
+                        // Separate name and surname as separate strings
+                        if (userPass.equals(curPass)) {
+
+                            if (newPass.equals(confirmPass)){
+
+
+
+                                ContentValues values = new ContentValues();
+                                values.put("userID", loggedInUserId);
+                                values.put("currentPassword", curPass);
+                                values.put("newPassword", newPass);
+                                values.put("confirmPassword", confirmPass);
+
+                                boolean isChanged = dbHelper.changeUserPassword(loggedInUserId, newPass);
+
+                                boolean isInserted = dbHelper.insertData("PasswordChange", values);
+
+                                if (isChanged && isInserted) {
+                                    Toast.makeText(ActivityChangePassword.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
+
+                                    txtCurrentPassword.setText("");
+                                    txtNewPassword.setText("");
+                                    txtConfirmPassword.setText("");
+
+                                } else {
+                                    Toast.makeText(ActivityChangePassword.this, "Failed to change password", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else {
+                                Toast.makeText(ActivityChangePassword.this, "New password and confirm password does not match", Toast.LENGTH_SHORT).show();
+                            }
+
+
+
+                        } else {
+                            // Handle the case where the userName format is unexpected
+                            Toast.makeText(ActivityChangePassword.this, "Incorrect current password", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+
                 }
             }
         });

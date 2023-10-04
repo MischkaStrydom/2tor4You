@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -19,25 +21,34 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.a2tor4you.utils.AndroidUtil;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class ActivityMyProfile extends AppCompatActivity {
 
+    private String originalName, originalSurname, originalEmail, originalPhoneNumber;
+    private String originalDOB, originalGender, originalProvince, originalCity, getOriginalSchool;
+
+    private String userName,profileName,profileSurname,profileEmail, profileNumber;
+    private String dob,Gender,province,city, School;
+
     public static final int CAMERA_ACTION_CODE = 1;
     ImageView imageProfile;
-    Button takePhoto;
+
     ImageButton btnBack;
     DBHelper dbHelper ;
 
-     Button btnPickDOB;
-     Calendar calendar = Calendar.getInstance();
 
-    EditText txt_ProfileName, txt_ProfileSurname, txtPhoneNum, txtProEmail;
-    Button btnStudTakePhoto,  btnSaveProfile;
-
-
+    Calendar calendar = Calendar.getInstance();
+    Spinner gender, spinnerProvince, spinnerCity;
+    EditText txt_ProfileName, txt_ProfileSurname, txtPhoneNum, txtProEmail, school;
+    Button btnStudTakePhoto,  btnSaveProfile, takePhoto, btnPickDOB;
+    DBHelper myDB;
+    static String studentName, studentSurname, completePhoneNumber, studentEmail;
+    static String studentDOB, studentGender, studentProvince , studentCity, studentSchool;
     // one boolean variable to check whether all the text fields
     // are filled by the user, properly or not.
     boolean isAllFieldsChecked = false;
@@ -49,13 +60,32 @@ public class ActivityMyProfile extends AppCompatActivity {
 
         dbHelper = new DBHelper(this);
 
+        myDB = new DBHelper(this); // Initialize myDB
+
+
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
 
-        EditText name = findViewById(R.id.txt_ProfileName);
-        EditText surname = findViewById(R.id.txt_ProfileSurname);
-        btnPickDOB = findViewById(R.id.btnPickDOB);
 
+        //Get all profile edits/spinners/buttons...
+
+        btnBack = findViewById(R.id.btnBackMyProfile);
+        txt_ProfileName = findViewById(R.id.txt_ProfileName);
+        txt_ProfileSurname = findViewById(R.id.txt_ProfileSurname);
+        btnPickDOB = findViewById(R.id.btnPickDOB);
+        gender = findViewById(R.id.spinGender);
+        txtPhoneNum = findViewById(R.id.txtPhoneNum);
+        txtProEmail = findViewById(R.id.txtProEmail);
+        spinnerProvince = findViewById(R.id.spinProvince);
+        spinnerCity = findViewById(R.id.spinCity);
+        school = findViewById(R.id.txtSchool);
+        btnSaveProfile = findViewById(R.id.btnSaveProfile);
+        ArrayAdapter<CharSequence> cityAdapter = (ArrayAdapter<CharSequence>) spinnerCity.getAdapter();
+
+        //Functionality of btn back
+        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityMyProfile.this, ActivityAccount.class)));
+
+        //Functionality of btn DOB
         btnPickDOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,35 +93,8 @@ public class ActivityMyProfile extends AppCompatActivity {
             }
         });
 
-        Spinner gender = findViewById(R.id.spinGender);
-        EditText phoneNum = findViewById(R.id.txtPhoneNum);  // edit the phoneNum from db
-        EditText email = findViewById(R.id.txtProEmail);
-
-
-
-        btnBack = findViewById(R.id.btnBackMyProfile);
-        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityMyProfile.this,ActivityAccount.class)));
-
-        btnSaveProfile = findViewById(R.id.btnSaveProfile);
-
-        txt_ProfileName = findViewById(R.id.txt_ProfileName);
-        txt_ProfileSurname = findViewById(R.id.txt_ProfileSurname);
-        txtPhoneNum = findViewById(R.id.txtPhoneNum);
-        txtProEmail = findViewById(R.id.txtProEmail);
-
-        // Province and city spinners
-        Spinner spinnerProvince = findViewById(R.id.spinProvince);
-        Spinner spinnerCity = findViewById(R.id.spinCity);
-
         // Use the CitySpinnerHelper to set up the city spinner
         SouthAfricaData.setupCitySpinner(this, spinnerProvince, spinnerCity);
-
-        EditText school = findViewById(R.id.txtSchool);
-
-
-
-
-
 
         /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
         btnStudTakePhoto = findViewById(R.id.btnStudTakePhoto);
@@ -109,38 +112,20 @@ public class ActivityMyProfile extends AppCompatActivity {
             }
         });
 
-        // handle the SAVE button
-        btnSaveProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // store the returned value of the dedicated function which checks
-                // whether the entered data is valid or if any fields are left blank.
-                isAllFieldsChecked = CheckAllFields();
-
-                // the boolean variable turns to be true then
-                // only the user must be proceed to the activity2
-                if (isAllFieldsChecked) {
-                    Toast.makeText(ActivityMyProfile.this, "Profile Successfully Updated", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
 
         //Adding User Table info to editBoxes
         if (loggedInUserId != -1) {
             // Fetch user's name and surname from the database based on userID
-            String userName = dbHelper.getUserName(loggedInUserId); // Implement this method
+            userName = dbHelper.getUserName(loggedInUserId); // Implement this method
             String[] nameSurnameArray = userName.split(" ");
 
             // Separate name and surname as separate strings
             if (nameSurnameArray.length == 2) {
-                String profileName = nameSurnameArray[0];
-                String profileSurname = nameSurnameArray[1];
+                profileName = nameSurnameArray[0];
+                profileSurname = nameSurnameArray[1];
 
-                name.setText(profileName);
-                surname.setText(profileSurname);
+                txt_ProfileName.setText(profileName);
+                txt_ProfileSurname.setText(profileSurname);
 
 
             } else {
@@ -148,24 +133,192 @@ public class ActivityMyProfile extends AppCompatActivity {
                 Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
             }
 
-            String profileEmail = dbHelper.getEmail(loggedInUserId);
-            email.setText(profileEmail);
+            profileEmail = dbHelper.getEmail(loggedInUserId);
+            txtProEmail.setText(profileEmail);
 
-            String profileNumber = dbHelper.getPhoneNumber(loggedInUserId);
+            profileNumber = dbHelper.getPhoneNumber(loggedInUserId);
             if (profileNumber != null && profileNumber.startsWith("+27")) {
                 profileNumber = profileNumber.substring(3); // Remove the first three characters
             }
-            phoneNum.setText(profileNumber);
+            txtPhoneNum.setText(profileNumber);
 
         } else {
             Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
             //welcome.setText("Guest"); // Display a default value or handle it as needed
         }
 
+        //Adding Student Table info to editBoxes
+        if (loggedInUserId != -1) {
+            // Fetch user's name and surname from the database based on userID
+            dob = dbHelper.getDOB("Student", loggedInUserId);
+            Gender = dbHelper.getGender("Student", loggedInUserId);
+            province = dbHelper.getProvince("Student", loggedInUserId);
+            city = dbHelper.getCity("Student", loggedInUserId);
+            School = dbHelper.getSchool("Student", loggedInUserId);
 
+            boolean isUserExist = dbHelper.isUserIDExists("Student", loggedInUserId);
+
+            // Separate name and surname as separate strings
+            if (isUserExist) {
+                btnPickDOB.setText(dob);
+
+                int positionGen = getIndex(gender, Gender);
+                if (positionGen != -1) {
+                    gender.setSelection(positionGen);
+                }
+
+                int positionProv = getIndex(spinnerProvince, province);
+                if (positionProv != -1) {
+                    spinnerProvince.setSelection(positionProv);
+                }
+
+
+                int positionCity = getIndex(spinnerCity, city);
+                if (positionCity != -1) {
+                    // Set the selected city in the spinner
+                    spinnerCity.setSelection(positionCity);
+                }
+
+
+                school.setText(School);
+
+            } else {
+                // Handle the case where the userName format is unexpected
+                // Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
+            }
+
+
+        } else {
+            //  Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
+            //welcome.setText("Guest"); // Display a default value or handle it as needed
+        }
+
+
+        // handle the SAVE button
+        btnSaveProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // store the returned value of the dedicated function which checks
+                // whether the entered data is valid or if any fields are left blank.
+
+
+//
+                // Update User Table if they change they info
+                studentName = txt_ProfileName.getText().toString();
+                studentSurname = txt_ProfileSurname.getText().toString();
+                completePhoneNumber = "+27" + txtPhoneNum.getText().toString();
+                studentEmail = txtProEmail.getText().toString();
+
+
+                ContentValues contentValues = new ContentValues();
+
+                contentValues.put("firstName", studentName);
+
+                contentValues.put("lastName", studentSurname);
+
+                contentValues.put("phoneNumber", completePhoneNumber);
+
+                contentValues.put("email", studentEmail);
+
+//
+//                if (!profileName.equals(studentName)) {
+//                    contentValues.put("firstName", studentName);
+//                }
+//                if (!profileSurname.equals(studentSurname)) {
+//                    contentValues.put("lastName", studentSurname);
+//                }
+//                if (!profileNumber.equals(completePhoneNumber)) {
+//                    contentValues.put("phoneNumber", completePhoneNumber);
+//                }
+//                if (!profileEmail.equals(studentEmail)) {
+//                    contentValues.put("email", studentEmail);
+//                }
+
+                    boolean isUserUpdated = dbHelper.updateUserData("User", loggedInUserId, contentValues);
+
+                    if (isUserUpdated) {
+                        Toast.makeText(ActivityMyProfile.this, "Profile Successfully Updated", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                // Insert data in Student table where the UserID matches
+                studentDOB = btnPickDOB.getText().toString();
+                studentGender = gender.getSelectedItem().toString();
+                studentProvince = spinnerProvince.getSelectedItem().toString();
+                studentCity = spinnerCity.getSelectedItem().toString();
+                studentSchool = school.getText().toString();
+
+                ContentValues studentValues = new ContentValues();
+                studentValues.put("dob", studentDOB);
+                studentValues.put("gender", studentGender);
+                studentValues.put("province", studentProvince);
+                studentValues.put("city", studentCity);
+                studentValues.put("school", studentSchool);
+
+
+                boolean result = myDB.updateUserData("Student", loggedInUserId, studentValues);
+
+                if (isAllFieldsChecked) {
+
+                    if (result) {
+
+                        // the boolean variable turns to be true then
+                        // only the user must be proceed to the activity2
+                        Toast.makeText(ActivityMyProfile.this, "Profile Successfully Updated", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred while saving student data!");
+                    }
+                }
+
+
+
+
+//                boolean isUserExist = dbHelper.isUserIDExists("Student", loggedInUserId);
+//
+//                if (isUserExist) {
+//                    ContentValues contentValuesProfile = new ContentValues();
+//
+//                    if (!dob.equals(studentDOB)) {
+//                        contentValuesProfile.put("dob", studentDOB);
+//                    }
+//                    if (!Gender.equals(studentGender)) {
+//                        contentValuesProfile.put("gender", studentGender);
+//                    }
+//                    if (!province.equals(studentProvince)) {
+//                        contentValuesProfile.put("province", studentProvince);
+//                    }
+//                    if (!city.equals(studentCity)) {
+//                        contentValuesProfile.put("city", studentCity);
+//                    }
+//                    if (!School.equals(studentSchool)) {
+//                        contentValuesProfile.put("school", studentSchool);
+//                    }
+//
+//                    if (!contentValuesProfile.equals(null)) {
+//                        boolean isUserUpdated = dbHelper.updateUserData("Student", loggedInUserId, contentValuesProfile);
+//
+//                        if (isUserUpdated) {
+//                            Toast.makeText(ActivityMyProfile.this, "Profile Successfully Updated", Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }
+
+
+            }
+
+
+        });
 
 
     }
+
+
+
 
     @Override
     protected void onActivityResult ( int requestCode, int resultCode, @Nullable Intent data){
@@ -228,4 +381,19 @@ public class ActivityMyProfile extends AppCompatActivity {
 
         datePickerDialog.show();
     }
+
+
+
+    private int getIndex(Spinner spinner, String value) {
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(value)) {
+                return i;
+            }
+        }
+        return -1; // Not found
+    }
+
+
+
+
 }

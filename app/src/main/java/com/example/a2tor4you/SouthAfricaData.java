@@ -14,17 +14,18 @@ import java.util.Map;
 
 public class SouthAfricaData {
     public static void setupCitySpinner(final Context context, final Spinner spinnerProvince, final Spinner spinnerCity) {
-        final ArrayAdapter<CharSequence> cityAdapter = new ArrayAdapter<>(
-                context, android.R.layout.simple_spinner_item);
-        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCity.setAdapter(cityAdapter);
-
         spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedProvince = parentView.getItemAtPosition(position).toString();
-                cityAdapter.clear();
-                cityAdapter.add("City"); // Add "City" as the default option
+
+                // Create a new adapter for the city spinner
+                ArrayAdapter<CharSequence> cityAdapter = new ArrayAdapter<>(
+                        context, android.R.layout.simple_spinner_item);
+                cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                // Add "City" as the default option
+                cityAdapter.add("City");
 
                 // Populate the city spinner based on the selected province
                 if ("Eastern Cape".equals(selectedProvince)) {
@@ -46,6 +47,9 @@ public class SouthAfricaData {
                 } else if ("Western Cape".equals(selectedProvince)) {
                     cityAdapter.addAll(context.getResources().getStringArray(R.array.western_cape_cities));
                 }
+
+
+                spinnerCity.setAdapter(cityAdapter);
             }
 
             @Override
