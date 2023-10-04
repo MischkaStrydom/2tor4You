@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_mountain"
+    android:background="@drawable/background_blue"
     android:orientation="vertical"
     tools:context=".ActivityCalendar">
 
@@ -89,8 +89,9 @@
                 android:id="@+id/calendarView"
                 android:layout_width="wrap_content"
                 android:layout_height="340dp"
-                android:backgroundTint="@color/black"
-                >
+                android:theme="@style/CalenderViewCustom"
+                android:dateTextAppearance="@style/CustomDateTextAppearance"
+                android:weekDayTextAppearance="@style/CalenderViewWeekCustomText">
 
             </CalendarView>
 
