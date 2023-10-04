@@ -23,14 +23,8 @@ import java.util.Locale;
 
 public class ActivityEditEvent extends AppCompatActivity {
 
-    private EditText txtEventTime;
-
-    private int hour, minute;
-
-    TimePicker picker;
-
     RadioButton rdo_Online, rdo_InPerson;
-    Button btn_SaveEvent, btnEventDate;
+    Button btn_SaveEvent, btnEventDate, btnEventTime;
     EditText txt_EventTitle;
 
     /* boolean isAllFieldsChecked = false;*/
@@ -46,47 +40,27 @@ public class ActivityEditEvent extends AppCompatActivity {
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityEditEvent.this, ActivityCalendar.class)));
 
         txt_EventTitle = findViewById(R.id.txt_EventTitle);
-
         btn_SaveEvent = findViewById(R.id.btn_SaveEvent);
+
         btnEventDate = findViewById(R.id.btnEventDate);
+        btnEventTime = findViewById(R.id.btnEventTime);
 
         btnEventDate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                showDatePicker();
+            public void onClick(View view) {
+
+                openDatePicker(); // Open date picker dialog
             }
         });
 
-        // Time Picker
-        txtEventTime = findViewById(R.id.txtEventTime);
-
-        // Set a click listener on the EditText to show the TimePickerDialog
-        txtEventTime.setOnClickListener(new View.OnClickListener() {
+        btnEventTime.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
-                // instance of our calendar.
-                final Calendar c = Calendar.getInstance();
-
-                int hour = c.get(Calendar.HOUR_OF_DAY);
-                int minute = c.get(Calendar.MINUTE);
-
-                // on below line we are initializing our Time Picker Dialog
-                TimePickerDialog timePickerDialog = new TimePickerDialog(ActivityEditEvent.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay,
-                                                  int minute) {
-                                // on below line we are setting selected time
-                                // in our text view.
-                                txtEventTime.setText(hourOfDay + ":" + minute);
-                            }
-                        }, hour, minute, false);
-
-                // display our time picker dialog.
-                timePickerDialog.show();
+                openTimePicker(); // Open time picker dialog
             }
         });
+
 
         // RadioButtons select and deselect
         rdo_Online = findViewById(R.id.rdo_Online);
@@ -119,6 +93,21 @@ public class ActivityEditEvent extends AppCompatActivity {
         });
     }
 
+    private void openTimePicker(){
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+
+
+                //Showing the picked value in the textView
+                btnEventTime.setText(String.valueOf(hour)+ ":"+String.valueOf(minute));
+
+            }
+        }, 15, 30, false);
+
+        timePickerDialog.show();
+    }
+
 
         /*// handle the PROCEED button
         btn_SaveEvent.setOnClickListener(new View.OnClickListener() {
@@ -139,12 +128,7 @@ public class ActivityEditEvent extends AppCompatActivity {
         });*/
 
 
-
-
-    /*// function which checks all the text fields
-    // are filled or not by the user.
-    // when user clicks on the PROCEED button
-    // this function is triggered.
+    /*// function which checks all the text fields are filled or not by the user.
     private boolean CheckAllFields() {
         if (txt_EventTitle.length() == 0) {
             txt_EventTitle.setError("This field is required");
@@ -160,25 +144,16 @@ public class ActivityEditEvent extends AppCompatActivity {
         return true;
     }*/
 
+    private void openDatePicker(){
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme , new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
-    private void showDatePicker() {
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+                //Showing the picked value in the textView
+                btnEventDate.setText(String.valueOf(year)+ "."+String.valueOf(month)+ "."+String.valueOf(day));
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
-                        calendar.set(selectedYear, selectedMonth, selectedDay);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                        String formattedDate = dateFormat.format(calendar.getTime());
-                        btnEventDate.setText(formattedDate);
-                    }
-                },
-                year, month, day
-        );
+            }
+        }, 2023, 01, 20);
 
         datePickerDialog.show();
     }

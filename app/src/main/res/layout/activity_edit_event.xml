@@ -147,6 +147,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="17dp"
+                        android:inputType="date"
                         android:textAlignment="textStart"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -198,15 +199,35 @@
                 android:padding="2dp">
 
                 <RelativeLayout
-                    android:layout_width="213dp"
+                    android:layout_width="210dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="210dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/background_rounded_white"
                     android:padding="2dp">
 
+                <Button
+                        android:id="@+id/btnEventTime"
+                        android:layout_width="150dp"
+                        android:layout_height="41dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/timeIcon"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/btnEventTime"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textSize="17dp"
+                        android:inputType="time"
+                        android:textAlignment="textStart"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <EditText
+
+                    <!--<TextView
                         android:id="@+id/txtEventTime"
                         android:layout_width="157dp"
                         android:layout_height="46dp"
@@ -216,16 +237,17 @@
                         android:background="@android:color/transparent"
                         android:hint="@string/btnEventTime"
                         android:textAlignment="textStart"
+                        android:paddingTop="10dp"
                         android:paddingLeft="17dp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/black"
                         android:textSize="17dp"
-                        android:inputType="none"
+                        android:inputType="time"
                         android:focusable="false"
                         android:clickable="true"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" />-->
 
 
                     <!--<EditText
@@ -377,7 +399,7 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="100dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="100dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/account_round_back"

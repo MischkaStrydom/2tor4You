@@ -59,6 +59,7 @@
                 android:gravity="left"
                 android:paddingLeft="20dp"
                 android:text="@string/txtLessonLocation"
+                android:textStyle="bold"
                 android:textColor="#CCFFFF"
                 android:textSize="16sp" />
 
@@ -88,6 +89,7 @@
                 android:gravity="left"
                 android:paddingLeft="20dp"
                 android:text="@string/txtHourlyRate"
+                android:textStyle="bold"
                 android:textColor="#CCFFFF"
                 android:textSize="16sp" />
 
@@ -112,6 +114,7 @@
                 android:gravity="left"
                 android:paddingLeft="20dp"
                 android:text="@string/txtStarRating"
+                android:textStyle="bold"
                 android:textColor="#CCFFFF"
                 android:textSize="16sp" />
 
@@ -134,6 +137,7 @@
                 android:gravity="start"
                 android:paddingStart="20dp"
                 android:text="@string/txtAddFilters"
+                android:textStyle="bold"
                 android:textColor="#CCFFFF"
                 android:textSize="16sp" />
 
