@@ -1,5 +1,7 @@
 package com.example.a2tor4you;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,7 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import io.reactivex.rxjava3.annotations.Nullable;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -64,7 +67,7 @@ public class ActivityAccount extends AppCompatActivity {
         if (loggedInUserId != -1) {
             // Fetch user's name and surname from the database based on userID
             String userName = dbHelper.getUserName(loggedInUserId); // Implement this method
-            String email = dbHelper.getEmail(loggedInUserId);
+            String email = dbHelper.getField("User", loggedInUserId, "email");
             accountName.setText(userName);
             emailName.setText(email);
         } else {
@@ -104,7 +107,7 @@ public class ActivityAccount extends AppCompatActivity {
 
                 if (loggedInUserId != -1) {
                     // Fetch user's name and surname from the database based on userID
-                    String userRole = dbHelper.getUserRole(loggedInUserId); // Implement this method
+                    String userRole = dbHelper.getField("User", loggedInUserId, "userRole"); // Implement this method
                     if ("Tutor".equals(userRole)){
                         Intent intent = new Intent(ActivityAccount.this,ActivityTutorProfile.class);
                         startActivity(intent);

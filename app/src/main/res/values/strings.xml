@@ -406,8 +406,8 @@
     <string name="txtTeachLoacation">Location</string>
     <string name="rdoTeachOnline">Online</string>
     <string name="rdoTeachInPerson">In-Person</string>
-    <string name="txtAddFeatures">Please select the following that apply to you:</string>
-    <string name="rdoTutFreeVid">Allow a free introduction video call: Free video chat to get 15 min intro session with tutor to discuss students needs.</string>
+    <string name="txtAddFeatures">Please select the following if it applies to you:</string>
+
     <string name="rdoTutQualifiedTeacher">You are a qualified teacher: You have obtained QTS (Qualified Teacher Status)</string>
     <string name="txtExtraNotes">Extra Notes</string>
     <string name="btnSaveTutProfile">Save</string>

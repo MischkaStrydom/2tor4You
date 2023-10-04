@@ -38,7 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String tutorSQL = "CREATE TABLE Tutor (tutorID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, dob DATE, gender VARCHAR(25), province VARCHAR(255)," +
                 "city VARCHAR(255), school VARCHAR(255), uni VARCHAR(255), YearsOfExperience INTEGER, TotalTutorHours FLOAT, TotalStudentTaught INTEGER," +
                 "aboutMe VARCHAR(255), pricePerHour FLOAT, locationOnline BOOLEAN DEFAULT 0, locationOffline BOOLEAN DEFAULT 0," +
-                "extraFreeIntro BOOLEAN DEFAULT 0, extraQualifiedTeacher BOOLEAN DEFAULT 0, extraNotes VARCHAR(255), image BLOB, FOREIGN KEY (userID) REFERENCES User(userID))";
+                "extraQualifiedTeacher BOOLEAN DEFAULT 0, extraNotes VARCHAR(255), image BLOB, FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Admin table
         String adminSQL = "CREATE TABLE Admin (adminID INTEGER PRIMARY KEY AUTOINCREMENT,userID INTEGER, adminRole VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
@@ -273,68 +273,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    //Get email
-    public String getEmail(int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT email FROM User WHERE userID = ?";
-        String[] selectionArgs = {String.valueOf(userId)};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        String userEmail = null; // Initialize to null in case of no matching record.
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("email");
-
-            String email = cursor.getString(nameIndex);
-
-            // Check for null values and construct the userName accordingly
-            if (email != null) {
-                userEmail = email; // Concatenate name and surname.
-            }
-
-            // Close the cursor and database.
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-
-        }
-        return userEmail;
-    }
-
-
-    //Get user role
-    public String getUserRole(int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT userRole FROM User WHERE userID = ?";
-        String[] selectionArgs = {String.valueOf(userId)};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        String userRole = null; // Initialize to null in case of no matching record.
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("userRole");
-
-            String role = cursor.getString(nameIndex);
-
-            // Check for null values and construct the userName accordingly
-            if (role != null) {
-                userRole = role; // Concatenate name and surname.
-            }
-
-            // Close the cursor and database.
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-
-        }
-        return userRole;
-    }
-
-
     public int getUserId(String phoneNumber, String password, String userRole) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT userID FROM User WHERE phoneNumber = ?  AND password = ?  AND userRole = ? ", new String[]{phoneNumber, password, userRole});
@@ -348,216 +286,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return userID;
     }
-
-    public String getPhoneNumber(int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT phoneNumber FROM User WHERE userID = ?";
-        String[] selectionArgs = {String.valueOf(userId)};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        String userPhone = null; // Initialize to null in case of no matching record.
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("phoneNumber");
-
-            String phone = cursor.getString(nameIndex);
-
-            // Check for null values and construct the userName accordingly
-            if (phone != null) {
-                userPhone = phone; // Concatenate name and surname.
-            }
-
-            // Close the cursor and database.
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-
-        }
-        return userPhone;
-    }
-
-    //Get Date of Birth
-    public String getDOB(String TABLE_NAME, int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT dob FROM " + TABLE_NAME + " WHERE userID = ?";
-        String[] selectionArgs = {String.valueOf(userId)};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        String userDOB = null; // Initialize to null in case of no matching record.
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("dob");
-
-            String dob = cursor.getString(nameIndex);
-
-            // Check for null values and construct the userName accordingly
-            if (dob != null) {
-                userDOB = dob; // Concatenate name and surname.
-            }
-
-            // Close the cursor and database.
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-
-        }
-        return userDOB;
-    }
-
-
-    //Get Gender
-    public String getGender(String TABLE_NAME, int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT gender FROM " + TABLE_NAME + " WHERE userID = ?";
-        String[] selectionArgs = {String.valueOf(userId)};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        String userGender = null; // Initialize to null in case of no matching record.
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("gender");
-
-            String gender = cursor.getString(nameIndex);
-
-            // Check for null values and construct the userName accordingly
-            if (gender != null) {
-                userGender = gender; // Concatenate name and surname.
-            }
-
-            // Close the cursor and database.
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-
-        }
-        return userGender;
-    }
-
-    //Get Province
-    public String getProvince(String TABLE_NAME, int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT province FROM " + TABLE_NAME + " WHERE userID = ?";
-        String[] selectionArgs = {String.valueOf(userId)};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        String userProvince = null; // Initialize to null in case of no matching record.
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("province");
-
-            String province = cursor.getString(nameIndex);
-
-            // Check for null values and construct the userName accordingly
-            if (province != null) {
-                userProvince = province; // Concatenate name and surname.
-            }
-
-            // Close the cursor and database.
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-
-        }
-        return userProvince;
-    }
-
-    //Get City
-    public String getCity(String TABLE_NAME, int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT city FROM " + TABLE_NAME + " WHERE userID = ?";
-        String[] selectionArgs = {String.valueOf(userId)};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        String userCity = null; // Initialize to null in case of no matching record.
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("city");
-
-            String city = cursor.getString(nameIndex);
-
-            // Check for null values and construct the userName accordingly
-            if (city != null) {
-                userCity = city; // Concatenate name and surname.
-            }
-
-            // Close the cursor and database.
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-
-        }
-        return userCity;
-    }
-
-    //Get School
-    public String getSchool(String TABLE_NAME, int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT school FROM " + TABLE_NAME + " WHERE userID = ?";
-        String[] selectionArgs = {String.valueOf(userId)};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        String userSchool = null; // Initialize to null in case of no matching record.
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("school");
-
-            String school = cursor.getString(nameIndex);
-
-            // Check for null values and construct the userName accordingly
-            if (school != null) {
-                userSchool = school; // Concatenate name and surname.
-            }
-
-            // Close the cursor and database.
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-
-        }
-        return userSchool;
-    }
-
-    public String getPassword(String TABLE_NAME, int userId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT password FROM " + TABLE_NAME + " WHERE userID = ?";
-        String[] selectionArgs = {String.valueOf(userId)};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        String userPass = null; // Initialize to null in case of no matching record.
-
-        if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex("password");
-
-            String password = cursor.getString(nameIndex);
-
-            // Check for null values and construct the userName accordingly
-            if (password != null) {
-                userPass = password; // Concatenate name and surname.
-            }
-
-            // Close the cursor and database.
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-
-        }
-        return userPass;
-    }
-
 
 
     // Update the User table
@@ -604,10 +332,12 @@ public class DBHelper extends SQLiteOpenHelper {
             affectedRows += db.delete("Student", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             affectedRows += db.delete("Tutor", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             //Tutor Subjects
+            //affectedRows += db.delete("TutorSubject", "userID=?", new String[]{String.valueOf(loggedInUserID)}); --------- tutorID not userID????
             affectedRows += db.delete("Event", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             affectedRows += db.delete("Student", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             //Reviews
-//            affectedRows += db.delete("Report", "userID=?", new String[]{String.valueOf(loggedInUserID)});
+            affectedRows += db.delete("Report", "reportedID=?", new String[]{String.valueOf(loggedInUserID)});
+            affectedRows += db.delete("Report", "reporteeID=?", new String[]{String.valueOf(loggedInUserID)});
             affectedRows += db.delete("Student", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             affectedRows += db.delete("NotificationPreference", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             affectedRows += db.delete("PasswordChange", "userID=?", new String[]{String.valueOf(loggedInUserID)});
@@ -638,13 +368,112 @@ public class DBHelper extends SQLiteOpenHelper {
         return rowsAffected > 0;
     }
 
-//    public boolean updateUserFields(String table_name, int userID, ContentValues updatedFields) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//
-//        int rowsAffected = db.update(table_name, updatedFields, "userID=?", new String[]{String.valueOf(userID)});
-//        db.close();
-//
-//        return rowsAffected > 0;
-//    }
+
+    public Boolean getInfo(String TABLE_NAME, int userId, String fieldName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + fieldName + " FROM " + TABLE_NAME + " WHERE userID = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        Boolean fieldValue = null; // Initialize to null in case of no matching record.
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(fieldName);
+
+            // Get the integer value from the cursor.
+            int intValue = cursor.getInt(columnIndex);
+
+            // Convert the integer to a Boolean (true for 1, false for 0).
+            fieldValue = (intValue == 1);
+
+            // Close the cursor.
+            cursor.close();
+        }
+
+        // Close the database.
+        db.close();
+
+        return fieldValue;
+    }
+
+
+    public String getField(String TABLE_NAME, int userId, String fieldName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + fieldName + " FROM " + TABLE_NAME + " WHERE userID = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        String fieldValue = null; // Initialize to null in case of no matching record.
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(fieldName);
+
+            String value = cursor.getString(columnIndex);
+
+            if (value != null) {
+                fieldValue = value;
+            }
+
+            // Close the cursor.
+            cursor.close();
+        }
+
+        // Close the database.
+        db.close();
+
+        return fieldValue;
+    }
+
+
+    public float getFieldAsFloat(String TABLE_NAME, int userId, String fieldName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + fieldName + " FROM " + TABLE_NAME + " WHERE userID = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        float fieldValue = -1.0f; // Initialize to a default value (e.g., -1.0f) for no matching record.
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(fieldName);
+
+            fieldValue = cursor.getFloat(columnIndex);
+
+            // Close the cursor.
+            cursor.close();
+        }
+
+        // Close the database.
+        db.close();
+
+        return fieldValue;
+    }
+
+    public int getFieldAsInt(String TABLE_NAME, int userId, String fieldName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + fieldName + " FROM " + TABLE_NAME + " WHERE userID = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        int fieldValue = -1; // Initialize to a default value (e.g., -1.0f) for no matching record.
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(fieldName);
+
+            fieldValue = cursor.getInt(columnIndex);
+
+            // Close the cursor.
+            cursor.close();
+        }
+
+        // Close the database.
+        db.close();
+
+        return fieldValue;
+    }
+
 
 }

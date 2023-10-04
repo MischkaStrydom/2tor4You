@@ -94,7 +94,7 @@ public class ActivityDeleteAccount extends AppCompatActivity {
 
                     if (loggedInUserId != -1) {
                         // Fetch user's name and surname from the database based on userID
-                        String userPass = dbHelper.getPassword("User", loggedInUserId); // Implement this method
+                        String userPass = dbHelper.getField("User", loggedInUserId,"password"); // Implement this method
 
                         // Separate name and surname as separate strings
                         if (userPass.equals(passwordToCheck)) {

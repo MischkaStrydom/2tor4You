@@ -29,8 +29,6 @@ import java.util.Locale;
 
 public class ActivityMyProfile extends AppCompatActivity {
 
-    private String originalName, originalSurname, originalEmail, originalPhoneNumber;
-    private String originalDOB, originalGender, originalProvince, originalCity, getOriginalSchool;
 
     private String userName,profileName,profileSurname,profileEmail, profileNumber;
     private String dob,Gender,province,city, School;
@@ -133,10 +131,10 @@ public class ActivityMyProfile extends AppCompatActivity {
                 Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
             }
 
-            profileEmail = dbHelper.getEmail(loggedInUserId);
+            profileEmail = dbHelper.getField("User", loggedInUserId, "email");
             txtProEmail.setText(profileEmail);
 
-            profileNumber = dbHelper.getPhoneNumber(loggedInUserId);
+            profileNumber = dbHelper.getField("User", loggedInUserId, "phoneNumber");
             if (profileNumber != null && profileNumber.startsWith("+27")) {
                 profileNumber = profileNumber.substring(3); // Remove the first three characters
             }
@@ -150,11 +148,12 @@ public class ActivityMyProfile extends AppCompatActivity {
         //Adding Student Table info to editBoxes
         if (loggedInUserId != -1) {
             // Fetch user's name and surname from the database based on userID
-            dob = dbHelper.getDOB("Student", loggedInUserId);
-            Gender = dbHelper.getGender("Student", loggedInUserId);
-            province = dbHelper.getProvince("Student", loggedInUserId);
-            city = dbHelper.getCity("Student", loggedInUserId);
-            School = dbHelper.getSchool("Student", loggedInUserId);
+            dob = dbHelper.getField("Student", loggedInUserId,"dob");
+            Gender = dbHelper.getField("Student", loggedInUserId,"gender");
+            province = dbHelper.getField("Student", loggedInUserId,"province");
+            city = dbHelper.getField("Student", loggedInUserId,"city");
+            School = dbHelper.getField("Student", loggedInUserId,"school");
+
 
             boolean isUserExist = dbHelper.isUserIDExists("Student", loggedInUserId);
 
@@ -272,42 +271,6 @@ public class ActivityMyProfile extends AppCompatActivity {
                         AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred while saving student data!");
                     }
                 }
-
-
-
-
-//                boolean isUserExist = dbHelper.isUserIDExists("Student", loggedInUserId);
-//
-//                if (isUserExist) {
-//                    ContentValues contentValuesProfile = new ContentValues();
-//
-//                    if (!dob.equals(studentDOB)) {
-//                        contentValuesProfile.put("dob", studentDOB);
-//                    }
-//                    if (!Gender.equals(studentGender)) {
-//                        contentValuesProfile.put("gender", studentGender);
-//                    }
-//                    if (!province.equals(studentProvince)) {
-//                        contentValuesProfile.put("province", studentProvince);
-//                    }
-//                    if (!city.equals(studentCity)) {
-//                        contentValuesProfile.put("city", studentCity);
-//                    }
-//                    if (!School.equals(studentSchool)) {
-//                        contentValuesProfile.put("school", studentSchool);
-//                    }
-//
-//                    if (!contentValuesProfile.equals(null)) {
-//                        boolean isUserUpdated = dbHelper.updateUserData("Student", loggedInUserId, contentValuesProfile);
-//
-//                        if (isUserUpdated) {
-//                            Toast.makeText(ActivityMyProfile.this, "Profile Successfully Updated", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                }
-
 
             }
 

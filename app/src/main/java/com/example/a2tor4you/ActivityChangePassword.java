@@ -67,27 +67,27 @@ public class ActivityChangePassword extends AppCompatActivity {
         txtNewPassword = findViewById(R.id.txtNewPassword);
         txtConfirmPassword = findViewById(R.id.txtConfirmPassword);
 
-        /*// handle the PROCEED button
+        // handle the PROCEED button
         btnCreateNewPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 // store the returned value of the dedicated function which checks
                 // whether the entered data is valid or if any fields are left blank.
-                isAllFieldsChecked = CheckAllFields();
+                //isAllFieldsChecked = CheckAllFields();
                 String curPass = txtCurrentPassword.getText().toString();
                 String newPass = txtNewPassword.getText().toString();
                 String confirmPass = txtConfirmPassword.getText().toString();
 
                 // the boolean variable turns to be true then
                 // only the user must be proceed to the activity2
-                if (isAllFieldsChecked) {
+               // if (isAllFieldsChecked) {
 
 
 
                     if (loggedInUserId != -1) {
                         // Fetch user's name and surname from the database based on userID
-                        String userPass = dbHelper.getPassword("User", loggedInUserId); // Implement this method
+                        String userPass = dbHelper.getField("User", loggedInUserId,"password"); // Implement this method
 
                         // Separate name and surname as separate strings
                         if (userPass.equals(curPass)) {
@@ -131,9 +131,9 @@ public class ActivityChangePassword extends AppCompatActivity {
                     }
 
 
-                }
+               // }
             }
-        });*/
+        });
     }
 
     /*// function which checks all the text fields
