@@ -27,7 +27,7 @@ public class ActivityDeleteAccount extends AppCompatActivity {
     // Text fields
     EditText txtStudentConfirmPassword;
 
-    // one boolean variable to check whether all the text fields
+    /*// one boolean variable to check whether all the text fields
     // are filled by the user, properly or not.
     boolean isAllFieldsChecked = false;
 
@@ -37,7 +37,7 @@ public class ActivityDeleteAccount extends AppCompatActivity {
                     "(?=.*[@#$%^&+=])" +     // at least 1 special character
                     "(?=\\S+$)" +            // no white spaces
                     ".{4,}" +                // at least 4 characters
-                    "$");
+                    "$");*/
 
     /* private TextInputLayout email;*/
     /* private TextInputLayout password;*/
@@ -67,7 +67,7 @@ public class ActivityDeleteAccount extends AppCompatActivity {
         // register all the EditText fields with their IDs.
         txtStudentConfirmPassword = findViewById(R.id.txtStudentConfirmPassword);
 
-        // handle the PROCEED button
+        /*// handle the PROCEED button
         btnDeleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,8 +165,8 @@ public class ActivityDeleteAccount extends AppCompatActivity {
 
         // if the email and password matches, a toast message
         // with email and password is displayed
-        /*String input = "Email: " + email.getEditText().getText().toString();
-        input += "\n";*/
+        //*String input = "Email: " + email.getEditText().getText().toString();
+        input += "\n";*//*
         String input = "Success";
         Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
     }

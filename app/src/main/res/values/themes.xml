@@ -30,5 +30,10 @@
         <item name="colorControlActivated">@color/teal_200</item>
     </style>
 
+    <style name="DialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorAccent">@color/teal_200</item>
+        <item name="colorOnPrimary">@color/black</item>
+    </style>
+
 
 </resources>

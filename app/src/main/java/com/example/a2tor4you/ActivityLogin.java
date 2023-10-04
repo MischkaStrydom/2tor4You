@@ -38,7 +38,7 @@ public class ActivityLogin extends AppCompatActivity {
     Context context;
     DBHelper dbHelper ;
 
-    // one boolean variable to check whether all the text fields
+   /* // one boolean variable to check whether all the text fields
     // are filled by the user, properly or not.
     boolean isAllFieldsChecked = false;
 
@@ -48,7 +48,7 @@ public class ActivityLogin extends AppCompatActivity {
                     "(?=.*[@#$%^&+=])" +     // at least 1 special character
                     "(?=\\S+$)" +            // no white spaces
                     ".{4,}" +                // at least 4 characters
-                    "$");
+                    "$");*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,7 +159,7 @@ public class ActivityLogin extends AppCompatActivity {
     // are filled or not by the user.
     // when user clicks on the PROCEED button
     // this function is triggered.
-    private boolean CheckAllFields() {
+   /* private boolean CheckAllFields() {
         if (phoneInput.length() == 0) {
             phoneInput.setError("This field is required");
             return false;
@@ -173,7 +173,7 @@ public class ActivityLogin extends AppCompatActivity {
         // after all validation return true.
         return true;
     }
-
+*/
 }
 
 

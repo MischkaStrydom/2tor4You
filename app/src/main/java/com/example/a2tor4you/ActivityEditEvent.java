@@ -3,13 +3,19 @@ package com.example.a2tor4you;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -17,13 +23,11 @@ import java.util.Locale;
 
 public class ActivityEditEvent extends AppCompatActivity {
 
-    // button
-    Button btn_SaveEvent, btnEventDate;
-
-    // Text fields
+    RadioButton rdo_Online, rdo_InPerson;
+    Button btn_SaveEvent, btnEventDate, btnEventTime;
     EditText txt_EventTitle;
 
-    boolean isAllFieldsChecked = false;
+    /* boolean isAllFieldsChecked = false;*/
 
     Calendar calendar = Calendar.getInstance();
 
@@ -35,21 +39,77 @@ public class ActivityEditEvent extends AppCompatActivity {
         ImageView btnBack = findViewById(R.id.btnBackEditEvent);
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityEditEvent.this, ActivityCalendar.class)));
 
+        txt_EventTitle = findViewById(R.id.txt_EventTitle);
         btn_SaveEvent = findViewById(R.id.btn_SaveEvent);
+
         btnEventDate = findViewById(R.id.btnEventDate);
+        btnEventTime = findViewById(R.id.btnEventTime);
 
         btnEventDate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                showDatePicker();
+            public void onClick(View view) {
+
+                openDatePicker(); // Open date picker dialog
+            }
+        });
+
+        btnEventTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                openTimePicker(); // Open time picker dialog
             }
         });
 
 
-        // register all the EditText fields with their IDs.
-        txt_EventTitle = findViewById(R.id.txt_EventTitle);
+        // RadioButtons select and deselect
+        rdo_Online = findViewById(R.id.rdo_Online);
+        rdo_InPerson = findViewById(R.id.rdo_InPerson);
 
-        // handle the PROCEED button
+        rdo_Online.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!rdo_Online.isSelected()) {
+                    rdo_Online.setChecked(true);
+                    rdo_Online.setSelected(true);
+                } else {
+                    rdo_Online.setChecked(false);
+                    rdo_Online.setSelected(false);
+                }
+            }
+        });
+
+        rdo_InPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!rdo_InPerson.isSelected()) {
+                    rdo_InPerson.setChecked(true);
+                    rdo_InPerson.setSelected(true);
+                } else {
+                    rdo_InPerson.setChecked(false);
+                    rdo_InPerson.setSelected(false);
+                }
+            }
+        });
+    }
+
+    private void openTimePicker(){
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+
+
+                //Showing the picked value in the textView
+                btnEventTime.setText(String.valueOf(hour)+ ":"+String.valueOf(minute));
+
+            }
+        }, 15, 30, false);
+
+        timePickerDialog.show();
+    }
+
+
+        /*// handle the PROCEED button
         btn_SaveEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,13 +125,10 @@ public class ActivityEditEvent extends AppCompatActivity {
                     startActivity(i);
                 }
             }
-        });
-    }
+        });*/
 
-    // function which checks all the text fields
-    // are filled or not by the user.
-    // when user clicks on the PROCEED button
-    // this function is triggered.
+
+    /*// function which checks all the text fields are filled or not by the user.
     private boolean CheckAllFields() {
         if (txt_EventTitle.length() == 0) {
             txt_EventTitle.setError("This field is required");
@@ -85,26 +142,18 @@ public class ActivityEditEvent extends AppCompatActivity {
 
         // after all validation return true.
         return true;
-    }
+    }*/
 
-    private void showDatePicker() {
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+    private void openDatePicker(){
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme , new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
-                        calendar.set(selectedYear, selectedMonth, selectedDay);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-                        String formattedDate = dateFormat.format(calendar.getTime());
-                        btnEventDate.setText(formattedDate);
-                    }
-                },
-                year, month, day
-        );
+                //Showing the picked value in the textView
+                btnEventDate.setText(String.valueOf(year)+ "."+String.valueOf(month)+ "."+String.valueOf(day));
+
+            }
+        }, 2023, 01, 20);
 
         datePickerDialog.show();
     }

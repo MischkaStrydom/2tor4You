@@ -5,14 +5,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.accounts.Account;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -20,8 +23,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.a2tor4you.Model.UserModel;
+import com.example.a2tor4you.utils.AndroidUtil;
+import com.example.a2tor4you.utils.FirebaseUtil;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 public class ActivityAccount extends AppCompatActivity {
 
@@ -31,17 +41,23 @@ public class ActivityAccount extends AppCompatActivity {
     static String selectedRole;
     ImageButton btnLogout;
     ImageButton btnReport;
-
+    ImageView profile_image_view;
+    ActivityResultLauncher<Intent> imagePickLauncher;
+    Uri selectedImageUri;
     DBHelper dbHelper ;
+
+    public ActivityAccount() {
+        // Required empty public constructor
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         TextView accountName = findViewById(R.id.txtAccNameSurnameSubHeading);
         TextView emailName = findViewById(R.id.txtAccEmailSubHeading);
         dbHelper = new DBHelper(this);
 
-        // Keep track of logged in user and check registered.
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
 
@@ -166,7 +182,55 @@ public class ActivityAccount extends AppCompatActivity {
             }
         });
 
+        imagePickLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if(result.getResultCode() == Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        if(data!=null && data.getData()!=null){
+                            selectedImageUri = data.getData();
+                            AndroidUtil.setProfilePic(getApplicationContext(),selectedImageUri,profile_image_view);
+                        }
+                    }
+                }
+        );
     }
+
+    // Profile Pic
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.activity_account, container, false);
+
+        profile_image_view = view.findViewById(R.id.profile_image_view);
+
+        getUserData();
+
+        profile_image_view.setOnClickListener((v) -> {
+            ImagePicker.with(this).cropSquare().compress(512).maxResultSize(512, 512)
+                    .createIntent(new Function1<Intent, Unit>() {
+                        @Override
+                        public Unit invoke(Intent intent) {
+                            imagePickLauncher.launch(intent);
+                            return null;
+                        }
+                    });
+        });
+        return view;
+
+    }
+
+    void getUserData() {
+
+        FirebaseUtil.getCurrentProfilePicStorageRef().getDownloadUrl()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Uri uri = task.getResult();
+                        AndroidUtil.setProfilePic(getApplicationContext(), uri, profile_image_view);
+                    }
+                });
+
+    }
+
 
     /*Report a Problem*/
 
