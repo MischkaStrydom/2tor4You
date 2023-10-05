@@ -20,12 +20,13 @@ public class SouthAfricaData {
                 String selectedProvince = parentView.getItemAtPosition(position).toString();
 
                 // Create a new adapter for the city spinner
-                ArrayAdapter<CharSequence> cityAdapter = new ArrayAdapter<>(
+                ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(
                         context, android.R.layout.simple_spinner_item);
+
                 cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                 // Add "City" as the default option
-                cityAdapter.add("City");
+                //cityAdapter.add("City");
 
                 // Populate the city spinner based on the selected province
                 if ("Eastern Cape".equals(selectedProvince)) {

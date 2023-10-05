@@ -700,13 +700,13 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txtTutAboutMeHeading"
+                android:id="@+id/txtYOF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="left"
                 android:paddingLeft="20dp"
-                android:text="@string/txtTutAboutMeHeading"
+                android:text="@string/txtTutYearsExp"
                 android:textColor="#CCFFFF"
                 android:textSize="16sp" />
 
@@ -715,7 +715,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/account_round_back_white"
                 android:orientation="vertical"
@@ -764,11 +764,22 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/txtTTH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="@string/txtTotalTutHrs"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/account_round_back_white"
@@ -818,10 +829,22 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/txtTST"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="@string/txtTutTotalStudTaught"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/account_round_back_white"
@@ -871,15 +894,29 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/txtAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="@string/txtTutAboutMeHeading"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/account_round_back_white"
                 android:orientation="vertical"
                 android:padding="2dp">
+
+
 
                 <!--First Name-->
                 <RelativeLayout
@@ -1000,12 +1037,22 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp" />
 
+            <TextView
+                android:id="@+id/txtTPPH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:text="@string/txtPricePerHr"
+                android:textColor="#CCFFFF"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/account_round_back_white"

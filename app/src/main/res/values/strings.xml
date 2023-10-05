@@ -155,7 +155,7 @@
 
     <!-- String array for Eastern Cape cities -->
     <string-array name="eastern_cape_cities">
-
+        <item>City</item>
         <item>Port Elizabeth</item>
         <item>East London</item>
         <item>Uitenhage</item>
@@ -167,7 +167,7 @@
 
     <!-- String array for Free State cities -->
     <string-array name="free_state_cities">
-
+        <item>City</item>
         <item>Bloemfontein</item>
         <item>Welkom</item>
         <item>Bethlehem</item>
@@ -178,7 +178,7 @@
 
     <!-- String array for Gauteng cities -->
     <string-array name="gauteng_cities">
-
+        <item>City</item>
         <item>Johannesburg</item>
         <item>Pretoria</item>
         <item>Centurion</item>
@@ -194,7 +194,7 @@
 
     <!-- String array for KwaZulu-Natal cities -->
     <string-array name="kwa_zulu_natal_cities">
-
+        <item>City</item>
         <item>Durban</item>
         <item>Pietermaritzburg</item>
         <item>Newcastle</item>
@@ -209,7 +209,7 @@
 
     <!-- String array for Limpopo cities -->
     <string-array name="limpopo_cities">
-
+        <item>City</item>
         <item>Polokwane (Pietersburg)</item>
         <item>Tzaneen</item>
         <item>Thohoyandou</item>
@@ -223,7 +223,7 @@
 
     <!-- String array for Mpumalanga cities -->
     <string-array name="mpumalanga_cities">
-
+        <item>City</item>
         <item>Nelspruit</item>
         <item>Witbank (eMalahleni)</item>
         <item>Middelburg</item>
@@ -237,7 +237,7 @@
 
     <!-- String array for North West cities -->
     <string-array name="north_west_cities">
-
+        <item>City</item>
         <item>Rustenburg</item>
         <item>Mahikeng (Mafikeng)</item>
         <item>Potchefstroom</item>
@@ -249,7 +249,7 @@
 
     <!-- String array for Northern Cape cities -->
     <string-array name="northern_cape_cities">
-
+        <item>City</item>
         <item>Kimberley</item>
         <item>Upington</item>
         <item>Springbok</item>
@@ -260,7 +260,7 @@
 
     <!-- String array for Western Cape cities -->
     <string-array name="western_cape_cities">
-
+        <item>City</item>
         <item>Cape Town</item>
         <item>Stellenbosch</item>
         <item>Paarl</item>

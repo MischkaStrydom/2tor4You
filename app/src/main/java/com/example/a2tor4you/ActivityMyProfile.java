@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -78,7 +79,7 @@ public class ActivityMyProfile extends AppCompatActivity {
         spinnerCity = findViewById(R.id.spinCity);
         school = findViewById(R.id.txtSchool);
         btnSaveProfile = findViewById(R.id.btnSaveProfile);
-        ArrayAdapter<CharSequence> cityAdapter = (ArrayAdapter<CharSequence>) spinnerCity.getAdapter();
+       // ArrayAdapter<CharSequence> cityAdapter = (ArrayAdapter<CharSequence>) spinnerCity.getAdapter();
 
         //Functionality of btn back
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityMyProfile.this, ActivityAccount.class)));
@@ -92,7 +93,7 @@ public class ActivityMyProfile extends AppCompatActivity {
         });
 
         // Use the CitySpinnerHelper to set up the city spinner
-        SouthAfricaData.setupCitySpinner(this, spinnerProvince, spinnerCity);
+     //   SouthAfricaData.setupCitySpinner(this, spinnerProvince, spinnerCity);
 
         /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
         btnStudTakePhoto = findViewById(R.id.btnStudTakePhoto);
@@ -219,19 +220,6 @@ public class ActivityMyProfile extends AppCompatActivity {
 
                 contentValues.put("email", studentEmail);
 
-//
-//                if (!profileName.equals(studentName)) {
-//                    contentValues.put("firstName", studentName);
-//                }
-//                if (!profileSurname.equals(studentSurname)) {
-//                    contentValues.put("lastName", studentSurname);
-//                }
-//                if (!profileNumber.equals(completePhoneNumber)) {
-//                    contentValues.put("phoneNumber", completePhoneNumber);
-//                }
-//                if (!profileEmail.equals(studentEmail)) {
-//                    contentValues.put("email", studentEmail);
-//                }
 
                     boolean isUserUpdated = dbHelper.updateUserData("User", loggedInUserId, contentValues);
 
@@ -349,14 +337,14 @@ public class ActivityMyProfile extends AppCompatActivity {
 
     private int getIndex(Spinner spinner, String value) {
         for (int i = 0; i < spinner.getCount(); i++) {
-            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(value)) {
+            String item = spinner.getItemAtPosition(i).toString();
+//            Log.d("Debug", "Item at position " + i + ": " + item);
+            if (item.equals(value)) {
                 return i;
-            }
+            }}
+            return -1; // Not found
         }
-        return -1; // Not found
+
+
     }
 
-
-
-
-}

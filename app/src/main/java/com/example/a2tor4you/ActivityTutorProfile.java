@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Trace;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -31,11 +32,6 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class ActivityTutorProfile extends AppCompatActivity {
-
-
-
-
-
     boolean isCheckedLocationOnline;
     boolean isCheckedLocationOffline;
     boolean isCheckedTeacher;
@@ -113,11 +109,6 @@ public class ActivityTutorProfile extends AppCompatActivity {
 
 
         final CheckBox online = findViewById(R.id.rdoTeachOnline);
-
-
-
-
-
         final CheckBox Offline = findViewById(R.id.rdoTeachInPerson);
         final CheckBox teacher = findViewById(R.id.rdoTutQualifiedTeacher);
 
@@ -125,11 +116,8 @@ public class ActivityTutorProfile extends AppCompatActivity {
         btnSaveTutProfile =findViewById(R.id.btnSaveTutProfile);
 
 
-
-
-
         // Use the CitySpinnerHelper to set up the city spinner
-        SouthAfricaData.setupCitySpinner(this, spinnerProvince, spinnerCity);
+        //SouthAfricaData.setupCitySpinner(this, spinnerProvince, spinnerCity);
 
         btnPickDOB = findViewById(R.id.btnPickDOB);
 
@@ -187,9 +175,6 @@ public class ActivityTutorProfile extends AppCompatActivity {
             txtPhoneNum.setText(profileNumber);
 
 
-
-
-
         } else {
             Toast.makeText(ActivityTutorProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
             //welcome.setText("Guest"); // Display a default value or handle it as needed
@@ -204,20 +189,15 @@ public class ActivityTutorProfile extends AppCompatActivity {
             city = dbHelper.getField("Tutor", loggedInUserId,"city");
             School = dbHelper.getField("Tutor", loggedInUserId,"school");
             Uni = dbHelper.getField("Tutor", loggedInUserId,"uni");
-
             YearsOfExperience = dbHelper.getFieldAsInt("Tutor", loggedInUserId,"YearsOfExperience");
             totalTutorHours = dbHelper.getFieldAsFloat("Tutor", loggedInUserId, "TotalTutorHours");
             TotalStudentTaught = dbHelper.getFieldAsInt("Tutor", loggedInUserId,"TotalStudentTaught");
             about = dbHelper.getField("Tutor", loggedInUserId,"aboutMe");
             pricePerHour = dbHelper.getFieldAsFloat("Tutor", loggedInUserId,"pricePerHour");
-
             locationOnline = dbHelper.getInfo("Tutor", loggedInUserId, "locationOnline");
             locationOffline = dbHelper.getInfo("Tutor", loggedInUserId,"locationOffline");
-
             extraQualifiedTeacher = dbHelper.getInfo("Tutor", loggedInUserId,"extraQualifiedTeacher");
-
             extraNotes = dbHelper.getField("Tutor", loggedInUserId, "extraNotes");
-
 
 
             boolean isUserExist = dbHelper.isUserIDExists("Tutor", loggedInUserId);
@@ -247,7 +227,6 @@ public class ActivityTutorProfile extends AppCompatActivity {
 
 
                 school.setText(School);
-
                 uni.setText(Uni);
                 notes.setText(String.valueOf(extraNotes));
                 aboutMe.setText(about);
@@ -262,77 +241,15 @@ public class ActivityTutorProfile extends AppCompatActivity {
                 teacher.setChecked(extraQualifiedTeacher);
 
 
-
-
-
-
-
-
-
-//                Offline.setChecked(locationOffline);
-//                teacher.setChecked(extraQualifiedTeacher);
-
-
-            } else {
-                // Handle the case where the userName format is unexpected
-                // Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
             }
 
 
         } else {
-            //  Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
+              Toast.makeText(ActivityTutorProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
             //welcome.setText("Guest"); // Display a default value or handle it as needed
         }
 
-        online.setOnClickListener(v -> {
 
-            isCheckedLocationOnline = !isCheckedLocationOnline;
-            online.setChecked(isCheckedLocationOnline);
-            if(isCheckedLocationOnline)
-            {
-                isOnlineChecked = true;
-                //online.setChecked(true);
-            }
-            else {
-                isOnlineChecked = false;
-               // online.setChecked(false);
-            }
-        });
-        //online.setChecked(isCheckedLocationOnline);
-
-
-        Offline.setOnClickListener(v -> {
-
-            isCheckedLocationOffline = !isCheckedLocationOffline;
-            Offline.setChecked(isCheckedLocationOffline);
-            if(isCheckedLocationOffline)
-            {
-                isOfflineChecked = true;
-                //Offline.setChecked(true);
-            }
-            else {
-                isOfflineChecked = false;
-                //Offline.setChecked(false);
-            }
-        });
-       // Offline.setChecked(isCheckedLocationOffline);
-
-
-        teacher.setOnClickListener(v -> {
-
-            isCheckedTeacher = !isCheckedTeacher;
-            teacher.setChecked(isCheckedTeacher);
-            if(!isCheckedTeacher)
-            {
-                teacher.setChecked(true);
-              //  isTeacherChecked = true;
-            }
-            else {
-                isTeacherChecked = false;
-               // teacher.setChecked(false);
-            }
-        });
-      //  teacher.setChecked(isCheckedTeacher);
 
 
         btnSaveTutProfile.setOnClickListener(new View.OnClickListener() {
@@ -341,6 +258,27 @@ public class ActivityTutorProfile extends AppCompatActivity {
                 // store the returned value of the dedicated function which checks
                 // whether the entered data is valid or if any fields are left blank.
 
+                //Get state of online
+                if (online.isChecked()) {
+                    isCheckedLocationOnline = true;
+                } else {
+                    isCheckedLocationOnline = false;
+
+                }
+                //Get state of offline
+                if (Offline.isChecked()) {
+                    isCheckedLocationOffline = true;
+                } else {
+                    isCheckedLocationOffline = false;
+                }
+                //Get state of offline
+                if (teacher.isChecked()) {
+                    isCheckedTeacher = true;
+                } else {
+                    isCheckedTeacher = false;
+                }
+
+
                 // Update User Table if they change they info
                 tutorName = txtTutName.getText().toString();
                 tutorSurname = txtTutLastName.getText().toString();
@@ -348,13 +286,9 @@ public class ActivityTutorProfile extends AppCompatActivity {
                 tutorEmail = txtTutEmail.getText().toString();
 
                 ContentValues contentValues = new ContentValues();
-
                 contentValues.put("firstName", tutorName);
-
                 contentValues.put("lastName", tutorSurname);
-
                 contentValues.put("phoneNumber", completePhoneNumber);
-
                 contentValues.put("email", tutorEmail);
 
 
@@ -488,13 +422,15 @@ public class ActivityTutorProfile extends AppCompatActivity {
 
     private int getIndex(Spinner spinner, String value) {
         for (int i = 0; i < spinner.getCount(); i++) {
-            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(value)) {
+            String item = spinner.getItemAtPosition(i).toString();
+//            Log.d("Debug", "Item at position " + i + ": " + item);
+            if (item.equals(value)) {
                 return i;
-            }
-        }
+            }}
         return -1; // Not found
     }
 
-
-
 }
+
+
+
