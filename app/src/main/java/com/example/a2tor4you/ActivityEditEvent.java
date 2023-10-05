@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
@@ -16,20 +20,26 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.example.a2tor4you.utils.AndroidUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class ActivityEditEvent extends AppCompatActivity {
-
+    EditText txt_EventTitle, txt_EventNotes;
+    Button btnEventDate, btnEventTime, btn_SaveEvent;
     RadioButton rdo_Online, rdo_InPerson;
-    Button btn_SaveEvent, btnEventDate, btnEventTime;
-    EditText txt_EventTitle;
+    static String eventTitle, eventDate, eventTime,  eventOnline, eventInPerson, eventNotes;
+    DBHelper dbHelper ;
+    DBHelper myDB;
 
-    /* boolean isAllFieldsChecked = false;*/
+    boolean isAllFieldsChecked = false;
 
-    Calendar calendar = Calendar.getInstance();
+    //Calendar calendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +49,71 @@ public class ActivityEditEvent extends AppCompatActivity {
         ImageView btnBack = findViewById(R.id.btnBackEditEvent);
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityEditEvent.this, ActivityCalendar.class)));
 
-        txt_EventTitle = findViewById(R.id.txt_EventTitle);
-        btn_SaveEvent = findViewById(R.id.btn_SaveEvent);
+        dbHelper = new DBHelper(this);
 
+        myDB = new DBHelper(this); // Initialize myDB
+
+        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
+
+        //Get all profile edits/spinners/buttons...
+
+        txt_EventTitle = findViewById(R.id.txt_EventTitle);
         btnEventDate = findViewById(R.id.btnEventDate);
         btnEventTime = findViewById(R.id.btnEventTime);
+        rdo_Online = findViewById(R.id.rdo_Online);
+        rdo_InPerson = findViewById(R.id.rdo_InPerson);
+        txt_EventNotes = findViewById(R.id.txt_EventNotes);
+        btn_SaveEvent = findViewById(R.id.btn_SaveEvent);
 
+        // handle the SAVE button
+        btn_SaveEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // store the returned value of the dedicated function which checks
+                // whether the entered data is valid or if any fields are left blank.
+
+                //Insert event details to the database
+                eventTitle = txt_EventTitle.getText().toString();
+                eventDate = btnEventDate.getText().toString();
+                eventTime = btnEventTime.getText().toString();
+                eventOnline = rdo_Online.getText().toString();
+                eventInPerson = rdo_InPerson.getText().toString();
+                eventNotes = txt_EventNotes.getText().toString();
+
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+                ContentValues eventValues = new ContentValues();
+                eventValues.put("eventTitle", eventTitle);
+                eventValues.put("eventDate", eventDate);
+                eventValues.put("startTime", eventTime);
+                eventValues.put("locationOnline", eventOnline);
+                eventValues.put("locationOffline", eventInPerson);
+                eventValues.put("notes", eventNotes);
+
+                boolean result = myDB.updateUserData("User", loggedInUserId, eventValues);
+
+                if (isAllFieldsChecked) {
+
+                    if (result) {
+
+                        // the boolean variable turns to be true then
+                        // only the user must be proceed to the activity2
+                        Toast.makeText(ActivityEditEvent.this, "Profile Successfully Updated", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred while saving student data!");
+                    }
+                }
+
+                // Redirect to the activity displaying the list of events
+                Intent intent = new Intent(ActivityEditEvent.this, ActivityEventsListView.class);
+                startActivity(intent);
+            }
+        });
+
+
+        // Date Picker
         btnEventDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +122,7 @@ public class ActivityEditEvent extends AppCompatActivity {
             }
         });
 
+        // Time Picker
         btnEventTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,6 +176,30 @@ public class ActivityEditEvent extends AppCompatActivity {
         }, 15, 30, false);
 
         timePickerDialog.show();
+    }
+
+    // function which checks all the text fields
+    // are filled or not by the user.
+    // when user clicks on the PROCEED button
+    // this function is triggered.
+    private boolean CheckAllFields() {
+        if (txt_EventTitle.length() == 0) {
+            txt_EventTitle.setError("This field is required");
+            return false;
+        }
+
+        if (btnEventDate.length() == 0) {
+            btnEventDate.setError("This field is required");
+            return false;
+        }
+
+        if (btnEventTime.length() == 0) {
+            btnEventTime.setError("This field is required");
+            return false;
+        }
+
+        // after all validation return true.
+        return true;
     }
 
 

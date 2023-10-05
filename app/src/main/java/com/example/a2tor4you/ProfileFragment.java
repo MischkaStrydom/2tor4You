@@ -36,7 +36,6 @@ public class ProfileFragment extends Fragment {
     EditText phoneInput;
     Button updateProfileBtn;
 
-
     UserModel currentUserModel;
     ActivityResultLauncher<Intent> imagePickLauncher;
     Uri selectedImageUri;
