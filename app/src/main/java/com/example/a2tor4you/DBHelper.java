@@ -1,17 +1,16 @@
 package com.example.a2tor4you;
-import android.app.Notification;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import android.widget.Toast;
+import android.widget.SimpleCursorAdapter;
 
-import androidx.annotation.Nullable;
-
-import com.example.a2tor4you.utils.AndroidUtil;
-import com.google.firestore.v1.CursorOrBuilder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -52,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //Event
         String EventSQL = "CREATE TABLE Event (eventID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, eventTitle VARCHAR(255), eventDate DATE, " +
-                "startTime DATETIME, locationOnline BOOLEAN DEFAULT 0, locationOffline BOOLEAN DEFAULT 0, notes VARCHAR(255), " +
+                "startTime TIME, locationOnline BOOLEAN DEFAULT 0, locationOffline BOOLEAN DEFAULT 0, notes VARCHAR(255), " +
                 "isCancelled BOOLEAN DEFAULT 0, FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Reviews
@@ -60,9 +59,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 " reviewText VARCHAR(255), FOREIGN KEY (tutorID) REFERENCES Tutor(tutorID), FOREIGN KEY (studentID) REFERENCES Student(studentID))";
 
         //Report
-        String ReportSQL = "CREATE TABLE Report (reportID INTEGER PRIMARY KEY AUTOINCREMENT,adminID INTEGER, reportedID INTEGER, reporteeID INTEGER, reportText VARCHAR(255)," +
-                " reportCategory VARCHAR(255), reportedAt DATETIME, resolvedAt DATETIME, resolutionText VARCHAR(255), FOREIGN KEY (adminID) REFERENCES Admin(adminID), " +
-                "FOREIGN KEY (reportedID) REFERENCES User(userID), FOREIGN KEY (reporteeID) REFERENCES User(userID))";
+//        String ReportSQL = "CREATE TABLE Report (reportID INTEGER PRIMARY KEY AUTOINCREMENT,adminID INTEGER, reportedID INTEGER, reporteeID INTEGER, reportText VARCHAR(255)," +
+//                " reportCategory VARCHAR(255), reportedAt DATETIME, resolvedAt DATETIME, resolutionText VARCHAR(255), FOREIGN KEY (adminID) REFERENCES Admin(adminID), " +
+//                "FOREIGN KEY (reportedID) REFERENCES User(userID), FOREIGN KEY (reporteeID) REFERENCES User(userID))";
 
         //Delete Account
         String DeleteSQL = "CREATE TABLE DeletedAccount (deletedAccountID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, deletedDate DATE, " +
@@ -85,7 +84,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(tutorSubjectSQL);
         db.execSQL(EventSQL);
         db.execSQL(ReviewSQL);
-        db.execSQL(ReportSQL);
+      //  db.execSQL(ReportSQL);
         db.execSQL(DeleteSQL);
         db.execSQL(NotificationPreferenceSQL);
         db.execSQL(PasswordChangeSQL);
@@ -93,7 +92,21 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //Test insert Student data
 
-
+       // db.execSQL("INSERT INTO Subject " + "(subject) VALUES('Maths')");
+//        String[] subjects = {
+//                "Mathematics", "Science", "English", "History", "Geography", "Physical Education",
+//                "Business Studies", "Economics", "Information Technology", "Geology", "Art", "Music",
+//                "Dramatic Arts", "Physical Science", "Agricultural Sciences", "Consumer Studies",
+//                "Visual Arts", "Religious Studies", "Life Orientation", "Engineering Graphics and Design",
+//                "Hospitality Studies", "Zulu", "Afrikaans", "Life Sciences", "Music", "Technology",
+//                "Xhosa", "CAT", "French", "Accounting", "EMS"
+//        };
+//
+//        for (String subject : subjects) {
+//
+//            String insertQuery = "INSERT INTO Subject (subject) VALUES('" + subject + "')";
+//            db.execSQL(insertQuery);
+//        }
     }
 
     @Override
@@ -126,31 +139,61 @@ public class DBHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    public boolean insertDataUser(String tableName, int loggedInUserID, ContentValues values) {
+    public boolean insertDataUser(String tableName, ContentValues values) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Define the WHERE clause to match the loggedInUserID
-        String whereClause = "userID = ?";
-        String[] whereArgs = {String.valueOf(loggedInUserID)};
 
-        // Update the row with the provided values if it exists, or insert a new row
-        long result = db.update(tableName, values, whereClause, whereArgs);
+// Add the userID to the ContentValues to ensure it's associated with the event
+       // values.put("userID", loggedInUserID);
 
-        if (result == 0) {
-            // No row was updated, insert a new row
-            result = db.insert(tableName, null, values);
-        }
+        // Insert the new row
+        long result = db.insert(tableName, null, values);
 
         return result != -1;
     }
 
 
-    public Cursor getAllItems(String tableName) {
-        SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + tableName, null);
+    public Cursor viewData(int loggedInUserId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT eventTitle, eventDate, notes, startTime, locationOnline FROM Event WHERE userID = ?";
+
+        String[] selectionArgs = {String.valueOf(loggedInUserId)};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
         return cursor;
     }
+
+
+    public List<Date> getEventDatesForUser(int userID) {
+        List<Date> eventDates = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Modify the query to filter by userID
+        String query = "SELECT eventDate FROM Event WHERE userID = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userID)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                // Convert the date string to a Date object
+                String dateString = cursor.getString(0); // Assuming eventDate is in the first column
+                try {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    Date date = dateFormat.parse(dateString);
+                    eventDates.add(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return eventDates;
+    }
+
+
+
 
 
     //username in this case is user phone number
@@ -286,6 +329,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return userID;
     }
+
+
 
 
     // Update the User table
@@ -474,6 +519,67 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return fieldValue;
     }
+
+//    public SimpleCursorAdapter populateListViewFromDB() {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        String[] columns = getColumnNames("Event");
+//
+//        String[] fromFieldNames = new String[]{"eventTitle", "notes"};
+//
+//        Cursor cursor = db.query("Event", columns, null, null, null, null, null);
+//
+//        int[] toViewIDs = new int[]{R.id.item_name, R.id.item_Notes};
+//
+//        SimpleCursorAdapter contactAdapter = new SimpleCursorAdapter(
+//                context,
+//                R.layout.my_row,
+//                cursor,
+//                fromFieldNames,
+//                toViewIDs
+//        );
+//        return contactAdapter;
+//    }
+//
+//
+//    public String[] getColumnNames(String tableName) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        String[] columns = null;
+//
+//        Cursor cursor = db.rawQuery("PRAGMA table_info(" + tableName + ")", null);
+//
+//        if (cursor != null) {
+//            columns = new String[cursor.getCount()];
+//            int index = 0;
+//
+//            if (cursor != null && cursor.moveToFirst()) {
+//                int nameIndex1 = cursor.getColumnIndex("eventID");
+//                int nameIndex2 = cursor.getColumnIndex("eventTitle");
+//                int nameIndex3 = cursor.getColumnIndex("eventDate");
+//                int nameIndex4 = cursor.getColumnIndex("startTime");
+//                int nameIndex5 = cursor.getColumnIndex("locationOnline");
+//                int nameIndex6 = cursor.getColumnIndex("locationOffline");
+//                int nameIndex7 = cursor.getColumnIndex("notes");
+//
+//                String eventID = cursor.getString(nameIndex1);
+//                String eventTitle = cursor.getString(nameIndex2);
+//                String eventDate = cursor.getString(nameIndex3);
+//                String startTime = cursor.getString(nameIndex4);
+//                String locationOnline = cursor.getString(nameIndex5);
+//                String locationOffline = cursor.getString(nameIndex6);
+//                String notes = cursor.getString(nameIndex7);
+//
+//            }
+//
+//            cursor.close();
+//        }
+//
+//        db.close();
+//
+//        return columns;
+//    }
+
+
 
 
 }

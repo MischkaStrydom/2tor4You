@@ -35,7 +35,7 @@
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
             android:layout_marginStart="100dp"
-            android:text="Edit Event"
+            android:text="Add Event"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -79,7 +79,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="2dp">
+                    android:padding="2dp"
+                    >
 
                     <EditText
                         android:id="@+id/txt_EventTitle"
@@ -315,25 +316,34 @@
                 android:layout_marginBottom="10dp"
                 android:textColor="#CCFFFF"
                 android:textSize="16sp" />
-
-            <RadioButton
-                android:id="@+id/rdo_Online"
+            <RadioGroup
+                android:id="@+id/rdoGroupGrade1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:buttonTint="@color/teal_200"
-                android:textColor="@color/white"
-                android:text="@string/rdoOnline" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
 
-            <RadioButton
-                android:id="@+id/rdo_InPerson"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:buttonTint="@color/teal_200"
-                android:textColor="@color/white"
-                android:text="@string/rdoInPerson" />
+                <RadioButton
+                    android:id="@+id/rdo_Online"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:buttonTint="@color/teal_200"
+                    android:textColor="@color/white"
+                    android:text="@string/rdoOnline" />
 
+                <RadioButton
+                    android:id="@+id/rdo_InPerson"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:buttonTint="@color/teal_200"
+                    android:textColor="@color/white"
+                    android:text="@string/rdoInPerson" />
+            </RadioGroup>
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
@@ -373,6 +383,7 @@
                             android:layout_marginEnd="0dp"
                             android:background="@null"
                             android:ems="10"
+                            android:maxLength="30"
                             android:hint="@string/txtEventNotes"
                             android:inputType="textPersonName"
                             android:paddingLeft="20dp"

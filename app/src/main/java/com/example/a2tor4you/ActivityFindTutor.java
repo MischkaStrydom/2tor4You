@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -32,6 +34,11 @@ public class ActivityFindTutor extends AppCompatActivity {
          phoneNumber = getIntent().getStringExtra("phone");
 //         password = getIntent().getStringExtra("password");
 //         selectedRole = getIntent().getStringExtra("selectedRole");
+
+        ImageView filter = findViewById(R.id.filter);
+        filter.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(),ActivityFilterTutors.class));
+        });
 
 
 

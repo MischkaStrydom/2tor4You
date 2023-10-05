@@ -38,6 +38,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
     UserModel userModel;
 
     DBHelper dbHelper ;
+    Button btnViewAllSessions, btnAddEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,18 @@ public class ActivityHomeStudent extends AppCompatActivity {
             welcome.setText("Guest"); // Display a default value or handle it as needed
         }
 
+
+        btnViewAllSessions = findViewById(R.id.btnViewAllSessions);
+        btnViewAllSessions.setOnClickListener(v -> {
+            Intent intent = new Intent(ActivityHomeStudent.this, ActivityEventsListView.class);
+            startActivity(intent);
+        });
+
+        btnAddEvent = findViewById(R.id.btnAddEvent);
+        btnAddEvent.setOnClickListener(v -> {
+            Intent intent = new Intent(ActivityHomeStudent.this, ActivityEditEvent.class);
+            startActivity(intent);
+        });
 
         // Ensure that the dbHelper is not null
 

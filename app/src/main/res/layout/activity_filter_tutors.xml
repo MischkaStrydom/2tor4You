@@ -142,17 +142,6 @@
                 android:textSize="16sp" />
 
             <RadioButton
-                android:id="@+id/rdoFreeVid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:buttonTint="@color/teal_200"
-                android:text="@string/rdoFreeVid"
-                android:textColor="@color/white" />
-
-            <RadioButton
                 android:id="@+id/rdoQualifiedTeacher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

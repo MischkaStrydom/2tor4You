@@ -2,8 +2,10 @@ package com.example.a2tor4you;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 
 public class ActivityFilterTutors extends AppCompatActivity {
@@ -18,8 +20,13 @@ public class ActivityFilterTutors extends AppCompatActivity {
         // RadioButtons
         rdoOnlineFilter = findViewById(R.id.rdoOnlineFilter);
         rdoInPersonFilter = findViewById(R.id.rdoInPersonFilter);
-        rdoFreeVid = findViewById(R.id.rdoFreeVid);
+
         rdoQualifiedTeacher = findViewById(R.id.rdoQualifiedTeacher);
+
+        ImageButton btnBackFilterTutors = findViewById(R.id.btnBackFilterTutors);
+        btnBackFilterTutors.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(),ActivityFindTutor.class));
+        });
 
         rdoOnlineFilter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,18 +54,7 @@ public class ActivityFilterTutors extends AppCompatActivity {
             }
         });
 
-        rdoFreeVid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!rdoFreeVid.isSelected()) {
-                    rdoFreeVid.setChecked(true);
-                    rdoFreeVid.setSelected(true);
-                } else {
-                    rdoFreeVid.setChecked(false);
-                    rdoFreeVid.setSelected(false);
-                }
-            }
-        });
+
 
         rdoQualifiedTeacher.setOnClickListener(new View.OnClickListener() {
             @Override

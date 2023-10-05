@@ -315,8 +315,8 @@
     <string name="rdoInPersonFilter">In-Person</string>
     <string name="txtHourlyRate">Hourly Rate</string>
     <string name="txtStarRating">Star Rating</string>
-    <string name="txtAddFilters">Additional Filters</string>
-    <string name="rdoFreeVid">Free Introduction video call: Free video chat to get 15 min intro session with tutor to discuss students needs.</string>
+    <string name="txtAddFilters">Additional Filter</string>
+
     <string name="rdoQualifiedTeacher">Qualified Teacher: Tutor has obtained QTS (Qualified Teacher Status)</string>
     <string name="btnShowResults">Show Results</string>
     <string name="btnClearAll">Clear All</string>

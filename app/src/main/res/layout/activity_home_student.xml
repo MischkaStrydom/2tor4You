@@ -15,10 +15,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view">
-
-
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/view"/>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -34,25 +31,25 @@
         app:layout_constraintTop_toBottomOf="@+id/frameLayout"
         app:menu="@menu/bottom_navigation_bar" />
 
-    <Button
-        android:id="@+id/btnMessage"
-        android:layout_width="51dp"
-        android:layout_height="36dp"
-        android:background="@drawable/text_message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+<!--    <Button-->
+<!--        android:id="@+id/btnMessage"-->
+<!--        android:layout_width="51dp"-->
+<!--        android:layout_height="36dp"-->
+<!--        android:background="@drawable/text_message"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.955"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.023" />-->
 
     <TextView
         android:id="@+id/txtUpcomingSessions"
-        android:layout_width="193dp"
+        android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Upcoming Sessions"
+        android:text="Good to see you back!"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -61,10 +58,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/frameLayout" />
 
+
     <LinearLayout
-        android:id="@+id/linearLayout8"
-        android:layout_width="347dp"
-        android:layout_height="215dp"
+        android:id="@+id/linearLayout11"
+        android:layout_width="312dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/account_round_back_white"
         android:orientation="vertical"
         android:padding="15dp"
@@ -72,18 +71,105 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtUpcomingSessions">
 
-        <ListView
-            android:id="@+id/upcomingSessHomeListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMessage"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="275dp"
+            android:layout_height="81dp"
+            android:layout_marginBottom="0dp"
+            android:text="View your messages"
 
-        </RelativeLayout>
+            android:textColor="@color/teal_200"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="2dp" />
+
 
     </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="312dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="180dp"
+        android:background="@drawable/account_round_back_white"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtUpcomingSessions">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddEvent"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="275dp"
+            android:layout_height="81dp"
+            android:layout_marginBottom="0dp"
+            android:text="Add event"
+
+            android:textColor="@color/teal_200"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="2dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout9"
+        android:layout_width="312dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="310dp"
+        android:background="@drawable/account_round_back_white"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtUpcomingSessions">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnViewAllSessions"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="275dp"
+            android:layout_height="81dp"
+            android:layout_marginBottom="0dp"
+            android:text="View All Events"
+
+            android:textColor="@color/teal_200"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/grey"
+            app:strokeWidth="2dp" />
+
+
+    </LinearLayout>
+
+<!--    <Button-->
+<!--        android:id="@+id/btnViewAllSessions"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:background="@android:color/transparent"-->
+<!--        android:text="View All Events"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        android:layout_gravity="center"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.722" />-->
 
     <ImageView
 
@@ -115,34 +201,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.467" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnFindPerfectTutor"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:text="Find your perfect tutor"
-        android:textColor="@color/teal_200"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:strokeColor="@color/grey"
-        app:strokeWidth="2dp" />
 
-    <Button
-        android:id="@+id/btnViewAllSessions"
-        android:layout_width="119dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="30dp"
-        android:background="@android:color/transparent"
-        android:text="View All"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.722" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

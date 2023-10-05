@@ -52,7 +52,6 @@ public class ActivityTutorProfile extends AppCompatActivity {
     Button takePhoto, btnPickDOB, btnSaveTutProfile;
 
 
-
     Calendar calendar = Calendar.getInstance();
 
 
@@ -74,8 +73,17 @@ public class ActivityTutorProfile extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
 
+        context = this;
 
-//
+        String[] subjects = context.getResources().getStringArray(R.array.spinSubjectTeach);
+        ContentValues contentValues = new ContentValues();
+
+        for (String subject : subjects) {
+            contentValues.clear(); // Clear the previous data in ContentValues
+            contentValues.put("subject", subject);
+            dbHelper.insertData("Subject", contentValues);
+        }
+
 //        String[] subjects = context.getResources().getStringArray(R.array.spinSubjectTeach);
 //        ContentValues contentValues = new ContentValues();
 //

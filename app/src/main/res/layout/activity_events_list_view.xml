@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background_mountain"
+    android:background="@color/primary"
     tools:context=".ActivityEventsListView">
+
+
 
     <LinearLayout
         android:id="@+id/layoutHeader"
@@ -19,6 +21,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+
 
         <ImageButton
             android:id="@+id/btnBackUpcomingEvent"
@@ -42,25 +46,18 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/simple_list_item_1"
-        android:layout_width="match_parent"
-        android:layout_height="64dp">
 
-        <ListView
-            android:id="@+id/eventListView"
-            android:layout_width="336dp"
-            android:layout_height="match_parent" />
 
-        <ImageButton
-            android:id="@+id/btnDeleteEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/grey"
-            android:src="@drawable/delete" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/user_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            />
 
-    </LinearLayout>
+
+
+
+
 
 </LinearLayout>
