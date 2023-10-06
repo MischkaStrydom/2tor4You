@@ -79,38 +79,38 @@ public class ActivityCalendar extends AppCompatActivity {
 
         // Navigation Bar
 
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.calendar);
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()) {
-
-                    case R.id.calendar:
-                        startActivity(new Intent(getApplicationContext(),ActivityCalendar.class));
-                        return true;
-
-                    case R.id.home:
-                        startActivity(new Intent(getApplicationContext(),ActivityHomeStudent.class));
-                        return true;
-
-                    case R.id.account:
-                        startActivity(new Intent(getApplicationContext(),ActivityAccount.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-
-                    case R.id.findTutors:
-                        startActivity(new Intent(getApplicationContext(),ActivityFindTutor.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                }
-                return false;
-            }
-        });
+//        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+//        bottomNavigationView.setSelectedItemId(R.id.calendar);
+//
+//        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//                switch (item.getItemId()) {
+//
+//                    case R.id.calendar:
+//                        startActivity(new Intent(getApplicationContext(),ActivityCalendar.class));
+//                        return true;
+//
+//                    case R.id.home:
+//                        startActivity(new Intent(getApplicationContext(),ActivityHomeStudent.class));
+//                        return true;
+//
+//                    case R.id.account:
+//                        startActivity(new Intent(getApplicationContext(),ActivityAccount.class));
+//                        overridePendingTransition(0,0);
+//                        return true;
+//
+//
+//                    case R.id.findTutors:
+//                        startActivity(new Intent(getApplicationContext(),ActivityFindTutor.class));
+//                        overridePendingTransition(0,0);
+//                        return true;
+//
+//                }
+//                return false;
+//            }
+//        });
 
 
         btnAddEvent.setOnClickListener(v -> {

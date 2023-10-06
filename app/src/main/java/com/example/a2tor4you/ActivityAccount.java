@@ -164,14 +164,16 @@ public class ActivityAccount extends AppCompatActivity {
 
                     case R.id.account:
                         startActivity(new Intent(getApplicationContext(),ActivityAccount.class));
+                        overridePendingTransition(0,0);
                         return true;
 
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(),ActivityHomeStudent.class));
+                        overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.calendar:
-                        startActivity(new Intent(getApplicationContext(),ActivityCalendar.class));
+                    case R.id.event:
+                        startActivity(new Intent(getApplicationContext(),ActivityEditEvent.class));
                         overridePendingTransition(0,0);
                         return true;
 

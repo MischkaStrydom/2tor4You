@@ -1,5 +1,6 @@
 package com.example.a2tor4you;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -15,6 +16,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -27,6 +29,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.a2tor4you.utils.AndroidUtil;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,7 +40,7 @@ import java.util.Locale;
 public class ActivityEditEvent extends AppCompatActivity {
     EditText txt_EventTitle, txt_EventNotes;
     Button btnEventDate, btnEventTime, btn_SaveEvent;
-
+    BottomNavigationView bottomNavigationView;
     RadioGroup rdoGroupGrade1;
     RadioButton rdo_Online, rdo_InPerson;
     static String eventTitle, eventDate, eventTime, eventNotes;
@@ -75,6 +79,42 @@ public class ActivityEditEvent extends AppCompatActivity {
         txt_EventNotes = findViewById(R.id.txt_EventNotes);
         btn_SaveEvent = findViewById(R.id.btn_SaveEvent);
         rdoGroupGrade1 = findViewById(R.id.rdoGroupGrade1);
+
+
+        // Navigation Bar
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.event);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+
+                    case R.id.event:
+                        startActivity(new Intent(getApplicationContext(),ActivityCalendar.class));
+                        return true;
+
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext(),ActivityHomeStudent.class));
+                        return true;
+
+                    case R.id.account:
+                        startActivity(new Intent(getApplicationContext(),ActivityAccount.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+
+                    case R.id.findTutors:
+                        startActivity(new Intent(getApplicationContext(),ActivityFindTutor.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                }
+                return false;
+            }
+        });
 
 
 //        txt_EventNotes = new EditText(this);

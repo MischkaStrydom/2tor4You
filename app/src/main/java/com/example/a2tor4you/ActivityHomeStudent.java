@@ -68,11 +68,11 @@ public class ActivityHomeStudent extends AppCompatActivity {
             startActivity(intent);
         });
 
-        btnAddEvent = findViewById(R.id.btnAddEvent);
-        btnAddEvent.setOnClickListener(v -> {
-            Intent intent = new Intent(ActivityHomeStudent.this, ActivityEditEvent.class);
-            startActivity(intent);
-        });
+//        btnAddEvent = findViewById(R.id.btnAddEvent);
+//        btnAddEvent.setOnClickListener(v -> {
+//            Intent intent = new Intent(ActivityHomeStudent.this, ActivityEditEvent.class);
+//            startActivity(intent);
+//        });
 
         // Ensure that the dbHelper is not null
 
@@ -101,10 +101,12 @@ public class ActivityHomeStudent extends AppCompatActivity {
 
                     case R.id.home:
                         startActivity(new Intent(getApplicationContext(),ActivityHomeStudent.class));
+                        overridePendingTransition(0,0);
                         return true;
 
-                    case R.id.calendar:
-                        startActivity(new Intent(getApplicationContext(),ActivityCalendar.class));
+                    case R.id.event:
+                        startActivity(new Intent(getApplicationContext(),ActivityEditEvent.class));
+                        overridePendingTransition(0,0);
                         return true;
 
                     case R.id.account:
