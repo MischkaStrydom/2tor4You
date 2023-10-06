@@ -27,8 +27,8 @@ import java.util.ArrayList;
 
 public class ActivityFindTutor extends AppCompatActivity {
 
-    ArrayList<String> txtTutName, txtTutLastName,yearsExperience ,totalTutHours , priceHour;
-    CustomAdapter customAdapter;
+    ArrayList<String> firstName, lastname, YearsOfExperience ,TotalTutorHours , pricePerHour;
+    adapterTutor adapterTutor;
 
     ArrayList<String> listItem;
     ArrayAdapter adapter;
@@ -76,25 +76,25 @@ public class ActivityFindTutor extends AppCompatActivity {
         //Testing recycle view
         dbHelper = new DBHelper(ActivityFindTutor.this);
 
-        txtTutName = new ArrayList<>();
-        txtTutLastName = new ArrayList<>();
-        yearsExperience = new ArrayList<>();
-        totalTutHours = new ArrayList<>();
-        priceHour = new ArrayList<>();
+        firstName = new ArrayList<>();
+        lastname = new ArrayList<>();
+        YearsOfExperience = new ArrayList<>();
+        TotalTutorHours = new ArrayList<>();
+        pricePerHour = new ArrayList<>();
 
         rvFindTutor = findViewById(R.id.rvFindTutor);
-
+       // rvFindTutor = findViewById(R.id.rvFindTutor);
         storeDataInArrays();
-        customAdapter = new CustomAdapter(ActivityFindTutor.this, txtTutName, txtTutLastName, yearsExperience, totalTutHours, priceHour);
-        rvFindTutor.setAdapter(customAdapter);
+        adapterTutor = new adapterTutor(ActivityFindTutor.this, firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour);
+        rvFindTutor.setAdapter(adapterTutor);
         rvFindTutor.setLayoutManager(new LinearLayoutManager(ActivityFindTutor.this));
 
 
         //RecyclerView for Tutor Profiles ListView
 
-        rvFindTutor = findViewById(R.id.rvFindTutor);
-        rvFindTutor.setLayoutManager(new LinearLayoutManager(this));
-        rvFindTutor.setAdapter(new RvAdapter());
+
+//        rvFindTutor.setLayoutManager(new LinearLayoutManager(this));
+//        rvFindTutor.setAdapter(new RvAdapter());
 
         // Navigation Bar
 
@@ -138,17 +138,17 @@ public class ActivityFindTutor extends AppCompatActivity {
     }
     void storeDataInArrays()
     {
-        Cursor cursor = dbHelper.viewData(loggedInUserId);
+        Cursor cursor = dbHelper.viewTutorData();
         if (cursor.getCount() == 0) {
             Toast.makeText(ActivityFindTutor.this, "No events to show", Toast.LENGTH_LONG).show();
         } else {
             while (cursor.moveToNext()) {
 
-                txtTutName.add(cursor.getString(0)); // eventTitle
-                txtTutLastName.add(cursor.getString(1)); // eventDate
-                yearsExperience.add(cursor.getString(2)); // eventTime
-                totalTutHours.add(cursor.getString(3)); // eventNotes
-                priceHour.add(cursor.getString(3)); // eventNotes
+                firstName.add(cursor.getString(0)); // eventTitle
+                lastname.add(cursor.getString(1)); // eventDate
+                YearsOfExperience.add(cursor.getString(2)); // eventTime
+                TotalTutorHours.add(cursor.getString(3)); // eventNotes
+                pricePerHour.add(cursor.getString(4)); // eventNotes
 
             }
 
@@ -173,37 +173,37 @@ public class ActivityFindTutor extends AppCompatActivity {
 
     //RecyclerView for Tutor Profiles ListView - Continued
 
-    class tutorProfileItemHolder extends RecyclerView.ViewHolder {
-        public tutorProfileItemHolder(@NonNull View itemView) {
-            super(itemView);
-        }
-    }
+//    class tutorProfileItemHolder extends RecyclerView.ViewHolder {
+//        public tutorProfileItemHolder(@NonNull View itemView) {
+//            super(itemView);
+//        }
+//    }
 
-    class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-        @NonNull
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_find_tutor_item, parent, false);
-                return new tutorProfileItemHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            return super.getItemViewType(position);
-            /*if (position == 0)
-                return 1;
-            return position % 3;*/
-        }
-
-        @Override
-        public int getItemCount() {
-            return 10;
-        }
-    }
+//    class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+//
+//        @NonNull
+//        @Override
+//        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_find_tutor_item, parent, false);
+//                return new tutorProfileItemHolder(view);
+//        }
+//
+//        @Override
+//        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+//
+//        }
+//
+//        @Override
+//        public int getItemViewType(int position) {
+//            return super.getItemViewType(position);
+//            /*if (position == 0)
+//                return 1;
+//            return position % 3;*/
+//        }
+//
+//        @Override
+//        public int getItemCount() {
+//            return 10;
+//        }
+//    }
 

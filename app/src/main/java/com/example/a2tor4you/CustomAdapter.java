@@ -14,27 +14,27 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{
 
     private Context context;
-    private ArrayList firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour;
+    private ArrayList eventTitle, eventDate, notes, startTime, locationOnline;
     CustomAdapter(Context context,
-                  ArrayList firstName,
-                  ArrayList lastname,
-                  ArrayList YearsOfExperience,
-                  ArrayList TotalTutorHours,
-                  ArrayList pricePerHour
+                  ArrayList eventTitle,
+                  ArrayList eventDate,
+                  ArrayList notes,
+                  ArrayList startTime,
+                  ArrayList locationOnline
                   ){
         this.context = context;
-        this.firstName = firstName;
-        this.lastname = lastname;
-        this.YearsOfExperience = YearsOfExperience;
-        this.TotalTutorHours = TotalTutorHours;
-        this.pricePerHour = pricePerHour;
+        this.eventTitle = eventTitle;
+        this.eventDate = eventDate;
+        this.notes = notes;
+        this.startTime = startTime;
+        this.locationOnline = locationOnline;
     }
 
     @NonNull
     @Override
     public CustomAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.activity_find_tutor_item, parent, false);
+        View view = inflater.inflate(R.layout.my_row, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -42,32 +42,32 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, int position) {
 
 
-        holder.firstName.setText(String.valueOf(firstName.get(position)));
-        holder.lastname.setText(String.valueOf(lastname.get(position)));
-        holder.YearsOfExperience.setText(String.valueOf(YearsOfExperience.get(position)));
-        holder.TotalTutorHours.setText(String.valueOf(TotalTutorHours.get(position)));
-        holder.pricePerHour.setText(String.valueOf(pricePerHour.get(position)));
+        holder.eventTitle.setText(String.valueOf(eventTitle.get(position)));
+        holder.eventDate.setText(String.valueOf(eventDate.get(position)));
+        holder.notes.setText(String.valueOf(notes.get(position)));
+        holder.startTime.setText(String.valueOf(startTime.get(position)));
+        holder.locationOnline.setText(String.valueOf(locationOnline.get(position)));
 
     }
 
     @Override
     public int getItemCount() {
-        return firstName.size();
+        return eventTitle.size();
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour;
+        TextView eventTitle, eventDate, notes, startTime, locationOnline;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            firstName = itemView.findViewById(R.id.txtTutNameSurnameView);
-            lastname = itemView.findViewById(R.id.txtSurname);
-            YearsOfExperience = itemView.findViewById(R.id.txtTutYrsExp);
-            TotalTutorHours = itemView.findViewById(R.id.txtTutTotalHrsView);
-            pricePerHour = itemView.findViewById(R.id.txtTutTotalHrsView);
+            eventTitle = itemView.findViewById(R.id.eventTitle);
+            eventDate = itemView.findViewById(R.id.eventDate);
+            notes = itemView.findViewById(R.id.eventNotes);
+            startTime = itemView.findViewById(R.id.startTime);
+            locationOnline = itemView.findViewById(R.id.eventLocation);
 
 
         }

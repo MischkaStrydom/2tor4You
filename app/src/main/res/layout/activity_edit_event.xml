@@ -24,31 +24,25 @@
         tools:ignore="MissingConstraints" />
     <LinearLayout
         android:id="@+id/layoutHeader"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="?actionBarSize"
         android:background="@color/primary"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="10dp"
+        android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/btnBackEditEvent"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@string/app_name"
-            android:background="@color/primary"
-            android:src="@drawable/ic_arrow_back" />
-
         <TextView
             android:id="@+id/txtEditEventHeading"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+
             android:layout_weight="1"
-            android:layout_marginStart="100dp"
+            android:layout_gravity="center"
+
             android:text="Add Event"
             android:textColor="@color/white"
             android:textSize="16sp"

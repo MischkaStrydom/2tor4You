@@ -457,7 +457,7 @@
     <string name="txtTutTotalHrsHeader">Total Tutor Hours:</string>
     <string name="txtTutTotalHrsView">10</string> <!--test data-->
     <string name="txtTutPriceHeader">Price per hour:</string>
-    <string name="txtPricePerHrView">R120.00</string> <!--test data-->
+    <string name="txtPricePerHrView">120.00</string> <!--test data-->
 
     <!--Find Tutor Item Screen-->
 

@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -59,8 +60,6 @@ public class ActivityEditEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_event);
 
-        ImageView btnBack = findViewById(R.id.btnBackEditEvent);
-        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityEditEvent.this, ActivityHomeStudent.class)));
 
         dbHelper = new DBHelper(this);
 
