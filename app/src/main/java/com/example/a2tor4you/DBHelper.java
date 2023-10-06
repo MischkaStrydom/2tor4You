@@ -164,6 +164,19 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public Cursor viewTutorData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define the SQL query using a JOIN operation to retrieve data from both tables
+        String query = "SELECT User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.pricePerHour " +
+                "FROM User " +
+                "INNER JOIN Tutor ON User.userID = Tutor.userID";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        return cursor;
+    }
+
 
     public List<Date> getEventDatesForUser(int userID) {
         List<Date> eventDates = new ArrayList<>();

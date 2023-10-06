@@ -73,12 +73,25 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/person_icon" />
 
+            <Button
+                android:id="@+id/btnSaveProfilePic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-15dp"
+                android:gravity="center"
+                android:textSize="10dp"
+                android:text="Save Profile Picture"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/account_round_back_white"/>
+
             <TextView
                 android:id="@+id/txtAccNameSurnameSubHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="15dp"
                 android:text="Jane Doe"
                 android:textColor="#FFFFFF"
                 android:textSize="26sp"

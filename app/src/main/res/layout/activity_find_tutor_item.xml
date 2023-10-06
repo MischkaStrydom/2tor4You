@@ -31,12 +31,13 @@ app:cardUseCompatPadding="true">
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="5dp"
-        android:text="Name Surname"
+        android:text="Name"
         android:textColor="#3F51B5"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@+id/imgTutProfilePicList"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.appcompat.widget.AppCompatRatingBar
         android:id="@+id/appCompatRatingBar"
@@ -53,6 +54,7 @@ app:cardUseCompatPadding="true">
         app:layout_constraintVertical_bias="0.428" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout9"
         android:layout_width="wrap_content"
         android:layout_height="26dp"
         android:layout_marginStart="5dp"
@@ -76,21 +78,11 @@ app:cardUseCompatPadding="true">
             android:textSize="10sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txtPricePerHrView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_toEndOf="@+id/txtTutPriceHeader"
-            android:text="@string/txtPricePerHrView"
-            android:textColor="#3F51B5"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -104,12 +96,12 @@ app:cardUseCompatPadding="true">
             android:id="@+id/iconWork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/work"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
+            android:src="@drawable/work"
             android:textColor="#3F51B5"
             android:textStyle="bold"
-            app:tint="@color/grey"/>
+            app:tint="@color/grey" />
 
         <TextView
             android:id="@+id/txtTutYrsExpHeaderList"
@@ -121,20 +113,6 @@ app:cardUseCompatPadding="true">
             android:textColor="@color/grey"
             android:textSize="12sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtTutYrsExp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginStart="150dp"
-            android:paddingLeft="5dp"
-            android:textSize="12sp"
-            android:text="10"
-            android:textColor="#3F51B5"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="262dp"
-            tools:layout_editor_absoluteY="42dp" />
 
     </RelativeLayout>
 
@@ -170,21 +148,64 @@ app:cardUseCompatPadding="true">
             android:textColor="@color/grey"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txtTutTotalHrsView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:layout_marginStart="140dp"
-            android:paddingLeft="5dp"
-            android:textSize="12sp"
-            android:text="10"
-            android:textColor="#3F51B5"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="262dp"
-            tools:layout_editor_absoluteY="42dp" />
-
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="88dp"
+        android:text="Surname"
+        android:textColor="#3F51B5"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toEndOf="@+id/txtTutNameSurnameView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtTutYrsExp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="5dp"
+        android:text="10"
+        android:textColor="#3F51B5"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout8"
+        app:layout_constraintTop_toBottomOf="@+id/txtSurname" />
+
+    <TextView
+        android:id="@+id/txtTutTotalHrsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="5dp"
+        android:text="10"
+        android:textColor="#3F51B5"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout7"
+        app:layout_constraintTop_toBottomOf="@+id/txtTutYrsExp" />
+
+    <TextView
+        android:id="@+id/txtPricePerHrView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:text="@string/txtPricePerHrView"
+        android:textColor="#3F51B5"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

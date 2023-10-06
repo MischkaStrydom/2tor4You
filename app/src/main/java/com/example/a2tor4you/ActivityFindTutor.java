@@ -37,7 +37,7 @@ public class ActivityFindTutor extends AppCompatActivity {
 
         ImageView filter = findViewById(R.id.filter);
         filter.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(),ActivityFilterTutors.class));
+            startActivity(new Intent(getApplicationContext(),ActivityGradeAndSubject.class));
         });
 
 

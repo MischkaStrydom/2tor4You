@@ -153,6 +153,8 @@ public class ActivityTutorProfile extends AppCompatActivity {
             }
         });
 
+
+
         //Adding User Table info to editBoxes
         if (loggedInUserId != -1) {
             // Fetch user's name and surname from the database based on userID

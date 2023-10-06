@@ -49,6 +49,7 @@ public class ActivityAccount extends AppCompatActivity {
     Uri selectedImageUri;
     DBHelper dbHelper ;
 
+
     public ActivityAccount() {
         // Required empty public constructor
     }
@@ -130,7 +131,8 @@ public class ActivityAccount extends AppCompatActivity {
         ImageView notification = findViewById(R.id.btnNotifications);
         ImageView settings = findViewById(R.id.btnSettings);
         ImageView terms = findViewById(R.id.btnTermsAndC);
-
+        ImageView profile_image_view = findViewById(R.id.profile_image_view);
+        Button savePic = findViewById(R.id.btnSaveProfilePic);
 
         notification.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityNotifications.class)));
         settings.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivitySettings.class)));
@@ -149,6 +151,38 @@ public class ActivityAccount extends AppCompatActivity {
             showAlertDialog("Contact us at: 2tor4you@gmail.com");
 
         });
+
+
+        //Testing profile pic
+        imagePickLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        if (data != null && data.getData() != null) {
+                            selectedImageUri = data.getData();
+                            // Display the selected image
+                            profile_image_view.setImageURI(selectedImageUri);
+
+                            // Save the image to the database or perform other actions here
+                            // You can use selectedImageUri to access the image data
+                        }
+                    }
+                }
+        );
+
+        profile_image_view.setOnClickListener(v -> {
+            // Launch the image picker when the image view is clicked
+            ImagePicker.with(ActivityAccount.this)
+                    .cropSquare()
+                    .compress(512)
+                    .maxResultSize(512, 512)
+                    .createIntent(intent -> {
+                        imagePickLauncher.launch(intent);
+                        return null;
+                    });
+        });
+
+
 
 
         // Navigation Bar
@@ -187,55 +221,55 @@ public class ActivityAccount extends AppCompatActivity {
             }
         });
 
-        imagePickLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    if(result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        if(data!=null && data.getData()!=null){
-                            selectedImageUri = data.getData();
-                            AndroidUtil.setProfilePic(getApplicationContext(),selectedImageUri,profile_image_view);
-                        }
-                    }
-                }
-        );
+//        imagePickLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+//                result -> {
+//                    if(result.getResultCode() == Activity.RESULT_OK){
+//                        Intent data = result.getData();
+//                        if(data!=null && data.getData()!=null){
+//                            selectedImageUri = data.getData();
+//                            AndroidUtil.setProfilePic(getApplicationContext(),selectedImageUri,profile_image_view);
+//                        }
+//                    }
+//                }
+//        );
     }
 
-    // Profile Pic
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_account, container, false);
-
-        profile_image_view = view.findViewById(R.id.profile_image_view);
-
-        getUserData();
-
-        profile_image_view.setOnClickListener((v) -> {
-            ImagePicker.with(this).cropSquare().compress(512).maxResultSize(512, 512)
-                    .createIntent(new Function1<Intent, Unit>() {
-                        @Override
-                        public Unit invoke(Intent intent) {
-                            imagePickLauncher.launch(intent);
-                            return null;
-                        }
-                    });
-        });
-        return view;
-
-    }
-
-    void getUserData() {
-
-        FirebaseUtil.getCurrentProfilePicStorageRef().getDownloadUrl()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Uri uri = task.getResult();
-                        AndroidUtil.setProfilePic(getApplicationContext(), uri, profile_image_view);
-                    }
-                });
-
-    }
-
+//    // Profile Pic
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//        View view = inflater.inflate(R.layout.activity_account, container, false);
+//
+//
+//
+//        getUserData();
+//
+//        profile_image_view.setOnClickListener((v) -> {
+//            ImagePicker.with(this).cropSquare().compress(512).maxResultSize(512, 512)
+//                    .createIntent(new Function1<Intent, Unit>() {
+//                        @Override
+//                        public Unit invoke(Intent intent) {
+//                            imagePickLauncher.launch(intent);
+//                            return null;
+//                        }
+//                    });
+//        });
+//        return view;
+//
+//    }
+//
+//    void getUserData() {
+//
+//        FirebaseUtil.getCurrentProfilePicStorageRef().getDownloadUrl()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        Uri uri = task.getResult();
+//                        AndroidUtil.setProfilePic(getApplicationContext(), uri, profile_image_view);
+//                    }
+//                });
+//
+//    }
+//
 
     /*Report a Problem*/
 
