@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,7 +26,17 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Locale;
+
 public class ActivityHomeStudent extends AppCompatActivity {
+
+
+    // Calendar event highlight
+   /* private CalendarView calendarView;
+
+    private HashSet<String> selectedDates = new HashSet<>();*/
 
     static String phoneNumber;
     static String password;
@@ -44,6 +55,8 @@ public class ActivityHomeStudent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_student);
+
+        //calendarView = findViewById(R.id.calendarView);
         TextView welcome = findViewById(R.id.txtWelcomeStud);
         dbHelper = new DBHelper(this);
 
@@ -127,8 +140,46 @@ public class ActivityHomeStudent extends AppCompatActivity {
             }
         });
 
+        //Calendar event highlight
+
+        // Set a DateChangeListener to the CalendarView
+        /*calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            // Month value in CalendarView is 0-based, so add 1 to get the correct month
+            month = month + 1;
+
+            // Format the selected date
+            String selectedDate = year + "-" + (month < 10 ? "0" + month : month) +
+                    "-" + (dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth);
+
+            // If the date is already selected, remove it; otherwise, add it
+            if (selectedDates.contains(selectedDate)) {
+                selectedDates.remove(selectedDate);
+            } else {
+                selectedDates.add(selectedDate);
+            }
+
+            // Update the highlighted dates on the CalendarView
+            updateHighlightedDates();
+        });
 
     }
+
+    private void updateHighlightedDates() {
+        // Update the highlighted dates on the CalendarView
+        for (String date : selectedDates) {
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                java.util.Date parsedDate = dateFormat.parse(date);
+                if (parsedDate != null) {
+                    long timeInMillis = parsedDate.getTime();
+                    calendarView.setDateSelected(timeInMillis, true);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }*/
+    }
+
     private void startNewActivity(Class<?> targetActivity) {
         Intent intent = new Intent(ActivityHomeStudent.this, targetActivity);
         intent.putExtra("phone", phoneNumber);

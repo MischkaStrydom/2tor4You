@@ -47,7 +47,7 @@ public class ActivityEventsListView extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-         loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
+        loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
 
         ImageButton btnBackUpcomingEvent = findViewById(R.id.btnBackUpcomingEvent);
 
