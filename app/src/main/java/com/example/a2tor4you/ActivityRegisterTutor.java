@@ -140,8 +140,8 @@ public class ActivityRegisterTutor extends AppCompatActivity implements View.OnC
                     ContentValues tutorValues = new ContentValues();
                     tutorValues.put("userID", userID );
                     boolean tutorInsertResult  = myDB.insertData("Tutor", tutorValues);
-
-                    if (tutorInsertResult) {
+                    boolean tutorPreffs  = myDB.insertData("NotificationPreference", tutorValues);
+                    if (tutorInsertResult && tutorPreffs) {
                         name.setText("");
                         surname.setText("");
                         phoneInput.setText("");

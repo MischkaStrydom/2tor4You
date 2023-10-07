@@ -95,7 +95,7 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:id="@+id/btnEmail"
+                        android:id="@+id/btnEmails"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -106,6 +106,7 @@
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/btnEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -160,7 +161,7 @@
                         android:padding="12dp"/>
 
                     <TextView
-                        android:id="@+id/btnMessage"
+                        android:id="@+id/btnMessages"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -171,6 +172,7 @@
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/btnMessage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -180,7 +182,20 @@
                 </RelativeLayout>
             </LinearLayout>
 
-
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSavePrefs"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="100dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/account_round_back"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:text="@string/btnSaveProfile"
+                android:textColor="@color/primary" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

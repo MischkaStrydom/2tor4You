@@ -35,19 +35,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //Tutor table
         String tutorSQL = "CREATE TABLE Tutor (tutorID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, dob DATE, gender VARCHAR(25), province VARCHAR(255)," +
-                "city VARCHAR(255), school VARCHAR(255), uni VARCHAR(255), YearsOfExperience INTEGER, TotalTutorHours FLOAT, TotalStudentTaught INTEGER," +
-                "aboutMe VARCHAR(255), pricePerHour FLOAT, locationOnline BOOLEAN DEFAULT 0, locationOffline BOOLEAN DEFAULT 0," +
-                "extraQualifiedTeacher BOOLEAN DEFAULT 0, extraNotes VARCHAR(255) DEFAULT 'Notes', image BLOB, FOREIGN KEY (userID) REFERENCES User(userID))";
+                "city VARCHAR(255), school VARCHAR(255), uni VARCHAR(255), YearsOfExperience INTEGER DEFAULT 0, TotalTutorHours FLOAT DEFAULT 0, TotalStudentTaught INTEGER DEFAULT 0," +
+                "aboutMe VARCHAR(255), pricePerHour FLOAT DEFAULT 0, locationOnline BOOLEAN DEFAULT 0, locationOffline BOOLEAN DEFAULT 0," +
+                "extraQualifiedTeacher BOOLEAN DEFAULT 0, extraNotes VARCHAR(255), image BLOB, FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Admin table
         String adminSQL = "CREATE TABLE Admin (adminID INTEGER PRIMARY KEY AUTOINCREMENT,userID INTEGER, adminRole VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
 
-        //Subjects
-        String subjectSQL = "CREATE TABLE Subject (subjectID INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(255))";
+//        //Subjects
+//        String subjectSQL = "CREATE TABLE Subject (subjectID INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(255))";
 
         //Tutor Subjects --- Tutor Profile
-        String tutorSubjectSQL = "CREATE TABLE TutorSubject (tutorSubjectID INTEGER PRIMARY KEY AUTOINCREMENT, tutorID INTEGER, subjectID INTEGER, grade VARCHAR(255)," +
-                " FOREIGN KEY (tutorID) REFERENCES Tutor(tutorID), FOREIGN KEY (subjectID) REFERENCES Subject(subjectID))";
+        String tutorSubjectSQL = "CREATE TABLE TutorSubject (tutorSubjectID INTEGER PRIMARY KEY AUTOINCREMENT, tutorID INTEGER, subjectName VARCHAR(255), grade VARCHAR(255)," +
+                " FOREIGN KEY (tutorID) REFERENCES Tutor(tutorID))";
 
         //Event
         String EventSQL = "CREATE TABLE Event (eventID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, eventTitle VARCHAR(255), eventDate DATE, " +
@@ -80,7 +80,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(studentSQL);
         db.execSQL(tutorSQL);
         db.execSQL(adminSQL);
-        db.execSQL(subjectSQL);
+        //db.execSQL(subjectSQL);
         db.execSQL(tutorSubjectSQL);
         db.execSQL(EventSQL);
         db.execSQL(ReviewSQL);
@@ -127,9 +127,81 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public Cursor queryUserImage(String table_name,int loggedInUserId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String tableName = table_name; // Replace with your actual table name
+        String[] columns = {"image"};
+        String selection = "id = ?";
+        String[] selectionArgs = {String.valueOf(loggedInUserId)};
+        String groupBy = null;
+        String having = null;
+        String orderBy = null;
+
+        return db.query(tableName, columns, selection, selectionArgs, groupBy, having, orderBy);
+    }
+
+    public byte[] retrieveImage(String tableName, int loggedInUserID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        byte[] imageBlob = null;
+
+        String[] projection = {"image"};
+        String selection = "userID = ?";
+        String[] selectionArgs = {String.valueOf(loggedInUserID)};
+
+        Cursor cursor = db.query(tableName, projection, selection, selectionArgs, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            imageBlob = cursor.getBlob(cursor.getColumnIndexOrThrow("image"));
+            cursor.close();
+        }
+
+        db.close();
+        return imageBlob;
+    }
+
+    public boolean insertImage(String tableName, ContentValues values, int userID, byte[] imageByteArray) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Add the image data to the ContentValues
+        values.put("image", imageByteArray);
+
+        // Specify the WHERE clause to match the provided userID
+        String whereClause = "userID=?";
+        String[] whereArgs = { String.valueOf(userID) };
+
+        // Try to insert or update the row based on the provided userID
+        long result = db.update(tableName, values, whereClause, whereArgs);
+
+        // If the update didn't affect any rows, insert a new row
+        if (result == 0) {
+            result = db.insertWithOnConflict(tableName, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        }
+
+        // Check if the insert/update was successful
+        return result != -1;
+    }
 
 
 
+    // Check if a user is in the Student table
+    public boolean isUserInStudentTable(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Student WHERE userID = ?", new String[]{String.valueOf(userId)});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return exists;
+    }
+
+    // Check if a user is in the Tutor table
+    public boolean isUserInTutorTable(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Tutor WHERE userID = ?", new String[]{String.valueOf(userId)});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return exists;
+    }
 
 
     public boolean insertData(String tableName, ContentValues values) {
@@ -164,11 +236,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+
     public Cursor viewTutorData() {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Define the SQL query using a JOIN operation to retrieve data from both tables
-        String query = "SELECT User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.pricePerHour " +
+        String query = "SELECT User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.pricePerHour, Tutor.image " +
                 "FROM User " +
                 "INNER JOIN Tutor ON User.userID = Tutor.userID";
 
@@ -343,6 +416,22 @@ public class DBHelper extends SQLiteOpenHelper {
         return userID;
     }
 
+    public int getTutorId(int userID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT tutorID FROM Tutor WHERE userID = ?", new String[]{String.valueOf(userID)});
+
+        int tutorID = -1; // Initialize to -1 in case of no matching record.
+
+        if (cursor.moveToFirst()) {
+            tutorID = cursor.getInt(0); // Assign the value to tutorID
+        }
+
+        cursor.close();
+        db.close();
+
+        return tutorID;
+    }
+
 
 
 
@@ -355,6 +444,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return rowsAffected > 0;
     }
+
+
 
 
     public boolean isUserIDExists(String tableName, int userID) {
@@ -484,6 +575,64 @@ public class DBHelper extends SQLiteOpenHelper {
         return fieldValue;
     }
 
+    public String getFieldTutoSubj(String TABLE_NAME, int tutorID, String fieldName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + fieldName + " FROM " + TABLE_NAME + " WHERE tutorID = ?";
+        String[] selectionArgs = {String.valueOf(tutorID)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        String fieldValue = null; // Initialize to null in case of no matching record.
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(fieldName);
+
+            String value = cursor.getString(columnIndex);
+
+            if (value != null) {
+                fieldValue = value;
+            }
+
+            // Close the cursor.
+            cursor.close();
+        }
+
+        // Close the database.
+        db.close();
+
+        return fieldValue;
+    }
+    public List<ActivityTutorProfile.SubjectGrade> getSubjectsAndGradesForTutor(int tutorID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT subjectName, grade FROM TutorSubject WHERE tutorID = ?";
+        String[] selectionArgs = {String.valueOf(tutorID)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        List<ActivityTutorProfile.SubjectGrade> subjectGrades = new ArrayList<>();
+
+        if (cursor != null) {
+            int subjectColumnIndex = cursor.getColumnIndex("subjectName");
+            int gradeColumnIndex = cursor.getColumnIndex("grade");
+
+            while (cursor.moveToNext()) {
+                String subject = (subjectColumnIndex >= 0) ? cursor.getString(subjectColumnIndex) : "";
+                String grade = (gradeColumnIndex >= 0) ? cursor.getString(gradeColumnIndex) : "";
+
+                ActivityTutorProfile.SubjectGrade subjectGrade = new ActivityTutorProfile.SubjectGrade(subject, grade);
+                subjectGrades.add(subjectGrade);
+            }
+
+            cursor.close();
+        }
+
+        db.close();
+
+        return subjectGrades;
+    }
+
+
+
 
     public float getFieldAsFloat(String TABLE_NAME, int userId, String fieldName) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -532,6 +681,34 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return fieldValue;
     }
+
+    public Boolean getFieldAsBool(String TABLE_NAME, String fieldName, int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + fieldName + " FROM " + TABLE_NAME + " WHERE userID = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        Boolean fieldValue = null; // Initialize to null in case of no matching record.
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(fieldName);
+
+            // Check if the field is an integer (0 or 1) and convert it to Boolean.
+            int intValue = cursor.getInt(columnIndex);
+            fieldValue = (intValue == 1); // 1 means true, 0 means false
+
+            // Close the cursor.
+            cursor.close();
+        }
+
+        // Close the database.
+        db.close();
+
+        return fieldValue;
+    }
+
+
 
 //    public SimpleCursorAdapter populateListViewFromDB() {
 //        SQLiteDatabase db = this.getReadableDatabase();

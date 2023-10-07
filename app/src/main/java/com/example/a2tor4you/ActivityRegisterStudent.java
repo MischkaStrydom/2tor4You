@@ -128,8 +128,9 @@ public class ActivityRegisterStudent extends AppCompatActivity {
                     ContentValues studentValues = new ContentValues();
                     studentValues.put("userID", userID );
                     boolean studentInsertResult  = myDB.insertData("Student", studentValues);
+                    boolean studentPreffs  = myDB.insertData("NotificationPreference", studentValues);
 
-                    if (studentInsertResult) {
+                    if (studentInsertResult && studentPreffs) {
                         name.setText("");
                         surname.setText("");
                         phoneInput.setText("");

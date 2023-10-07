@@ -28,6 +28,7 @@ import java.util.ArrayList;
 public class ActivityFindTutor extends AppCompatActivity {
 
     ArrayList<String> firstName, lastname, YearsOfExperience ,TotalTutorHours , pricePerHour;
+    private ArrayList<byte[]> imageBytes;
     adapterTutor adapterTutor;
 
     ArrayList<String> listItem;
@@ -81,11 +82,15 @@ public class ActivityFindTutor extends AppCompatActivity {
         YearsOfExperience = new ArrayList<>();
         TotalTutorHours = new ArrayList<>();
         pricePerHour = new ArrayList<>();
+        imageBytes = new ArrayList<>();
+
+
+
 
         rvFindTutor = findViewById(R.id.rvFindTutor);
        // rvFindTutor = findViewById(R.id.rvFindTutor);
         storeDataInArrays();
-        adapterTutor = new adapterTutor(ActivityFindTutor.this, firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour);
+        adapterTutor = new adapterTutor(ActivityFindTutor.this, firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour, imageBytes);
         rvFindTutor.setAdapter(adapterTutor);
         rvFindTutor.setLayoutManager(new LinearLayoutManager(ActivityFindTutor.this));
 
@@ -139,6 +144,7 @@ public class ActivityFindTutor extends AppCompatActivity {
     void storeDataInArrays()
     {
         Cursor cursor = dbHelper.viewTutorData();
+
         if (cursor.getCount() == 0) {
             Toast.makeText(ActivityFindTutor.this, "No events to show", Toast.LENGTH_LONG).show();
         } else {
@@ -149,18 +155,19 @@ public class ActivityFindTutor extends AppCompatActivity {
                 YearsOfExperience.add(cursor.getString(2)); // eventTime
                 TotalTutorHours.add(cursor.getString(3)); // eventNotes
                 pricePerHour.add(cursor.getString(4)); // eventNotes
+                byte[] imageBlob = cursor.getBlob(5);
+                imageBytes.add(imageBlob);
+
 
             }
 
         }
 
-    }
-
-
-
-
 
     }
+
+
+}
 
 //    private void startNewActivity(Class<?> targetActivity) {
 //        Intent intent = new Intent(ActivityFindTutor.this, targetActivity);

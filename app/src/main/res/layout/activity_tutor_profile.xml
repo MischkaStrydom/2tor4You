@@ -325,8 +325,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
                     android:background="@drawable/account_round_back_white"
+                    android:orientation="horizontal"
                     android:padding="2dp">
 
                     <RelativeLayout
@@ -387,6 +387,7 @@
                     android:background="@drawable/account_round_back_white"
                     android:orientation="vertical"
                     android:padding="2dp">
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -593,33 +594,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="2dp">
+
                     <TextView
                         android:id="@+id/txtPrefix"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginEnd="0dp"
                         android:layout_toEndOf="@+id/phoneIcon1"
-                        android:layout_centerVertical="true"
                         android:background="@null"
-                        android:text="@string/txtPrefix"
-                        android:textSize="18sp"
-                        android:textColor="@color/white"
                         android:paddingLeft="20dp"
                         android:paddingTop="0dp"
                         android:paddingRight="10dp"
-                        android:paddingBottom="0dp" />
+                        android:paddingBottom="0dp"
+                        android:text="@string/txtPrefix"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
 
                     <EditText
                         android:id="@+id/txtPhoneNum"
                         android:layout_width="wrap_content"
                         android:layout_height="41dp"
+                        android:layout_centerVertical="true"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="0dp"
                         android:layout_marginEnd="0dp"
                         android:layout_toEndOf="@+id/txtPrefix"
-                        android:layout_centerVertical="true"
                         android:background="@null"
                         android:ems="10"
                         android:hint="@string/txtPhoneNum"
@@ -630,7 +632,7 @@
                         android:paddingBottom="0dp"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"
-                        app:boxBackgroundMode="none"/>
+                        app:boxBackgroundMode="none" />
 
                     <ImageView
                         android:id="@+id/phoneIcon1"
@@ -908,14 +910,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/account_round_back_white"
                 android:orientation="vertical"
                 android:padding="2dp">
-
 
 
                 <!--First Name-->
@@ -926,21 +927,21 @@
 
                     <EditText
                         android:id="@+id/txtTutAboutMe"
-                        android:layout_width="408dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="0dp"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginBottom="130dp"
+
+                        android:layout_marginBottom="0dp"
                         android:background="@null"
                         android:ems="10"
                         android:hint="@string/txtTutAboutMe"
-                        android:inputType="text"
+
+                        android:inputType="textMultiLine"
                         android:paddingLeft="20dp"
                         android:paddingTop="10dp"
                         android:paddingRight="10dp"
                         android:paddingBottom="10dp"
-
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"
                         app:boxBackgroundMode="none"
@@ -964,40 +965,41 @@
                 android:textColor="#CCFFFF"
                 android:textSize="16sp" />
 
-                <!--Province-->
-                <RelativeLayout
+            <!--Province-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="135dp"
+                android:background="@drawable/account_round_back_white"
+                android:padding="2dp">
+
+                <Spinner
+                    android:id="@+id/spinSubjectTeach"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="135dp"
-                    android:background="@drawable/account_round_back_white"
-                    android:padding="2dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="0dp"
+                    android:background="@drawable/spinner_arrow"
+                    android:entries="@array/spinSubjects"
 
-                    <Spinner
-                        android:id="@+id/spinSubjectTeach"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/CustomSpinnerTheme"
-                        android:entries="@array/spinSubjectTeach"
-                        android:layout_marginEnd="0dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="10dp"
-                        android:popupBackground="#90BDAF"
-                        android:textColor="@color/white"
-                        android:background="@drawable/spinner_arrow"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:popupBackground="#90BDAF"
+                    android:textColor="@color/white"
+                    android:theme="@style/CustomSpinnerTheme"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                </RelativeLayout>
+            </RelativeLayout>
 
             <!--Province-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="135dp"
                 android:background="@drawable/account_round_back_white"
                 android:padding="2dp">
@@ -1006,16 +1008,16 @@
                     android:id="@+id/spinLevelEdu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="@style/CustomSpinnerTheme"
-                    android:entries="@array/spinLevelEdu"
+                    android:background="@drawable/spinner_arrow"
+                    android:entries="@array/spinGrade"
                     android:paddingLeft="20dp"
                     android:paddingTop="10dp"
                     android:paddingRight="10dp"
                     android:paddingBottom="10dp"
                     android:popupBackground="#90BDAF"
                     android:textColor="@color/white"
+                    android:theme="@style/CustomSpinnerTheme"
                     app:layout_constraintHorizontal_bias="0.0"
-                    android:background="@drawable/spinner_arrow"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </RelativeLayout>
@@ -1024,18 +1026,19 @@
                 android:id="@+id/btnAddTutSubjGrade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="20dp"
                 android:backgroundTint="@color/grey"
-                android:text="Add"/>
+                android:text="Add" />
 
-            <ListView
-                android:id="@+id/eventListView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/white"
+            <TextView
+                android:id="@+id/txtSubjects"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp" />
+                android:text=""
+                android:textColor="#3F51B5"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/txtTPPH"
@@ -1103,7 +1106,6 @@
             </LinearLayout>
 
 
-
             <TextView
                 android:id="@+id/txtTeachLoacation"
                 android:layout_width="wrap_content"
@@ -1113,28 +1115,30 @@
                 android:text="@string/txtTeachLoacation"
                 android:textColor="#CCFFFF"
                 android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:padding="2dp">
-            <CheckBox
-                android:id="@+id/rdoTeachOnline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:buttonTint="@color/teal_200"
-                android:text="@string/rdoTeachOnline"
-                android:textColor="@color/white" />
 
-            <CheckBox
-                android:id="@+id/rdoTeachInPerson"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:buttonTint="@color/teal_200"
-                android:text="@string/rdoTeachInPerson"
-                android:textColor="@color/white" />
+                <CheckBox
+                    android:id="@+id/rdoTeachOnline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:buttonTint="@color/teal_200"
+                    android:text="@string/rdoTeachOnline"
+                    android:textColor="@color/white" />
+
+                <CheckBox
+                    android:id="@+id/rdoTeachInPerson"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:buttonTint="@color/teal_200"
+                    android:text="@string/rdoTeachInPerson"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <TextView
@@ -1172,26 +1176,53 @@
                 android:textColor="#CCFFFF"
                 android:textSize="16sp" />
 
-            <EditText
-                android:id="@+id/txtExtraNotes"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/border"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="10dp"
+                android:background="@drawable/account_round_back_white"
+                android:orientation="vertical"
+                android:padding="2dp">
 
-                android:paddingBottom="80dp"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                app:boxBackgroundMode="none"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
+                <!--Extra Notes-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp">
+
+                    <EditText
+                        android:id="@+id/txtExtraNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="0dp"
+
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="Extra Notes"
+                        android:inputType="textMultiLine"
+
+                        android:paddingLeft="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        app:boxBackgroundMode="none"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSaveTutProfile"
@@ -1210,9 +1241,7 @@
         </LinearLayout>
 
 
-
     </ScrollView>
-
 
 
 </LinearLayout>

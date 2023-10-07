@@ -27,7 +27,9 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 
 public class ActivityHomeStudent extends AppCompatActivity {
@@ -74,12 +76,19 @@ public class ActivityHomeStudent extends AppCompatActivity {
             welcome.setText("Guest"); // Display a default value or handle it as needed
         }
 
+        DBHelper dbHelper = new DBHelper(this);
 
-        btnViewAllSessions = findViewById(R.id.btnViewAllSessions);
+        List<Date> eventDates = dbHelper.getEventDatesForUser(loggedInUserId);
+
+
+
+                btnViewAllSessions = findViewById(R.id.btnViewAllSessions);
         btnViewAllSessions.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityHomeStudent.this, ActivityEventsListView.class);
             startActivity(intent);
         });
+
+
 
 //        btnAddEvent = findViewById(R.id.btnAddEvent);
 //        btnAddEvent.setOnClickListener(v -> {

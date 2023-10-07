@@ -220,10 +220,6 @@ public class ActivityEditEvent extends AppCompatActivity {
                // if (isAllFieldsChecked) {
 
                     if (result) {
-
-
-
-
                         // the boolean variable turns to be true then
                         // only the user must be proceed to the activity2
                         Toast.makeText(ActivityEditEvent.this, "Event added successfully", Toast.LENGTH_SHORT).show();

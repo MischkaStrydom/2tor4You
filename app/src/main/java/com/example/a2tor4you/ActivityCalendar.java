@@ -149,6 +149,4 @@ public class ActivityCalendar extends AppCompatActivity {
             // setDateBackgroundColor(timeInMillis, Color.GREEN);
         }
     }
-
-
 }

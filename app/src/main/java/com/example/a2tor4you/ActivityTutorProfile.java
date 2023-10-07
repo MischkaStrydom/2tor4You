@@ -23,12 +23,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a2tor4you.utils.AndroidUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class ActivityTutorProfile extends AppCompatActivity {
@@ -41,15 +43,15 @@ public class ActivityTutorProfile extends AppCompatActivity {
     ImageView imageProfile;
 
      String userName,profileName,profileSurname,profileEmail, profileNumber;
-     String dob,Gender,province, city, School, Uni, extraNotes, about;
+     String dob,Gender,province, city, School, Uni, extraNotes, about, SUBJECT, GRADE;
      Integer YearsOfExperience, TotalStudentTaught;
      Float totalTutorHours, pricePerHour;
      Boolean locationOnline, locationOffline, extraQualifiedTeacher;
 
-    Spinner gender, spinnerProvince, spinnerCity;
+    Spinner gender, spinnerProvince, spinnerCity, spinnerGrade, spinnerSubjects;
     EditText txtTutName, txtTutLastName, txtPhoneNum, txtTutEmail, school, uni, notes, yearsExperience, totalTutHours,
             totalStudents, aboutMe, priceHour;
-    Button takePhoto, btnPickDOB, btnSaveTutProfile;
+    Button takePhoto, btnPickDOB, btnSaveTutProfile, btnAdd;
 
 
     Calendar calendar = Calendar.getInstance();
@@ -103,6 +105,10 @@ public class ActivityTutorProfile extends AppCompatActivity {
         spinnerProvince = findViewById(R.id.spinProvince);
         spinnerCity = findViewById(R.id.spinCity);
 
+        spinnerSubjects = findViewById(R.id.spinSubjectTeach);
+        spinnerGrade = findViewById(R.id.spinLevelEdu);
+        TextView txtSubjects = findViewById(R.id.txtSubjects);
+
         school = findViewById(R.id.txtTutSchool);
         uni = findViewById(R.id.txtTutUni);
 
@@ -114,7 +120,7 @@ public class ActivityTutorProfile extends AppCompatActivity {
         totalStudents = findViewById(R.id.txtTutTotalStudTaught);
         aboutMe = findViewById(R.id.txtTutAboutMe);
         priceHour = findViewById(R.id.txtPricePerHr);
-
+        btnAdd = findViewById(R.id.btnAddTutSubjGrade);
 
         final CheckBox online = findViewById(R.id.rdoTeachOnline);
         final CheckBox Offline = findViewById(R.id.rdoTeachInPerson);
@@ -134,6 +140,64 @@ public class ActivityTutorProfile extends AppCompatActivity {
             public void onClick(View v) {
                 showDatePicker();
             }
+        });
+        int tutorID = dbHelper.getTutorId(loggedInUserId);
+
+
+        //Adding Student Table info to editBoxes
+        if (loggedInUserId != -1) {
+
+            List<SubjectGrade> subjectGrades  = dbHelper.getSubjectsAndGradesForTutor(tutorID);
+
+// Initialize a StringBuilder to build the final text
+            StringBuilder subjectText = new StringBuilder();
+
+// Iterate through the list and concatenate subjects and grades
+            for (SubjectGrade subjectGrade : subjectGrades) {
+                String subject = subjectGrade.getSubject();
+                String grade = subjectGrade.getGrade();
+
+                // Append the subject and grade to the StringBuilder
+                subjectText.append("Subject: ").append(subject).append("- Grade: ").append(grade).append(" | ");
+            }
+
+// Set the concatenated text to the TextView
+            txtSubjects.setText(subjectText.toString());
+
+        } else {
+            //  Toast.makeText(ActivityMyProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
+            //welcome.setText("Guest"); // Display a default value or handle it as needed
+        }
+
+
+        DBHelper myDB = new DBHelper(this); // Initialize myDB
+        btnAdd.setOnClickListener(v -> {
+
+
+            SUBJECT = spinnerSubjects.getSelectedItem().toString();
+            GRADE = spinnerGrade.getSelectedItem().toString();
+
+
+            ContentValues subjectValues = new ContentValues();
+            subjectValues.put("tutorID", tutorID);
+            subjectValues.put("subjectName", SUBJECT);
+            subjectValues.put("grade", GRADE);
+
+            boolean isUserUpdated = myDB.insertData("TutorSubject", subjectValues);
+
+            if (isUserUpdated) {
+                Toast.makeText(ActivityTutorProfile.this, "Subject and Grade added Successfully", Toast.LENGTH_SHORT).show();
+                spinnerSubjects.setSelection(0);
+                spinnerGrade.setSelection(0);
+
+                txtSubjects.setText(txtSubjects.getText() + "Subject: " + SUBJECT + "- Grade: " + GRADE + ", ");
+
+
+            } else {
+                Toast.makeText(ActivityTutorProfile.this, "Unexpected error", Toast.LENGTH_SHORT).show();
+            }
+
+
         });
 
        /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
@@ -227,7 +291,6 @@ public class ActivityTutorProfile extends AppCompatActivity {
                 if (positionProv != -1) {
                     spinnerProvince.setSelection(positionProv);
                 }
-
 
                 int positionCity = getIndex(spinnerCity, city);
                 if (positionCity != -1) {
@@ -439,7 +502,23 @@ public class ActivityTutorProfile extends AppCompatActivity {
             }}
         return -1; // Not found
     }
+    public static class SubjectGrade {
+        private String subject;
+        private String grade;
 
+        public SubjectGrade(String subject, String grade) {
+            this.subject = subject;
+            this.grade = grade;
+        }
+
+        public String getSubject() {
+            return subject;
+        }
+
+        public String getGrade() {
+            return grade;
+        }
+    }
 }
 
 

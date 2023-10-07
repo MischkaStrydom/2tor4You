@@ -8,12 +8,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.accounts.Account;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +38,10 @@ import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.sql.Blob;
+
 import io.reactivex.rxjava3.annotations.Nullable;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -48,7 +58,7 @@ public class ActivityAccount extends AppCompatActivity {
     ActivityResultLauncher<Intent> imagePickLauncher;
     Uri selectedImageUri;
     DBHelper dbHelper ;
-
+    Bitmap imageBitmap;
 
     public ActivityAccount() {
         // Required empty public constructor
@@ -61,9 +71,56 @@ public class ActivityAccount extends AppCompatActivity {
         TextView accountName = findViewById(R.id.txtAccNameSurnameSubHeading);
         TextView emailName = findViewById(R.id.txtAccEmailSubHeading);
         dbHelper = new DBHelper(this);
-
+        imageBitmap = null;
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
+        ImageView notification = findViewById(R.id.btnNotifications);
+        ImageView settings = findViewById(R.id.btnSettings);
+        ImageView terms = findViewById(R.id.btnTermsAndC);
+        profile_image_view = findViewById(R.id.profile_image_view);
+        Button savePic = findViewById(R.id.btnSaveProfilePic);
+
+       //  profile_image_view.setImageBitmap(imageBitmap);
+
+//        //Display Profile Pic by default
+        if (loggedInUserId != -1) {
+
+
+            boolean isInStudent = dbHelper.isUserInStudentTable(loggedInUserId);
+            boolean isInTutor = dbHelper.isUserInTutorTable(loggedInUserId);
+
+            if (isInStudent && !isInTutor) {
+                // User is in the Student table
+                byte[] imageBytes = dbHelper.retrieveImage("Student", loggedInUserId);
+
+                if (imageBytes != null && imageBytes.length > 0) {
+                    imageBitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+                    profile_image_view.setImageBitmap(imageBitmap);
+                }
+                else {
+                    profile_image_view.setImageResource(R.drawable.astronaught1);
+
+                }
+
+
+            } else if (!isInStudent && isInTutor) {
+                // User is in the Tutor table
+                 //dbHelper = new DBHelper(this);
+                byte[] imageBytes = dbHelper.retrieveImage("Tutor", loggedInUserId);
+
+
+                if (imageBytes != null && imageBytes.length > 0) {
+                    imageBitmap = BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.length);
+                    profile_image_view.setImageBitmap(imageBitmap);
+                }
+                else {
+                    profile_image_view.setImageResource(R.drawable.astronaught1);
+
+                }
+            }
+        }
+
+
 
         if (loggedInUserId != -1) {
             // Fetch user's name and surname from the database based on userID
@@ -128,11 +185,50 @@ public class ActivityAccount extends AppCompatActivity {
             }
         });
 
-        ImageView notification = findViewById(R.id.btnNotifications);
-        ImageView settings = findViewById(R.id.btnSettings);
-        ImageView terms = findViewById(R.id.btnTermsAndC);
-        ImageView profile_image_view = findViewById(R.id.profile_image_view);
-        Button savePic = findViewById(R.id.btnSaveProfilePic);
+
+        savePic.setOnClickListener(v -> {
+            if (loggedInUserId != -1) {
+              //  DBHelper dbHelper = new DBHelper(this);
+                boolean isInStudentTable = dbHelper.isUserInStudentTable(loggedInUserId);
+                boolean isInTutorTable = dbHelper.isUserInTutorTable(loggedInUserId);
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+
+                if (isInStudentTable && !isInTutorTable) {
+                    // User is in the Student table
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put("image", byteArray);
+
+                    boolean result = dbHelper.insertImage("Student", contentValues, loggedInUserId, byteArray);
+
+                    if(result){
+                        Toast.makeText(getApplicationContext(), "Profile pic successfully saved", Toast.LENGTH_LONG).show();
+                    }
+
+
+
+                } else if (!isInStudentTable && isInTutorTable) {
+                    // User is in the Tutor table
+                    ContentValues contentValues = new ContentValues();
+                    contentValues.put("image", byteArray);
+
+                    boolean result = dbHelper.insertImage("Tutor", contentValues, loggedInUserId, byteArray);
+
+                    if(result){
+                        Toast.makeText(getApplicationContext(), "Profile pic successfully saved", Toast.LENGTH_LONG).show();
+                    }
+
+                } else {
+                    // User is not found in either table, handle it as needed
+                    Toast.makeText(getApplicationContext(), "Profile pic not saved", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                // Handle the case where the userID is not found (e.g., user not logged in)
+                Toast.makeText(getApplicationContext(), "Unknown Error Occurred", Toast.LENGTH_LONG).show();
+            }
+        });
 
         notification.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityNotifications.class)));
         settings.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivitySettings.class)));
@@ -165,6 +261,12 @@ public class ActivityAccount extends AppCompatActivity {
 
                             // Save the image to the database or perform other actions here
                             // You can use selectedImageUri to access the image data
+                            // Load the selected image into imageBitmap
+                            try {
+                                imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
@@ -268,7 +370,8 @@ public class ActivityAccount extends AppCompatActivity {
 //                    }
 //                });
 //
-//    }
+ //   }
+
 //
 
     /*Report a Problem*/
@@ -320,6 +423,21 @@ public class ActivityAccount extends AppCompatActivity {
         dialog.show();
     }
 
+
+    // Step 1: Fetch the BLOB data from the database
+
+
+
+//    public void displayImageInImageView(ImageView imageView, int userId) {
+//        Bitmap imageBitmap = retrieveImageFromDatabase(userId);
+//
+//        if (imageBitmap != null) {
+//            imageView.setImageBitmap(imageBitmap);
+//        } else {
+//            // Handle the case where no image is found
+//            imageView.setImageResource(R.drawable.astronaught1); // Set a default image or show an error message
+//        }
+//    }
 
 
 
