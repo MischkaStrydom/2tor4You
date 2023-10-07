@@ -149,10 +149,10 @@ public class ActivityTutorProfile extends AppCompatActivity {
 
             List<SubjectGrade> subjectGrades  = dbHelper.getSubjectsAndGradesForTutor(tutorID);
 
-// Initialize a StringBuilder to build the final text
+        // Initialize a StringBuilder to build the final text
             StringBuilder subjectText = new StringBuilder();
 
-// Iterate through the list and concatenate subjects and grades
+        // Iterate through the list and concatenate subjects and grades
             for (SubjectGrade subjectGrade : subjectGrades) {
                 String subject = subjectGrade.getSubject();
                 String grade = subjectGrade.getGrade();
