@@ -43,7 +43,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String adminSQL = "CREATE TABLE Admin (adminID INTEGER PRIMARY KEY AUTOINCREMENT,userID INTEGER, adminRole VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
 
 //        //Subjects
-//        String subjectSQL = "CREATE TABLE Subject (subjectID INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(255))";
+        String subjectSQL = "CREATE TABLE Subject (subjectID INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(255))";
 
         //Tutor Subjects --- Tutor Profile
         String tutorSubjectSQL = "CREATE TABLE TutorSubject (tutorSubjectID INTEGER PRIMARY KEY AUTOINCREMENT, tutorID INTEGER, subjectName VARCHAR(255), grade VARCHAR(255)," +
@@ -80,7 +80,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(studentSQL);
         db.execSQL(tutorSQL);
         db.execSQL(adminSQL);
-        //db.execSQL(subjectSQL);
+        db.execSQL(subjectSQL);
         db.execSQL(tutorSubjectSQL);
         db.execSQL(EventSQL);
         db.execSQL(ReviewSQL);
@@ -113,7 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.execSQL("DROP TABLE IF EXISTS User");
-        db.execSQL("DROP TABLE IF EXISTS Student");
+       // db.execSQL("DROP TABLE IF EXISTS Student");
         db.execSQL("DROP TABLE IF EXISTS Tutor");
         db.execSQL("DROP TABLE IF EXISTS Admin");
         db.execSQL("DROP TABLE IF EXISTS Subject");
