@@ -68,15 +68,21 @@ public class ActivityAccount extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+
         TextView accountName = findViewById(R.id.txtAccNameSurnameSubHeading);
         TextView emailName = findViewById(R.id.txtAccEmailSubHeading);
+
         dbHelper = new DBHelper(this);
+
         imageBitmap = null;
+
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
+
         ImageView notification = findViewById(R.id.btnNotifications);
         ImageView settings = findViewById(R.id.btnSettings);
         ImageView terms = findViewById(R.id.btnTermsAndC);
+        ImageView report = findViewById(R.id.btnReport);
         profile_image_view = findViewById(R.id.profile_image_view);
         Button savePic = findViewById(R.id.btnSaveProfilePic);
 
@@ -233,6 +239,7 @@ public class ActivityAccount extends AppCompatActivity {
         notification.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityNotifications.class)));
         settings.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivitySettings.class)));
         terms.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityTermAndConditions.class)));
+        report.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityReport.class)));
 
         // Button report
         btnReport = findViewById(R.id.btnReport);

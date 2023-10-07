@@ -66,8 +66,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             notes = itemView.findViewById(R.id.eventNotes);
             startTime = itemView.findViewById(R.id.startTime);
             locationOnline = itemView.findViewById(R.id.eventLocation);
-
-
         }
     }
 }

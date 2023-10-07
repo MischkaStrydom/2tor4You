@@ -17,6 +17,12 @@
         android:theme="@style/Theme.2tor4You"
         tools:targetApi="31">
         <activity
+            android:name=".AdminHome"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityReportView"
+            android:exported="false" />
+        <activity
             android:name=".ActivityReport"
             android:exported="false" />
         <activity
