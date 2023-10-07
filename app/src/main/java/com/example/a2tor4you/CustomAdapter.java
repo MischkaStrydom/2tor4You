@@ -41,13 +41,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, int position) {
 
-
         holder.eventTitle.setText(String.valueOf(eventTitle.get(position)));
         holder.eventDate.setText(String.valueOf(eventDate.get(position)));
         holder.notes.setText(String.valueOf(notes.get(position)));
         holder.startTime.setText(String.valueOf(startTime.get(position)));
         holder.locationOnline.setText(String.valueOf(locationOnline.get(position)));
-
     }
 
     @Override

@@ -33,12 +33,28 @@
             android:id="@+id/txtTutNameSurnameView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Name Surname"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="Name"
             android:textColor="#3F51B5"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
+            app:layout_constraintLeft_toRightOf="@+id/shapeableImageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtSurname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="140dp"
+            android:text="Surname"
+            android:textColor="#3F51B5"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.144"
+            app:layout_constraintStart_toEndOf="@+id/txtTutNameSurnameView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <RelativeLayout
@@ -49,6 +65,7 @@
             android:padding="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
+
 
             <TextView
                 android:id="@+id/txtTutPriceHeader"
@@ -253,8 +270,8 @@
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:rating="4.5"
             app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
             app:layout_constraintTop_toBottomOf="@+id/txtTutNameSurnameView" />
