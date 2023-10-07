@@ -339,7 +339,6 @@
     </string-array>
 
 
-
     <string name="txtTutEdu">Education</string>
     <string name="txtTutSchool">School</string>
     <string name="txtTutUni">University</string>
@@ -463,7 +462,6 @@
     <string name="chkEnglish"> English</string>
 
 
-
     <!--Tutor Profile View Screen-->
 
     <string name="txtTutProfileViewHeading">Tutor Profile</string>
@@ -498,6 +496,16 @@
     <string name="txtStudentsOffBoarded">Students Offboarded:</string>
     <string name="txtTutorsOffBoarded">Tutors Offboarded:</string>
 
+    <!-- String array for Report Reasons -->
+    <string-array name="spinReport">
+        <item>Report Reason</item>
+        <item>Inappropriate Content</item>
+        <item>Technical Issues</item>
+        <item>Security Concern</item>
+        <item>Spam or Abuse</item>
+        <item>Feature Request</item>
+        <item>Other</item>
+    </string-array>
 
 
 </resources>

@@ -1,6 +1,7 @@
-package com.example.a2tor4you;
+package com.example.a2tor4you; //FindTutor Adapter
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -69,7 +71,7 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
         return firstName.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{ //implements View.OnClickListener
 
         TextView firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour;
         ImageView tutorImage;
@@ -83,7 +85,21 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
             TotalTutorHours = itemView.findViewById(R.id.txtTutTotalHrsView);
             pricePerHour = itemView.findViewById(R.id.txtPricePerHrView);
             tutorImage = itemView.findViewById(R.id.imgTutProfilePicList);
+           // itemView.setOnClickListener(this);
 
         }
+
+        //On item click
+
+       /* @Override
+        public void onClick(View view) {
+            int position = getAbsoluteAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                String selectedName = String.valueOf(firstName.get(position));
+                Intent intent = new Intent(context, ActivityTutorProfileView.class);
+                intent.putExtra("name", selectedName);
+                context.startActivity(intent);
+            }
+        }*/
     }
 }

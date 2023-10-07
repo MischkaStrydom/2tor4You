@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="313dp"
+        android:layout_height="674dp"
         android:background="@color/off_white">
 
 
@@ -58,6 +58,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RelativeLayout
+            android:id="@+id/relativeLayout10"
             android:layout_width="wrap_content"
             android:layout_height="26dp"
             android:layout_marginEnd="16dp"
@@ -234,9 +235,9 @@
             android:id="@+id/txtUpSessionDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="105dp"
             android:layout_marginEnd="219dp"
-            android:layout_marginStart="5dp"
             android:gravity="left"
             android:text="About Me"
             android:textColor="@color/grey"
@@ -265,6 +266,114 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/txtTutEduHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="219dp"
+            android:gravity="left"
+            android:text="Education"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.19"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
+
+        <TextView
+            android:id="@+id/txtTutSchoolView"
+            android:layout_width="318dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="35dp"
+            android:textColor="#3F51B5"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTutEduHeader" />
+
+        <TextView
+            android:id="@+id/txtTutUniView"
+            android:layout_width="318dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="35dp"
+
+            android:textColor="#3F51B5"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTutSchoolView" />
+
+        <TextView
+            android:id="@+id/txtTutReviewView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="173dp"
+            android:gravity="left"
+            android:text="Reviews and Ratings"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btnAddReview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTutUniView" />
+
+        <TextView
+            android:id="@+id/txtTutExtraNotesHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="173dp"
+            android:gravity="left"
+            android:text="Extra Notes"
+            android:textColor="@color/grey"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btnAddReview"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTutReviewsList" />
+
+        <TextView
+            android:id="@+id/txtTutNotesView"
+            android:layout_width="339dp"
+            android:layout_height="71dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="11dp"
+            android:background="@drawable/border"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="10dp"
+            android:textColor="#3F51B5"
+            app:layout_constraintBottom_toTopOf="@+id/relativeLayout10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnAddReview"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="164dp"
+            android:layout_marginTop="17dp"
+            android:backgroundTint="@color/white"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/add"
+            app:layout_constraintStart_toEndOf="@+id/txtTutReviewView"
+            app:layout_constraintTop_toBottomOf="@+id/txtTutUniView" />
+
         <androidx.appcompat.widget.AppCompatRatingBar
             android:id="@+id/appCompatRatingBar"
             style="@style/Widget.AppCompat.RatingBar.Small"
@@ -276,8 +385,20 @@
             app:layout_constraintStart_toEndOf="@+id/shapeableImageView"
             app:layout_constraintTop_toBottomOf="@+id/txtTutNameSurnameView" />
 
+        <ListView
+            android:id="@+id/txtTutReviewsList"
+            android:layout_width="325dp"
+            android:layout_height="100dp"
+            android:background="@drawable/border"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddReview" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!--<LinearLayout
         android:orientation="vertical"
         android:padding="8dp"

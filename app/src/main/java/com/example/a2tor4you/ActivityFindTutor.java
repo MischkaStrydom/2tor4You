@@ -2,9 +2,12 @@ package com.example.a2tor4you;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -52,6 +56,9 @@ public class ActivityFindTutor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_tutor);
+
+       // RecyclerView rvFindTutor = findViewById(R.id.rvFindTutor);
+        //rvFindTutor.setOnClickListener(view -> startActivity(new Intent(ActivityFindTutor.this,ActivityTutorProfileView.class)));
 
         /*dbHelper = new DBHelper(this);
 

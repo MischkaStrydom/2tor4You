@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "TutorDB.db";
 
     public DBHelper(Context context) {
-        super(context, DB_NAME, null, 2);
+        super(context, DB_NAME, null, 3);
     }
 
     @Override
@@ -59,9 +59,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 " reviewText VARCHAR(255), FOREIGN KEY (tutorID) REFERENCES Tutor(tutorID), FOREIGN KEY (studentID) REFERENCES Student(studentID))";
 
         //Report
-//        String ReportSQL = "CREATE TABLE Report (reportID INTEGER PRIMARY KEY AUTOINCREMENT,adminID INTEGER, reportedID INTEGER, reporteeID INTEGER, reportText VARCHAR(255)," +
-//                " reportCategory VARCHAR(255), reportedAt DATETIME, resolvedAt DATETIME, resolutionText VARCHAR(255), FOREIGN KEY (adminID) REFERENCES Admin(adminID), " +
-//                "FOREIGN KEY (reportedID) REFERENCES User(userID), FOREIGN KEY (reporteeID) REFERENCES User(userID))";
+        String ReportSQL = "CREATE TABLE Report (reportID INTEGER PRIMARY KEY AUTOINCREMENT,adminID INTEGER, reportedID INTEGER, reporteeID INTEGER, reportText VARCHAR(255)," +
+                " reportCategory VARCHAR(255), reportedAt DATETIME, resolvedAt DATETIME, resolutionText VARCHAR(255), FOREIGN KEY (adminID) REFERENCES Admin(adminID), " +
+                "FOREIGN KEY (reportedID) REFERENCES User(userID), FOREIGN KEY (reporteeID) REFERENCES User(userID))";
 
         //Delete Account
         String DeleteSQL = "CREATE TABLE DeletedAccount (deletedAccountID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, deletedDate DATE, " +
@@ -84,7 +84,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(tutorSubjectSQL);
         db.execSQL(EventSQL);
         db.execSQL(ReviewSQL);
-      //  db.execSQL(ReportSQL);
+        db.execSQL(ReportSQL);
         db.execSQL(DeleteSQL);
         db.execSQL(NotificationPreferenceSQL);
         db.execSQL(PasswordChangeSQL);
@@ -113,13 +113,13 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.execSQL("DROP TABLE IF EXISTS User");
-       // db.execSQL("DROP TABLE IF EXISTS Student");
+        db.execSQL("DROP TABLE IF EXISTS Student");
         db.execSQL("DROP TABLE IF EXISTS Tutor");
         db.execSQL("DROP TABLE IF EXISTS Admin");
         db.execSQL("DROP TABLE IF EXISTS Subject");
         db.execSQL("DROP TABLE IF EXISTS TutorSubject");
         db.execSQL("DROP TABLE IF EXISTS Event");
-        db.execSQL("DROP TABLE IF EXISTS ReviewSQL");
+        db.execSQL("DROP TABLE IF EXISTS Review");
         db.execSQL("DROP TABLE IF EXISTS Report");
         db.execSQL("DROP TABLE IF EXISTS DeletedAccount");
         db.execSQL("DROP TABLE IF EXISTS NotificationPreference");
@@ -256,9 +256,10 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Define the SQL query using a JOIN operation to retrieve data from both tables
-        String query = "SELECT User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.aboutMe, Tutor.pricePerHour " +
+        String query = "SELECT User.firstName, User.lastName, Tutor.TotalStudentTaught, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.aboutMe, Tutor.school, Tutor.uni, Tutor.reviewText, Tutor.extraNotes, Tutor.pricePerHour " +
                 "FROM User " +
-                "INNER JOIN Tutor ON User.userID = Tutor.userID";
+                "INNER JOIN Tutor ON User.userID = Tutor.userID"+
+                "INNER JOIN Review ON User.reviewText = Tutor.reviewID";
 
         Cursor cursor = db.rawQuery(query, null);
 
@@ -446,8 +447,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return tutorID;
     }
-
-
 
 
     // Update the User table
