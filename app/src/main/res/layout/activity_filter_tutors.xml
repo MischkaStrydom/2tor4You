@@ -47,6 +47,7 @@
         android:layout_height="670dp"
         android:layout_marginTop="10dp">
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -93,6 +94,16 @@
                 android:textColor="#CCFFFF"
                 android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R100"
+                android:paddingTop="8dp"
+                android:paddingLeft="20dp"
+                android:textColor="@color/white"
+                android:textSize="14dp"/>
+
             <SeekBar
                 android:id="@+id/seekBarHourlyRate"
                 android:layout_width="372dp"
@@ -104,30 +115,31 @@
                 android:progressTint="#009688"
                 app:trackColor="@color/grey"
                 android:contentDescription="@string/txtHourlyRate"
-                android:max="100" />
+                android:max="500"
+                android:progress="100"/>
 
-            <TextView
-                android:id="@+id/txtStarRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:gravity="left"
-                android:paddingLeft="20dp"
-                android:text="@string/txtStarRating"
-                android:textStyle="bold"
-                android:textColor="#CCFFFF"
-                android:textSize="16sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/txtStarRating"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:gravity="left"-->
+<!--                android:paddingLeft="20dp"-->
+<!--                android:text="@string/txtStarRating"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="#CCFFFF"-->
+<!--                android:textSize="16sp" />-->
 
-            <RatingBar
-                android:id="@+id/starRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="7dp"
-                android:contentDescription="@string/txtStarRating"
-                android:numStars="5"
-                android:stepSize="1"
-                android:theme="@style/RatingBar" />
+<!--            <RatingBar-->
+<!--                android:id="@+id/starRatingBar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginTop="7dp"-->
+<!--                android:contentDescription="@string/txtStarRating"-->
+<!--                android:numStars="5"-->
+<!--                android:stepSize="1"-->
+<!--                android:theme="@style/RatingBar" />-->
 
             <TextView
                 android:id="@+id/txtAddFilters"
@@ -182,15 +194,7 @@
                 android:text="@string/btnShowResults"
                 android:textColor="@color/black" />
 
-            <Button
-                android:id="@+id/btnClearAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:layout_gravity="center"
-                android:backgroundTint="@color/white"
-                android:text="@string/btnClearAll"
-                android:textAllCaps="false" />
+
 
         </LinearLayout>
 

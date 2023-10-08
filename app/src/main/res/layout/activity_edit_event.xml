@@ -395,7 +395,7 @@
                             android:ems="10"
                             android:hint="@string/txtEventNotes"
                             android:inputType="textMultiLine"
-                            android:maxLength="36"
+                            android:maxLength="30"
                             android:paddingLeft="20dp"
                             android:paddingTop="10dp"
                             android:paddingRight="12dp"

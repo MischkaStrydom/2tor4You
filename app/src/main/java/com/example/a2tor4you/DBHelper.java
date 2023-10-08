@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "TutorDB.db";
 
     public DBHelper(Context context) {
-        super(context, DB_NAME, null, 2);
+        super(context, DB_NAME, null, 3);
     }
 
     @Override
@@ -52,16 +52,16 @@ public class DBHelper extends SQLiteOpenHelper {
         //Event
         String EventSQL = "CREATE TABLE Event (eventID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, eventTitle VARCHAR(255), eventDate DATE, " +
                 "startTime TIME, locationOnline BOOLEAN DEFAULT 0, locationOffline BOOLEAN DEFAULT 0, notes VARCHAR(255), " +
-                "isCancelled BOOLEAN DEFAULT 0, FOREIGN KEY (userID) REFERENCES User(userID))";
+                "FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Reviews
         String ReviewSQL = "CREATE TABLE Review (reviewID INTEGER PRIMARY KEY AUTOINCREMENT, studentID INTEGER, tutorID INTEGER, ratingValue INTEGER," +
                 " reviewText VARCHAR(255), FOREIGN KEY (tutorID) REFERENCES Tutor(tutorID), FOREIGN KEY (studentID) REFERENCES Student(studentID))";
 
         //Report
-//        String ReportSQL = "CREATE TABLE Report (reportID INTEGER PRIMARY KEY AUTOINCREMENT,adminID INTEGER, reportedID INTEGER, reporteeID INTEGER, reportText VARCHAR(255)," +
-//                " reportCategory VARCHAR(255), reportedAt DATETIME, resolvedAt DATETIME, resolutionText VARCHAR(255), FOREIGN KEY (adminID) REFERENCES Admin(adminID), " +
-//                "FOREIGN KEY (reportedID) REFERENCES User(userID), FOREIGN KEY (reporteeID) REFERENCES User(userID))";
+        String ReportSQL = "CREATE TABLE Report (reportID INTEGER PRIMARY KEY AUTOINCREMENT,adminID INTEGER, reportedID INTEGER, reporteeID INTEGER, reportText VARCHAR(255)," +
+                " reportCategory VARCHAR(255), reportedAt DATETIME, resolvedAt DATETIME, resolutionText VARCHAR(255), FOREIGN KEY (adminID) REFERENCES Admin(adminID), " +
+                "FOREIGN KEY (reportedID) REFERENCES User(userID), FOREIGN KEY (reporteeID) REFERENCES User(userID))";
 
         //Delete Account
         String DeleteSQL = "CREATE TABLE DeletedAccount (deletedAccountID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, deletedDate DATE, " +
@@ -84,7 +84,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(tutorSubjectSQL);
         db.execSQL(EventSQL);
         db.execSQL(ReviewSQL);
-      //  db.execSQL(ReportSQL);
+        db.execSQL(ReportSQL);
         db.execSQL(DeleteSQL);
         db.execSQL(NotificationPreferenceSQL);
         db.execSQL(PasswordChangeSQL);
@@ -113,7 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.execSQL("DROP TABLE IF EXISTS User");
-       // db.execSQL("DROP TABLE IF EXISTS Student");
+        db.execSQL("DROP TABLE IF EXISTS Student");
         db.execSQL("DROP TABLE IF EXISTS Tutor");
         db.execSQL("DROP TABLE IF EXISTS Admin");
         db.execSQL("DROP TABLE IF EXISTS Subject");
@@ -229,7 +229,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor viewData(int loggedInUserId) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT eventTitle, eventDate, notes, startTime, locationOnline FROM Event WHERE userID = ?";
+        String query = "SELECT eventID, eventTitle, eventDate, notes, startTime, locationOnline FROM Event WHERE userID = ?";
 
         String[] selectionArgs = {String.valueOf(loggedInUserId)};
         Cursor cursor = db.rawQuery(query, selectionArgs);
@@ -237,12 +237,28 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+    public boolean deleteEvent(int eventId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int affectedRows = 0;
+
+        // Delete user from the User table
+        affectedRows = db.delete("Event", "eventID=?", new String[]{String.valueOf(eventId)});
+
+
+        if (affectedRows > 0) {
+            return true;
+        }
+        // User not found or deletion failed
+        return false;
+    }
+
+
     public Cursor viewTutorData() {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Define the SQL query using a JOIN operation to retrieve data from both tables
-        String query = "SELECT User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.pricePerHour, Tutor.image " +
-                "FROM User " +
+        String query = "SELECT Tutor.tutorID, User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.pricePerHour, Tutor.image," +
+                "Tutor.locationOnline, Tutor.locationOffline, Tutor.extraQualifiedTeacher FROM User " +
                 "INNER JOIN Tutor ON User.userID = Tutor.userID";
 
         Cursor cursor = db.rawQuery(query, null);
@@ -292,9 +308,6 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return eventDates;
     }
-
-
-
 
 
     //username in this case is user phone number
@@ -784,6 +797,79 @@ public class DBHelper extends SQLiteOpenHelper {
 //        return columns;
 //    }
 
+    public boolean tutorHasAllSubjects(int tutorID, ArrayList<String> selectedSubjects) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        try {
+            // Build the WHERE clause to check for each selected subject
+            StringBuilder whereClause = new StringBuilder("tutorID = ? AND subjectName IN (");
+
+            for (int i = 0; i < selectedSubjects.size(); i++) {
+                whereClause.append("?");
+                if (i < selectedSubjects.size() - 1) {
+                    whereClause.append(",");
+                }
+            }
+
+            whereClause.append(")");
+
+            // Add the tutorID and selectedSubjects to the selectionArgs
+            String[] selectionArgs = new String[selectedSubjects.size() + 1];
+            selectionArgs[0] = String.valueOf(tutorID);
+
+            for (int i = 0; i < selectedSubjects.size(); i++) {
+                selectionArgs[i + 1] = selectedSubjects.get(i);
+            }
+
+            cursor = db.query("TutorSubject", null, whereClause.toString(), selectionArgs, null, null, null);
+
+            // Check if the tutor has all the selected subjects
+            return cursor.getCount() == selectedSubjects.size();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+    }
+
+    public boolean tutorHasAllGrades(int tutorID, ArrayList<String> selectedGrades) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        try {
+            // Build the WHERE clause to check for each selected grade
+            StringBuilder whereClause = new StringBuilder("tutorID = ? AND grade IN (");
+
+            for (int i = 0; i < selectedGrades.size(); i++) {
+                whereClause.append("?");
+                if (i < selectedGrades.size() - 1) {
+                    whereClause.append(",");
+                }
+            }
+
+            whereClause.append(")");
+
+            // Add the tutorID and selectedGrades to the selectionArgs
+            String[] selectionArgs = new String[selectedGrades.size() + 1];
+            selectionArgs[0] = String.valueOf(tutorID);
+
+            for (int i = 0; i < selectedGrades.size(); i++) {
+                selectionArgs[i + 1] = selectedGrades.get(i);
+            }
+
+            cursor = db.query("TutorSubject", null, whereClause.toString(), selectionArgs, null, null, null);
+
+            // Check if the tutor has all the selected grades
+            return cursor.getCount() == selectedGrades.size();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
+        }
+    }
 
 
 

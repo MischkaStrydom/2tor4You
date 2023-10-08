@@ -96,20 +96,20 @@ public class ActivityMyProfile extends AppCompatActivity {
      //   SouthAfricaData.setupCitySpinner(this, spinnerProvince, spinnerCity);
 
         /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
-        btnStudTakePhoto = findViewById(R.id.btnStudTakePhoto);
-
-        btnStudTakePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(intent, CAMERA_ACTION_CODE);
-                } else {
-                    Toast.makeText(ActivityMyProfile.this, "There is no app that supports this action", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
+//        btnStudTakePhoto = findViewById(R.id.btnStudTakePhoto);
+//
+//        btnStudTakePhoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                if (intent.resolveActivity(getPackageManager()) != null) {
+//                    startActivityForResult(intent, CAMERA_ACTION_CODE);
+//                } else {
+//                    Toast.makeText(ActivityMyProfile.this, "There is no app that supports this action", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//        });
 
 
         //Adding User Table info to editBoxes

@@ -200,22 +200,22 @@ public class ActivityTutorProfile extends AppCompatActivity {
 
         });
 
-       /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
-        takePhoto = findViewById(R.id.btnTutorTakePhoto);
-
-        takePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if(intent.resolveActivity(getPackageManager()) != null){
-                    startActivityForResult(intent, CAMERA_ACTION_CODE   );
-                }
-                else{
-                    Toast.makeText(ActivityTutorProfile.this, "There is no app that supports this action", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
+//       /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
+//        takePhoto = findViewById(R.id.btnTutorTakePhoto);
+//
+//        takePhoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                if(intent.resolveActivity(getPackageManager()) != null){
+//                    startActivityForResult(intent, CAMERA_ACTION_CODE   );
+//                }
+//                else{
+//                    Toast.makeText(ActivityTutorProfile.this, "There is no app that supports this action", Toast.LENGTH_SHORT).show();
+//                }
+//
+//            }
+//        });
 
 
 
@@ -301,7 +301,7 @@ public class ActivityTutorProfile extends AppCompatActivity {
 
                 school.setText(School);
                 uni.setText(Uni);
-                notes.setText(String.valueOf(extraNotes));
+                notes.setText(extraNotes);
                 aboutMe.setText(about);
 
                 yearsExperience.setText(String.valueOf(YearsOfExperience));

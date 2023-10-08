@@ -26,7 +26,8 @@ import java.util.Map;
 
 public class ActivityEventsListView extends AppCompatActivity {
 
-    ArrayList<String> eventTitle, eventDate, notes, startTime, locationOnline;
+    ArrayList<String>eventID, eventTitle, eventDate, notes, startTime, locationOnline;
+
     CustomAdapter customAdapter;
 
     ArrayList<String> listItem;
@@ -36,6 +37,8 @@ public class ActivityEventsListView extends AppCompatActivity {
     ListView user_list;
     DBHelper dbHelper ;
     View _baseView;
+    public static ImageButton btnDeleteEvent;
+
 
     static int loggedInUserId;
     @Override
@@ -65,45 +68,72 @@ public class ActivityEventsListView extends AppCompatActivity {
 
         //Testing recycle view
         dbHelper = new DBHelper(ActivityEventsListView.this);
-
+        eventID = new ArrayList<>();
         eventTitle = new ArrayList<>();
         eventDate = new ArrayList<>();
         notes = new ArrayList<>();
         startTime = new ArrayList<>();
         locationOnline = new ArrayList<>();
 
+
         storeDataInArrays();
-        customAdapter = new CustomAdapter(ActivityEventsListView.this, eventTitle, eventDate, notes, startTime, locationOnline);
+        customAdapter = new CustomAdapter(ActivityEventsListView.this,eventID, eventTitle, eventDate, notes, startTime, locationOnline);
+        customAdapter.setDbHelper(dbHelper);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(ActivityEventsListView.this)) ;
 
 
+
     }
 
-
-    void storeDataInArrays()
-    {
+    void storeDataInArrays() {
         Cursor cursor = dbHelper.viewData(loggedInUserId);
-        if (cursor.getCount() == 0) {
-        Toast.makeText(ActivityEventsListView.this, "No events to show", Toast.LENGTH_LONG).show();
-    } else {
-        while (cursor.moveToNext()) {
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                eventID.add(cursor.getString(0)); //eventID
+                eventTitle.add(cursor.getString(1)); // eventTitle
+                eventDate.add(cursor.getString(2)); // eventDate
+                notes.add(cursor.getString(3)); // eventTime
+                startTime.add(cursor.getString(4)); // eventNotes
 
-            eventTitle.add(cursor.getString(0)); // eventTitle
-            eventDate.add(cursor.getString(1)); // eventDate
-            notes.add(cursor.getString(2)); // eventTime
-            startTime.add(cursor.getString(3)); // eventNotes
+                // Assuming there are at least 6 columns in the cursor.
+                boolean isLocationOnline = cursor.getInt(5) == 1;
+                String locationText = isLocationOnline ? "Online" : "In-Person";
+                locationOnline.add(locationText);
 
-            //locationOnline.add(cursor.getString(4)); // locationOnline
-            boolean isLocationOnline = cursor.getInt(4) == 1;
-            String locationText = isLocationOnline ? "Online" : "In-Person";
-            locationOnline.add(locationText);
-
-
+            } while (cursor.moveToNext());
+            cursor.close();
+        } else {
+            // Handle the case when there is no data or an error occurred.
+            Toast.makeText(ActivityEventsListView.this, "No events to show", Toast.LENGTH_LONG).show();
         }
+    }
 
-    }
-    }
+
+//    void storeDataInArrays()
+//    {
+//        Cursor cursor = dbHelper.viewData(loggedInUserId);
+//        if (cursor.getCount() == 0) {
+//        Toast.makeText(ActivityEventsListView.this, "No events to show", Toast.LENGTH_LONG).show();
+//    } else {
+//        while (cursor.moveToNext()) {
+//
+//            eventID.add(cursor.getString(0)); //eventID
+//            eventTitle.add(cursor.getString(1)); // eventTitle
+//            eventDate.add(cursor.getString(2)); // eventDate
+//            notes.add(cursor.getString(3)); // eventTime
+//            startTime.add(cursor.getString(4)); // eventNotes
+//
+//            //locationOnline.add(cursor.getString(4)); // locationOnline
+//            boolean isLocationOnline = cursor.getInt(5) == 1;
+//            String locationText = isLocationOnline ? "Online" : "In-Person";
+//            locationOnline.add(locationText);
+//
+//
+//        }
+//
+//     }
+//    }
 
 
 }

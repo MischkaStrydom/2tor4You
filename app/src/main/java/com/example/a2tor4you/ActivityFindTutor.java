@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class ActivityFindTutor extends AppCompatActivity {
 
-    ArrayList<String> firstName, lastname, YearsOfExperience ,TotalTutorHours , pricePerHour;
+    ArrayList<String>tutorID, firstName, lastname, YearsOfExperience ,TotalTutorHours , pricePerHour;
     private ArrayList<byte[]> imageBytes;
     adapterTutor adapterTutor;
 
@@ -53,21 +53,12 @@ public class ActivityFindTutor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_tutor);
 
-        /*dbHelper = new DBHelper(this);
-
-        SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
-*/
-
          phoneNumber = getIntent().getStringExtra("phone");
-//        password = getIntent().getStringExtra("password");
-//         electedRole = getIntent().getStringExtra("selectedRole");
 
         ImageView filter = findViewById(R.id.filter);
         filter.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(),ActivityGradeAndSubject.class));
         });
-
 
         dbHelper = new DBHelper(this);
 
@@ -77,6 +68,8 @@ public class ActivityFindTutor extends AppCompatActivity {
         //Testing recycle view
         dbHelper = new DBHelper(ActivityFindTutor.this);
 
+
+        tutorID = new ArrayList<>();
         firstName = new ArrayList<>();
         lastname = new ArrayList<>();
         YearsOfExperience = new ArrayList<>();
@@ -84,24 +77,12 @@ public class ActivityFindTutor extends AppCompatActivity {
         pricePerHour = new ArrayList<>();
         imageBytes = new ArrayList<>();
 
-
-
-
         rvFindTutor = findViewById(R.id.rvFindTutor);
-       // rvFindTutor = findViewById(R.id.rvFindTutor);
+
         storeDataInArrays();
-        adapterTutor = new adapterTutor(ActivityFindTutor.this, firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour, imageBytes);
+        adapterTutor = new adapterTutor(ActivityFindTutor.this,tutorID, firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour, imageBytes);
         rvFindTutor.setAdapter(adapterTutor);
         rvFindTutor.setLayoutManager(new LinearLayoutManager(ActivityFindTutor.this));
-
-
-        //RecyclerView for Tutor Profiles ListView
-
-
-//        rvFindTutor.setLayoutManager(new LinearLayoutManager(this));
-//        rvFindTutor.setAdapter(new RvAdapter());
-
-        // Navigation Bar
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.findTutors);
@@ -141,76 +122,135 @@ public class ActivityFindTutor extends AppCompatActivity {
         });
 
     }
-    void storeDataInArrays()
-    {
+//    void storeDataInArrays()
+//    {
+//        Cursor cursor = dbHelper.viewTutorData();
+//
+//        if (cursor.getCount() == 0) {
+//            Toast.makeText(ActivityFindTutor.this, "No tutors to show", Toast.LENGTH_LONG).show();
+//        } else {
+//            while (cursor.moveToNext()) {
+//                tutorID.add(cursor.getString(0)); // eventTitle
+//                firstName.add(cursor.getString(1)); // eventTitle
+//                lastname.add(cursor.getString(2)); // eventDate
+//                YearsOfExperience.add(cursor.getString(3)); // eventTime
+//                TotalTutorHours.add(cursor.getString(4)); // eventNotes
+//                pricePerHour.add(cursor.getString(5)); // eventNotes
+//                byte[] imageBlob = cursor.getBlob(6);
+//                imageBytes.add(imageBlob);
+//
+//
+//            }
+//
+//        }
+//
+//
+//    }
+
+    void storeDataInArrays() {
         Cursor cursor = dbHelper.viewTutorData();
 
-        if (cursor.getCount() == 0) {
-            Toast.makeText(ActivityFindTutor.this, "No events to show", Toast.LENGTH_LONG).show();
-        } else {
-            while (cursor.moveToNext()) {
+        // Check if filter values are provided
+        boolean hasFilters = getIntent().hasExtra("selectedSubjects") ||
+                getIntent().hasExtra("selectedGrades") ||
+                getIntent().hasExtra("onlineFilter") ||
+                getIntent().hasExtra("inPersonFilter") ||
+                getIntent().hasExtra("qualifiedTeacherFilter") ||
+                getIntent().hasExtra("maxPricePerHour");
 
-                firstName.add(cursor.getString(0)); // eventTitle
-                lastname.add(cursor.getString(1)); // eventDate
-                YearsOfExperience.add(cursor.getString(2)); // eventTime
-                TotalTutorHours.add(cursor.getString(3)); // eventNotes
-                pricePerHour.add(cursor.getString(4)); // eventNotes
-                byte[] imageBlob = cursor.getBlob(5);
-                imageBytes.add(imageBlob);
+        if (cursor.getCount() == 0) {
+            Toast.makeText(ActivityFindTutor.this, "No tutors were found", Toast.LENGTH_LONG).show();
+        } else {
+
+            Boolean isTutorFound = false;
+            while (cursor.moveToNext()) {
+                if (hasFilters) {
+                    // Get the filter criteria from the Intent
+                    ArrayList<String> selectedSubjects = getIntent().getStringArrayListExtra("selectedSubjects");
+                    ArrayList<String> selectedGrades = getIntent().getStringArrayListExtra("selectedGrades");
+                    boolean onlineFilter = getIntent().getBooleanExtra("onlineFilter", false);
+                    boolean inPersonFilter = getIntent().getBooleanExtra("inPersonFilter", false);
+                    boolean qualifiedTeacherFilter = getIntent().getBooleanExtra("qualifiedTeacherFilter", false);
+                    int maxPricePerHour = getIntent().getIntExtra("maxPricePerHour", 0);
+
+                    // Apply your filtering logic here based on the filter criteria
+                    int tutorId = Integer.parseInt(cursor.getString(0));
+                    float price = Float.parseFloat(cursor.getString(5));
+                    int locationOnline = Integer.parseInt(cursor.getString(7));
+                    int locationOffline = Integer.parseInt(cursor.getString(8));
+                    int extraQualifiedTeacher = Integer.parseInt(cursor.getString(9));
+
+                    // Check if the tutor meets the filter criteria
+                    boolean meetsCriteria = true;
+//
+//                    if (!selectedSubjects.isEmpty()) {
+//                        meetsCriteria = selectedSubjects.contains(cursor.getString(subjectNameIndex));
+//                    }
+//
+//                    if (!selectedGrades.isEmpty()) {
+//                        meetsCriteria = meetsCriteria && selectedGrades.contains(cursor.getString(gradeIndex));
+//                    }
+
+                    if (onlineFilter) {
+                        // Apply the online filter
+                        meetsCriteria = meetsCriteria && (locationOnline == 1);
+                    }
+
+
+                    if (inPersonFilter) {
+                        // Apply the in-person filter
+
+                        meetsCriteria = meetsCriteria && (locationOffline == 1);
+                    }
+
+                    if (qualifiedTeacherFilter) {
+
+                        meetsCriteria = meetsCriteria && (extraQualifiedTeacher == 1);
+                    }
+
+                    if (maxPricePerHour > 0) {
+
+                        meetsCriteria = meetsCriteria && (price <= maxPricePerHour);
+                    }
+
+                    // If the tutor meets all the filter criteria, add them to the display
+                    if (meetsCriteria) {
+                        tutorID.add(cursor.getString(0)); // tutorID
+                        firstName.add(cursor.getString(1)); // firstName
+                        lastname.add(cursor.getString(2)); // lastname
+                        YearsOfExperience.add(cursor.getString(3)); // YearsOfExperience
+                        TotalTutorHours.add(cursor.getString(4)); // TotalTutorHours
+                        pricePerHour.add(cursor.getString(5)); // pricePerHour
+                        byte[] imageBlob = cursor.getBlob(6);  // profile pic
+                        imageBytes.add(imageBlob);
+                        isTutorFound = true;
+
+                    }
+
+
+                } else {
+                    // Add all tutors to the display (no filtering)
+                    tutorID.add(cursor.getString(0)); // tutorID
+                    firstName.add(cursor.getString(1)); // firstName
+                    lastname.add(cursor.getString(2)); // lastname
+                    YearsOfExperience.add(cursor.getString(3)); // YearsOfExperience
+                    TotalTutorHours.add(cursor.getString(4)); // TotalTutorHours
+                    pricePerHour.add(cursor.getString(5)); // pricePerHour
+                    byte[] imageBlob = cursor.getBlob(6);  // profile pic
+                    imageBytes.add(imageBlob);
+                    isTutorFound = true;
+
+                }
+//                if (!isTutorFound) {
+//                    Toast.makeText(ActivityFindTutor.this, "No tutors match the filters", Toast.LENGTH_LONG).show();
+//                }
 
 
             }
-
         }
-
-
     }
 
 
+
+
 }
-
-//    private void startNewActivity(Class<?> targetActivity) {
-//        Intent intent = new Intent(ActivityFindTutor.this, targetActivity);
-//        intent.putExtra("phone", phoneNumber);
-////        intent.putExtra("password", password);
-////        intent.putExtra("selectedRole", selectedRole);
-//        startActivity(intent);
-//        overridePendingTransition(0, 0);
-//    }
-
-    //RecyclerView for Tutor Profiles ListView - Continued
-
-//    class tutorProfileItemHolder extends RecyclerView.ViewHolder {
-//        public tutorProfileItemHolder(@NonNull View itemView) {
-//            super(itemView);
-//        }
-//    }
-
-//    class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-//
-//        @NonNull
-//        @Override
-//        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_find_tutor_item, parent, false);
-//                return new tutorProfileItemHolder(view);
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-//
-//        }
-//
-//        @Override
-//        public int getItemViewType(int position) {
-//            return super.getItemViewType(position);
-//            /*if (position == 0)
-//                return 1;
-//            return position % 3;*/
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return 10;
-//        }
-//    }
-
