@@ -119,7 +119,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Subject");
         db.execSQL("DROP TABLE IF EXISTS TutorSubject");
         db.execSQL("DROP TABLE IF EXISTS Event");
-        db.execSQL("DROP TABLE IF EXISTS ReviewSQL");
+        db.execSQL("DROP TABLE IF EXISTS Review");
         db.execSQL("DROP TABLE IF EXISTS Report");
         db.execSQL("DROP TABLE IF EXISTS DeletedAccount");
         db.execSQL("DROP TABLE IF EXISTS NotificationPreference");
@@ -236,6 +236,16 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    // Reports Activity
+    public Cursor viewReportData(int loggedInUserId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT reportCategory, reportText FROM Report WHERE userID = ?";
+
+        String[] selectionArgs = {String.valueOf(loggedInUserId)};
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        return cursor;
+    }
+
 
     public boolean deleteEvent(int eventId) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -272,9 +282,10 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Define the SQL query using a JOIN operation to retrieve data from both tables
-        String query = "SELECT User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.aboutMe, Tutor.pricePerHour " +
+        String query = "SELECT User.firstName, User.lastName, Tutor.TotalStudentTaught, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.aboutMe, Tutor.school, Tutor.uni, Tutor.reviewText, Tutor.extraNotes, Tutor.pricePerHour " +
                 "FROM User " +
-                "INNER JOIN Tutor ON User.userID = Tutor.userID";
+                "INNER JOIN Tutor ON User.userID = Tutor.userID"+
+                "INNER JOIN Review ON User.reviewText = Tutor.reviewID";
 
         Cursor cursor = db.rawQuery(query, null);
 
@@ -459,8 +470,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return tutorID;
     }
-
-
 
 
     // Update the User table

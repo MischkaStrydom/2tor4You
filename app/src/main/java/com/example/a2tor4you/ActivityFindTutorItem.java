@@ -5,11 +5,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -36,6 +38,9 @@ public class ActivityFindTutorItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_tutor_item);
+
+       // ImageView imgTutProfilePicList = findViewById(R.id.imgTutProfilePicList);
+       // imgTutProfilePicList.setOnClickListener(view -> startActivity(new Intent(ActivityFindTutorItem.this,ActivityTutorProfileView.class)));
 
 //        dbHelper = new DBHelper(this);
 //

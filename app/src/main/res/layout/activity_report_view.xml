@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/primary"
-    tools:context=".ActivityEventsListView">
+    tools:context=".ActivityReportView">
 
 
 
     <LinearLayout
-        android:id="@+id/layoutHeader"
+        android:id="@+id/ReportHeader"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@color/primary"
@@ -25,7 +25,7 @@
 
 
         <ImageButton
-            android:id="@+id/btnBackUpcomingEvent"
+            android:id="@+id/btnBackReportView"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:contentDescription="@string/app_name"
@@ -33,26 +33,25 @@
             android:src="@drawable/ic_arrow_back" />
 
         <TextView
-            android:id="@+id/txtUpcomingEventsHeading"
+            android:id="@+id/txtUserReportsHeading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_weight="1"
-            android:layout_marginStart="80dp"
-            android:text="Upcoming Events"
+            android:layout_marginStart="100dp"
+            android:text="User Reports"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/user_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-
-            />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvReport"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        />
 
 
 
