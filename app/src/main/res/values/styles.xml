@@ -22,4 +22,6 @@
     <style name="DatePickerStyle">
         <item name="android:background">@color/primary</item>
     </style>
+
+
 </resources>

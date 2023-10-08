@@ -16,14 +16,15 @@ import android.widget.RadioGroup;
 
 
 public class ActivityGradeAndSubject extends AppCompatActivity {
-    boolean isHandlingCheckedChange = false;
+//    boolean isHandlingCheckedChange = false;
+    boolean isMath, isHistory, isAfrikaans, isEnglish;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_and_subject);
 
-        RadioGroup rdoGroupGrade1 = findViewById(R.id.rdoGroupGrade1);
-        RadioGroup rdoGroupGrade2 = findViewById(R.id.rdoGroupGrade2);
+//        RadioGroup rdoGroupGrade1 = findViewById(R.id.rdoGroupGrade1);
+//        RadioGroup rdoGroupGrade2 = findViewById(R.id.rdoGroupGrade2);
         Button next = findViewById(R.id.btnNextFindTutor);
         ImageButton back = findViewById(R.id.btnBackFindTutor);
 
@@ -32,40 +33,60 @@ public class ActivityGradeAndSubject extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(),ActivityFindTutor.class));
         });
 
-        rdoGroupGrade1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (!isHandlingCheckedChange) {
-                    isHandlingCheckedChange = true;
-                    rdoGroupGrade2.clearCheck();
-                    isHandlingCheckedChange = false;
-                }
-            }
-        });
-
-        rdoGroupGrade2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (!isHandlingCheckedChange) {
-                    isHandlingCheckedChange = true;
-                    rdoGroupGrade1.clearCheck();
-                    isHandlingCheckedChange = false;
-                }
-            }
-        });
+//        rdoGroupGrade1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//                if (!isHandlingCheckedChange) {
+//                    isHandlingCheckedChange = true;
+//                    rdoGroupGrade2.clearCheck();
+//                    isHandlingCheckedChange = false;
+//                }
+//            }
+//        });
+//
+//        rdoGroupGrade2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//                if (!isHandlingCheckedChange) {
+//                    isHandlingCheckedChange = true;
+//                    rdoGroupGrade1.clearCheck();
+//                    isHandlingCheckedChange = false;
+//                }
+//            }
+//        });
 
 
         next.setOnClickListener(v -> {
-            String selectedGrade = getSelectedGrade(rdoGroupGrade1, rdoGroupGrade2);
-            String selectedSubjects = getSelectedSubjects(); // Implement this method to capture subjects
+          //  String selectedGrade = getSelectedGrade(rdoGroupGrade1, rdoGroupGrade2);
+            //String selectedSubjects = getSelectedSubjects(); // Implement this method to capture subjects
+            CheckBox math = findViewById(R.id.chkMath);
+            CheckBox history = findViewById(R.id.chkHistory);
+            CheckBox afrikaans = findViewById(R.id.chkAfrikaans);
+            CheckBox english = findViewById(R.id.chkEnglish);
+
+            if(math.isChecked()) {
+                 isMath = true;
+            }
+            if(history.isChecked()) {
+                 isHistory = true;
+            }
+            if(afrikaans.isChecked()) {
+                 isAfrikaans = true;
+            }
+            if(english.isChecked()) {
+                 isEnglish = true;
+            }
+
+
 
             // Pass the selected grade and subjects back to ActivityFindTutor
             Intent intent = new Intent(getApplicationContext(), ActivityFilterTutors.class);
-            intent.putExtra("selectedGrade", selectedGrade);
-            intent.putExtra("selectedSubjects", selectedSubjects);
+          //  intent.putExtra("selectedGrade", selectedGrade);
+            intent.putExtra("math", isMath);
+            intent.putExtra("history", isHistory);
+            intent.putExtra("afrikaans", isAfrikaans);
+            intent.putExtra("english", isEnglish);
             startActivity(intent);
-
-
 
         });
 
@@ -89,37 +110,36 @@ public class ActivityGradeAndSubject extends AppCompatActivity {
     }
 
     // Implement this method to capture the selected subjects
-    private String getSelectedSubjects() {
-        StringBuilder selectedSubjectsBuilder = new StringBuilder();
+//    private String getSelectedSubjects() {
+//        StringBuilder selectedSubjectsBuilder = new StringBuilder();
+//
+//        CheckBox math = findViewById(R.id.chkMath);
+//        CheckBox history = findViewById(R.id.chkHistory);
+//        CheckBox afrikaans = findViewById(R.id.chkAfrikaans);
+//        CheckBox english = findViewById(R.id.chkEnglish);
 
-        CheckBox math = findViewById(R.id.chkMath);
-        CheckBox history = findViewById(R.id.chkHistory);
-        CheckBox afrikaans = findViewById(R.id.chkAfrikaans);
-        CheckBox english = findViewById(R.id.chkEnglish);
+//
+//        // Check if each CheckBox is checked and append its text to the selectedSubjectsBuilder
+//        if (math.isChecked()) {
+//            selectedSubjectsBuilder.append("Math").append(", "); // You can modify the delimiter as needed
+//        }
+//        if (history.isChecked()) {
+//            selectedSubjectsBuilder.append("Science").append(", ");
+//        }
+//        if (afrikaans.isChecked()) {
+//            selectedSubjectsBuilder.append("Afrikaans").append(", "); // You can modify the delimiter as needed
+//        }
+//        if (english.isChecked()) {
+//            selectedSubjectsBuilder.append("English").append(", ");
+//        }
+//
+//        // Remove the last comma and space if subjects were selected
+//        if (selectedSubjectsBuilder.length() > 0) {
+//            selectedSubjectsBuilder.setLength(selectedSubjectsBuilder.length() - 2); // Remove last ", "
+//        }
 
-
-        // Check if each CheckBox is checked and append its text to the selectedSubjectsBuilder
-        if (math.isChecked()) {
-            selectedSubjectsBuilder.append("Math").append(", "); // You can modify the delimiter as needed
-        }
-        if (history.isChecked()) {
-            selectedSubjectsBuilder.append("Science").append(", ");
-        }
-        if (afrikaans.isChecked()) {
-            selectedSubjectsBuilder.append("Afrikaans").append(", "); // You can modify the delimiter as needed
-        }
-        if (english.isChecked()) {
-            selectedSubjectsBuilder.append("English").append(", ");
-        }
-
-        // Remove the last comma and space if subjects were selected
-        if (selectedSubjectsBuilder.length() > 0) {
-            selectedSubjectsBuilder.setLength(selectedSubjectsBuilder.length() - 2); // Remove last ", "
-        }
-
-        // Return the selected subjects as a string
-        return selectedSubjectsBuilder.toString();
+//        // Return the selected subjects as a string
+//        return selectedSubjectsBuilder.toString();
     }
 
 
-}

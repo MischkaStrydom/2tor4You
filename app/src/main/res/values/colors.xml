@@ -24,4 +24,6 @@
 
     <color name="chat_color_sender">#1E88E5</color>
     <color name="chat_color_receiver">#7CB342</color>
+
+    <color name="highlighted_date_color">#FF0000</color>
 </resources>

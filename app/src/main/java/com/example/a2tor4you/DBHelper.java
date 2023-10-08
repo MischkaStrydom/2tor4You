@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.SimpleCursorAdapter;
 
 import java.text.ParseException;
@@ -274,6 +275,142 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
 
         return cursor;
+    }
+
+    public Cursor viewTutorsBySubjectAndGrade(String subject, String grade) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define the SQL query using JOIN operations to retrieve data from both tables
+        String query = "SELECT Tutor.tutorID, User.firstName, User.lastName, Tutor.YearsOfExperience, " +
+                "Tutor.TotalTutorHours, Tutor.pricePerHour, Tutor.image, Tutor.locationOnline, " +
+                "Tutor.locationOffline, Tutor.extraQualifiedTeacher, TutorSubject.subjectName, " +
+                "TutorSubject.grade " +
+                "FROM User " +
+                "INNER JOIN Tutor ON User.userID = Tutor.userID " +
+                "INNER JOIN TutorSubject ON Tutor.tutorID = TutorSubject.tutorID " +
+                "WHERE TutorSubject.subjectName = ? AND TutorSubject.grade = ?";
+
+        // Use selectionArgs to provide the subject and grade values as parameters
+        String[] selectionArgs = { subject, grade };
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        return cursor;
+    }
+
+
+
+    public boolean doesTutorOfferSubjectForGrade(String subjectName, String grade, int tutorID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define the table name and columns to be queried
+        String tableName = "TutorSubject";
+        String[] columns = {"tutorSubjectID"};
+
+        // Define the WHERE clause with placeholders for subject, grade, and tutorID
+        String selection = "subjectName = ? AND grade = ? AND tutorID = ?";
+        String[] selectionArgs = {subjectName, grade, String.valueOf(tutorID)};
+
+        // Query the database
+        Cursor cursor = db.query(tableName, columns, selection, selectionArgs, null, null, null);
+
+        // Check if any rows were returned; if so, the tutor offers the subject
+        boolean offersSubject = cursor.getCount() > 0;
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return offersSubject;
+    }
+
+    // Modify the method to take table name, column name, tutor ID, and selected grade as parameters
+    public boolean doesTutorHaveGrade(String tableName, String columnName, int tutorID, String selectedGrade) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define the selection criteria
+        String selection = "tutorID = ? AND " + columnName + " = ?";
+
+        // Define the selection arguments
+        String[] selectionArgs = { String.valueOf(tutorID), selectedGrade };
+
+        // Query the database to check if the tutor has the selected grade
+        Cursor cursor = db.query(tableName, null, selection, selectionArgs, null, null, null);
+
+        boolean hasGrade = cursor.getCount() > 0;
+
+        // Close the cursor and database
+        cursor.close();
+        db.close();
+
+        return hasGrade;
+    }
+    public boolean isUserMatchingTutor(int userID, String grade, String subject) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        boolean isMatching = false;
+
+        // Define the query to check for a match
+        String query = "SELECT tutorSubjectID FROM TutorSubject WHERE tutorID = ? AND grade = ? AND subjectName = ?";
+
+        try {
+            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userID), grade, subject});
+
+            // If the cursor has at least one row, there is a match
+            if (cursor.moveToFirst()) {
+                isMatching = true;
+            }
+
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+
+        return isMatching;
+    }
+
+
+    public List<Integer> findMatchingTutors(String selectedGrade, String selectedSubjects) {
+        List<Integer> matchingTutorIds = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT tutorID FROM TutorSubject WHERE grade = ? AND subjectName IN (" + selectedSubjects + ")";
+
+        try {
+            Cursor cursor = db.rawQuery(query, new String[]{selectedGrade});
+
+            int tutorIdColumnIndex = cursor.getColumnIndex("tutorID");
+
+            if (tutorIdColumnIndex != -1) {
+                while (cursor.moveToNext()) {
+                    int tutorId = cursor.getInt(tutorIdColumnIndex);
+                    matchingTutorIds.add(tutorId);
+                }
+            } else {
+                // Handle the case where the "tutorID" column does not exist in the result set
+                // You can log an error message or take appropriate action here.
+            }
+
+            cursor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.close();
+        }
+
+        return matchingTutorIds;
+    }
+
+
+    public Cursor getSubjectsAndGrades(int tutorID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String[] columns = {"subjectName", "grade"};
+        String selection = "tutorID=?";
+        String[] selectionArgs = {String.valueOf(tutorID)};
+
+        return db.query("TutorSubject", columns, selection, selectionArgs, null, null, null);
     }
 
     // Used in ActivityTutorProfileView
@@ -718,6 +855,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return fieldValue;
     }
+
+
 
     public Boolean getFieldAsBool(String TABLE_NAME, String fieldName, int userId) {
         SQLiteDatabase db = this.getReadableDatabase();

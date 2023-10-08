@@ -58,7 +58,7 @@ public class ActivityHomeStudent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_student);
 
-        //calendarView = findViewById(R.id.calendarView);
+        CalendarView calendarView = findViewById(R.id.calendarView);
         TextView welcome = findViewById(R.id.txtWelcomeStud);
         dbHelper = new DBHelper(this);
 
@@ -79,7 +79,6 @@ public class ActivityHomeStudent extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this);
 
         List<Date> eventDates = dbHelper.getEventDatesForUser(loggedInUserId);
-
 
 
                 btnViewAllSessions = findViewById(R.id.btnViewAllSessions);

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -15,7 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class ActivityFilterTutors extends AppCompatActivity {
-
+    boolean isHandlingCheckedChange = false;
     RadioButton rdoOnlineFilter, rdoInPersonFilter, rdoQualifiedTeacher;
     Boolean isOnline, isOffline, isTeacher;
 
@@ -23,8 +24,9 @@ public class ActivityFilterTutors extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_tutors);
+//        RadioGroup rdoGroupGrade1 = findViewById(R.id.rdoGroupGrade1);
+//        RadioGroup rdoGroupGrade2 = findViewById(R.id.rdoGroupGrade2);
 
-        RatingBar rating = findViewById(R.id.starRatingBar);
 
 
 
@@ -61,7 +63,27 @@ public class ActivityFilterTutors extends AppCompatActivity {
 
             }
         });
-
+//        rdoGroupGrade1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//                if (!isHandlingCheckedChange) {
+//                    isHandlingCheckedChange = true;
+//                    rdoGroupGrade2.clearCheck();
+//                    isHandlingCheckedChange = false;
+//                }
+//            }
+//        });
+//
+//        rdoGroupGrade2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//                if (!isHandlingCheckedChange) {
+//                    isHandlingCheckedChange = true;
+//                    rdoGroupGrade1.clearCheck();
+//                    isHandlingCheckedChange = false;
+//                }
+//            }
+//        });
 
         rdoOnlineFilter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,19 +128,22 @@ public class ActivityFilterTutors extends AppCompatActivity {
 
 
         btn_ShowResults.setOnClickListener(v -> {
-            ArrayList<String> selectedSubjects = new ArrayList<>();
-            if (getIntent().hasExtra("selectedSubjects")) {
-                selectedSubjects = getIntent().getStringArrayListExtra("selectedSubjects");
-            }
 
-            ArrayList<String> selectedGrades = new ArrayList<>();
-            if (getIntent().hasExtra("selectedGrades")) {
-                selectedGrades = getIntent().getStringArrayListExtra("selectedGrades");
-            }
+//            String selectedGrade = getIntent().getStringExtra("selectedGrade");
+//            Boolean math = getIntent().getBooleanExtra("math", false);
+//            Boolean history = getIntent().getBooleanExtra("history", false);
+//            Boolean afrikaans = getIntent().getBooleanExtra("afrikaans",false);
+//            Boolean english = getIntent().getBooleanExtra("english",false);
+          //  String selectedGrade = getSelectedGrade(rdoGroupGrade1, rdoGroupGrade2);
+
+
 
             Intent intent = new Intent(getApplicationContext(), ActivityFindTutor.class);
-            intent.putExtra("selectedSubjects", selectedSubjects);
-            intent.putExtra("selectedGrades", selectedGrades);
+         //   intent.putExtra("selectedGrades", selectedGrade);
+//            intent.putExtra("selectedSubjects", math);
+//            intent.putExtra("selectedSubjects", history);
+//            intent.putExtra("selectedSubjects", afrikaans);
+//            intent.putExtra("selectedSubjects", english);
             intent.putExtra("onlineFilter", rdoOnlineFilter.isChecked());
             intent.putExtra("inPersonFilter", rdoInPersonFilter.isChecked());
             intent.putExtra("qualifiedTeacherFilter", rdoQualifiedTeacher.isChecked());
@@ -127,5 +152,21 @@ public class ActivityFilterTutors extends AppCompatActivity {
         });
 
 
+    }
+
+    private String getSelectedGrade(RadioGroup rdoGroupGrade1, RadioGroup rdoGroupGrade2) {
+        // Check which RadioGroup is selected and return the selected grade
+        // You may need to modify this logic based on your RadioGroup setup
+        int selectedId = rdoGroupGrade1.getCheckedRadioButtonId();
+        if (selectedId == -1) {
+            selectedId = rdoGroupGrade2.getCheckedRadioButtonId();
+        }
+
+        if (selectedId != -1) {
+            RadioButton selectedRadioButton = findViewById(selectedId);
+            return selectedRadioButton.getText().toString();
+        }
+
+        return "";
     }
 }
