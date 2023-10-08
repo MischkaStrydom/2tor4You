@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class ActivityTutorProfileView extends AppCompatActivity {
 
     ArrayList<String> firstName, lastname, TotalStudentTaught, YearsOfExperience ,TotalTutorHours , aboutMe, school, uni, reviewText, extraNotes, pricePerHour;
+    ArrayList<Integer> tutorID;
     AdapterTutorProfileView AdapterTutorProfileView;
 
     ArrayList<String> listItem;
@@ -43,6 +44,17 @@ public class ActivityTutorProfileView extends AppCompatActivity {
         //Intent intent = getIntent();
         //String selectedName = intent.getStringExtra("name");
 
+        // Retrieve data from the intent
+        Intent intent = getIntent();
+        if (intent.hasExtra("tutorId")) {
+            String tutorId = intent.getStringExtra("tutorId");
+
+            // For example, you can make a network request or query a local database to get tutor details
+        } else {
+            // Handle the case where tutorId is not provided in the intent extras
+            // You can show an error message or navigate back to the previous screen
+        }
+
         Toast.makeText(this, "name: " +firstName, Toast.LENGTH_SHORT).show();
 
 
@@ -57,6 +69,7 @@ public class ActivityTutorProfileView extends AppCompatActivity {
 
         //storeDataInArrays();
 
+        tutorID = new ArrayList<>();
         firstName = new ArrayList<>();
         lastname = new ArrayList<>();
         TotalStudentTaught = new ArrayList<>();
@@ -72,7 +85,7 @@ public class ActivityTutorProfileView extends AppCompatActivity {
         rvTutorProfileView = findViewById(R.id.rvTutorProfileView);
 
         storeDataInArrays();
-        AdapterTutorProfileView = new AdapterTutorProfileView(ActivityTutorProfileView.this, firstName, lastname, TotalStudentTaught, YearsOfExperience, TotalTutorHours, aboutMe, school, uni, reviewText, extraNotes, pricePerHour);
+        AdapterTutorProfileView = new AdapterTutorProfileView(ActivityTutorProfileView.this,tutorID , firstName, lastname, TotalStudentTaught, YearsOfExperience, TotalTutorHours, aboutMe, school, uni, reviewText, extraNotes, pricePerHour);
         rvTutorProfileView.setAdapter(AdapterTutorProfileView);
         rvTutorProfileView.setLayoutManager(new LinearLayoutManager(ActivityTutorProfileView.this));
 
@@ -99,17 +112,18 @@ public class ActivityTutorProfileView extends AppCompatActivity {
         } else {
             while (cursor.moveToNext()) {
 
-                firstName.add(cursor.getString(0)); // firstName
-                lastname.add(cursor.getString(1)); // lastname
-                TotalStudentTaught.add(cursor.getString(2)); // TotalStudentTaught
-                YearsOfExperience.add(cursor.getString(3)); // YearsOfExperience
-                TotalTutorHours.add(cursor.getString(4)); // TotalTutorHours
-                aboutMe.add(cursor.getString(5)); // aboutMe
-                school.add(cursor.getString(6)); // school
-                uni.add(cursor.getString(7)); // uni
-                reviewText.add(cursor.getString(8)); // reviewText
-                extraNotes.add(cursor.getString(9)); // eventNotes
-                pricePerHour.add(cursor.getString(10)); // pricePerHour
+                tutorID.add(cursor.getInt(0)); // tutorID
+                firstName.add(cursor.getString(1)); // firstName
+                lastname.add(cursor.getString(2)); // lastname
+                TotalStudentTaught.add(cursor.getString(3)); // TotalStudentTaught
+                YearsOfExperience.add(cursor.getString(4)); // YearsOfExperience
+                TotalTutorHours.add(cursor.getString(5)); // TotalTutorHours
+                aboutMe.add(cursor.getString(6)); // aboutMe
+                school.add(cursor.getString(7)); // school
+                uni.add(cursor.getString(8)); // uni
+                reviewText.add(cursor.getString(9)); // reviewText
+                extraNotes.add(cursor.getString(10)); // eventNotes
+                pricePerHour.add(cursor.getString(11)); // pricePerHour
 
             }
             Toast.makeText(ActivityTutorProfileView.this, "name: " + firstName, Toast.LENGTH_SHORT).show();

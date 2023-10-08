@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.a2tor4you.Model.UserModel;
+import com.example.a2tor4you.utils.AndroidUtil;
 import com.example.a2tor4you.utils.FirebaseUtil;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,18 +39,13 @@ public class LoginUsernameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_username);
 
-
-
          password = getIntent().getStringExtra("password");
          selectedRole = getIntent().getStringExtra("selectedRole");
-
-
 
         usernameInput = findViewById(R.id.txtUsername);
         letMeInBtn = findViewById(R.id.btnLetMeIn);
 
         //On button back takes user back to Account Home screen
-
 
         phoneNumber = getIntent().getStringExtra("phone");
 
@@ -71,9 +67,20 @@ public class LoginUsernameActivity extends AppCompatActivity {
             }
         });
 
+        letMeInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkAllFields()) {
+                    // All fields are filled, proceed with setting the username
+                    setUsername();
+                } else {
+                    // Fields are missing, show an error message
+                    AndroidUtil.showToast(getApplicationContext(), "All fields are required.");
+                }
+            }
+        });
 
     }
-
 
     void setUsername() {
 
@@ -119,6 +126,17 @@ public class LoginUsernameActivity extends AppCompatActivity {
         });
     }
 
+    private boolean checkAllFields() {
+        // Check if username is entered
+        String enteredUsername = usernameInput.getText().toString().trim();
 
+        // Check if username is filled and meets the minimum length requirement
+        if (enteredUsername.isEmpty() || enteredUsername.length() < 3) {
+            usernameInput.setError("Username length should be at least 3 characters");
+            return false;
+        }
+
+        return true; // All fields are filled
+    }
 
 }

@@ -25,6 +25,7 @@ public class ActivityReport extends AppCompatActivity {
     DBHelper dbHelper ;
     DBHelper myDB;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,14 @@ public class ActivityReport extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (checkAllFields()) {
+                    // All fields are filled, proceed with report submission
+                    // ... (your existing report submission code)
+                } else {
+                    // Fields are missing, show an error message
+                    AndroidUtil.showToast(getApplicationContext(), "All fields are required.");
+                }
+
                 //Insert event details to the database
                 reportCategory = spinReport.getSelectedItem().toString();
                 reportText = txtReport.getText().toString();//
@@ -63,7 +72,8 @@ public class ActivityReport extends AppCompatActivity {
                 reportValues.put("reportCategory", reportCategory);
                 reportValues.put("reportText", reportText);
 
-                boolean result = myDB.insertDataUser("Report", reportValues);
+                boolean result = myDB.insertData("Report", reportValues);
+
 
                 // if (isAllFieldsChecked) {
 
@@ -74,7 +84,6 @@ public class ActivityReport extends AppCompatActivity {
 
                     spinReport.setSelection(0);
                     txtReport.setText("");
-
 
                 } else {
                     AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred!");
@@ -96,6 +105,26 @@ public class ActivityReport extends AppCompatActivity {
                 return i;
             }}
         return -1; // Not found
+    }
+
+    private boolean checkAllFields() {
+        // Check if all fields are filled
+        String selectedReportCategory = spinReport.getSelectedItem().toString();
+        String reportTextValue = txtReport.getText().toString().trim();
+
+        // Check if the report category is selected
+        if (selectedReportCategory.equals("Select Category")) {
+            AndroidUtil.showToast(getApplicationContext(), "Please select a report category.");
+            return false;
+        }
+
+        // Check if the report text is filled
+        if (reportTextValue.isEmpty()) {
+            txtReport.setError("Report text is required.");
+            return false;
+        }
+
+        return true; // All fields are filled
     }
 
 

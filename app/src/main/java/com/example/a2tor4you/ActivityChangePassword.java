@@ -23,7 +23,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.regex.Pattern;
 
 public class ActivityChangePassword extends AppCompatActivity {
-    DBHelper dbHelper ;
+    DBHelper dbHelper;
     // button
     Button btnCreateNewPassword;
 
@@ -41,9 +41,9 @@ public class ActivityChangePassword extends AppCompatActivity {
                     "(?=\\S+$)" +            // no white spaces
                     ".{4,}" +                // at least 4 characters
                     "$");*/
-    
+
     /* private TextInputLayout email;*/
-   /* private TextInputLayout password;*/
+    /* private TextInputLayout password;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,17 @@ public class ActivityChangePassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // Check if all required fields are filled
+
+                if (checkAllFields()) {
+                    // All fields are filled, proceed with saving the event
+                    // ... your existing code for saving the event ...
+
+                } else {
+                    // Not all fields are filled, show a toast message indicating the required fields
+                    Toast.makeText(ActivityChangePassword.this, "Please fill in all required fields", Toast.LENGTH_SHORT).show();
+                }
+
                 // store the returned value of the dedicated function which checks
                 // whether the entered data is valid or if any fields are left blank.
                 //isAllFieldsChecked = CheckAllFields();
@@ -81,60 +92,78 @@ public class ActivityChangePassword extends AppCompatActivity {
 
                 // the boolean variable turns to be true then
                 // only the user must be proceed to the activity2
-               // if (isAllFieldsChecked) {
+                // if (isAllFieldsChecked) {
 
 
+                if (loggedInUserId != -1) {
+                    // Fetch user's name and surname from the database based on userID
+                    String userPass = dbHelper.getField("User", loggedInUserId, "password"); // Implement this method
 
-                    if (loggedInUserId != -1) {
-                        // Fetch user's name and surname from the database based on userID
-                        String userPass = dbHelper.getField("User", loggedInUserId,"password"); // Implement this method
+                    // Separate name and surname as separate strings
+                    if (userPass.equals(curPass)) {
 
-                        // Separate name and surname as separate strings
-                        if (userPass.equals(curPass)) {
-
-                            if (newPass.equals(confirmPass)){
-
+                        if (newPass.equals(confirmPass)) {
 
 
-                                ContentValues values = new ContentValues();
-                                values.put("userID", loggedInUserId);
-                                values.put("currentPassword", curPass);
-                                values.put("newPassword", newPass);
-                                values.put("confirmPassword", confirmPass);
+                            ContentValues values = new ContentValues();
+                            values.put("userID", loggedInUserId);
+                            values.put("currentPassword", curPass);
+                            values.put("newPassword", newPass);
+                            values.put("confirmPassword", confirmPass);
 
-                                boolean isChanged = dbHelper.changeUserPassword(loggedInUserId, newPass);
+                            boolean isChanged = dbHelper.changeUserPassword(loggedInUserId, newPass);
 
-                                boolean isInserted = dbHelper.insertData("PasswordChange", values);
+                            boolean isInserted = dbHelper.insertData("PasswordChange", values);
 
-                                if (isChanged && isInserted) {
-                                    Toast.makeText(ActivityChangePassword.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
+                            if (isChanged && isInserted) {
+                                Toast.makeText(ActivityChangePassword.this, "Password changed successfully", Toast.LENGTH_SHORT).show();
 
-                                    txtCurrentPassword.setText("");
-                                    txtNewPassword.setText("");
-                                    txtConfirmPassword.setText("");
+                                txtCurrentPassword.setText("");
+                                txtNewPassword.setText("");
+                                txtConfirmPassword.setText("");
 
-                                } else {
-                                    Toast.makeText(ActivityChangePassword.this, "Failed to change password", Toast.LENGTH_SHORT).show();
-                                }
+                            } else {
+                                Toast.makeText(ActivityChangePassword.this, "Failed to change password", Toast.LENGTH_SHORT).show();
                             }
-                            else {
-                                Toast.makeText(ActivityChangePassword.this, "New password and confirm password does not match", Toast.LENGTH_SHORT).show();
-                            }
-
-
-
                         } else {
-                            // Handle the case where the userName format is unexpected
-                            Toast.makeText(ActivityChangePassword.this, "Incorrect current password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ActivityChangePassword.this, "New password and confirm password does not match", Toast.LENGTH_SHORT).show();
                         }
 
+
+                    } else {
+                        // Handle the case where the userName format is unexpected
+                        Toast.makeText(ActivityChangePassword.this, "Incorrect current password", Toast.LENGTH_SHORT).show();
                     }
 
+                }
 
-               // }
+
+                // }
             }
         });
     }
+
+    private boolean checkAllFields() {
+        // Check if all fields are filled
+        boolean isCurrentPassEmpty = txtCurrentPassword.getText().toString().trim().isEmpty();
+        boolean isNewPassEmpty = txtNewPassword.getText().toString().trim().isEmpty();
+        boolean isConfirmPassEmpty = txtConfirmPassword.getText().toString().trim().isEmpty();
+
+        // Display error messages for empty fields
+        if (isCurrentPassEmpty) {
+            txtCurrentPassword.setError("Current password is required");
+        }
+        if (isNewPassEmpty) {
+            txtNewPassword.setError("New password is required");
+        }
+        if (isConfirmPassEmpty) {
+            txtConfirmPassword.setError("Confirm password is required");
+        }
+
+        // Return true if all fields are filled, otherwise return false
+        return !(isCurrentPassEmpty || isNewPassEmpty || isConfirmPassEmpty);
+    }
+}
 
     /*// function which checks all the text fields
     // are filled or not by the user.
@@ -213,4 +242,3 @@ public class ActivityChangePassword extends AppCompatActivity {
         String input = "Password: " + txtNewPassword.getText().toString();
         Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
     }*/
-}

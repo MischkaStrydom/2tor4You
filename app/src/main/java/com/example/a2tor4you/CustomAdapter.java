@@ -77,8 +77,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 notifyItemRemoved(position);
             }
 
-
-
         });
 
 

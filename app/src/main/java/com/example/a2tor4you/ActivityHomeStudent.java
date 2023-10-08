@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.metrics.Event;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +27,9 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -35,10 +38,11 @@ import java.util.Locale;
 public class ActivityHomeStudent extends AppCompatActivity {
 
 
-    // Calendar event highlight
    /* private CalendarView calendarView;
 
     private HashSet<String> selectedDates = new HashSet<>();*/
+
+    private CalendarView calendarView;
 
     static String phoneNumber;
     static String password;
@@ -49,7 +53,6 @@ public class ActivityHomeStudent extends AppCompatActivity {
     String userInput;
 
     UserModel userModel;
-
     DBHelper dbHelper ;
     Button btnViewAllSessions, btnAddEvent;
 
@@ -87,6 +90,30 @@ public class ActivityHomeStudent extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Highlight calendar event
+
+        /*calendarView = findViewById(R.id.calendarView);
+
+        // Retrieve the selected date from the intent
+        Intent intent = getIntent();
+        if (intent.hasExtra("selectedDate")) {
+            String selectedDate = intent.getStringExtra("selectedDate");
+
+            // Parse the selected date to get year, month, and day
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            try {
+                Date parsedDate = dateFormat.parse(selectedDate);
+                if (parsedDate != null) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(parsedDate);
+
+                    // Set the highlighted date on the CalendarView
+                    calendarView.setDate(calendar.getTimeInMillis(), true, true);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }*/
 
 
 //        btnAddEvent = findViewById(R.id.btnAddEvent);

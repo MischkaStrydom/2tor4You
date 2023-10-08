@@ -39,8 +39,8 @@ public class ActivityFindTutorItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_tutor_item);
 
-       // ImageView imgTutProfilePicList = findViewById(R.id.imgTutProfilePicList);
-       // imgTutProfilePicList.setOnClickListener(view -> startActivity(new Intent(ActivityFindTutorItem.this,ActivityTutorProfileView.class)));
+       /*ImageView imgTutProfilePicList = findViewById(R.id.imgTutProfilePicList);
+       imgTutProfilePicList.setOnClickListener(view -> startActivity(new Intent(ActivityFindTutorItem.this,ActivityTutorProfileView.class)));*/
 
 //        dbHelper = new DBHelper(this);
 //

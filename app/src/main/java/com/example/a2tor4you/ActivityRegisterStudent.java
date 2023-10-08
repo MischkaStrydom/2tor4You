@@ -43,23 +43,24 @@ public class ActivityRegisterStudent extends AppCompatActivity {
                     "$");
 
     *//* private TextInputLayout email;*//*
-    *//* private TextInputLayout password;*/
+     *//* private TextInputLayout password;*/
 
     static String studentName;
     static String studentSurname;
     static String completePhoneNumber;
-    static String studentEmail ;
+    static String studentEmail;
     static String studentPassword;
     static String confirmPassword;
 
     DBHelper myDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_student);
 
         ImageView btnBack = findViewById(R.id.btnBackStudentRegister);
-        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityRegisterStudent.this,MainActivity.class)));
+        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityRegisterStudent.this, MainActivity.class)));
 
         EditText name = findViewById(R.id.txt_StudentFirstName);
         EditText surname = findViewById(R.id.txt_StudentLastName);
@@ -74,13 +75,20 @@ public class ActivityRegisterStudent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if (checkAllFields()) {
+                    // All fields are filled, proceed with registration
+                    // ... (your existing registration code)
+                } else {
+                    // Fields are missing, show an error message
+                    AndroidUtil.showToast(getApplicationContext(), "All fields are required.");
+                }
 
-               studentName = name.getText().toString();
-               studentSurname = surname.getText().toString();
-               completePhoneNumber = "+27" + phoneInput.getText().toString();
-               studentEmail = email.getText().toString();
-               studentPassword = password.getText().toString();
-               confirmPassword = confirmPass.getText().toString();
+                studentName = name.getText().toString();
+                studentSurname = surname.getText().toString();
+                completePhoneNumber = "+27" + phoneInput.getText().toString();
+                studentEmail = email.getText().toString();
+                studentPassword = password.getText().toString();
+                confirmPassword = confirmPass.getText().toString();
 
                 long currentTimeMillis = System.currentTimeMillis();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// Customize the format as needed
@@ -109,13 +117,12 @@ public class ActivityRegisterStudent extends AppCompatActivity {
                 }
 
 
-
                 ContentValues contentValues = new ContentValues();
-                contentValues.put("firstName", studentName );
-                contentValues.put("lastName", studentSurname );
-                contentValues.put("phoneNumber", completePhoneNumber );
-                contentValues.put("email", studentEmail );
-                contentValues.put("password", studentPassword );
+                contentValues.put("firstName", studentName);
+                contentValues.put("lastName", studentSurname);
+                contentValues.put("phoneNumber", completePhoneNumber);
+                contentValues.put("email", studentEmail);
+                contentValues.put("password", studentPassword);
                 contentValues.put("createdAt", dateTimeString);
                 contentValues.put("userRole", studentRole);
 
@@ -126,9 +133,9 @@ public class ActivityRegisterStudent extends AppCompatActivity {
                     // Insert the user ID into the "studentTable"
                     int userID = myDB.getUserId(completePhoneNumber, studentPassword, studentRole);
                     ContentValues studentValues = new ContentValues();
-                    studentValues.put("userID", userID );
-                    boolean studentInsertResult  = myDB.insertData("Student", studentValues);
-                    boolean studentPreffs  = myDB.insertData("NotificationPreference", studentValues);
+                    studentValues.put("userID", userID);
+                    boolean studentInsertResult = myDB.insertData("Student", studentValues);
+                    boolean studentPreffs = myDB.insertData("NotificationPreference", studentValues);
 
                     if (studentInsertResult && studentPreffs) {
                         name.setText("");
@@ -144,7 +151,7 @@ public class ActivityRegisterStudent extends AppCompatActivity {
 //                        startActivity(intent);
 
 
-                     AndroidUtil.showToast(getApplicationContext(), "Registered Student Successful!");
+                        AndroidUtil.showToast(getApplicationContext(), "Registered Student Successful!");
                     } else {
                         AndroidUtil.showToast(getApplicationContext(), "An unknown error has occurred while saving student data!");
                     }
@@ -156,7 +163,7 @@ public class ActivityRegisterStudent extends AppCompatActivity {
         myDB.close();
 
 
-        Button signUp = findViewById(R.id.btnStudentSignUp);
+       // Button signUp = findViewById(R.id.btnStudentSignUp);
 
         /*// handle the PROCEED button
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +183,50 @@ public class ActivityRegisterStudent extends AppCompatActivity {
             }
         });*/
     }
+
+    EditText name = findViewById(R.id.txt_StudentFirstName);
+    EditText surname = findViewById(R.id.txt_StudentLastName);
+    EditText phoneInput = findViewById(R.id.txt_StudentPhoneNum);
+    EditText email = findViewById(R.id.txtStudentEmail);
+    EditText password = findViewById(R.id.txtRegisterStudentPassword);
+    EditText confirmPass = findViewById(R.id.txtConfirmRegisterStudentPassword);
+
+    // Check if all required fields are filled
+
+    private boolean checkAllFields() {
+        // Check if all fields are filled
+        boolean isFirstNameEmpty = name.getText().toString().trim().isEmpty();
+        boolean isLastNameEmpty = surname.getText().toString().trim().isEmpty();
+        boolean isPhoneEmpty = phoneInput.getText().toString().trim().isEmpty();
+        boolean isEmailEmpty = email.getText().toString().trim().isEmpty();
+        boolean isPassEmpty = password.getText().toString().trim().isEmpty();
+        boolean isConfirmPassEmpty = confirmPass.getText().toString().trim().isEmpty();
+
+
+        // Display error messages for empty fields
+        if (isFirstNameEmpty) {
+            name.setError("Title is required");
+        }
+        if (isLastNameEmpty) {
+            surname.setError("Date is required");
+        }
+        if (isPhoneEmpty) {
+            phoneInput.setError("Time is required");
+        }
+        if (isEmailEmpty) {
+            email.setError("Time is required");
+        }
+        if (isPassEmpty) {
+            password.setError("Time is required");
+        }
+        if (isConfirmPassEmpty) {
+            confirmPass.setError("Time is required");
+        }
+
+        // Return true if all fields are filled, otherwise return false
+        return !(isFirstNameEmpty || isLastNameEmpty || isPhoneEmpty || isEmailEmpty || isPassEmpty|| isConfirmPassEmpty);
+    }
+}
 
 
     /*// function which checks all the text fields
@@ -270,4 +321,3 @@ public class ActivityRegisterStudent extends AppCompatActivity {
         input = "Password: " + txtRegisterStudentPassword.getText().toString();
         Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
     }*/
-}
