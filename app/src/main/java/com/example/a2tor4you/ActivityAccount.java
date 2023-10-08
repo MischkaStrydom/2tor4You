@@ -53,7 +53,6 @@ public class ActivityAccount extends AppCompatActivity {
     static String password;
     static String selectedRole;
     ImageButton btnLogout;
-    ImageButton btnReport;
     ImageView profile_image_view;
     ActivityResultLauncher<Intent> imagePickLauncher;
     Uri selectedImageUri;
@@ -79,10 +78,10 @@ public class ActivityAccount extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
 
-        ImageView notification = findViewById(R.id.btnNotifications);
-        ImageView settings = findViewById(R.id.btnSettings);
-        ImageView terms = findViewById(R.id.btnTermsAndC);
-        ImageView report = findViewById(R.id.btnReport);
+        ImageButton notification = findViewById(R.id.btnNotifications);
+        ImageButton settings = findViewById(R.id.btnSettings);
+        ImageButton terms = findViewById(R.id.btnTermsAndC);
+        ImageButton report = findViewById(R.id.btnReport);
         profile_image_view = findViewById(R.id.profile_image_view);
         Button savePic = findViewById(R.id.btnSaveProfilePic);
 
@@ -241,19 +240,21 @@ public class ActivityAccount extends AppCompatActivity {
         terms.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityTermAndConditions.class)));
         report.setOnClickListener(view -> startActivity(new Intent(ActivityAccount.this,ActivityReport.class)));
 
-        // Button report
-        btnReport = findViewById(R.id.btnReport);
+        // Button contact us
+        ImageButton btnContactUs = findViewById(R.id.btnContactUs);
 
-        btnReport.setOnClickListener(view ->  {
-            reportProblem();
+        btnContactUs.setOnClickListener(view ->  {
+            contactUs();
         });
+
+       /* // Contact Us pop up box
 
         ImageButton btnContactUs = findViewById(R.id.btnContactUs);
 
         btnContactUs.setOnClickListener(view -> {
             showAlertDialog("Contact us at: 2tor4you@gmail.com");
 
-        });
+        });*/
 
 
         //Testing profile pic
@@ -381,15 +382,15 @@ public class ActivityAccount extends AppCompatActivity {
 
 //
 
-    /*Report a Problem*/
+    /*Contact Us*/
 
     /*Our email = 2tor4YouApp@gmail.com*/
     /*Email password = ProjectApp1234*/
     private static final int EMAIL_REQUEST_CODE = 1;
 
-    private void reportProblem() {
+    private void contactUs() {
         String email = "2tor4YouApp@gmail.com";
-        String subject = "Reporting for app " + getString(R.string.app_name);
+        String subject = "Query";
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));

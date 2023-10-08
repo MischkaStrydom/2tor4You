@@ -45,6 +45,8 @@ public class ActivityReport extends AppCompatActivity {
         spinReport = findViewById(R.id.spinReport);
         txtReport = findViewById(R.id.txtReport);
 
+        btnSubmitReport = findViewById(R.id.btnSubmitReport);
+
         // handle the SAVE button
         btnSubmitReport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,5 +88,15 @@ public class ActivityReport extends AppCompatActivity {
         });
 
     }
+    private int getIndex(Spinner spinner, String value) {
+        for (int i = 0; i < spinner.getCount(); i++) {
+            String item = spinner.getItemAtPosition(i).toString();
+//            Log.d("Debug", "Item at position " + i + ": " + item);
+            if (item.equals(value)) {
+                return i;
+            }}
+        return -1; // Not found
+    }
+
 
 }
