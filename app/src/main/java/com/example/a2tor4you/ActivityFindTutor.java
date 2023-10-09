@@ -311,6 +311,9 @@ public class ActivityFindTutor extends AppCompatActivity {
                     imageBytes.add(tutorImageBlob);
                     grade.add(GRADE);
                 }
+                else{
+                    Toast.makeText(ActivityFindTutor.this, "No tutors were found with these filters", Toast.LENGTH_LONG).show();
+                }
             } while (cursor.moveToNext());
 
             cursor.close(); // Close the cursor when done
