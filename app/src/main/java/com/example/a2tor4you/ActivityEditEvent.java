@@ -36,10 +36,13 @@ import com.google.android.material.navigation.NavigationBarView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
 
 public class ActivityEditEvent extends AppCompatActivity {
     EditText txt_EventTitle, txt_EventNotes;
+
+    String selectedDate = eventDate;
     Button btnEventDate, btnEventTime, btn_SaveEvent;
     BottomNavigationView bottomNavigationView;
     RadioGroup rdoGroupGrade1;
@@ -64,6 +67,19 @@ public class ActivityEditEvent extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         myDB = new DBHelper(this); // Initialize myDB
+
+        // Highlight calendar event
+
+       // Intent intent = new Intent(ActivityEditEvent.this, ActivityHomeStudent.class);
+       // intent.putExtra("selectedDate", selectedDate);
+       // startActivity(intent);
+
+        // Highlight calendar event
+
+       /* SharedPreferences eventPreferences = getSharedPreferences("EventDates", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = eventPreferences.edit();
+        editor.putString("eventDate", eventDate); // eventDate is the date selected by the user
+        editor.apply();*/
 
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
@@ -92,7 +108,7 @@ public class ActivityEditEvent extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.event:
-                        startActivity(new Intent(getApplicationContext(),ActivityCalendar.class));
+                        startActivity(new Intent(getApplicationContext(),ActivityEditEvent.class));
                         return true;
 
                     case R.id.home:
@@ -166,22 +182,16 @@ public class ActivityEditEvent extends AppCompatActivity {
         btn_SaveEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // store the returned value of the dedicated function which checks
-                // whether the entered data is valid or if any fields are left blank.
 
-//                //Get state of online
-//                if (rdo_Online.isChecked()) {
-//                    isCheckedLocationOnline = true;
-//                } else {
-//                    isCheckedLocationOnline = false;
-//
-//                }
-//                //Get state of offline
-//                if (rdo_InPerson.isChecked()) {
-//                    isCheckedLocationOffline = true;
-//                } else {
-//                    isCheckedLocationOffline = false;
-//                }
+                if (checkAllFields()) {
+                    // All fields are filled, proceed with registration
+                    // ... (your existing registration code)
+                } else {
+                    // Fields are missing, show an error message
+                    AndroidUtil.showToast(getApplicationContext(), "All fields are required.");
+                }
+
+                // Radio Button
 
                 if(rdo_Online.isChecked()){
                     isCheckedLocationOnline = true;
@@ -281,8 +291,29 @@ public class ActivityEditEvent extends AppCompatActivity {
         // RadioButtons select and deselect
         rdo_Online = findViewById(R.id.rdo_Online);
         rdo_InPerson = findViewById(R.id.rdo_InPerson);
+    }
 
+    // Check if all required fields are filled
 
+    private boolean checkAllFields() {
+        // Check if all fields are filled
+        boolean isTitleEmpty = txt_EventTitle.getText().toString().trim().isEmpty();
+        boolean isDateEmpty = btnEventDate.getText().toString().trim().isEmpty();
+        boolean isTimeEmpty = btnEventTime.getText().toString().trim().isEmpty();
+
+        // Display error messages for empty fields
+        if (isTitleEmpty) {
+            txt_EventTitle.setError("Title is required");
+        }
+        if (isDateEmpty) {
+            btnEventDate.setError("Date is required");
+        }
+        if (isTimeEmpty) {
+            btnEventTime.setError("Time is required");
+        }
+
+        // Return true if all fields are filled, otherwise return false
+        return !(isTitleEmpty || isDateEmpty || isTimeEmpty);
     }
 
     private void openTimePicker(){
@@ -299,66 +330,6 @@ public class ActivityEditEvent extends AppCompatActivity {
 
         timePickerDialog.show();
     }
-
-    // function which checks all the text fields
-    // are filled or not by the user.
-    // when user clicks on the PROCEED button
-    // this function is triggered.
-    private boolean CheckAllFields() {
-        if (txt_EventTitle.length() == 0) {
-            txt_EventTitle.setError("This field is required");
-            return false;
-        }
-
-        if (btnEventDate.length() == 0) {
-            btnEventDate.setError("This field is required");
-            return false;
-        }
-
-        if (btnEventTime.length() == 0) {
-            btnEventTime.setError("This field is required");
-            return false;
-        }
-
-        // after all validation return true.
-        return true;
-    }
-
-
-        /*// handle the PROCEED button
-        btn_SaveEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // store the returned value of the dedicated function which checks
-                // whether the entered data is valid or if any fields are left blank.
-                isAllFieldsChecked = CheckAllFields();
-
-                // the boolean variable turns to be true then
-                // only the user must be proceed to the activity2
-                if (isAllFieldsChecked) {
-                    Intent i = new Intent(ActivityEditEvent.this, ActivityCalendar.class);
-                    startActivity(i);
-                }
-            }
-        });*/
-
-
-    /*// function which checks all the text fields are filled or not by the user.
-    private boolean CheckAllFields() {
-        if (txt_EventTitle.length() == 0) {
-            txt_EventTitle.setError("This field is required");
-            return false;
-        }
-
-        if (btnEventDate.length() == 0) {
-            btnEventDate.setError("This field is required");
-            return false;
-        }
-
-        // after all validation return true.
-        return true;
-    }*/
 
     private void showDatePicker() {
         int year = calendar.get(Calendar.YEAR);

@@ -331,6 +331,13 @@ public class ActivityTutorProfile extends AppCompatActivity {
                 // store the returned value of the dedicated function which checks
                 // whether the entered data is valid or if any fields are left blank.
 
+                int tutorID = dbHelper.getTutorId(loggedInUserId);
+
+                // Start ActivityTutorProfileView and pass the tutor's ID as an extra
+                Intent intent = new Intent(ActivityTutorProfile.this, ActivityTutorProfileView.class);
+                intent.putExtra("tutorId", tutorID);
+                startActivity(intent);
+
                 //Get state of online
                 if (online.isChecked()) {
                     isCheckedLocationOnline = true;

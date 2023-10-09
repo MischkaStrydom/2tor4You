@@ -79,6 +79,13 @@ public class ActivityRegisterTutor extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View view) {
 
+                if (checkAllFields()) {
+                    // All fields are filled, proceed
+                } else {
+                    // Fields are missing, show an error message
+                    AndroidUtil.showToast(getApplicationContext(), "All fields are required.");
+                }
+
                if(!verification.isChecked()){
                    AndroidUtil.showToast(getApplicationContext(), "Have to check both the check boxes.");
                    return;
@@ -266,5 +273,55 @@ public class ActivityRegisterTutor extends AppCompatActivity implements View.OnC
         else if (view == btnUpload) {
             uploadFile();
         }
+    }
+
+    private boolean checkAllFields() {
+        // Check if all fields are filled
+        EditText name = findViewById(R.id.txt_TutorFirstName);
+        EditText surname = findViewById(R.id.txt_TutorLastName);
+        EditText phoneInput = findViewById(R.id.txt_TutorPhoneNum);
+        EditText email = findViewById(R.id.txtTutorEmail);
+        EditText password = findViewById(R.id.txtRegisterTutorPassword);
+        EditText confirmPass = findViewById(R.id.txtConfirmRegisterTutorPassword);
+        CheckBox verification = findViewById(R.id.chk_Agree);
+        CheckBox suitable = findViewById(R.id.chk_Suitable);
+
+        boolean isNameEmpty = name.getText().toString().trim().isEmpty();
+        boolean isSurnameEmpty = surname.getText().toString().trim().isEmpty();
+        boolean isPhoneEmpty = phoneInput.getText().toString().trim().isEmpty();
+        boolean isEmailEmpty = email.getText().toString().trim().isEmpty();
+        boolean isPasswordEmpty = password.getText().toString().trim().isEmpty();
+        boolean isConfirmPassEmpty = confirmPass.getText().toString().trim().isEmpty();
+        boolean isVerificationChecked = verification.isChecked();
+        boolean isSuitableChecked = suitable.isChecked();
+
+        // Display error messages for empty fields
+        if (isNameEmpty) {
+            name.setError("Name is required");
+        }
+        if (isSurnameEmpty) {
+            surname.setError("Surname is required");
+        }
+        if (isPhoneEmpty) {
+            phoneInput.setError("Phone number is required");
+        }
+        if (isEmailEmpty) {
+            email.setError("Email is required");
+        }
+        if (isPasswordEmpty) {
+            password.setError("Password is required");
+        }
+        if (isConfirmPassEmpty) {
+            confirmPass.setError("Confirm Password is required");
+        }
+        if (!isVerificationChecked) {
+            verification.setError("You must agree to the terms");
+        }
+        if (!isSuitableChecked) {
+            suitable.setError("You must confirm your suitability");
+        }
+
+        // Return true if all fields are filled and checkboxes are checked, otherwise return false
+        return !(isNameEmpty || isSurnameEmpty || isPhoneEmpty || isEmailEmpty || isPasswordEmpty || isConfirmPassEmpty || !isVerificationChecked || !isSuitableChecked);
     }
 }

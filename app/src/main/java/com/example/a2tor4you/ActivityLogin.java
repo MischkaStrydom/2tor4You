@@ -91,6 +91,14 @@ public class ActivityLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if (checkAllFields()) {
+                    // All fields are filled, proceed with registration
+                    // ... (your existing registration code)
+                } else {
+                    // Fields are missing, show an error message
+                    AndroidUtil.showToast(getApplicationContext(), "All fields are required.");
+                }
+
                 //Get role selected and check if anything is selected
                 String selectedRole = roleSpinner.getSelectedItem().toString();
                 String password = userPassword.getText().toString();
@@ -154,6 +162,30 @@ public class ActivityLogin extends AppCompatActivity {
         });
 
     }
+
+    // Check if all required fields are filled
+
+    private boolean checkAllFields() {
+        // Check if all fields are filled
+        boolean isRoleEmpty = roleSpinner.getSelectedItemPosition() == 0; // Assuming the first item is a hint or prompt
+        boolean isPhoneEmpty = phoneInput.getText().toString().trim().isEmpty();
+        boolean isPassEmpty = userPassword.getText().toString().trim().isEmpty();
+
+        // Display error messages for empty fields
+        if (isRoleEmpty) {
+            ((TextView) roleSpinner.getSelectedView()).setError("Role is required");
+        }
+        if (isPhoneEmpty) {
+            phoneInput.setError("Phone number is required");
+        }
+        if (isPassEmpty) {
+            userPassword.setError("Password is required");
+        }
+
+        // Return true if all fields are filled, otherwise return false
+        return !(isRoleEmpty || isPhoneEmpty || isPassEmpty);
+    }
+
 
     // function which checks all the text fields
     // are filled or not by the user.

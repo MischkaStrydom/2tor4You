@@ -72,6 +72,17 @@ public class ActivityDeleteAccount extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                // Check if all required fields are filled
+
+                if (checkAllFields()) {
+                    // All fields are filled, proceed with saving the event
+                    // ... your existing code for saving the event ...
+
+                } else {
+                    // Not all fields are filled, show a toast message indicating the required fields
+                    Toast.makeText(ActivityDeleteAccount.this, "Please fill in all required fields", Toast.LENGTH_SHORT).show();
+                }
+
                 // store the returned value of the dedicated function which checks
                 // whether the entered data is valid or if any fields are left blank.
                // isAllFieldsChecked = CheckAllFields();
@@ -123,6 +134,20 @@ public class ActivityDeleteAccount extends AppCompatActivity {
             //}
         });
 
+    }
+
+    // Check if all required fields are filled
+
+    private boolean checkAllFields() {
+        // Check if all fields are filled
+        boolean isStudPassEmpty = txtStudentConfirmPassword.getText().toString().trim().isEmpty();
+
+        // Display error messages for empty fields
+        if (isStudPassEmpty) {
+            txtStudentConfirmPassword.setError("Password is required");
+        }
+        // Return true if all fields are filled, otherwise return false
+        return !(isStudPassEmpty);
     }
 
     // function which checks all the text fields

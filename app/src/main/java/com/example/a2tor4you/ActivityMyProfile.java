@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a2tor4you.utils.AndroidUtil;
@@ -198,11 +199,16 @@ public class ActivityMyProfile extends AppCompatActivity {
         btnSaveProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // store the returned value of the dedicated function which checks
-                // whether the entered data is valid or if any fields are left blank.
 
 
-//
+                if (checkAllFields()) {
+                    // All fields are filled, proceed with registration
+                    // ... (your existing registration code)
+                } else {
+                    // Fields are missing, show an error message
+                    AndroidUtil.showToast(getApplicationContext(), "All fields are required.");
+                }
+
                 // Update User Table if they change they info
                 studentName = txt_ProfileName.getText().toString();
                 studentSurname = txt_ProfileSurname.getText().toString();
@@ -265,7 +271,55 @@ public class ActivityMyProfile extends AppCompatActivity {
 
         });
 
+    }
 
+    // Check if all required fields are filled
+
+    private boolean checkAllFields() {
+        // Check if all fields are filled
+        boolean isNameEmpty = txt_ProfileName.getText().toString().trim().isEmpty();
+        boolean isSurnameEmpty = txt_ProfileSurname.getText().toString().trim().isEmpty();
+        boolean isDateEmpty = btnPickDOB.getText().toString().trim().isEmpty();
+        boolean isGenderEmpty = gender.getSelectedItemPosition() == 0; // Assuming the first item is a hint or prompt
+        boolean isPhoneEmpty = txtPhoneNum.getText().toString().trim().isEmpty();
+        boolean isEmailEmpty = txtProEmail.getText().toString().trim().isEmpty();
+        boolean isProvinceEmpty = spinnerProvince.getSelectedItemPosition() == 0; // Assuming the first item is a hint or prompt
+        boolean isCityEmpty = spinnerCity.getSelectedItemPosition() == 0; // Assuming the first item is a hint or prompt
+        boolean isSchoolEmpty = school.getText().toString().trim().isEmpty();
+
+
+        // Display error messages for empty fields
+
+        if (isNameEmpty) {
+            txt_ProfileName.setError("Name is required");
+        }
+        if (isSurnameEmpty) {
+            txt_ProfileSurname.setError("Surname is required");
+        }
+        if (isDateEmpty) {
+            btnPickDOB.setError("Date is required");
+        }
+        if (isGenderEmpty) {
+            ((TextView) gender.getSelectedView()).setError("Gender is required");
+        }
+        if (isPhoneEmpty) {
+            txtPhoneNum.setError("Phone number is required");
+        }
+        if (isEmailEmpty) {
+            txtProEmail.setError("Email is required");
+        }
+        if (isProvinceEmpty) {
+            ((TextView) spinnerProvince.getSelectedView()).setError("Province is required");
+        }
+        if (isCityEmpty) {
+            ((TextView) spinnerCity.getSelectedView()).setError("City is required");
+        }
+        if (isSchoolEmpty) {
+            school.setError("School is required");
+        }
+
+        // Return true if all fields are filled, otherwise return false
+        return !(isNameEmpty || isSurnameEmpty || isDateEmpty || isGenderEmpty || isPhoneEmpty || isEmailEmpty || isProvinceEmpty || isCityEmpty || isSchoolEmpty );
     }
 
 

@@ -21,6 +21,8 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
     private final ArrayList tutorID, firstName, lastname,YearsOfExperience,TotalTutorHours,pricePerHour,grade;
     private final ArrayList<byte[]> imageBytes; ;
     private Context context;
+
+    private DBHelper dbHelper;
     adapterTutor(Context context,
                   ArrayList tutorID,
                   ArrayList firstName,
@@ -58,6 +60,25 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
         holder.YearsOfExperience.setText(String.valueOf(YearsOfExperience.get(position)));
         holder.TotalTutorHours.setText(String.valueOf(TotalTutorHours.get(position)));
         holder.pricePerHour.setText(String.valueOf(pricePerHour.get(position)));
+
+        holder.imgTutProfilePicList.setOnClickListener(v -> {
+            String tutorId = String.valueOf(tutorID.get(position));
+
+            Intent intent = new Intent(context, ActivityTutorProfileView.class);
+            intent.putExtra("tutorId", tutorId);
+            // Add more data as extras if needed
+
+            context.startActivity(intent);
+        });
+
+       /* holder.imgTutProfilePicList.setOnClickListener(v -> {
+            int tutorID = Integer.parseInt((String) tutorID.get(position));
+            Intent intent = new Intent(context, ActivityTutorProfileView.class);
+            intent.putExtra("tutorId", String.valueOf(tutorID.get(position)));
+            context.startActivity(intent);
+
+        });*/
+
         // Decode the byte array and set it as the image source
         byte[] imageBlob = imageBytes.get(position);
         if (imageBlob != null) {
@@ -78,7 +99,7 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder{ //implements View.OnClickListener
 
         TextView firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour;
-        ImageView tutorImage;
+        ImageView tutorImage, imgTutProfilePicList;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,13 +110,14 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
             TotalTutorHours = itemView.findViewById(R.id.txtTutTotalHrsView);
             pricePerHour = itemView.findViewById(R.id.txtPricePerHrView);
             tutorImage = itemView.findViewById(R.id.imgTutProfilePicList);
-           // itemView.setOnClickListener(this);
+            imgTutProfilePicList = itemView.findViewById(R.id.imgTutProfilePicList);
+           //itemView.setOnClickListener(this);
 
         }
 
         //On item click
 
-       /* @Override
+      /*  @Override
         public void onClick(View view) {
             int position = getAbsoluteAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {

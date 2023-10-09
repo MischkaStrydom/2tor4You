@@ -14,15 +14,22 @@ import java.util.ArrayList;
 public class AdapterReport extends RecyclerView.Adapter<AdapterReport.MyViewHolder>{
 
     private Context context;
-    private ArrayList reportCategory, reportText;
+    private DBHelper dbHelper;
+    private ArrayList reportID, reportCategory, reportText;
 
     AdapterReport(Context context,
+                  ArrayList reportID,
                   ArrayList reportCategory,
                   ArrayList reportText
     ){
         this.context = context;
+        this.reportID = reportID;
         this.reportCategory = reportCategory;
         this.reportText = reportText;
+    }
+
+    public void setDbHelper(DBHelper dbHelper) {
+        this.dbHelper = dbHelper;
     }
 
     @NonNull
@@ -55,7 +62,6 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.MyViewHold
 
             reportCategory = itemView.findViewById(R.id.spinReport);
             reportText = itemView.findViewById(R.id.txtReport);
-
 
         }
     }

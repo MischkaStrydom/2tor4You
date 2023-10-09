@@ -16,9 +16,11 @@ import java.util.ArrayList;
 public class AdapterTutorProfileView extends RecyclerView.Adapter<AdapterTutorProfileView.MyViewHolder>{
 
     private Context context;
-    private final ArrayList firstName, lastname, TotalStudentTaught, YearsOfExperience ,TotalTutorHours , aboutMe, school, uni, reviewText, extraNotes, pricePerHour;
+    private DBHelper dbHelper;
+    private final ArrayList tutorID, firstName, lastname, TotalStudentTaught, YearsOfExperience ,TotalTutorHours , aboutMe, school, uni, reviewText, extraNotes, pricePerHour;
 
     AdapterTutorProfileView(Context context,
+                            ArrayList tutorID,
                   ArrayList firstName,
                   ArrayList lastname,
                   ArrayList TotalStudentTaught,
@@ -33,6 +35,7 @@ public class AdapterTutorProfileView extends RecyclerView.Adapter<AdapterTutorPr
     ){
 
         this.context = context;
+        this.tutorID = tutorID;
         this.firstName = firstName;
         this.lastname = lastname;
         this.TotalStudentTaught = TotalStudentTaught;
@@ -69,6 +72,13 @@ public class AdapterTutorProfileView extends RecyclerView.Adapter<AdapterTutorPr
         holder.reviewText.setText(String.valueOf(reviewText.get(position)));
         holder.extraNotes.setText(String.valueOf(extraNotes.get(position)));
         holder.pricePerHour.setText(String.valueOf(pricePerHour.get(position)));
+
+        /*holder.imgTutProfilePicList.setOnClickListener(v -> {
+            int tutorID = Integer.parseInt((String) tutorID.get(position));
+            Intent intent = new Intent(context, ActivityTutorProfileView.class);
+            intent.putExtra("tutorId", String.valueOf(tutorID.get(position)));
+            context.startActivity(intent);
+        });*/
     }
 
     @Override
@@ -78,7 +88,7 @@ public class AdapterTutorProfileView extends RecyclerView.Adapter<AdapterTutorPr
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView firstName, lastname, TotalStudentTaught, YearsOfExperience ,TotalTutorHours , aboutMe, school, uni, reviewText, extraNotes, pricePerHour;
+        TextView firstName, lastname, TotalStudentTaught, YearsOfExperience ,TotalTutorHours , aboutMe, school, uni, reviewText, extraNotes, pricePerHour, imgTutProfilePicList;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,6 +106,7 @@ public class AdapterTutorProfileView extends RecyclerView.Adapter<AdapterTutorPr
             reviewText = itemView.findViewById(R.id.txtTutReviewsList);
             extraNotes = itemView.findViewById(R.id.txtTutNotesView);
             pricePerHour = itemView.findViewById(R.id.txtPricePerHrView);
+            //imgTutProfilePicList = itemView.findViewById(R.id.imgTutProfilePicList);
 
         }
     }

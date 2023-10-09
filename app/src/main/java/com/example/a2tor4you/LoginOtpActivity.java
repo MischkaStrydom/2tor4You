@@ -78,6 +78,21 @@ public class LoginOtpActivity extends AppCompatActivity {
             }
         });
 
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkAllFields()) {
+                    // All fields are filled, proceed with OTP verification
+                    String enteredOtp = otpInput.getText().toString();
+                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, enteredOtp);
+                    signIn(credential);
+                } else {
+                    // Fields are missing, show an error message
+                    AndroidUtil.showToast(getApplicationContext(), "All fields are required.");
+                }
+            }
+        });
+
     }
 
     void sendOtp(String phoneNumber,boolean isResponse) {
@@ -166,4 +181,18 @@ public class LoginOtpActivity extends AppCompatActivity {
             }
         },0,1000);
     }
+
+    private boolean checkAllFields() {
+        // Check if OTP is entered
+        String enteredOtp = otpInput.getText().toString().trim();
+
+        // Check if OTP is filled
+        if (enteredOtp.isEmpty()) {
+            otpInput.setError("OTP is required");
+            return false;
+        }
+
+        return true; // All fields are filled
+    }
+
 }
