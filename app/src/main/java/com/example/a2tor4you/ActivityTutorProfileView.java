@@ -105,8 +105,8 @@ public class ActivityTutorProfileView extends AppCompatActivity {
 
     void storeDataInArrays()
     {
-        Cursor cursor = dbHelper.viewTutorProfileData();
-
+        int tutorId = Integer.parseInt(getIntent().getStringExtra("tutorId"));
+        Cursor cursor = dbHelper.viewTutorProfileData(tutorId);
         if (cursor.getCount() == 0) {
             Toast.makeText(ActivityTutorProfileView.this, "No events to show", Toast.LENGTH_LONG).show();
         } else {

@@ -61,11 +61,23 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
         holder.TotalTutorHours.setText(String.valueOf(TotalTutorHours.get(position)));
         holder.pricePerHour.setText(String.valueOf(pricePerHour.get(position)));
 
-        holder.imgTutProfilePicList.setOnClickListener(v -> {
+        holder.tutorImage.setOnClickListener(v -> {
             String tutorId = String.valueOf(tutorID.get(position));
+            String Name = String.valueOf(firstName.get(position));
+            String Surname = String.valueOf(lastname.get(position));
+            String YOE = String.valueOf(YearsOfExperience.get(position));
+            String TTH = String.valueOf(TotalTutorHours.get(position));
+            String PPH = String.valueOf(pricePerHour.get(position));
 
-            Intent intent = new Intent(context, ActivityTutorProfileView.class);
-            intent.putExtra("tutorId", tutorId);
+
+            Intent intent = new Intent(context, ActivityTutorItemInfo.class);
+            intent.putExtra("tutorID", tutorId);
+            intent.putExtra("Name", Name);
+            intent.putExtra("Surname", Surname);
+            intent.putExtra("YOE", YOE);
+            intent.putExtra("TTH", TTH);
+            intent.putExtra("PPH", PPH);
+
             // Add more data as extras if needed
 
             context.startActivity(intent);
@@ -110,7 +122,7 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
             TotalTutorHours = itemView.findViewById(R.id.txtTutTotalHrsView);
             pricePerHour = itemView.findViewById(R.id.txtPricePerHrView);
             tutorImage = itemView.findViewById(R.id.imgTutProfilePicList);
-            imgTutProfilePicList = itemView.findViewById(R.id.imgTutProfilePicList);
+           // imgTutProfilePicList = itemView.findViewById(R.id.imgTutProfilePicList);
            //itemView.setOnClickListener(this);
 
         }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,7 @@ public class AdapterTutorProfileView extends RecyclerView.Adapter<AdapterTutorPr
     private final ArrayList tutorID, firstName, lastname, TotalStudentTaught, YearsOfExperience ,TotalTutorHours , aboutMe, school, uni, reviewText, extraNotes, pricePerHour;
 
     AdapterTutorProfileView(Context context,
-                            ArrayList tutorID,
+                  ArrayList tutorID,
                   ArrayList firstName,
                   ArrayList lastname,
                   ArrayList TotalStudentTaught,
@@ -88,7 +89,8 @@ public class AdapterTutorProfileView extends RecyclerView.Adapter<AdapterTutorPr
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView firstName, lastname, TotalStudentTaught, YearsOfExperience ,TotalTutorHours , aboutMe, school, uni, reviewText, extraNotes, pricePerHour, imgTutProfilePicList;
+        TextView firstName, lastname, TotalStudentTaught, YearsOfExperience ,TotalTutorHours , aboutMe, school, uni, reviewText, extraNotes, pricePerHour;
+        ImageView imgTutProfilePicList;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -106,7 +108,7 @@ public class AdapterTutorProfileView extends RecyclerView.Adapter<AdapterTutorPr
             reviewText = itemView.findViewById(R.id.txtTutReviewsList);
             extraNotes = itemView.findViewById(R.id.txtTutNotesView);
             pricePerHour = itemView.findViewById(R.id.txtPricePerHrView);
-            //imgTutProfilePicList = itemView.findViewById(R.id.imgTutProfilePicList);
+            imgTutProfilePicList = itemView.findViewById(R.id.imgTutProfilePicList);
 
         }
     }

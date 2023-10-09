@@ -302,26 +302,39 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public Cursor viewTutorsBySubjectAndGrade(String subject, String grade) {
-        SQLiteDatabase db = this.getReadableDatabase();
+//    public Cursor viewTutorsBySubjectsAndGrade(ArrayList<String> subjects, String grade) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        // Create placeholders for the subject names in the IN clause
+//        StringBuilder subjectPlaceholders = new StringBuilder();
+//        for (int i = 0; i < subjects.size(); i++) {
+//            subjectPlaceholders.append("?");
+//            if (i < subjects.size() - 1) {
+//                subjectPlaceholders.append(", ");
+//            }
+//        }
+//
+//        // Define the SQL query using JOIN operations to retrieve data from both tables
+//        String query = "SELECT Tutor.tutorID, User.firstName, User.lastName, Tutor.YearsOfExperience, " +
+//                "Tutor.TotalTutorHours, Tutor.pricePerHour, Tutor.image, Tutor.locationOnline, " +
+//                "Tutor.locationOffline, Tutor.extraQualifiedTeacher, TutorSubject.subjectName, " +
+//                "TutorSubject.grade " +
+//                "FROM User " +
+//                "INNER JOIN Tutor ON User.userID = Tutor.userID " +
+//                "INNER JOIN TutorSubject ON Tutor.tutorID = TutorSubject.tutorID " +
+//                "WHERE TutorSubject.subjectName IN (" + subjectPlaceholders.toString() + ") " +
+//                "AND TutorSubject.grade = ?";
+//
+//        // Create an array of selection arguments, including the subjects and the grade
+//        ArrayList<String> selectionArgsList = new ArrayList<>(subjects);
+//        selectionArgsList.add(grade);
+//        String[] selectionArgs = selectionArgsList.toArray(new String[0]);
+//
+//        Cursor cursor = db.rawQuery(query, selectionArgs);
+//
+//        return cursor;
+//    }
 
-        // Define the SQL query using JOIN operations to retrieve data from both tables
-        String query = "SELECT Tutor.tutorID, User.firstName, User.lastName, Tutor.YearsOfExperience, " +
-                "Tutor.TotalTutorHours, Tutor.pricePerHour, Tutor.image, Tutor.locationOnline, " +
-                "Tutor.locationOffline, Tutor.extraQualifiedTeacher, TutorSubject.subjectName, " +
-                "TutorSubject.grade " +
-                "FROM User " +
-                "INNER JOIN Tutor ON User.userID = Tutor.userID " +
-                "INNER JOIN TutorSubject ON Tutor.tutorID = TutorSubject.tutorID " +
-                "WHERE TutorSubject.subjectName = ? AND TutorSubject.grade = ?";
-
-        // Use selectionArgs to provide the subject and grade values as parameters
-        String[] selectionArgs = { subject, grade };
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        return cursor;
-    }
 
 
 
@@ -440,16 +453,31 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // Used in ActivityTutorProfileView
 
-    public Cursor viewTutorProfileData() {
+//    public Cursor viewTutorProfileData() {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        // Define the SQL query using a JOIN operation to retrieve data from both tables
+//        String query = "SELECT Tutor.tutorID, User.firstName, User.lastName, Tutor.TotalStudentTaught, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.aboutMe, Tutor.school, Tutor.uni, Tutor.reviewText, Tutor.extraNotes, Tutor.pricePerHour " +
+//                "FROM User " +
+//                "INNER JOIN Tutor ON User.userID = Tutor.userID"+
+//                "INNER JOIN Review ON User.reviewText = Tutor.reviewID";
+//
+//        Cursor cursor = db.rawQuery(query, null);
+//
+//        return cursor;
+//    }
+
+    public Cursor viewTutorProfileData(int tutorId) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Define the SQL query using a JOIN operation to retrieve data from both tables
         String query = "SELECT Tutor.tutorID, User.firstName, User.lastName, Tutor.TotalStudentTaught, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.aboutMe, Tutor.school, Tutor.uni, Tutor.reviewText, Tutor.extraNotes, Tutor.pricePerHour " +
                 "FROM User " +
-                "INNER JOIN Tutor ON User.userID = Tutor.userID"+
-                "INNER JOIN Review ON User.reviewText = Tutor.reviewID";
+                "INNER JOIN Tutor ON User.userID = Tutor.userID " +
+                "INNER JOIN Review ON User.reviewText = Tutor.reviewID " +
+                "WHERE Tutor.tutorID = ?"; // Add a WHERE clause to filter by tutorId
 
-        Cursor cursor = db.rawQuery(query, null);
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(tutorId)}); // Pass tutorId as a parameter
 
         return cursor;
     }
