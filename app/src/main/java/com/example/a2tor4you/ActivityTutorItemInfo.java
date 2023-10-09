@@ -37,15 +37,35 @@ public class ActivityTutorItemInfo extends AppCompatActivity {
 
         String name = getIntent().getStringExtra("Name");
         String surname = getIntent().getStringExtra("Surname");
-        String yof = getIntent().getStringExtra("YOE");
-        String tth = getIntent().getStringExtra("TTH");
-        String pph = getIntent().getStringExtra("PPH");
+        String totalStuds = getIntent().getStringExtra("totalStuds");
+        String YrsExp = getIntent().getStringExtra("YrsExp");
+        String TotalTutHrs = getIntent().getStringExtra("TotalTutHrs");
+        String about = getIntent().getStringExtra("about");
+        String tutSchool = getIntent().getStringExtra("tutSchool");
+        String tutUni = getIntent().getStringExtra("tutUni");
+        String review = getIntent().getStringExtra("review");
+        String exNotes = getIntent().getStringExtra("exNotes");
+        String price = getIntent().getStringExtra("price");
+        //String img = getIntent().getStringExtra("img");
+        //image BLOB
+
 
         FirstName.setText(name.toString());
         Lastname.setText(surname.toString());
-        YearsOfExperience.setText(yof.toString());
-        TotalTutorHours.setText(tth.toString());
-        pricePerHour.setText(pph.toString());
+        TotalStudentTaught.setText(totalStuds.toString());
+        YearsOfExperience.setText(YrsExp.toString());
+        TotalTutorHours.setText(TotalTutHrs.toString());
+        aboutMe.setText(about.toString());
+        school.setText(tutSchool.toString());
+        uni.setText(tutUni.toString());
+       // reviewText.setText(review.toString());
+        extraNotes.setText(exNotes.toString());
+        pricePerHour.setText(price.toString());
+       // img.setText(img.toString());
+
+
+
+
 
 
 

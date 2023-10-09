@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder>{
 
-    private final ArrayList tutorID, firstName, lastname,YearsOfExperience,TotalTutorHours,pricePerHour,grade;
+    private final ArrayList tutorID, firstName, lastname,YearsOfExperience,TotalTutorHours,pricePerHour,grade,TotalStudentTaught,aboutMe,school,uni,extraNotes;
     private final ArrayList<byte[]> imageBytes; ;
     private Context context;
 
@@ -31,9 +31,15 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
                   ArrayList TotalTutorHours,
                   ArrayList pricePerHour,
                  ArrayList<byte[]> imageBytes,
-                 ArrayList grade
+                 ArrayList grade,
+                 ArrayList TotalStudentTaught,
+                 ArrayList aboutMe,
+                 ArrayList school,
+                 ArrayList uni,
+                 ArrayList extraNotes
 
-    ){
+
+                 ){
         this.context = context;
         this.tutorID = tutorID;
         this.firstName = firstName;
@@ -43,6 +49,11 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
         this.pricePerHour = pricePerHour;
         this.imageBytes = imageBytes;
         this.grade = grade;
+        this.TotalStudentTaught = TotalStudentTaught;
+        this.aboutMe = aboutMe;
+        this.school = school;
+        this.uni = uni;
+        this.extraNotes = extraNotes;
     }
 
     @NonNull
@@ -61,22 +72,36 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
         holder.TotalTutorHours.setText(String.valueOf(TotalTutorHours.get(position)));
         holder.pricePerHour.setText(String.valueOf(pricePerHour.get(position)));
 
+
         holder.tutorImage.setOnClickListener(v -> {
             String tutorId = String.valueOf(tutorID.get(position));
             String Name = String.valueOf(firstName.get(position));
             String Surname = String.valueOf(lastname.get(position));
-            String YOE = String.valueOf(YearsOfExperience.get(position));
-            String TTH = String.valueOf(TotalTutorHours.get(position));
-            String PPH = String.valueOf(pricePerHour.get(position));
+            String TotalStuds = String.valueOf(TotalStudentTaught.get(position));
+            String YrsExp = String.valueOf(YearsOfExperience.get(position));
+            String TotalTutHrS = String.valueOf(TotalTutorHours.get(position));
+            String About = String.valueOf(aboutMe.get(position));
+            String TutSchool = String.valueOf(school.get(position));
+            String TutUni = String.valueOf(uni.get(position));
+            //String Review = String.valueOf(pricePerHour.get(position));
+            String ExNotes = String.valueOf(extraNotes.get(position));
+            String Price = String.valueOf(pricePerHour.get(position));
+
 
 
             Intent intent = new Intent(context, ActivityTutorItemInfo.class);
             intent.putExtra("tutorID", tutorId);
             intent.putExtra("Name", Name);
             intent.putExtra("Surname", Surname);
-            intent.putExtra("YOE", YOE);
-            intent.putExtra("TTH", TTH);
-            intent.putExtra("PPH", PPH);
+            intent.putExtra("TotalStuds", TotalStuds);
+            intent.putExtra("YrsExp", YrsExp);
+            intent.putExtra("TotalTutHrS", TotalTutHrS);
+            intent.putExtra("About", About);
+            intent.putExtra("TutSchool", TutSchool);
+            intent.putExtra("TutUni", TutUni);
+            //intent.putExtra("Review", Review);
+            intent.putExtra("ExNotes", ExNotes);
+            intent.putExtra("Price", Price);
 
             // Add more data as extras if needed
 

@@ -283,7 +283,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Define the SQL query using a JOIN operation to retrieve data from both tables
         String query = "SELECT Tutor.tutorID, User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.pricePerHour, Tutor.image," +
-                "Tutor.locationOnline, Tutor.locationOffline, Tutor.extraQualifiedTeacher,TutorSubject.subjectName , TutorSubject.grade FROM User " +
+                "Tutor.locationOnline, Tutor.locationOffline, Tutor.extraQualifiedTeacher,TutorSubject.subjectName , TutorSubject.grade, Tutor.TotalStudentTaught, Tutor.aboutMe, Tutor.extraNotes, Tutor.school, Tutor.uni, Tutor.extraNotes  FROM User " +
                 "INNER JOIN Tutor ON User.userID = Tutor.userID " +
                 "INNER JOIN TutorSubject ON Tutor.tutorID = TutorSubject.tutorID";
 
