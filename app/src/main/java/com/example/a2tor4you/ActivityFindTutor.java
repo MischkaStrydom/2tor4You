@@ -35,7 +35,7 @@ import java.util.Set;
 
 public class ActivityFindTutor extends AppCompatActivity {
 
-    ArrayList<String> firstName, lastname, TotalStudentTaught, YearsOfExperience, TotalTutorHours, pricePerHour, grade, aboutMe, school, uni,  extraNotes;
+    ArrayList<String> firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour, grade;
     ArrayList<Integer> tutorID;
     private ArrayList<byte[]> imageBytes;
     adapterTutor adapterTutor;
@@ -85,16 +85,12 @@ public class ActivityFindTutor extends AppCompatActivity {
         TotalTutorHours = new ArrayList<>();
         pricePerHour = new ArrayList<>();
         imageBytes = new ArrayList<>();
-        TotalStudentTaught = new ArrayList<>();
-        aboutMe = new ArrayList<>();
-        school = new ArrayList<>();
-        uni = new ArrayList<>();
-        extraNotes = new ArrayList<>();
+        grade = new ArrayList<>();
 
         rvFindTutor = findViewById(R.id.rvFindTutor);
 
         storeDataInArrays();
-        adapterTutor = new adapterTutor(ActivityFindTutor.this, tutorID, firstName, lastname, TotalStudentTaught, YearsOfExperience, TotalTutorHours, pricePerHour, imageBytes, grade, aboutMe, school, uni,  extraNotes);
+        adapterTutor = new adapterTutor(ActivityFindTutor.this, tutorID, firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour, imageBytes, grade);
         rvFindTutor.setAdapter(adapterTutor);
         rvFindTutor.setLayoutManager(new LinearLayoutManager(ActivityFindTutor.this));
 
@@ -302,8 +298,7 @@ public class ActivityFindTutor extends AppCompatActivity {
                 boolean meetsQualifiedTeacherFilter = !qualifiedTeacherFilter || isQualifiedTeacher;
 
                 // Check if the tutor meets the price filter criteria
-                boolean meetsPriceFilter = maxPricePerHour == 0 || Float.parseFloat(tutorPricePerHour)
-                        <= maxPricePerHour;
+                boolean meetsPriceFilter = maxPricePerHour == 0 || Float.parseFloat(tutorPricePerHour) <= maxPricePerHour;
 
                 // If the tutor meets all filter criteria, add them to the display
                 if (meetSubjectFilter && meetsGradeFilter && meetsOnlineFilter && meetsInPersonFilter && meetsQualifiedTeacherFilter && meetsPriceFilter) {

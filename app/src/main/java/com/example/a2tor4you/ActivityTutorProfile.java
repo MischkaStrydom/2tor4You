@@ -334,9 +334,9 @@ public class ActivityTutorProfile extends AppCompatActivity {
                 int tutorID = dbHelper.getTutorId(loggedInUserId);
 
                 // Start ActivityTutorProfileView and pass the tutor's ID as an extra
-                Intent intent = new Intent(ActivityTutorProfile.this, ActivityTutorProfileView.class);
-                intent.putExtra("tutorId", tutorID);
-                startActivity(intent);
+//                Intent intent = new Intent(ActivityTutorProfile.this, ActivityTutorProfileView.class);
+//                intent.putExtra("tutorId", tutorID);
+//                startActivity(intent);
 
                 //Get state of online
                 if (online.isChecked()) {

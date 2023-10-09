@@ -283,7 +283,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Define the SQL query using a JOIN operation to retrieve data from both tables
         String query = "SELECT Tutor.tutorID, User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.pricePerHour, Tutor.image," +
-                "Tutor.locationOnline, Tutor.locationOffline, Tutor.extraQualifiedTeacher,TutorSubject.subjectName , TutorSubject.grade, Tutor.TotalStudentTaught, Tutor.aboutMe, Tutor.extraNotes, Tutor.school, Tutor.uni, Tutor.extraNotes  FROM User " +
+                "Tutor.locationOnline, Tutor.locationOffline, Tutor.extraQualifiedTeacher,TutorSubject.subjectName , TutorSubject.grade FROM User " +
                 "INNER JOIN Tutor ON User.userID = Tutor.userID " +
                 "INNER JOIN TutorSubject ON Tutor.tutorID = TutorSubject.tutorID";
 
@@ -778,6 +778,34 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT " + fieldName + " FROM " + TABLE_NAME + " WHERE userID = ?";
         String[] selectionArgs = {String.valueOf(userId)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        String fieldValue = null; // Initialize to null in case of no matching record.
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex(fieldName);
+
+            String value = cursor.getString(columnIndex);
+
+            if (value != null) {
+                fieldValue = value;
+            }
+
+            // Close the cursor.
+            cursor.close();
+        }
+
+        // Close the database.
+        db.close();
+
+        return fieldValue;
+    }
+
+    public String getFieldTutor(String TABLE_NAME, int tutorId, String fieldName) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + fieldName + " FROM " + TABLE_NAME + " WHERE tutorID = ?";
+        String[] selectionArgs = {String.valueOf(tutorId)};
 
         Cursor cursor = db.rawQuery(query, selectionArgs);
 
