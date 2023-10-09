@@ -59,33 +59,33 @@ public class ActivityGradeAndSubject extends AppCompatActivity {
         next.setOnClickListener(v -> {
           //  String selectedGrade = getSelectedGrade(rdoGroupGrade1, rdoGroupGrade2);
             //String selectedSubjects = getSelectedSubjects(); // Implement this method to capture subjects
-            CheckBox math = findViewById(R.id.chkMath);
-            CheckBox history = findViewById(R.id.chkHistory);
-            CheckBox afrikaans = findViewById(R.id.chkAfrikaans);
-            CheckBox english = findViewById(R.id.chkEnglish);
+//            CheckBox math = findViewById(R.id.chkMath);
+//            CheckBox history = findViewById(R.id.chkHistory);
+//            CheckBox afrikaans = findViewById(R.id.chkAfrikaans);
+//            CheckBox english = findViewById(R.id.chkEnglish);
 
-            if(math.isChecked()) {
-                 isMath = true;
-            }
-            if(history.isChecked()) {
-                 isHistory = true;
-            }
-            if(afrikaans.isChecked()) {
-                 isAfrikaans = true;
-            }
-            if(english.isChecked()) {
-                 isEnglish = true;
-            }
+//            if(math.isChecked()) {
+//                 isMath = true;
+//            }
+//            if(history.isChecked()) {
+//                 isHistory = true;
+//            }
+//            if(afrikaans.isChecked()) {
+//                 isAfrikaans = true;
+//            }
+//            if(english.isChecked()) {
+//                 isEnglish = true;
+//            }
 
 
 
             // Pass the selected grade and subjects back to ActivityFindTutor
             Intent intent = new Intent(getApplicationContext(), ActivityFilterTutors.class);
           //  intent.putExtra("selectedGrade", selectedGrade);
-            intent.putExtra("math", isMath);
-            intent.putExtra("history", isHistory);
-            intent.putExtra("afrikaans", isAfrikaans);
-            intent.putExtra("english", isEnglish);
+//            intent.putExtra("math", isMath);
+//            intent.putExtra("history", isHistory);
+//            intent.putExtra("afrikaans", isAfrikaans);
+//            intent.putExtra("english", isEnglish);
             startActivity(intent);
 
         });
@@ -93,21 +93,21 @@ public class ActivityGradeAndSubject extends AppCompatActivity {
 
 
     }
-    private String getSelectedGrade(RadioGroup rdoGroupGrade1, RadioGroup rdoGroupGrade2) {
-        // Check which RadioGroup is selected and return the selected grade
-        // You may need to modify this logic based on your RadioGroup setup
-        int selectedId = rdoGroupGrade1.getCheckedRadioButtonId();
-        if (selectedId == -1) {
-            selectedId = rdoGroupGrade2.getCheckedRadioButtonId();
-        }
-
-        if (selectedId != -1) {
-            RadioButton selectedRadioButton = findViewById(selectedId);
-            return selectedRadioButton.getText().toString();
-        }
-
-        return "";
-    }
+//    private String getSelectedGrade(RadioGroup rdoGroupGrade1, RadioGroup rdoGroupGrade2) {
+//        // Check which RadioGroup is selected and return the selected grade
+//        // You may need to modify this logic based on your RadioGroup setup
+//        int selectedId = rdoGroupGrade1.getCheckedRadioButtonId();
+//        if (selectedId == -1) {
+//            selectedId = rdoGroupGrade2.getCheckedRadioButtonId();
+//        }
+//
+//        if (selectedId != -1) {
+//            RadioButton selectedRadioButton = findViewById(selectedId);
+//            return selectedRadioButton.getText().toString();
+//        }
+//
+//        return "";
+//    }
 
     // Implement this method to capture the selected subjects
 //    private String getSelectedSubjects() {

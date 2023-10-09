@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder>{
 
-    private final ArrayList tutorID, firstName, lastname,YearsOfExperience,TotalTutorHours,pricePerHour;
+    private final ArrayList tutorID, firstName, lastname,YearsOfExperience,TotalTutorHours,pricePerHour,grade;
     private final ArrayList<byte[]> imageBytes; ;
     private Context context;
     adapterTutor(Context context,
@@ -28,7 +28,8 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
                   ArrayList YearsOfExperience,
                   ArrayList TotalTutorHours,
                   ArrayList pricePerHour,
-                 ArrayList<byte[]> imageBytes
+                 ArrayList<byte[]> imageBytes,
+                 ArrayList grade
 
     ){
         this.context = context;
@@ -39,6 +40,7 @@ public class adapterTutor extends RecyclerView.Adapter<adapterTutor.MyViewHolder
         this.TotalTutorHours = TotalTutorHours;
         this.pricePerHour = pricePerHour;
         this.imageBytes = imageBytes;
+        this.grade = grade;
     }
 
     @NonNull

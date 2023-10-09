@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.database.Cursor;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,11 +28,13 @@ import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ActivityFindTutor extends AppCompatActivity {
 
-    ArrayList<String> firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour;
+    ArrayList<String> firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour, grade;
     ArrayList<Integer> tutorID;
     private ArrayList<byte[]> imageBytes;
     adapterTutor adapterTutor;
@@ -82,11 +84,12 @@ public class ActivityFindTutor extends AppCompatActivity {
         TotalTutorHours = new ArrayList<>();
         pricePerHour = new ArrayList<>();
         imageBytes = new ArrayList<>();
+        grade = new ArrayList<>();
 
         rvFindTutor = findViewById(R.id.rvFindTutor);
 
         storeDataInArrays();
-        adapterTutor = new adapterTutor(ActivityFindTutor.this, tutorID, firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour, imageBytes);
+        adapterTutor = new adapterTutor(ActivityFindTutor.this, tutorID, firstName, lastname, YearsOfExperience, TotalTutorHours, pricePerHour, imageBytes, grade);
         rvFindTutor.setAdapter(adapterTutor);
         rvFindTutor.setLayoutManager(new LinearLayoutManager(ActivityFindTutor.this));
 
@@ -127,41 +130,115 @@ public class ActivityFindTutor extends AppCompatActivity {
         });
 
     }
-//    void storeDataInArrays()
-//    {
+
+
+//    private void storeDataInArrays() {
 //        Cursor cursor = dbHelper.viewTutorData();
 //
+//        String selectedGrade = getIntent().getStringExtra("grade");
+//
+//        boolean isMath = getIntent().getBooleanExtra("math", false);
+//        boolean isHistory = getIntent().getBooleanExtra("history", false);
+//        boolean isAfrikaans = getIntent().getBooleanExtra("afrikaans", false);
+//        boolean isEnglish = getIntent().getBooleanExtra("english", false);
+//
+//        boolean onlineFilter = getIntent().getBooleanExtra("onlineFilter", false);
+//        boolean inPersonFilter = getIntent().getBooleanExtra("inPersonFilter", false);
+//        boolean qualifiedTeacherFilter = getIntent().getBooleanExtra("qualifiedTeacherFilter", false);
+//        int maxPricePerHour = getIntent().getIntExtra("maxPricePerHour", 0);
+//
 //        if (cursor.getCount() == 0) {
-//            Toast.makeText(ActivityFindTutor.this, "No tutors to show", Toast.LENGTH_LONG).show();
+//            Toast.makeText(ActivityFindTutor.this, "No tutors were found", Toast.LENGTH_LONG).show();
 //        } else {
-//            while (cursor.moveToNext()) {
-//                tutorID.add(cursor.getString(0)); // eventTitle
-//                firstName.add(cursor.getString(1)); // eventTitle
-//                lastname.add(cursor.getString(2)); // eventDate
-//                YearsOfExperience.add(cursor.getString(3)); // eventTime
-//                TotalTutorHours.add(cursor.getString(4)); // eventNotes
-//                pricePerHour.add(cursor.getString(5)); // eventNotes
-//                byte[] imageBlob = cursor.getBlob(6);
-//                imageBytes.add(imageBlob);
+//            cursor.moveToFirst(); // Reset cursor position
+//            do {
+//                int tutorId = cursor.getInt(0);
+//                String tutorFirstName = cursor.getString(1);
+//                String tutorLastName = cursor.getString(2);
+//                String tutorYearsOfExperience = cursor.getString(3);
+//                String tutorTotalTutorHours = cursor.getString(4);
+//                String tutorPricePerHour = cursor.getString(5);
+//                byte[] tutorImageBlob = cursor.getBlob(6);
+//                boolean onlineAvailability = cursor.getInt(7) == 1;
+//                boolean inPersonAvailability = cursor.getInt(8) == 1;
+//                boolean isQualifiedTeacher = cursor.getInt(9) == 1;
+//
+//                String GRADE = cursor.getString(11);
+//
+//                String subject = cursor.getString(10);
 //
 //
-//            }
+//                boolean meetSubjectFilter;
 //
+//
+//                if ((isMath && subject.equals("Math")) ||
+//                        (isHistory && subject.equals("History")) ||
+//                        (isAfrikaans && subject.equals("Afrikaans")) ||
+//                        (isEnglish && subject.equals("English")) ||
+//                        (!isMath && !isHistory && !isAfrikaans && !isEnglish)) {
+//                    meetSubjectFilter = true;
+//                } else {
+//                    meetSubjectFilter = false;
+//                }
+//                boolean meetsGradeFilter;
+//                if (selectedGrade == null || selectedGrade.isEmpty()) {
+//                    // If no grade is selected by the user, consider the tutor to meet the grade filter
+//                    meetsGradeFilter = true;
+//                } else {
+//                    // Check if the tutor's grade matches the selected grade
+//                    meetsGradeFilter = GRADE.equals(selectedGrade);
+//                }
+//
+//                // Check if the tutor meets the online availability filter criteria
+//                boolean meetsOnlineFilter = !onlineFilter || onlineAvailability;
+//
+//                // Check if the tutor meets the in-person availability filter criteria
+//                boolean meetsInPersonFilter = !inPersonFilter || inPersonAvailability;
+//
+//                // Check if the tutor meets the teacher qualification filter criteria
+//                boolean meetsQualifiedTeacherFilter = !qualifiedTeacherFilter || isQualifiedTeacher;
+//
+//                // Check if the tutor meets the price filter criteria
+//                boolean meetsPriceFilter = maxPricePerHour == 0 || Float.parseFloat(tutorPricePerHour) <= maxPricePerHour;
+//
+//                // If the tutor meets all filter criteria, add them to the display
+//                if (meetSubjectFilter && meetsGradeFilter && meetsOnlineFilter && meetsInPersonFilter && meetsQualifiedTeacherFilter && meetsPriceFilter) {
+//                    tutorID.add(tutorId);
+//                    firstName.add(tutorFirstName);
+//                    lastname.add(tutorLastName);
+//                    YearsOfExperience.add(tutorYearsOfExperience);
+//                    TotalTutorHours.add(tutorTotalTutorHours);
+//                    pricePerHour.add(tutorPricePerHour);
+//                    imageBytes.add(tutorImageBlob);
+//                    grade.add(GRADE);
+//                }
+//
+//
+//            } while (cursor.moveToNext());
+//
+//
+//            cursor.close(); // Close the cursor when done
 //        }
-//
-//
 //    }
 
-
-    //
     private void storeDataInArrays() {
-        Cursor cursor = dbHelper.viewTutorData();
-       // String selectedGrade = getIntent().getStringExtra("selectedGrade");
+
+
+        String selectedGrade = getIntent().getStringExtra("grade");
+
+        boolean isMath = getIntent().getBooleanExtra("math", false);
+        boolean isHistory = getIntent().getBooleanExtra("history", false);
+        boolean isAfrikaans = getIntent().getBooleanExtra("afrikaans", false);
+        boolean isEnglish = getIntent().getBooleanExtra("english", false);
 
         boolean onlineFilter = getIntent().getBooleanExtra("onlineFilter", false);
         boolean inPersonFilter = getIntent().getBooleanExtra("inPersonFilter", false);
         boolean qualifiedTeacherFilter = getIntent().getBooleanExtra("qualifiedTeacherFilter", false);
         int maxPricePerHour = getIntent().getIntExtra("maxPricePerHour", 0);
+
+
+        Cursor cursor = dbHelper.viewTutorData(selectedGrade);
+        Set<Integer> tutorIdsSet = new HashSet<>(); // To store unique tutor IDs
 
         if (cursor.getCount() == 0) {
             Toast.makeText(ActivityFindTutor.this, "No tutors were found", Toast.LENGTH_LONG).show();
@@ -169,6 +246,14 @@ public class ActivityFindTutor extends AppCompatActivity {
             cursor.moveToFirst(); // Reset cursor position
             do {
                 int tutorId = cursor.getInt(0);
+
+                // Check if this tutor ID has already been added
+                if (tutorIdsSet.contains(tutorId)) {
+                    continue; // Skip this tutor since they have already been added
+                }
+
+                tutorIdsSet.add(tutorId); // Add the tutor ID to the set
+
                 String tutorFirstName = cursor.getString(1);
                 String tutorLastName = cursor.getString(2);
                 String tutorYearsOfExperience = cursor.getString(3);
@@ -179,16 +264,28 @@ public class ActivityFindTutor extends AppCompatActivity {
                 boolean inPersonAvailability = cursor.getInt(8) == 1;
                 boolean isQualifiedTeacher = cursor.getInt(9) == 1;
 
-                // Check if the tutor meets the grade filter criteria
-//                boolean meetsGradeCriteria = true; // Assume all tutors meet the grade criteria by default
-//                if (selectedGrade != null && !selectedGrade.isEmpty()) {
-//                    // If a grade is selected, check if the tutor teaches that grade
-//                    Cursor gradeTutors = dbHelper.viewTutorsBySubjectAndGrade( "Any" ,selectedGrade);
-//                    if (gradeTutors == null || gradeTutors.getCount() == 0) {
-//                        meetsGradeCriteria = false; // Tutor does not teach the selected grade
-//                    }
-//                    gradeTutors.close();
-//                }
+                String GRADE = cursor.getString(11);
+                String subject = cursor.getString(10);
+
+                boolean meetSubjectFilter;
+
+                if ((isMath && subject.equals("Math")) ||
+                        (isHistory && subject.equals("History")) ||
+                        (isAfrikaans && subject.equals("Afrikaans")) ||
+                        (isEnglish && subject.equals("English")) ||
+                        (!isMath && !isHistory && !isAfrikaans && !isEnglish)) {
+                    meetSubjectFilter = true;
+                } else {
+                    meetSubjectFilter = false;
+                }
+                boolean meetsGradeFilter;
+                if (selectedGrade == null || selectedGrade.isEmpty()) {
+                    // If no grade is selected by the user, consider the tutor to meet the grade filter
+                    meetsGradeFilter = true;
+                } else {
+                    // Check if the tutor's grade matches the selected grade
+                    meetsGradeFilter = GRADE.equals(selectedGrade);
+                }
 
                 // Check if the tutor meets the online availability filter criteria
                 boolean meetsOnlineFilter = !onlineFilter || onlineAvailability;
@@ -203,7 +300,7 @@ public class ActivityFindTutor extends AppCompatActivity {
                 boolean meetsPriceFilter = maxPricePerHour == 0 || Float.parseFloat(tutorPricePerHour) <= maxPricePerHour;
 
                 // If the tutor meets all filter criteria, add them to the display
-                if (meetsOnlineFilter && meetsInPersonFilter && meetsQualifiedTeacherFilter && meetsPriceFilter) {
+                if (meetSubjectFilter && meetsGradeFilter && meetsOnlineFilter && meetsInPersonFilter && meetsQualifiedTeacherFilter && meetsPriceFilter) {
                     tutorID.add(tutorId);
                     firstName.add(tutorFirstName);
                     lastname.add(tutorLastName);
@@ -211,31 +308,32 @@ public class ActivityFindTutor extends AppCompatActivity {
                     TotalTutorHours.add(tutorTotalTutorHours);
                     pricePerHour.add(tutorPricePerHour);
                     imageBytes.add(tutorImageBlob);
+                    grade.add(GRADE);
                 }
             } while (cursor.moveToNext());
 
             cursor.close(); // Close the cursor when done
         }
+
     }
-}
 
 
-
-
-//    void storeDataInArrays() {
+//    private void storeDataInArrays() {
 //        Cursor cursor = dbHelper.viewTutorData();
-//        String MATH, HISTORY, AFRIKAANS, ENGLISH;
-//        boolean tutorOffersMath, tutorOffersHistory, tutorOffersAfrikaans, tutorOffersEnglish;
-//        // Check if filter values are provided
-//        boolean hasFilters = getIntent().hasExtra("math") ||
-//                getIntent().hasExtra("history") ||
-//                getIntent().hasExtra("afrikaans") ||
-//                getIntent().hasExtra("english") ||
-//                getIntent().hasExtra("selectedGrade") ||
-//                getIntent().hasExtra("onlineFilter") ||
-//                getIntent().hasExtra("inPersonFilter") ||
-//                getIntent().hasExtra("qualifiedTeacherFilter") ||
-//                getIntent().hasExtra("maxPricePerHour");
+//
+//        String selectedGrade = getIntent().getStringExtra("grade");
+//
+//        boolean isMath = getIntent().getBooleanExtra("math", false);
+//        boolean isHistory = getIntent().getBooleanExtra("history", false);
+//        boolean isAfrikaans = getIntent().getBooleanExtra("afrikaans", false);
+//        boolean isEnglish = getIntent().getBooleanExtra("english", false);
+//
+//        boolean onlineFilter = getIntent().getBooleanExtra("onlineFilter", false);
+//        boolean inPersonFilter = getIntent().getBooleanExtra("inPersonFilter", false);
+//        boolean qualifiedTeacherFilter = getIntent().getBooleanExtra("qualifiedTeacherFilter", false);
+//        int maxPricePerHour = getIntent().getIntExtra("maxPricePerHour", 0);
+//
+//        Set<Integer> tutorIdsSet = new HashSet<>(); // To store unique tutor IDs
 //
 //        if (cursor.getCount() == 0) {
 //            Toast.makeText(ActivityFindTutor.this, "No tutors were found", Toast.LENGTH_LONG).show();
@@ -243,106 +341,83 @@ public class ActivityFindTutor extends AppCompatActivity {
 //            cursor.moveToFirst(); // Reset cursor position
 //            do {
 //                int tutorId = cursor.getInt(0);
+//
+//                // Check if this tutor ID has already been added
+//                if (tutorIdsSet.contains(tutorId)) {
+//                    continue; // Skip this tutor since they have already been added
+//                }
+//
+//                tutorIdsSet.add(tutorId); // Add the tutor ID to the set
+//
 //                String tutorFirstName = cursor.getString(1);
 //                String tutorLastName = cursor.getString(2);
 //                String tutorYearsOfExperience = cursor.getString(3);
 //                String tutorTotalTutorHours = cursor.getString(4);
 //                String tutorPricePerHour = cursor.getString(5);
 //                byte[] tutorImageBlob = cursor.getBlob(6);
+//                boolean onlineAvailability = cursor.getInt(7) == 1;
+//                boolean inPersonAvailability = cursor.getInt(8) == 1;
+//                boolean isQualifiedTeacher = cursor.getInt(9) == 1;
 //
-//                // By default, assume the tutor meets the criteria
-//                boolean meetsCriteria = true;
+//                String GRADE = cursor.getString(11);
+//                String subject = cursor.getString(10);
 //
-//                if (hasFilters) {
-//                    // Apply filtering logic based on the filter criteria
+//                boolean meetSubjectFilter;
 //
-//                    boolean math = getIntent().getBooleanExtra("math",false);
-//                    boolean history = getIntent().getBooleanExtra("history",false);
-//                    boolean afrikaans = getIntent().getBooleanExtra("afrikaans",false);
-//                    boolean english = getIntent().getBooleanExtra("english",false);
-//                    String selectedGrade = getIntent().getStringExtra("selectedGrade");
-//                    boolean onlineFilter = getIntent().getBooleanExtra("onlineFilter", false);
-//                    boolean inPersonFilter = getIntent().getBooleanExtra("inPersonFilter", false);
-//                    boolean qualifiedTeacherFilter = getIntent().getBooleanExtra("qualifiedTeacherFilter", false);
-//                    int maxPricePerHour = getIntent().getIntExtra("maxPricePerHour", 0);
-//
-//
-//
-//                    float price = Float.parseFloat(tutorPricePerHour);
-//                    int locationOnline = cursor.getInt(7);
-//                    int locationOffline = cursor.getInt(8);
-//                    int extraQualifiedTeacher = cursor.getInt(9);
-//
-//                    if(math){
-//                        //Check if tutor gives math and check selectedGrade
-//                        MATH = "Math";
-//                        tutorOffersMath = dbHelper.doesTutorOfferSubjectForGrade("Math", selectedGrade, tutorId);
-//                        meetsCriteria = meetsCriteria && tutorOffersMath;
-//                    }
-//                    if(history){
-//                        //Check if tutor gives history and check selectedGrade
-//                        HISTORY = "History";
-//                        tutorOffersHistory = dbHelper.doesTutorOfferSubjectForGrade("History", selectedGrade, tutorId);
-//                        meetsCriteria = meetsCriteria && tutorOffersHistory;
-//                    }
-//
-//                    if(afrikaans){
-//                        //Check if tutor gives afrikaans and check selectedGrade
-//                        AFRIKAANS = "Afrikaans";
-//                        tutorOffersAfrikaans = dbHelper.doesTutorOfferSubjectForGrade("Afrikaans", selectedGrade, tutorId);
-//                        meetsCriteria = meetsCriteria && tutorOffersAfrikaans;
-//                    }
-//                    if(english){
-//                        //Check if tutor gives english and check selectedGrade
-//                        ENGLISH = "English";
-//                        tutorOffersEnglish = dbHelper.doesTutorOfferSubjectForGrade("English", selectedGrade, tutorId);
-//                        meetsCriteria = meetsCriteria && tutorOffersEnglish;
-//                    }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//                    if (onlineFilter) {
-//                        // Apply online filter
-//                        meetsCriteria = meetsCriteria && (locationOnline == 1);
-//                    }
-//
-//                    if (inPersonFilter) {
-//                        // Apply In-person filter
-//                        meetsCriteria = meetsCriteria && (locationOffline == 1);
-//                    }
-//
-//                    if (qualifiedTeacherFilter) {
-//                        // Apply Qualified teacher filter
-//                        meetsCriteria = meetsCriteria && (extraQualifiedTeacher == 1);
-//                    }
-//
-//                    if (maxPricePerHour > 0) {
-//                        // Apply Price filter
-//                        meetsCriteria = meetsCriteria && (price <= maxPricePerHour);
-//                    }
+//                if ((isMath && subject.equals("Math")) ||
+//                        (isHistory && subject.equals("History")) ||
+//                        (isAfrikaans && subject.equals("Afrikaans")) ||
+//                        (isEnglish && subject.equals("English")) ||
+//                        (!isMath && !isHistory && !isAfrikaans && !isEnglish)) {
+//                    meetSubjectFilter = true;
+//                } else {
+//                    meetSubjectFilter = false;
 //                }
 //
-//                // If the tutor meets all the filter criteria, add them to the display
-//                if (meetsCriteria) {
-//                    tutorID.add(tutorId); // tutorID
-//                    firstName.add(tutorFirstName); // firstName
-//                    lastname.add(tutorLastName); // lastname
-//                    YearsOfExperience.add(tutorYearsOfExperience); // YearsOfExperience
-//                    TotalTutorHours.add(tutorTotalTutorHours); // TotalTutorHours
-//                    pricePerHour.add(tutorPricePerHour); // pricePerHour
-//                    imageBytes.add(tutorImageBlob);  // profile pic
+//                boolean meetsGradeFilter;
+//                if (selectedGrade == null || selectedGrade.isEmpty()) {
+//                    // If no grade is selected by the user, consider the tutor to meet the grade filter
+//                    meetsGradeFilter = true;
+//                } else {
+//                    // Check if the tutor's grade matches the selected grade
+//                    meetsGradeFilter = GRADE.equals(selectedGrade);
+//                }
+//
+//                // Check if the tutor meets the online availability filter criteria
+//                boolean meetsOnlineFilter = !onlineFilter || onlineAvailability;
+//
+//                // Check if the tutor meets the in-person availability filter criteria
+//                boolean meetsInPersonFilter = !inPersonFilter || inPersonAvailability;
+//
+//                // Check if the tutor meets the teacher qualification filter criteria
+//                boolean meetsQualifiedTeacherFilter = !qualifiedTeacherFilter || isQualifiedTeacher;
+//
+//                // Check if the tutor meets the price filter criteria
+//                boolean meetsPriceFilter = maxPricePerHour == 0 || Float.parseFloat(tutorPricePerHour) <= maxPricePerHour;
+//
+//                // If the tutor meets all filter criteria, add them to the display
+//                if (meetSubjectFilter && meetsGradeFilter && meetsOnlineFilter && meetsInPersonFilter && meetsQualifiedTeacherFilter && meetsPriceFilter) {
+//                    tutorID.add(tutorId);
+//                    firstName.add(tutorFirstName);
+//                    lastname.add(tutorLastName);
+//                    YearsOfExperience.add(tutorYearsOfExperience);
+//                    TotalTutorHours.add(tutorTotalTutorHours);
+//                    pricePerHour.add(tutorPricePerHour);
+//                    imageBytes.add(tutorImageBlob);
+//                    grade.add(GRADE);
 //                }
 //            } while (cursor.moveToNext());
 //
 //            cursor.close(); // Close the cursor when done
 //        }
 //    }
+
+
+}
+
+
+
+
 
 
 

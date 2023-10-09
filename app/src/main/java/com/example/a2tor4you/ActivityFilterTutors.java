@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,15 +20,20 @@ public class ActivityFilterTutors extends AppCompatActivity {
     boolean isHandlingCheckedChange = false;
     RadioButton rdoOnlineFilter, rdoInPersonFilter, rdoQualifiedTeacher;
     Boolean isOnline, isOffline, isTeacher;
+    boolean isMath, isHistory, isAfrikaans, isEnglish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter_tutors);
-//        RadioGroup rdoGroupGrade1 = findViewById(R.id.rdoGroupGrade1);
-//        RadioGroup rdoGroupGrade2 = findViewById(R.id.rdoGroupGrade2);
+        RadioGroup rdoGroupGrade1 = findViewById(R.id.rdoGroupGrade1);
+        RadioGroup rdoGroupGrade2 = findViewById(R.id.rdoGroupGrade2);
 
-
+        //Checkboxes
+        CheckBox math = findViewById(R.id.chkMath);
+        CheckBox history = findViewById(R.id.chkHistory);
+        CheckBox afrikaans = findViewById(R.id.chkAfrikaans);
+        CheckBox english = findViewById(R.id.chkEnglish);
 
 
         // RadioButtons
@@ -63,27 +69,27 @@ public class ActivityFilterTutors extends AppCompatActivity {
 
             }
         });
-//        rdoGroupGrade1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//                if (!isHandlingCheckedChange) {
-//                    isHandlingCheckedChange = true;
-//                    rdoGroupGrade2.clearCheck();
-//                    isHandlingCheckedChange = false;
-//                }
-//            }
-//        });
-//
-//        rdoGroupGrade2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//                if (!isHandlingCheckedChange) {
-//                    isHandlingCheckedChange = true;
-//                    rdoGroupGrade1.clearCheck();
-//                    isHandlingCheckedChange = false;
-//                }
-//            }
-//        });
+        rdoGroupGrade1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (!isHandlingCheckedChange) {
+                    isHandlingCheckedChange = true;
+                    rdoGroupGrade2.clearCheck();
+                    isHandlingCheckedChange = false;
+                }
+            }
+        });
+
+        rdoGroupGrade2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (!isHandlingCheckedChange) {
+                    isHandlingCheckedChange = true;
+                    rdoGroupGrade1.clearCheck();
+                    isHandlingCheckedChange = false;
+                }
+            }
+        });
 
         rdoOnlineFilter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,24 +140,36 @@ public class ActivityFilterTutors extends AppCompatActivity {
 //            Boolean history = getIntent().getBooleanExtra("history", false);
 //            Boolean afrikaans = getIntent().getBooleanExtra("afrikaans",false);
 //            Boolean english = getIntent().getBooleanExtra("english",false);
-          //  String selectedGrade = getSelectedGrade(rdoGroupGrade1, rdoGroupGrade2);
+            String selectedGrade = getSelectedGrade(rdoGroupGrade1, rdoGroupGrade2);
 
+            String grade = selectedGrade;
+
+            if(math.isChecked()) {
+                isMath = true;
+            }
+            if(history.isChecked()) {
+                isHistory = true;
+            }
+            if(afrikaans.isChecked()) {
+                isAfrikaans = true;
+            }
+            if(english.isChecked()) {
+                isEnglish = true;
+            }
 
 
             Intent intent = new Intent(getApplicationContext(), ActivityFindTutor.class);
-         //   intent.putExtra("selectedGrades", selectedGrade);
-//            intent.putExtra("selectedSubjects", math);
-//            intent.putExtra("selectedSubjects", history);
-//            intent.putExtra("selectedSubjects", afrikaans);
-//            intent.putExtra("selectedSubjects", english);
+            intent.putExtra("grade", grade);
+            intent.putExtra("math", isMath);
+            intent.putExtra("history", isHistory);
+            intent.putExtra("afrikaans", isAfrikaans);
+            intent.putExtra("english", isEnglish);
             intent.putExtra("onlineFilter", rdoOnlineFilter.isChecked());
             intent.putExtra("inPersonFilter", rdoInPersonFilter.isChecked());
             intent.putExtra("qualifiedTeacherFilter", rdoQualifiedTeacher.isChecked());
             intent.putExtra("maxPricePerHour", price.getProgress());
             startActivity(intent);
         });
-
-
     }
 
     private String getSelectedGrade(RadioGroup rdoGroupGrade1, RadioGroup rdoGroupGrade2) {

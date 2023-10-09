@@ -264,18 +264,44 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public Cursor viewTutorData() {
+//    public Cursor viewTutorData() {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//
+//        // Define the SQL query using a JOIN operation to retrieve data from both tables
+//        String query = "SELECT Tutor.tutorID, User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.pricePerHour, Tutor.image," +
+//                "Tutor.locationOnline, Tutor.locationOffline, Tutor.extraQualifiedTeacher,TutorSubject.subjectName , TutorSubject.grade FROM User " +
+//                "INNER JOIN Tutor ON User.userID = Tutor.userID " +
+//                "INNER JOIN TutorSubject ON Tutor.tutorID = TutorSubject.tutorID";
+//
+//        Log.d("SQLQuery", query);
+//        Cursor cursor = db.rawQuery(query, null);
+//
+//        return cursor;
+//    }
+
+    public Cursor viewTutorData(String selectedGrade) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Define the SQL query using a JOIN operation to retrieve data from both tables
         String query = "SELECT Tutor.tutorID, User.firstName, User.lastName, Tutor.YearsOfExperience, Tutor.TotalTutorHours, Tutor.pricePerHour, Tutor.image," +
-                "Tutor.locationOnline, Tutor.locationOffline, Tutor.extraQualifiedTeacher FROM User " +
-                "INNER JOIN Tutor ON User.userID = Tutor.userID";
+                "Tutor.locationOnline, Tutor.locationOffline, Tutor.extraQualifiedTeacher,TutorSubject.subjectName , TutorSubject.grade FROM User " +
+                "INNER JOIN Tutor ON User.userID = Tutor.userID " +
+                "INNER JOIN TutorSubject ON Tutor.tutorID = TutorSubject.tutorID";
 
-        Cursor cursor = db.rawQuery(query, null);
+        if (selectedGrade != null && !selectedGrade.isEmpty()) {
+            // Add a WHERE clause to filter by the selected grade
+            query += " WHERE TutorSubject.grade = ?";
+        }
+
+        Log.d("SQLQuery", query);
+
+        // Pass the selectedGrade as an argument to the rawQuery method
+        String[] selectionArgs = (selectedGrade != null && !selectedGrade.isEmpty()) ? new String[]{selectedGrade} : null;
+        Cursor cursor = db.rawQuery(query, selectionArgs);
 
         return cursor;
     }
+
 
     public Cursor viewTutorsBySubjectAndGrade(String subject, String grade) {
         SQLiteDatabase db = this.getReadableDatabase();
