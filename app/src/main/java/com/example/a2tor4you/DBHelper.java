@@ -41,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "extraQualifiedTeacher BOOLEAN DEFAULT 0, extraNotes VARCHAR(255), image BLOB, FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Admin table
-        String adminSQL = "CREATE TABLE Admin (adminID INTEGER PRIMARY KEY AUTOINCREMENT,userID INTEGER, adminRole VARCHAR(255), FOREIGN KEY (userID) REFERENCES User(userID))";
+        String adminSQL = "CREATE TABLE Admin (adminID INTEGER PRIMARY KEY AUTOINCREMENT,userID INTEGER, adminRole VARCHAR(255), phone VARCHAR(12), FOREIGN KEY (userID) REFERENCES User(userID))";
 
 //        //Subjects
         String subjectSQL = "CREATE TABLE Subject (subjectID INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(255))";
@@ -65,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (reportedID) REFERENCES User(userID), FOREIGN KEY (reporteeID) REFERENCES User(userID))";
 
         //Delete Account
-        String DeleteSQL = "CREATE TABLE DeletedAccount (deletedAccountID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, deletedDate DATE, " +
+        String DeleteSQL = "CREATE TABLE DeletedAccount (deletedAccountID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, deletedDate DATE, userRole VARCHAR(50), " +
                 "FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Notification Preference
@@ -91,23 +91,48 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(PasswordChangeSQL);
 
 
-        //Test insert Student data
+        //Insert User data
 
-       // db.execSQL("INSERT INTO Subject " + "(subject) VALUES('Maths')");
-//        String[] subjects = {
-//                "Mathematics", "Science", "English", "History", "Geography", "Physical Education",
-//                "Business Studies", "Economics", "Information Technology", "Geology", "Art", "Music",
-//                "Dramatic Arts", "Physical Science", "Agricultural Sciences", "Consumer Studies",
-//                "Visual Arts", "Religious Studies", "Life Orientation", "Engineering Graphics and Design",
-//                "Hospitality Studies", "Zulu", "Afrikaans", "Life Sciences", "Music", "Technology",
-//                "Xhosa", "CAT", "French", "Accounting", "EMS"
-//        };
+        db.execSQL("INSERT INTO User " + "( firstName, lastName, phoneNumber, email, password, userRole,  createdAt) " +
+                "VALUES " +
+                "('Benjamin', 'Cooper', '+27999999999', 'benjamin.cooper@live.co.za', 'ceo@dmin', 'Admin', '2023-10-08 10:35:14')," +
+                " ('Chloe', 'Patterson', '+27999999910', 'chloe.patterson@live.co.za', 'app@dmin', 'Admin', '2023-10-08 10:35:14')"
+//                " ('Shelby', 'Roelofse', '+27999999911', 'shelby.roelofse@live.co.za', 'shelby', 'Student', '2023-10-08 10:35:14')," +
+//                " ('Alex', 'Whatkins-Baker', '+27999999922', 'alex.baker@live.co.za', 'alex', 'Student', '2023-10-08 10:35:14')," +
+//                " ('Brandon', 'Baker', '+27999999933', 'brandon.bake@live.co.za', 'brandon', 'Tutor', '2023-10-08 10:35:14')," +
+//                " ('Jeremy', 'Snape', '+279999944', 'snapper@live.co.za', 'snapper', 'Tutor', '2023-10-08 10:35:14')," +
+//                " ('Nats', 'Allbot', '+27999999955', 'nats.allbot@live.co.za', 'nats', 'Tutor', '2023-10-08 10:35:14')," +
+//                " ('Mieke', 'Ollewagen', '+27999999966', 'mieks@live.co.za', 'mieke', 'Tutor', '2023-10-08 10:35:14')," +
+//                " ('Chelsea', 'Whatkins-Baker', '+27999999977', 'chels@live.co.za', 'chels', 'Tutor', '2023-10-08 10:35:14')," +
+//                " ('Mavrick', 'Whatkins-Baker', '+27999999988', 'mavrick@live.co.za', 'app@dmin', 'Tutor', '2023-10-08 10:35:14')
+                );
 //
-//        for (String subject : subjects) {
+//        //Insert Student data
+//        db.execSQL("INSERT INTO Student " + "(userID, dob, gender, province, city, school, image) " +
+//                        "VALUES " +
+//                        "('3', '2002-05-22', 'Female', 'Eastern Cape', 'Port Elizabeth', 'Collegiate Girls School', '')," +
+//                        " ('4', '2002-08-22', 'Male', 'Eastern Cape', 'Port Elizabeth', 'Grey High School', '')");
 //
-//            String insertQuery = "INSERT INTO Subject (subject) VALUES('" + subject + "')";
-//            db.execSQL(insertQuery);
-//        }
+//
+//        //Insert Tutor data
+//        db.execSQL("INSERT INTO Tutor " +
+//                "(userID, dob, gender, province, city, school, uni, YearsOfExperience, TotalTutorHours, TotalStudentTaught, aboutMe, pricePerHour, locationOnline, locationOffline, extraQualifiedTeacher, extraNotes, image) " +
+//                "VALUES " +
+//                "('5', '2002-05-22', 'Male', 'Eastern Cape', 'Port Elizabeth', 'Pearson', 'Varcity College', 3, 200, 25, 'I am passionate about what I do', 150.0, 0, 1, 1, ''), " +
+//                "('6', '1995-05-22', 'Male', 'Eastern Cape', 'Port Elizabeth', 'Pearson', 'UNISA', 1, 40, 5, 'I enjoy teaching', 200.0, 1, 1, 0, '')," +
+//                "('7', '2000-05-22', 'Female', 'Eastern Cape', 'Port Elizabeth', 'Pearson', 'NMU', 3, 150, 15, 'I am good with teaching kids', 150.0, 1, 0, 0, '')," +
+//                "('8', '2000-05-22', 'Female', 'Eastern Cape', 'Port Elizabeth', 'Pearson', 'NMU', 4, 123, 22, 'I am passionate about what I do', 170.0, 0, 1, 1, '')," +
+//                "('9', '1998-05-22', 'Female', 'Eastern Cape', 'Port Elizabeth', 'Pearson', 'NMU', 2, 223, 25, 'I enjoy helping kids', 180.0, 1, 1, 0, '')," +
+//                "('10', '2002-04-05', 'Male', 'Eastern Cape', 'Port Elizabeth', 'Pearson', 'Varcity College', 3, 200, 25, 'I love kids', 120.0, 1, 1, 1, '')"
+//                );
+
+
+        //Insert Admin data
+        db.execSQL("INSERT INTO Admin " + "(userID, adminRole, phone) " +
+                "VALUES " +
+                "('1',  'CEO', '+27999999999')," +
+                " ('2', 'Application Admin', '+27999999910')");
+
     }
 
     @Override
@@ -127,6 +152,91 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS PasswordChange");
         onCreate(db);
     }
+
+    // Current Students and Tutors
+    public int getCountRole(String role) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) FROM User WHERE userRole = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{role});
+
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return count;
+    }
+
+
+
+    // Current Students and Tutors between dates
+    public int getTotalBetweenDates(String role, String startDate, String endDate) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) FROM User WHERE userRole = ? AND createdAt BETWEEN ? AND ?";
+
+        // Parameters to pass in the query
+        String[] params = new String[]{role, startDate, endDate};
+
+        Cursor cursor = db.rawQuery(query, params);
+
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return count;
+    }
+
+    public int getTotalOffBetweenDates(String role, String startDate, String endDate) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define the query to count deleted accounts based on userRole and the deletedDate range
+        String query = "SELECT COUNT(*) FROM DeletedAccount " +
+                "WHERE userRole = ? " +
+                "AND deletedDate BETWEEN ? AND ?";
+
+        // Parameters to pass in the query
+        String[] params = new String[]{role, startDate, endDate};
+
+        Cursor cursor = db.rawQuery(query, params);
+
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return count;
+    }
+
+
+    public String getAdminRole(String phoneNumber) {
+        String adminRole = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define the query to retrieve the admin role for the given phone number
+        String query = "SELECT adminRole FROM Admin WHERE phone = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{phoneNumber});
+
+        if (cursor.moveToFirst()) {
+            int columnIndex = cursor.getColumnIndex("adminRole");
+
+            if (columnIndex != -1) {
+                adminRole = cursor.getString(columnIndex);
+            } else {
+                // Handle the case where the "adminRole" column does not exist
+            }
+        }
+
+        cursor.close();
+        db.close();
+
+        return adminRole;
+    }
+
 
     public Cursor queryUserImage(String table_name,int loggedInUserId) {
         SQLiteDatabase db = this.getReadableDatabase();

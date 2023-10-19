@@ -1,6 +1,8 @@
 package com.example.a2tor4you;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -26,7 +29,11 @@ import android.widget.Toast;
 import com.example.a2tor4you.utils.AndroidUtil;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class ActivityMyProfile extends AppCompatActivity {
@@ -53,6 +60,13 @@ public class ActivityMyProfile extends AppCompatActivity {
     // are filled by the user, properly or not.
     boolean isAllFieldsChecked = false;
 
+    static int initialState = 0;
+
+    @Override
+    public void onBackPressed() {
+        finish(); // Finish the current activity when the back button is pressed
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +76,19 @@ public class ActivityMyProfile extends AppCompatActivity {
 
         myDB = new DBHelper(this); // Initialize myDB
 
+//        ActionBar actionBar = getSupportActionBar();
+
+
+
+//        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+//            @Override
+//            public void handleOnBackPressed() {
+//                // Handle the back button event
+//                finish();
+//            }
+//        };
+//
+//        this.getOnBackPressedDispatcher().addCallback(this, callback);
 
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
@@ -83,7 +110,10 @@ public class ActivityMyProfile extends AppCompatActivity {
        // ArrayAdapter<CharSequence> cityAdapter = (ArrayAdapter<CharSequence>) spinnerCity.getAdapter();
 
         //Functionality of btn back
-        btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityMyProfile.this, ActivityAccount.class)));
+        btnBack.setOnClickListener(view ->
+                startActivity(new Intent(ActivityMyProfile.this, ActivityAccount.class))
+
+        );
 
         //Functionality of btn DOB
         btnPickDOB.setOnClickListener(new View.OnClickListener() {
@@ -93,24 +123,14 @@ public class ActivityMyProfile extends AppCompatActivity {
             }
         });
 
-        // Use the CitySpinnerHelper to set up the city spinner
-     //   SouthAfricaData.setupCitySpinner(this, spinnerProvince, spinnerCity);
 
-        /* imageProfile = findViewById(R.id.ImgAccount);*/ //Adds image to Account Profile pic
-//        btnStudTakePhoto = findViewById(R.id.btnStudTakePhoto);
-//
-//        btnStudTakePhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                if (intent.resolveActivity(getPackageManager()) != null) {
-//                    startActivityForResult(intent, CAMERA_ACTION_CODE);
-//                } else {
-//                    Toast.makeText(ActivityMyProfile.this, "There is no app that supports this action", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//        });
+
+
+
+
+        // Use the CitySpinnerHelper to set up the city spinner
+       // SouthAfricaData.setupCitySpinner(this, spinnerProvince, spinnerCity);
+
 
 
         //Adding User Table info to editBoxes
@@ -150,11 +170,11 @@ public class ActivityMyProfile extends AppCompatActivity {
         //Adding Student Table info to editBoxes
         if (loggedInUserId != -1) {
             // Fetch user's name and surname from the database based on userID
-            dob = dbHelper.getField("Student", loggedInUserId,"dob");
-            Gender = dbHelper.getField("Student", loggedInUserId,"gender");
-            province = dbHelper.getField("Student", loggedInUserId,"province");
-            city = dbHelper.getField("Student", loggedInUserId,"city");
-            School = dbHelper.getField("Student", loggedInUserId,"school");
+            dob = dbHelper.getField("Student", loggedInUserId, "dob");
+            Gender = dbHelper.getField("Student", loggedInUserId, "gender");
+            province = dbHelper.getField("Student", loggedInUserId, "province"); // Gauteng
+            city = dbHelper.getField("Student", loggedInUserId, "city");        // Sandton
+            School = dbHelper.getField("Student", loggedInUserId, "school");
 
 
             boolean isUserExist = dbHelper.isUserIDExists("Student", loggedInUserId);
@@ -172,11 +192,10 @@ public class ActivityMyProfile extends AppCompatActivity {
                 if (positionProv != -1) {
                     spinnerProvince.setSelection(positionProv);
                 }
+                updateCitySpinner(province);
 
-
-                int positionCity = getIndex(spinnerCity, city);
+                int positionCity = getIndexOfCity(spinnerCity, province, city);
                 if (positionCity != -1) {
-                    // Set the selected city in the spinner
                     spinnerCity.setSelection(positionCity);
                 }
 
@@ -194,6 +213,18 @@ public class ActivityMyProfile extends AppCompatActivity {
             //welcome.setText("Guest"); // Display a default value or handle it as needed
         }
 
+        spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if (initialState++ > 0) {
+                    updateCitySpinner(parentView.getItemAtPosition(position).toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Do nothing here
+            }
+        });
 
         // handle the SAVE button
         btnSaveProfile.setOnClickListener(new View.OnClickListener() {
@@ -270,7 +301,6 @@ public class ActivityMyProfile extends AppCompatActivity {
 
 
         });
-
     }
 
     // Check if all required fields are filled
@@ -389,16 +419,67 @@ public class ActivityMyProfile extends AppCompatActivity {
 
 
 
-    private int getIndex(Spinner spinner, String value) {
-        for (int i = 0; i < spinner.getCount(); i++) {
-            String item = spinner.getItemAtPosition(i).toString();
-//            Log.d("Debug", "Item at position " + i + ": " + item);
-            if (item.equals(value)) {
-                return i;
-            }}
-            return -1; // Not found
+        private int getIndex(Spinner spinner, String value) {
+            for (int i = 0; i < spinner.getCount(); i++) {
+                String item = spinner.getItemAtPosition(i).toString();
+    //            Log.d("Debug", "Item at position " + i + ": " + item);
+                if (item.equals(value)) {
+                    return i;
+                }}
+                return -1; // Not found
+            }
+
+        private int getIndexOfCity(Spinner spinnerCity, String province, String city) {
+            if (province.isEmpty() || city.isEmpty()) {
+                return -1; // Invalid input, return -1
+            }
+
+            ArrayAdapter<String> cityAdapter = (ArrayAdapter<String>) spinnerCity.getAdapter();
+            if (cityAdapter != null) {
+                for (int i = 0; i < cityAdapter.getCount(); i++) {
+                    String item = cityAdapter.getItem(i);
+                    if (item != null && item.equals(city)) {
+                        return i; // Found a matching city
+                    }
+                }
+            }
+
+            return -1; // City not found in the adapter
         }
 
+
+        private void updateCitySpinner(String selectedProvince) {
+            String[] data;
+
+
+            if ("Eastern Cape".equals(selectedProvince)) {
+                data = getResources().getStringArray(R.array.eastern_cape_cities);
+            } else if ("Free State".equals(selectedProvince)) {
+                data = getResources().getStringArray(R.array.free_state_cities);
+            } else if ("Gauteng".equals(selectedProvince)) {
+                data = getResources().getStringArray(R.array.gauteng_cities);
+            } else if ("KwaZulu-Natal".equals(selectedProvince)) {
+                data = getResources().getStringArray(R.array.kwa_zulu_natal_cities);
+            } else if ("Limpopo".equals(selectedProvince)) {
+                data = getResources().getStringArray(R.array.limpopo_cities);
+            } else if ("Mpumalanga".equals(selectedProvince)) {
+               data = getResources().getStringArray(R.array.mpumalanga_cities);
+            } else if ("North West".equals(selectedProvince)) {
+                data = getResources().getStringArray(R.array.north_west_cities);
+            } else if ("Northern Cape".equals(selectedProvince)) {
+                data = getResources().getStringArray(R.array.northern_cape_cities);
+            } else if ("Western Cape".equals(selectedProvince)) {
+                data = getResources().getStringArray(R.array.western_cape_cities);
+            } else {
+                // Placeholder
+                data = new String[1];
+            }
+
+            ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, data);
+            cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            spinnerCity.setAdapter(cityAdapter);
+        }
 
     }
 

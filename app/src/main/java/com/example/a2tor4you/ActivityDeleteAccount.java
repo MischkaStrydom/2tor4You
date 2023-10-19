@@ -94,13 +94,15 @@ public class ActivityDeleteAccount extends AppCompatActivity {
                 long currentTimeMillis = System.currentTimeMillis();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// Customize the format as needed
                 String dateTimeString = dateFormat.format(new Date(currentTimeMillis));
-
+                String userRole = dbHelper.getField("User", loggedInUserId,"userRole"); // Implement this method
 
                 String passwordToCheck = txtStudentConfirmPassword.getText().toString();
 
                 ContentValues values = new ContentValues();
                 values.put("userID", loggedInUserId);
                 values.put("deletedDate", dateTimeString);
+                values.put("userRole", userRole);
+
 
 
                     if (loggedInUserId != -1) {

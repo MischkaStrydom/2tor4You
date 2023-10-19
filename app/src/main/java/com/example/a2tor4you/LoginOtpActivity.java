@@ -34,6 +34,7 @@ public class LoginOtpActivity extends AppCompatActivity {
     static String phoneNumber;
     static String password;
     static String selectedRole;
+    DBHelper myDb;
 
     Long timeoutSeconds = 60L;
     String verificationCode;
@@ -141,13 +142,40 @@ public class LoginOtpActivity extends AppCompatActivity {
         mAuth.signInWithCredential(phoneAuthCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Intent intent = new Intent(LoginOtpActivity.this,ActivityHomeStudent.class);
-                    intent.putExtra("phone", phoneNumber);
-                    intent.putExtra("password", password);
-                    intent.putExtra("selectedRole", selectedRole);
-                    startActivity(intent);
+                myDb = new DBHelper(LoginOtpActivity.this);
 
+                if(task.isSuccessful()){
+
+
+                    if(selectedRole.equals("Admin"))
+                    {
+                        phoneNumber = getIntent().getExtras().getString("phone");
+
+                        String admin = myDb.getAdminRole(phoneNumber);
+
+                        if(admin.equals("CEO")){
+                            Intent intent = new Intent(LoginOtpActivity.this, AdminActivity.class);
+                            intent.putExtra("phone", phoneNumber);
+                            intent.putExtra("password", password);
+                            intent.putExtra("selectedRole", selectedRole);
+                            startActivity(intent);
+                        } else if (admin.equals("Application Admin")) {
+                            Intent intent = new Intent(LoginOtpActivity.this, AdminHome.class); //ActivityReportView
+                            intent.putExtra("phone", phoneNumber);
+                            intent.putExtra("password", password);
+                            intent.putExtra("selectedRole", selectedRole);
+                            startActivity(intent);
+                        }
+
+                    }
+                    else {
+
+                        Intent intent = new Intent(LoginOtpActivity.this, ActivityHomeStudent.class);
+                        intent.putExtra("phone", phoneNumber);
+                        intent.putExtra("password", password);
+                        intent.putExtra("selectedRole", selectedRole);
+                        startActivity(intent);
+                    }
                 }
                 else{
                     AndroidUtil.showToast(getApplicationContext(),"OTP verification failed");

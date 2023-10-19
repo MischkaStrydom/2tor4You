@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary">
 
     <!-- Admin Dashboard Title -->
 
@@ -37,6 +37,132 @@
 
     </RelativeLayout>
 
+    <!-- Statistics Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="20dp">
+
+        <!-- Total Current Tutors -->
+        <TextView
+            android:id="@+id/txtTotalTutors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/txtTotalTutors"
+            android:layout_marginTop="80dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/teal_200"
+            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            />
+
+        <!-- TextView to display Total Current Tutors -->
+        <TextView
+            android:id="@+id/txtDisplayTotalTutors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text=""
+            android:layout_marginTop="80dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textColor="@color/teal_200"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+    </LinearLayout>
+
+
+<!--    <LinearLayout-->
+<!--        android:background="@drawable/account_round_back_white"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="15dp">-->
+
+<!--        &lt;!&ndash;Change Password&ndash;&gt;-->
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:id="@+id/changePassIcon"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:src="@drawable/pass_reset"-->
+<!--                android:background="@drawable/notifications_icon_fill"-->
+<!--                android:padding="12dp"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/btnChangePassword"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_toEndOf="@+id/changePassIcon"-->
+<!--                android:text="Change Password"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:textStyle="bold" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/btnChange"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:src="@drawable/right_arrow" />-->
+<!--        </RelativeLayout>-->
+
+<!--    </LinearLayout>-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="20dp"
+
+       >
+
+        <!-- Total Current Students -->
+        <TextView
+            android:id="@+id/txtTotalStudents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:gravity="start"
+            android:text="@string/txtTotalStudents"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textColor="@color/teal_200"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+        <!-- TextView to display Total Current Students -->
+        <TextView
+            android:id="@+id/txtDisplayTotalStudents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text=""
+            android:layout_marginTop="130dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:textColor="@color/teal_200"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            />
+
+    </LinearLayout>
+
+
     <!-- Date Range Selection -->
     <LinearLayout
         android:id="@+id/dateRangeLayout"
@@ -44,7 +170,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="220dp"
         tools:ignore="NotSibling">
 
         <Button
@@ -58,6 +184,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"
+
             android:backgroundTint="@color/off_white"/>
 
         <Button
@@ -75,97 +202,22 @@
 
     </LinearLayout>
 
+
+
     <!-- Admin Dashboard Content -->
 
-
-    <Button
-        android:id="@+id/txtgenerateReports"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-
-        android:layout_below="@+id/dateRangeLayout"
-
-
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="18dp"
-
-        android:layout_marginEnd="88dp"
-        android:backgroundTint="@color/teal_200"
-        android:text="@string/txtgenerateReports"
-        android:textSize="18sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtDashboardTitle"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="380dp"
         android:orientation="vertical"
         tools:ignore="NotSibling"
 
+
         >
 
-        <!-- Statistics Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="20dp">
-
-            <!-- Total Current Tutors -->
-            <TextView
-                android:id="@+id/txtTotalTutors"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="@string/txtTotalTutors"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_weight="1" />
-
-            <!-- TextView to display Total Current Tutors -->
-            <TextView
-                android:id="@+id/txtDisplayTotalTutors"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text=""
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="20dp">
-
-            <!-- Total Current Students -->
-            <TextView
-                android:id="@+id/txtTotalStudents"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text="@string/txtTotalStudents"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_weight="1" />
-
-            <!-- TextView to display Total Current Students -->
-            <TextView
-                android:id="@+id/txtDisplayTotalStudents"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start"
-                android:text=""
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_weight="1" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -177,24 +229,26 @@
             <!-- Total tutors Onboarded -->
             <TextView
                 android:id="@+id/txtTutorsOnboarded"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text="@string/txtTutorsOnboarded"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
             <!-- TextView to display Total tutors Onboarded -->
             <TextView
-                android:id="@+id/txyDisplayTutorsOnboarded"
+                android:id="@+id/txtDisplayTutorsOnboarded"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text=""
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
         </LinearLayout>
 
@@ -208,13 +262,14 @@
             <!-- Total student Onboarded -->
             <TextView
                 android:id="@+id/txtStudentsOnboarded"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text="@string/txtStudentsOnboarded"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 />
 
             <!-- TextView to display Total student Onboarded -->
@@ -224,9 +279,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text=""
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
         </LinearLayout>
 
@@ -240,13 +296,14 @@
             <!-- Total tutors Offboarded -->
             <TextView
                 android:id="@+id/txtTutorsOffBoarded"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text="@string/txtTutorsOffBoarded"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
             <!-- TextView to display Total tutors Offboarded -->
             <TextView
@@ -255,9 +312,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text=""
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
         </LinearLayout>
 
@@ -271,13 +329,14 @@
             <!-- Total student Offboarded -->
             <TextView
                 android:id="@+id/txtStudentsOffBoarded"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text="@string/txtStudentsOffBoarded"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
             <!-- TextView to display Total student Offboarded -->
             <TextView
@@ -286,13 +345,36 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:text=""
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
         </LinearLayout>
 
 </LinearLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGenerate"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="327dp"
+        android:layout_height="72dp"
+        android:layout_below="@+id/dateRangeLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="-28dp"
+        android:text="@string/txtgenerateReports"
+        android:textColor="@color/teal_200"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/grey"
+        app:strokeWidth="2dp" />
 
 </RelativeLayout>

@@ -53,7 +53,7 @@ public class ActivityRegisterStudent extends AppCompatActivity {
     static String confirmPassword;
 
     DBHelper myDB;
-
+    EditText name, surname, phoneInput, email, password, confirmPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,12 +62,12 @@ public class ActivityRegisterStudent extends AppCompatActivity {
         ImageView btnBack = findViewById(R.id.btnBackStudentRegister);
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityRegisterStudent.this, MainActivity.class)));
 
-        EditText name = findViewById(R.id.txt_StudentFirstName);
-        EditText surname = findViewById(R.id.txt_StudentLastName);
-        EditText phoneInput = findViewById(R.id.txt_StudentPhoneNum);
-        EditText email = findViewById(R.id.txtStudentEmail);
-        EditText password = findViewById(R.id.txtRegisterStudentPassword);
-        EditText confirmPass = findViewById(R.id.txtConfirmRegisterStudentPassword);
+         name = findViewById(R.id.txt_StudentFirstName);
+         surname = findViewById(R.id.txt_StudentLastName);
+         phoneInput = findViewById(R.id.txt_StudentPhoneNum);
+         email = findViewById(R.id.txtStudentEmail);
+         password = findViewById(R.id.txtRegisterStudentPassword);
+         confirmPass = findViewById(R.id.txtConfirmRegisterStudentPassword);
 
         Button btn = findViewById(R.id.btnStudentSignUp);
         myDB = new DBHelper(this);
@@ -184,12 +184,12 @@ public class ActivityRegisterStudent extends AppCompatActivity {
         });*/
     }
 
-    EditText name = findViewById(R.id.txt_StudentFirstName);
-    EditText surname = findViewById(R.id.txt_StudentLastName);
-    EditText phoneInput = findViewById(R.id.txt_StudentPhoneNum);
-    EditText email = findViewById(R.id.txtStudentEmail);
-    EditText password = findViewById(R.id.txtRegisterStudentPassword);
-    EditText confirmPass = findViewById(R.id.txtConfirmRegisterStudentPassword);
+//    EditText name = findViewById(R.id.txt_StudentFirstName);
+//    EditText surname = findViewById(R.id.txt_StudentLastName);
+//    EditText phoneInput = findViewById(R.id.txt_StudentPhoneNum);
+//    EditText email = findViewById(R.id.txtStudentEmail);
+//    EditText password = findViewById(R.id.txtRegisterStudentPassword);
+//    EditText confirmPass = findViewById(R.id.txtConfirmRegisterStudentPassword);
 
     // Check if all required fields are filled
 

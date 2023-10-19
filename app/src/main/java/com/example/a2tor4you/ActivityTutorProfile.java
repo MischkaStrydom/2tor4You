@@ -14,6 +14,8 @@ import android.os.Trace;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -41,7 +43,7 @@ public class ActivityTutorProfile extends AppCompatActivity {
     DBHelper dbHelper ;
     public static final int CAMERA_ACTION_CODE = 1;
     ImageView imageProfile;
-
+    static int initialState = 0;
      String userName,profileName,profileSurname,profileEmail, profileNumber;
      String dob,Gender,province, city, School, Uni, extraNotes, about, SUBJECT, GRADE;
      Integer YearsOfExperience, TotalStudentTaught;
@@ -65,6 +67,10 @@ public class ActivityTutorProfile extends AppCompatActivity {
             isOnlineChecked, isOfflineChecked, isTeacherChecked;
     static Float tutorHours, tutorPrice;
 
+    public void onBackPressed(){
+        super.onBackPressed();
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -291,10 +297,10 @@ public class ActivityTutorProfile extends AppCompatActivity {
                 if (positionProv != -1) {
                     spinnerProvince.setSelection(positionProv);
                 }
+                updateCitySpinner(province);
 
-                int positionCity = getIndex(spinnerCity, city);
+                int positionCity = getIndexOfCity(spinnerCity, province, city);
                 if (positionCity != -1) {
-                    // Set the selected city in the spinner
                     spinnerCity.setSelection(positionCity);
                 }
 
@@ -322,7 +328,18 @@ public class ActivityTutorProfile extends AppCompatActivity {
             //welcome.setText("Guest"); // Display a default value or handle it as needed
         }
 
-
+        spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if (initialState++ > 0) {
+                    updateCitySpinner(parentView.getItemAtPosition(position).toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Do nothing here
+            }
+        });
 
 
         btnSaveTutProfile.setOnClickListener(new View.OnClickListener() {
@@ -503,11 +520,29 @@ public class ActivityTutorProfile extends AppCompatActivity {
     private int getIndex(Spinner spinner, String value) {
         for (int i = 0; i < spinner.getCount(); i++) {
             String item = spinner.getItemAtPosition(i).toString();
-//            Log.d("Debug", "Item at position " + i + ": " + item);
+            //            Log.d("Debug", "Item at position " + i + ": " + item);
             if (item.equals(value)) {
                 return i;
             }}
         return -1; // Not found
+    }
+
+    private int getIndexOfCity(Spinner spinnerCity, String province, String city) {
+        if (province.isEmpty() || city.isEmpty()) {
+            return -1; // Invalid input, return -1
+        }
+
+        ArrayAdapter<String> cityAdapter = (ArrayAdapter<String>) spinnerCity.getAdapter();
+        if (cityAdapter != null) {
+            for (int i = 0; i < cityAdapter.getCount(); i++) {
+                String item = cityAdapter.getItem(i);
+                if (item != null && item.equals(city)) {
+                    return i; // Found a matching city
+                }
+            }
+        }
+
+        return -1; // City not found in the adapter
     }
     public static class SubjectGrade {
         private String subject;
@@ -526,6 +561,40 @@ public class ActivityTutorProfile extends AppCompatActivity {
             return grade;
         }
     }
+
+    private void updateCitySpinner(String selectedProvince) {
+        String[] data;
+
+
+        if ("Eastern Cape".equals(selectedProvince)) {
+            data = getResources().getStringArray(R.array.eastern_cape_cities);
+        } else if ("Free State".equals(selectedProvince)) {
+            data = getResources().getStringArray(R.array.free_state_cities);
+        } else if ("Gauteng".equals(selectedProvince)) {
+            data = getResources().getStringArray(R.array.gauteng_cities);
+        } else if ("KwaZulu-Natal".equals(selectedProvince)) {
+            data = getResources().getStringArray(R.array.kwa_zulu_natal_cities);
+        } else if ("Limpopo".equals(selectedProvince)) {
+            data = getResources().getStringArray(R.array.limpopo_cities);
+        } else if ("Mpumalanga".equals(selectedProvince)) {
+            data = getResources().getStringArray(R.array.mpumalanga_cities);
+        } else if ("North West".equals(selectedProvince)) {
+            data = getResources().getStringArray(R.array.north_west_cities);
+        } else if ("Northern Cape".equals(selectedProvince)) {
+            data = getResources().getStringArray(R.array.northern_cape_cities);
+        } else if ("Western Cape".equals(selectedProvince)) {
+            data = getResources().getStringArray(R.array.western_cape_cities);
+        } else {
+            // Placeholder
+            data = new String[1];
+        }
+
+        ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, data);
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerCity.setAdapter(cityAdapter);
+    }
+
 }
 
 
