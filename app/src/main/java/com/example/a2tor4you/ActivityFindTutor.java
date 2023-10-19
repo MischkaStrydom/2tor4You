@@ -281,7 +281,6 @@ public class ActivityFindTutor extends AppCompatActivity {
                 }
                 boolean meetsGradeFilter;
                 if (selectedGrade == null || selectedGrade.isEmpty()) {
-                    // If no grade is selected by the user, consider the tutor to meet the grade filter
                     meetsGradeFilter = true;
                 } else {
                     // Check if the tutor's grade matches the selected grade
@@ -314,7 +313,7 @@ public class ActivityFindTutor extends AppCompatActivity {
 
             } while (cursor.moveToNext());
 
-            cursor.close(); // Close the cursor when done
+            cursor.close(); // Close the cursor
         }
 
     }
