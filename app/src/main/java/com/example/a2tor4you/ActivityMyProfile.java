@@ -60,7 +60,7 @@ public class ActivityMyProfile extends AppCompatActivity {
     // are filled by the user, properly or not.
     boolean isAllFieldsChecked = false;
 
-    static int initialState = 0;
+    int initialState = 0;
 
     @Override
     public void onBackPressed() {

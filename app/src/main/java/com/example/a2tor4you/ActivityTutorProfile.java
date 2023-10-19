@@ -43,7 +43,7 @@ public class ActivityTutorProfile extends AppCompatActivity {
     DBHelper dbHelper ;
     public static final int CAMERA_ACTION_CODE = 1;
     ImageView imageProfile;
-    static int initialState = 0;
+     int initialState = 0;
      String userName,profileName,profileSurname,profileEmail, profileNumber;
      String dob,Gender,province, city, School, Uni, extraNotes, about, SUBJECT, GRADE;
      Integer YearsOfExperience, TotalStudentTaught;
@@ -67,10 +67,7 @@ public class ActivityTutorProfile extends AppCompatActivity {
             isOnlineChecked, isOfflineChecked, isTeacherChecked;
     static Float tutorHours, tutorPrice;
 
-    public void onBackPressed(){
-        super.onBackPressed();
-        finish();
-    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
