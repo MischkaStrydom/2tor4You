@@ -27,7 +27,6 @@ public class ActivityReportView extends AppCompatActivity {
     ArrayList<String> listItem;
     ArrayAdapter adapter;
 
-    RecyclerView recyclerView;
     ListView user_list;
     DBHelper dbHelper ;
     View _baseView;
@@ -47,7 +46,7 @@ public class ActivityReportView extends AppCompatActivity {
         ImageButton btnBackReportView = findViewById(R.id.btnBackReportView);
 
         btnBackReportView.setOnClickListener(v -> {
-            Intent intent = new Intent(ActivityReportView.this, AdminHome.class);
+            Intent intent = new Intent(ActivityReportView.this, ActivityLogin.class);
             startActivity(intent);
         });
 
@@ -69,6 +68,22 @@ public class ActivityReportView extends AppCompatActivity {
 
     void storeDataInArrays() {
         Cursor cursor = dbHelper.viewReportData(loggedInUserId);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                reportID.add(cursor.getString(0)); //reportID
+                reportCategory.add(cursor.getString(1)); // reportCategory
+                reportText.add(cursor.getString(2)); // reportText
+
+            } while (cursor.moveToNext());
+            cursor.close();
+        } else {
+            // Handle the case when there is no data or an error occurred.
+            Toast.makeText(ActivityReportView.this, "No reports to show", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /*void storeDataInArrays() {
+        Cursor cursor = dbHelper.viewReportData(loggedInUserId);
         if (cursor.getCount() == 0) {
             Toast.makeText(ActivityReportView.this, "No events to show", Toast.LENGTH_LONG).show();
         } else {
@@ -80,6 +95,6 @@ public class ActivityReportView extends AppCompatActivity {
 
             }
         }
-    }
+    }*/
 
 }

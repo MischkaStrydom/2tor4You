@@ -356,6 +356,21 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    public boolean deleteReport(int reportId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int affectedRows = 0;
+
+        // Delete user from the User table
+        affectedRows = db.delete("Report", "reportID=?", new String[]{String.valueOf(reportId)});
+
+
+        if (affectedRows > 0) {
+            return true;
+        }
+        // User not found or deletion failed
+        return false;
+    }
+
 
     public boolean deleteEvent(int eventId) {
         SQLiteDatabase db = this.getWritableDatabase();
