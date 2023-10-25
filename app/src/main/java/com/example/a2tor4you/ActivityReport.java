@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a2tor4you.utils.AndroidUtil;
@@ -72,7 +73,7 @@ public class ActivityReport extends AppCompatActivity {
                 reportValues.put("reportCategory", reportCategory);
                 reportValues.put("reportText", reportText);
 
-                boolean result = myDB.insertData("Report", reportValues);
+                boolean result = myDB.insertDataUser("Report", reportValues);
 
 
                 // if (isAllFieldsChecked) {
@@ -97,6 +98,24 @@ public class ActivityReport extends AppCompatActivity {
         });
 
     }
+
+    private boolean checkAllFields() {
+        // Check if all fields are filled
+        boolean isCategoryEmpty = spinReport.getSelectedItem().toString().trim().isEmpty();
+        boolean isTextValueEmpty = txtReport.getText().toString().trim().isEmpty();
+
+        // Display error messages for empty fields
+        if (isCategoryEmpty) {
+            ((TextView) spinReport.getSelectedView()).setError("Category is required");
+        }
+        if (isTextValueEmpty) {
+            txtReport.setError("Text is required");
+        }
+
+        // Return true if all fields are filled, otherwise return false
+        return !(isCategoryEmpty || isTextValueEmpty);
+    }
+
     private int getIndex(Spinner spinner, String value) {
         for (int i = 0; i < spinner.getCount(); i++) {
             String item = spinner.getItemAtPosition(i).toString();
@@ -107,7 +126,8 @@ public class ActivityReport extends AppCompatActivity {
         return -1; // Not found
     }
 
-    private boolean checkAllFields() {
+
+    /*private boolean checkAllFields() {
         // Check if all fields are filled
         String selectedReportCategory = spinReport.getSelectedItem().toString();
         String reportTextValue = txtReport.getText().toString().trim();
@@ -125,7 +145,7 @@ public class ActivityReport extends AppCompatActivity {
         }
 
         return true; // All fields are filled
-    }
+    }*/
 
 
 }

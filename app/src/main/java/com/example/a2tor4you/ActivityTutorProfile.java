@@ -164,7 +164,7 @@ public class ActivityTutorProfile extends AppCompatActivity {
                 subjectText.append("Subject: ").append(subject).append("- Grade: ").append(grade).append(" | ");
             }
 
-// Set the concatenated text to the TextView
+            // Set the concatenated text to the TextView
             txtSubjects.setText(subjectText.toString());
 
         } else {
