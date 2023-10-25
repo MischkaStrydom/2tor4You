@@ -76,19 +76,7 @@ public class ActivityMyProfile extends AppCompatActivity {
 
         myDB = new DBHelper(this); // Initialize myDB
 
-//        ActionBar actionBar = getSupportActionBar();
 
-
-
-//        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-//            @Override
-//            public void handleOnBackPressed() {
-//                // Handle the back button event
-//                finish();
-//            }
-//        };
-//
-//        this.getOnBackPressedDispatcher().addCallback(this, callback);
 
         SharedPreferences preferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         int loggedInUserId = preferences.getInt("loggedInUserId", -1); // -1 is a default value if key not found
@@ -125,6 +113,18 @@ public class ActivityMyProfile extends AppCompatActivity {
 
 
 
+        spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if (initialState++ > 0) {
+                    updateCitySpinner(parentView.getItemAtPosition(position).toString());
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Do nothing here
+            }
+        });
 
 
 
@@ -187,18 +187,19 @@ public class ActivityMyProfile extends AppCompatActivity {
                 if (positionGen != -1) {
                     gender.setSelection(positionGen);
                 }
-
-                int positionProv = getIndex(spinnerProvince, province);
-                if (positionProv != -1) {
-                    spinnerProvince.setSelection(positionProv);
+                if (province != null && city != null) {
+                    int positionProv = getIndex(spinnerProvince, province);
+                    if (positionProv != -1) {
+                        spinnerProvince.setSelection(positionProv);
+                    }
+                    updateCitySpinner(province);
+                    //                String cityName = null;
+                    //                if (cityName != null) {
+                    int positionCity = getIndexOfCity(spinnerCity, province, city);
+                    if (positionCity != -1) {
+                        spinnerCity.setSelection(positionCity);
+                    }
                 }
-                updateCitySpinner(province);
-
-                int positionCity = getIndexOfCity(spinnerCity, province, city);
-                if (positionCity != -1) {
-                    spinnerCity.setSelection(positionCity);
-                }
-
 
                 school.setText(School);
 
@@ -213,18 +214,6 @@ public class ActivityMyProfile extends AppCompatActivity {
             //welcome.setText("Guest"); // Display a default value or handle it as needed
         }
 
-        spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                if (initialState++ > 0) {
-                    updateCitySpinner(parentView.getItemAtPosition(position).toString());
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // Do nothing here
-            }
-        });
 
         // handle the SAVE button
         btnSaveProfile.setOnClickListener(new View.OnClickListener() {

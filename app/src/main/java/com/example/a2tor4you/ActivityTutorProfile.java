@@ -290,15 +290,20 @@ public class ActivityTutorProfile extends AppCompatActivity {
                     gender.setSelection(positionGen);
                 }
 
+
+               if (province != null && city != null){
                 int positionProv = getIndex(spinnerProvince, province);
                 if (positionProv != -1) {
                     spinnerProvince.setSelection(positionProv);
                 }
                 updateCitySpinner(province);
 
+//                String cityName = null;
+//                if (cityName != null) {
                 int positionCity = getIndexOfCity(spinnerCity, province, city);
                 if (positionCity != -1) {
                     spinnerCity.setSelection(positionCity);
+                }
                 }
 
 
