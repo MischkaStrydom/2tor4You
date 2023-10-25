@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
 public class ActivityLogin extends AppCompatActivity {
 
     ImageView btnBack;
-    TextView phonePrefix, btnSignUp;
+    TextView phonePrefix, btnSignUp, txtForgotPassword;
     EditText phoneInput, userPassword;
     Spinner roleSpinner;
     Button btnLogin, btnCreateNewPassword;
@@ -61,7 +61,10 @@ public class ActivityLogin extends AppCompatActivity {
         phonePrefix = findViewById(R.id.txtPrefix);
         userPassword = findViewById(R.id.txtLoginPassword);
         btnLogin = findViewById(R.id.btnLogin);
+        txtForgotPassword = findViewById(R.id.txtForgotPassword);
 
+        //Forgot Password
+        txtForgotPassword.setOnClickListener(view -> startActivity(new Intent(ActivityLogin.this,ForgotPassword.class)));
         //On button back takes user back to main screen
         btnBack.setOnClickListener(view -> startActivity(new Intent(ActivityLogin.this,MainActivity.class)));
 

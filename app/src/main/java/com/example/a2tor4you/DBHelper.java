@@ -770,6 +770,20 @@ public class DBHelper extends SQLiteOpenHelper {
         return userID;
     }
 
+    public int getUserIdForgot(String email, String userRole) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT userID FROM User WHERE email = ?  AND userRole = ?", new String[]{email, userRole});
+
+
+        int userID = -1; // Initialize to -1 in case of no matching record.
+
+        if (cursor.moveToFirst()) userID = cursor.getInt(0);
+        cursor.close();
+        db.close();
+
+        return userID;
+    }
+
     public int getTutorId(int userID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT tutorID FROM Tutor WHERE userID = ?", new String[]{String.valueOf(userID)});

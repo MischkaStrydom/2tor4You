@@ -33,6 +33,13 @@
         <item>Admin</item>
     </string-array>
 
+    <string name="select_rolesForgot">Select a Role</string>
+    <string-array name="Spinner_Item_Forgot">
+        <item>Select a Role</item>
+        <item>Tutor</item>
+        <item>Student</item>
+    </string-array>
+
     <!--Change Password Screen-->
     <string name="txt_HeadingChangePassword">Change Password</string>
     <string name="txtCurrentPassword">Current Password</string>
