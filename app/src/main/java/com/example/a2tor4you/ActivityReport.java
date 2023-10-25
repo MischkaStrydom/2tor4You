@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import com.example.a2tor4you.utils.AndroidUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ActivityReport extends AppCompatActivity {
 
     EditText txtReport;
@@ -62,9 +65,14 @@ public class ActivityReport extends AppCompatActivity {
                     AndroidUtil.showToast(getApplicationContext(), "All fields are required.");
                 }
 
+
                 //Insert event details to the database
                 reportCategory = spinReport.getSelectedItem().toString();
                 reportText = txtReport.getText().toString();//
+
+                long currentTimeMillis = System.currentTimeMillis();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// Customize the format as needed
+                String dateTimeString = dateFormat.format(new Date(currentTimeMillis));
 
                 //SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -72,6 +80,7 @@ public class ActivityReport extends AppCompatActivity {
                 reportValues.put("userID", loggedInUserId);
                 reportValues.put("reportCategory", reportCategory);
                 reportValues.put("reportText", reportText);
+                reportValues.put("reportedAt", dateTimeString);
 
                 boolean result = myDB.insertDataUser("Report", reportValues);
 
