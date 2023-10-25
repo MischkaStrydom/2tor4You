@@ -8,6 +8,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.media.metrics.Event;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -62,6 +64,8 @@ public class ActivityHomeStudent extends AppCompatActivity {
         setContentView(R.layout.activity_home_student);
 
         CalendarView calendarView = findViewById(R.id.calendarView);
+
+
         TextView welcome = findViewById(R.id.txtWelcomeStud);
         dbHelper = new DBHelper(this);
 
@@ -84,11 +88,12 @@ public class ActivityHomeStudent extends AppCompatActivity {
         List<Date> eventDates = dbHelper.getEventDatesForUser(loggedInUserId);
 
 
-                btnViewAllSessions = findViewById(R.id.btnViewAllSessions);
+        btnViewAllSessions = findViewById(R.id.btnViewAllSessions);
         btnViewAllSessions.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityHomeStudent.this, ActivityEventsListView.class);
             startActivity(intent);
         });
+
 
         // Highlight calendar event
 
@@ -174,6 +179,8 @@ public class ActivityHomeStudent extends AppCompatActivity {
                 return false;
             }
         });
+
+
 
         //Calendar event highlight
 

@@ -60,9 +60,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 " reviewText VARCHAR(255), FOREIGN KEY (tutorID) REFERENCES Tutor(tutorID), FOREIGN KEY (studentID) REFERENCES Student(studentID))";
 
         //Report
-        String ReportSQL = "CREATE TABLE Report (reportID INTEGER PRIMARY KEY AUTOINCREMENT,adminID INTEGER, reportedID INTEGER, reporteeID INTEGER, reportText VARCHAR(255)," +
-                " reportCategory VARCHAR(255), reportedAt DATETIME, resolvedAt DATETIME, resolutionText VARCHAR(255), FOREIGN KEY (adminID) REFERENCES Admin(adminID), " +
-                "FOREIGN KEY (reportedID) REFERENCES User(userID), FOREIGN KEY (reporteeID) REFERENCES User(userID))";
+        String ReportSQL = "CREATE TABLE Report (reportID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, reportText VARCHAR(255)," +
+                " reportCategory VARCHAR(255), reportedAt DATETIME, FOREIGN KEY (userID) REFERENCES User(userID))";
 
         //Delete Account
         String DeleteSQL = "CREATE TABLE DeletedAccount (deletedAccountID INTEGER PRIMARY KEY AUTOINCREMENT, userID INTEGER, deletedDate DATE, userRole VARCHAR(50), " +
@@ -634,6 +633,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return eventDates;
     }
+
 
 
     //username in this case is user phone number
