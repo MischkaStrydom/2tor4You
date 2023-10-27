@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class ActivityReportView extends AppCompatActivity {
 
-    ArrayList<String> reportID, reportCategory, reportText;
+    ArrayList<String> reportID, reportCategory, reportText, reportedAt;
     RecyclerView rvReport;
 
     AdapterReport AdapterReport;
@@ -57,9 +57,10 @@ public class ActivityReportView extends AppCompatActivity {
         reportID = new ArrayList<>();
         reportCategory = new ArrayList<>();
         reportText = new ArrayList<>();
+        reportedAt = new ArrayList<>();
 
         storeDataInArrays();
-        AdapterReport = new AdapterReport(ActivityReportView.this,reportID, reportCategory, reportText);
+        AdapterReport = new AdapterReport(ActivityReportView.this,reportID, reportCategory, reportText, reportedAt);
         AdapterReport.setDbHelper(dbHelper);
         rvReport.setAdapter(AdapterReport);
         rvReport.setLayoutManager(new LinearLayoutManager(ActivityReportView.this)) ;
@@ -71,8 +72,9 @@ public class ActivityReportView extends AppCompatActivity {
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 reportID.add(cursor.getString(0)); //reportID
-                reportCategory.add(cursor.getString(1)); // reportCategory
-                reportText.add(cursor.getString(2)); // reportText
+                reportCategory.add(cursor.getString(2)); // reportCategory
+                reportText.add(cursor.getString(1)); // reportText
+                reportedAt.add(cursor.getString(3)); // reportedAt
 
             } while (cursor.moveToNext());
             cursor.close();

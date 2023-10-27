@@ -16,17 +16,19 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.MyViewHold
 
     private Context context;
     private DBHelper dbHelper;
-    private ArrayList reportID, reportCategory, reportText;
+    private ArrayList reportID, reportCategory, reportText, reportedAt;
 
     AdapterReport(Context context,
                   ArrayList reportID,
                   ArrayList reportCategory,
-                  ArrayList reportText
+                  ArrayList reportText,
+                  ArrayList reportedAt
     ){
         this.context = context;
         this.reportID = reportID;
         this.reportCategory = reportCategory;
         this.reportText = reportText;
+        this.reportedAt = reportedAt;
     }
 
     public void setDbHelper(DBHelper dbHelper) {
@@ -47,6 +49,7 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.MyViewHold
         holder.reportID.setText(String.valueOf(reportID.get(position)));
         holder.reportCategory.setText(String.valueOf(reportCategory.get(position)));
         holder.reportText.setText(String.valueOf(reportText.get(position)));
+        holder.reportedAt.setText(String.valueOf(reportedAt.get(position)));
 
         holder.btnDeleteReport.setOnClickListener(v -> {
             int reportId = Integer.parseInt((String) reportID.get(position));
@@ -58,6 +61,7 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.MyViewHold
                 reportID.remove(position);
                 reportCategory.remove(position);
                 reportText.remove(position);
+                reportedAt.remove(position);
 
 
                 // Notify the adapter that the data set has changed
@@ -73,16 +77,17 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView reportID, reportCategory, reportText;
+        TextView reportID, reportCategory, reportText, reportedAt;
         ImageButton btnDeleteReport;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             reportID = itemView.findViewById(R.id.reportID);
-            reportCategory = itemView.findViewById(R.id.spinReport);
-            reportText = itemView.findViewById(R.id.txtReport);
+            reportCategory = itemView.findViewById(R.id.reportCategory);
+            reportText = itemView.findViewById(R.id.reportText);
             btnDeleteReport = itemView.findViewById(R.id.btnDeleteReport);
+            reportedAt = itemView.findViewById(R.id.reportedAt);
 
         }
     }

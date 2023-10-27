@@ -75,8 +75,21 @@ public class FirebaseUtil {
                 .child(FirebaseUtil.currentUserId());
     }
 
-    public static StorageReference  getOtherProfilePicStorageRef(String otherUserId){
-        return FirebaseStorage.getInstance().getReference().child("profile_pic")
-                .child(otherUserId);
+        public static StorageReference  getOtherProfilePicStorageRef(String otherUserId){
+            return FirebaseStorage.getInstance().getReference().child("profile_pic")
+                    .child(otherUserId);
+        }
+
+        public static String getPhoneNumber() {
+            String phoneNumber;
+
+            try {
+                phoneNumber = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+            } catch (NullPointerException e) {
+                phoneNumber = "";
+            }
+
+            return phoneNumber;
+
     }
 }

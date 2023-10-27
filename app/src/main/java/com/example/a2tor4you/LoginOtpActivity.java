@@ -160,7 +160,7 @@ public class LoginOtpActivity extends AppCompatActivity {
                             intent.putExtra("selectedRole", selectedRole);
                             startActivity(intent);
                         } else if (admin.equals("Application Admin")) {
-                            Intent intent = new Intent(LoginOtpActivity.this, AdminHome.class); //ActivityReportView
+                            Intent intent = new Intent(LoginOtpActivity.this, ActivityReportView.class); //ActivityReportView
                             intent.putExtra("phone", phoneNumber);
                             intent.putExtra("password", password);
                             intent.putExtra("selectedRole", selectedRole);

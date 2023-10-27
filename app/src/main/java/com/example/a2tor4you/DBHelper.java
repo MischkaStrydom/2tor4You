@@ -348,7 +348,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // Reports Activity
     public Cursor viewReportData(int loggedInUserId) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT reportID, reportText, reportCategory FROM Report WHERE userID = ?";
+        String query = "SELECT reportID, reportText, reportCategory, reportedAt FROM Report WHERE userID = ?";
 
         String[] selectionArgs = {String.valueOf(loggedInUserId)};
         Cursor cursor = db.rawQuery(query, selectionArgs);

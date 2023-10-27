@@ -106,7 +106,7 @@ public class ProfileFragment extends Fragment {
 
             currentUserModel = task.getResult().toObject(UserModel.class);
             usernameInput.setText(currentUserModel.getUsername());
-            phoneInput.setText(currentUserModel.getPhone());
+            phoneInput.setText(FirebaseUtil.getPhoneNumber());
         });
     }
 
@@ -117,6 +117,8 @@ public class ProfileFragment extends Fragment {
             return;
         }
         currentUserModel.setUsername(newUsername);
+
+//        currentUserModel.setPhone("");
 
         updateToFirestore();
 
