@@ -16,18 +16,18 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.MyViewHold
 
     private Context context;
     private DBHelper dbHelper;
-    private ArrayList reportID, reportCategory, reportText, reportedAt;
+    private ArrayList reportID,reportText, reportCategory, reportedAt;
 
     AdapterReport(Context context,
                   ArrayList reportID,
-                  ArrayList reportCategory,
                   ArrayList reportText,
+                  ArrayList reportCategory,
                   ArrayList reportedAt
     ){
         this.context = context;
         this.reportID = reportID;
-        this.reportCategory = reportCategory;
         this.reportText = reportText;
+        this.reportCategory = reportCategory;
         this.reportedAt = reportedAt;
     }
 
@@ -47,8 +47,8 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.MyViewHold
     public void onBindViewHolder(@NonNull AdapterReport.MyViewHolder holder, int position) {
 
         holder.reportID.setText(String.valueOf(reportID.get(position)));
-        holder.reportCategory.setText(String.valueOf(reportCategory.get(position)));
         holder.reportText.setText(String.valueOf(reportText.get(position)));
+        holder.reportCategory.setText(String.valueOf(reportCategory.get(position)));
         holder.reportedAt.setText(String.valueOf(reportedAt.get(position)));
 
         holder.btnDeleteReport.setOnClickListener(v -> {
@@ -59,8 +59,8 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.MyViewHold
             if(result){
                 // Remove the event data from ArrayLists
                 reportID.remove(position);
-                reportCategory.remove(position);
                 reportText.remove(position);
+                reportCategory.remove(position);
                 reportedAt.remove(position);
 
 
@@ -77,7 +77,7 @@ public class AdapterReport extends RecyclerView.Adapter<AdapterReport.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView reportID, reportCategory, reportText, reportedAt;
+        TextView reportID, reportText, reportCategory, reportedAt;
         ImageButton btnDeleteReport;
 
         public MyViewHolder(@NonNull View itemView) {

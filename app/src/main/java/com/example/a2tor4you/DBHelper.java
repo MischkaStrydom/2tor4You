@@ -851,8 +851,8 @@ public class DBHelper extends SQLiteOpenHelper {
             affectedRows += db.delete("Event", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             affectedRows += db.delete("Student", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             //Reviews
-            affectedRows += db.delete("Report", "reportedID=?", new String[]{String.valueOf(loggedInUserID)});
-            affectedRows += db.delete("Report", "reporteeID=?", new String[]{String.valueOf(loggedInUserID)});
+//            affectedRows += db.delete("Report", "userID=?", new String[]{String.valueOf(loggedInUserID)});
+//            affectedRows += db.delete("Report", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             affectedRows += db.delete("Student", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             affectedRows += db.delete("NotificationPreference", "userID=?", new String[]{String.valueOf(loggedInUserID)});
             affectedRows += db.delete("PasswordChange", "userID=?", new String[]{String.valueOf(loggedInUserID)});

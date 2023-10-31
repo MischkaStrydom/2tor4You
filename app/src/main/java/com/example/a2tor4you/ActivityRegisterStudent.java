@@ -205,26 +205,26 @@ public class ActivityRegisterStudent extends AppCompatActivity {
 
         // Display error messages for empty fields
         if (isFirstNameEmpty) {
-            name.setError("Title is required");
+            name.setError("First Name is required");
         }
         if (isLastNameEmpty) {
-            surname.setError("Date is required");
+            surname.setError("Last name is required");
         }
         if (isPhoneEmpty) {
-            phoneInput.setError("Time is required");
+            phoneInput.setError("Phone is required");
         }
         if (isEmailEmpty) {
-            email.setError("Time is required");
+            email.setError("Email is required");
         }
         if (isPassEmpty) {
-            password.setError("Time is required");
+            password.setError("Password is required");
         }
         if (isConfirmPassEmpty) {
-            confirmPass.setError("Time is required");
+            confirmPass.setError("Confirm Password is required");
         }
 
         // Return true if all fields are filled, otherwise return false
-        return !(isFirstNameEmpty || isLastNameEmpty || isPhoneEmpty || isEmailEmpty || isPassEmpty|| isConfirmPassEmpty);
+        return !(isFirstNameEmpty && isLastNameEmpty && isPhoneEmpty && isEmailEmpty && isPassEmpty && isConfirmPassEmpty);
     }
 }
 

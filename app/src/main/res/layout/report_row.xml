@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:text="Title 1"
+                android:text="Date of report:"
                 android:textColor="#3F51B5"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -46,11 +46,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="70dp"
                 android:text="Date"
                 android:textColor="#3F51B5"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/eventTitle"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -107,12 +108,11 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Date of report: "
+                android:text=" "
                 android:textColor="@color/grey"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/reportedAt"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:layout_editor_absoluteX="186dp"
+                tools:layout_editor_absoluteY="12dp" />
 
             <TextView
                 android:id="@+id/textView6"

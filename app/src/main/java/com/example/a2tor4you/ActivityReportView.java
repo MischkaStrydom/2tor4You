@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class ActivityReportView extends AppCompatActivity {
 
-    ArrayList<String> reportID, reportCategory, reportText, reportedAt;
+    ArrayList<String> reportID,reportText, reportCategory, reportedAt;
     RecyclerView rvReport;
 
     AdapterReport AdapterReport;
@@ -55,12 +55,12 @@ public class ActivityReportView extends AppCompatActivity {
         //Testing recycle view
         dbHelper = new DBHelper(ActivityReportView.this);
         reportID = new ArrayList<>();
-        reportCategory = new ArrayList<>();
         reportText = new ArrayList<>();
+        reportCategory = new ArrayList<>();
         reportedAt = new ArrayList<>();
 
         storeDataInArrays();
-        AdapterReport = new AdapterReport(ActivityReportView.this,reportID, reportCategory, reportText, reportedAt);
+        AdapterReport = new AdapterReport(ActivityReportView.this,reportID, reportText, reportCategory, reportedAt);
         AdapterReport.setDbHelper(dbHelper);
         rvReport.setAdapter(AdapterReport);
         rvReport.setLayoutManager(new LinearLayoutManager(ActivityReportView.this)) ;

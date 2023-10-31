@@ -297,7 +297,7 @@ public class ActivityRegisterTutor extends AppCompatActivity implements View.OnC
 
         // Display error messages for empty fields
         if (isNameEmpty) {
-            name.setError("Name is required");
+            name.setError("First Name is required");
         }
         if (isSurnameEmpty) {
             surname.setError("Surname is required");
