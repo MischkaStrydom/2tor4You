@@ -155,6 +155,9 @@ public class ActivityRegisterTutor extends AppCompatActivity implements View.OnC
                         email.setText("");
                         password.setText("");
                         confirmPass.setText("");
+                        verification.setChecked(false);
+                        suitable.setChecked(false);
+                        imageView.setImageBitmap(null);
 
 //                        // Pass the userId to another activity
 //                        Intent intent = new Intent(ActivityRegisterTutor.this, ActivityLogin.class);

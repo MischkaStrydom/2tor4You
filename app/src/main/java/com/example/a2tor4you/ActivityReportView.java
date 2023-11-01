@@ -68,7 +68,7 @@ public class ActivityReportView extends AppCompatActivity {
     }
 
     void storeDataInArrays() {
-        Cursor cursor = dbHelper.viewReportData(loggedInUserId);
+        Cursor cursor = dbHelper.viewReportData();
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 reportID.add(cursor.getString(0)); //reportID

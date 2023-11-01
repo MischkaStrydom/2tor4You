@@ -345,15 +345,23 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    // Reports Activity
-    public Cursor viewReportData(int loggedInUserId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT reportID, reportText, reportCategory, reportedAt FROM Report WHERE userID = ?";
+//    // Reports Activity
+//    public Cursor viewReportData(int loggedInUserId) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        String query = "SELECT reportID, reportText, reportCategory, reportedAt FROM Report WHERE userID = ?";
+//
+//        String[] selectionArgs = {String.valueOf(loggedInUserId)};
+//        Cursor cursor = db.rawQuery(query, selectionArgs);
+//        return cursor;
+//    }
+// Reports Activity
+        public Cursor viewReportData() {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT reportID, reportText, reportCategory, reportedAt FROM Report";
 
-        String[] selectionArgs = {String.valueOf(loggedInUserId)};
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-        return cursor;
-    }
+            Cursor cursor = db.rawQuery(query, null);
+            return cursor;
+        }
 
     public boolean deleteReport(int reportId) {
         SQLiteDatabase db = this.getWritableDatabase();

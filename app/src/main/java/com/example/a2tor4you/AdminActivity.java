@@ -3,10 +3,12 @@ package com.example.a2tor4you;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +21,7 @@ public class AdminActivity extends AppCompatActivity {
      Button btnGenerate;
      DBHelper myDb;
      Calendar calendar = Calendar.getInstance();
+     ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,9 @@ public class AdminActivity extends AppCompatActivity {
 
         TextView tutorsOff = findViewById(R.id.txtDisplayTutorsOffBoarded);
         TextView studentsOff = findViewById(R.id.txtDisplayStudentsOffBoarded);
+        btnBack = findViewById(R.id.btnBack);
+
+        btnBack.setOnClickListener(view -> startActivity(new Intent(AdminActivity.this,MainActivity.class)));
 
         btnGenerate = findViewById(R.id.btnGenerate);
 
