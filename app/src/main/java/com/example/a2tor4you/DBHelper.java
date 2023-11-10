@@ -44,6 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String adminSQL = "CREATE TABLE Admin (adminID INTEGER PRIMARY KEY AUTOINCREMENT,userID INTEGER, adminRole VARCHAR(255), phone VARCHAR(12), FOREIGN KEY (userID) REFERENCES User(userID))";
 
 //        //Subjects
+        //never used but can be used
         String subjectSQL = "CREATE TABLE Subject (subjectID INTEGER PRIMARY KEY AUTOINCREMENT, subject VARCHAR(255))";
 
         //Tutor Subjects --- Tutor Profile
